@@ -29,6 +29,9 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
   final passwordController = TextEditingController();
   final repeatPasswordController = TextEditingController();
 
+  bool _passwordVisible = false;
+  bool _repeatPasswordVisible = false;
+
   verifyFormAndSubmit() {
     String _name = nameController.text.trim();
     String _email = emailController.text.trim();
@@ -70,9 +73,6 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
             }
           }));
       if (response.statusCode == 200) {
-        // Navigator.pop(context);
-        // If the server did return a 200 OK response,
-        // then parse the JSON.
         Navigator.of(context).pop();
         print(response.body);
         Map<String, dynamic> res = json.decode(response.body);
@@ -84,16 +84,12 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
         print(res);
       }
     } catch (exception) {
-      // Navigator.pop(context);
-      // I get no exception here
       print(exception);
     }
   }
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
     nameController.dispose();
     emailController.dispose();
     phoneNumberController.dispose();
@@ -106,14 +102,12 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
       resizeToAvoidBottomInset: true,
-      //backgroundColor: Colors.white,
       appBar:
           PreferredSize(child: Container(), preferredSize: Size.fromHeight(0)),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           width: double.infinity,
-          //height: double.infinity,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
@@ -211,7 +205,7 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
               TextField(
                 controller: passwordController,
                 keyboardType: TextInputType.text,
-                obscureText: true,
+                obscureText: !_passwordVisible,
                 decoration: InputDecoration(
                   enabledBorder: UnderlineInputBorder(
                     borderSide:
@@ -220,6 +214,18 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
                   focusedBorder: UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Colors.blueGrey[400]!, width: 2),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _passwordVisible = !_passwordVisible;
+                      });
+                    },
                   ),
                 ),
               ),
@@ -231,7 +237,7 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
               ),
               TextField(
                 controller: repeatPasswordController,
-                obscureText: true,
+                obscureText: !_repeatPasswordVisible,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   enabledBorder: UnderlineInputBorder(
@@ -241,6 +247,18 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
                   focusedBorder: UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Colors.blueGrey[400]!, width: 2),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _repeatPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _repeatPasswordVisible = !_repeatPasswordVisible;
+                      });
+                    },
                   ),
                 ),
               ),
@@ -268,7 +286,6 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
                 child: TextButton(
                   child: Text(
                     t.alreadyhaveanaccount,
-                    //style: TextStyle(color: MyColors.primary),
                   ),
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
