@@ -102,14 +102,16 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text("My Virtual Pastor", style: TextStyles.title(context)),
+          title: Text("My Virtual Pastor",
+              style: TextStyles.title(context)
+                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
           centerTitle: true,
           leading: GestureDetector(
             onTap: () {
               scaffoldKey.currentState!.openDrawer();
             },
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(horizontal: 15),
               height: 20,
               width: 20,
               child: Image.asset(
