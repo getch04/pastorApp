@@ -1,15 +1,16 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
+import 'package:churchapp_flutter/utils/img.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../i18n/strings.g.dart';
 import '../providers/AudioPlayerModel.dart';
-import '../providers/HomeProvider.dart';
 import '../screens/DrawerScreen.dart';
 import '../utils/my_colors.dart';
-import 'Home.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -37,6 +38,8 @@ class HomeScreenItem extends StatefulWidget {
 
 class _HomeScreenItemState extends State<HomeScreenItem> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -92,13 +95,27 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(t.appname, style: TextStyles.title(context)),
+          title: Text("My Virtual Pastor", style: TextStyles.title(context)),
+          centerTitle: true,
+          leading: GestureDetector(
+            onTap: () {
+              scaffoldKey.currentState!.openDrawer();
+            },
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 20,
+              width: 20,
+              child: Image.asset(
+                Img.get('new/menu.png'),
+              ),
+            ),
+          ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
                   Colors.blue[300]!,
-                  Colors.purple[300]!,
+                  Colors.purple[100]!,
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -106,15 +123,105 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
             ),
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: ChangeNotifierProvider(
-                create: (context) => HomeProvider(),
-                child: MyHomePage(),
-              ),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [
+                0.5,
+                0.9,
+              ],
+              colors: [
+                Color.fromARGB(255, 255, 244, 148),
+                Color.fromARGB(255, 181, 255, 185)
+              ],
             ),
-          ],
+          ),
+          child: Column(
+            children: [
+              CarouselSlider(
+                options: CarouselOptions(
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 1,
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
+                ),
+                items: [
+                  Img.get('new/1.jpg'),
+                  Img.get('new/2.jpg'),
+                  Img.get('new/3.jpg'),
+                  Img.get('new/4.jpg'),
+                  Img.get('new/5.jpg'),
+                ].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        width: double.infinity,
+                        child: Image.asset(
+                          i,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  );
+                }).toList(),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              AnimatedSmoothIndicator(
+                activeIndex: _currentIndex,
+                count: 5,
+                effect: WormEffect(
+                  dotHeight: 12.0,
+                  dotWidth: 12.0,
+                  activeDotColor: Colors.blue[300]!,
+                  dotColor: Colors.grey,
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      '\"Your Pastor for 1 year, to help you grow into a person God called you to be.\"',
+                      textAlign: TextAlign.center,
+                      style: TextStyles.subhead(context).copyWith(
+                        color: MyColors.nearlyBlack,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    Expanded(
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.2,
+                        children: [
+                          _buildGridItem('Sermons', Img.get('new/sermon.png')),
+                          _buildGridItem('Bible', Img.get('new/bible.png')),
+                          _buildGridItem('Q & A\'s', Img.get('new/Q&A.png')),
+                          _buildGridItem('Tools', Img.get('new/tools.png')),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
         drawer: Container(
           color: MyColors.grey_95,
@@ -124,6 +231,25 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
           ),
         ),
         key: scaffoldKey,
+      ),
+    );
+  }
+
+  Widget _buildGridItem(String title, String iconPath) {
+    return InkWell(
+      onTap: () {},
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(iconPath, height: 100),
+            Text(
+              title,
+              style: TextStyles.title(context)
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }
