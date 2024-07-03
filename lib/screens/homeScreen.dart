@@ -40,6 +40,13 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   int _currentIndex = 0;
+  int _currentNavIndex = 0;
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentNavIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -231,6 +238,70 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
           ),
         ),
         key: scaffoldKey,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.transparent,
+              selectedItemColor: Colors.black,
+              unselectedItemColor: Colors.black,
+              currentIndex: _currentNavIndex,
+              selectedIconTheme: IconThemeData(size: 30),
+              selectedLabelStyle:
+                  TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              onTap: (index) {
+                setState(() {
+                  _currentNavIndex = index;
+                });
+              },
+              items: [
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      Img.get('new/home.png'),
+                      width: 30,
+                      height: 30,
+                    ),
+                    label: "Home"),
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    Img.get('new/menu_sermon.png'),
+                    width: 30,
+                    height: 30,
+                  ),
+                  label: "Sermon",
+                ),
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      Img.get('new/menu_bible.png'),
+                      width: 30,
+                      height: 30,
+                    ),
+                    label: "Bible"),
+                BottomNavigationBarItem(
+                    icon: Image.asset(
+                      Img.get('new/profile.png'),
+                      width: 30,
+                      height: 30,
+                    ),
+                    label: "Profile"),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
