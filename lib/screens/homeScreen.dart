@@ -220,15 +220,16 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                       style: TextStyles.subhead(context).copyWith(
                         color: MyColors.nearlyBlack,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 18,
                       ),
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 35),
                         child: GridView.count(
                           crossAxisCount: 2,
-                          childAspectRatio: 1.2,
+                          childAspectRatio: 1.4,
                           mainAxisSpacing: 20,
                           crossAxisSpacing: 20,
                           children: [
@@ -279,13 +280,8 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
           color: MyColors.grey_95,
           width: 300,
           child: Drawer(
-            child:ChangeNotifierProvider(
-                create: (context) => HomeProvider(),
-                child:
-
-             DrawerScreen(
-             )
-            ),
+            child: ChangeNotifierProvider(
+                create: (context) => HomeProvider(), child: DrawerScreen()),
           ),
         ),
         key: scaffoldKey,
@@ -342,31 +338,31 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                 BottomNavigationBarItem(
                     icon: Image.asset(
                       Img.get('new/home.png'),
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                     ),
                     label: "Home"),
                 BottomNavigationBarItem(
                   icon: Image.asset(
                     Img.get('new/menu_sermon.png'),
-                    width: 30,
-                    height: 30,
+                    width: 25,
+                    height: 25,
                   ),
                   label: "Sermon",
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(
                     Img.get('new/menu_bible.png'),
-                    width: 30,
-                    height: 30,
+                    width: 25,
+                    height: 25,
                   ),
                   label: "Bible",
                 ),
                 BottomNavigationBarItem(
                     icon: Image.asset(
                       Img.get('new/profile.png'),
-                      width: 30,
-                      height: 30,
+                      width: 25,
+                      height: 25,
                     ),
                     label: "Profile"),
               ],
@@ -393,7 +389,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(iconPath, height: 100),
+              Image.asset(iconPath, height: 70),
               Text(
                 title,
                 style: TextStyles.title(context)
@@ -405,5 +401,4 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
       ),
     );
   }
-  
 }

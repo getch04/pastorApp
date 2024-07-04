@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:churchapp_flutter/notes/NotesListScreen.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
+import 'package:churchapp_flutter/screens/CategoriesScreen.dart';
 import 'package:churchapp_flutter/screens/EventsListScreen.dart';
 import 'package:churchapp_flutter/screens/InboxListScreen.dart';
 import 'package:churchapp_flutter/utils/Alerts.dart';
@@ -393,6 +394,29 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           Icon(Icons.monetization_on, size: 20.0),
                           Container(width: 10),
                           Text('Offering',
+                              style: TextStyles.subhead(context).copyWith(
+                                fontSize: 15,
+                              )),
+                          Spacer(),
+                          Icon(Icons.navigate_next,
+                              size: 25.0, color: Colors.grey[400]),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(height: 8),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, CategoriesScreen.routeName);
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.category, size: 20.0),
+                          Container(width: 10),
+                          Text('Category',
                               style: TextStyles.subhead(context).copyWith(
                                 fontSize: 15,
                               )),
