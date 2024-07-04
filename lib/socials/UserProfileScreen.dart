@@ -123,8 +123,9 @@ class UserProfileScreenRouteState extends State<UserProfileScreen> {
   void initState() {
     _user = widget.user;
     Future.delayed(const Duration(milliseconds: 0), () {
-      fetchItems(
-          Provider.of<AppStateManager>(context, listen: false).userdata!);
+      final userData =
+          Provider.of<AppStateManager>(context, listen: false).userdata;
+      if (userData != null) fetchItems(userData);
     });
     super.initState();
   }

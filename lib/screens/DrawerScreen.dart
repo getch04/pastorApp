@@ -1,26 +1,31 @@
 import 'dart:convert';
 
+import 'package:churchapp_flutter/notes/NotesListScreen.dart';
+import 'package:churchapp_flutter/providers/HomeProvider.dart';
+import 'package:churchapp_flutter/screens/EventsListScreen.dart';
+import 'package:churchapp_flutter/screens/InboxListScreen.dart';
 import 'package:churchapp_flutter/utils/Alerts.dart';
-import 'package:churchapp_flutter/utils/Utility.dart';
+import 'package:churchapp_flutter/utils/img.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
+
+import '../auth/LoginScreen.dart';
+import '../i18n/strings.g.dart';
 import '../models/Userdata.dart';
-import 'package:flutter/cupertino.dart';
 import '../providers/AppStateManager.dart';
-import '../screens/PlaylistsScreen.dart';
 import '../screens/BookmarkScreen.dart';
-import '../socials/UpdateUserProfile.dart';
+import '../screens/PlaylistsScreen.dart';
 import '../socials/SocialActivity.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
+import '../socials/UpdateUserProfile.dart';
+import '../utils/ApiUrl.dart';
 import '../utils/TextStyles.dart';
 import '../utils/app_themes.dart';
 import '../utils/langs.dart';
 import '../utils/my_colors.dart';
-import '../utils/ApiUrl.dart';
-import '../auth/LoginScreen.dart';
-import '../i18n/strings.g.dart';
 
 class DrawerScreen extends StatefulWidget {
   DrawerScreen({Key? key}) : super(key: key);
@@ -86,12 +91,19 @@ class _DrawerScreenState extends State<DrawerScreen> {
   }
 
   @override
+  initState() {
+    super.initState();
+    Provider.of<HomeProvider>(context, listen: false).loadItems();
+  }
+
+  @override
   Widget build(BuildContext context) {
     appManager = Provider.of<AppStateManager>(context);
     userdata = appManager.userdata;
     bool themeSwitch = appManager.themeData == appThemeData[AppTheme.Dark];
     String language = appLanguageData[
         AppLanguage.values[appManager.preferredLanguage]]!['name']!;
+    final homeProvider = Provider.of<HomeProvider>(context, listen: false);
 
     return SafeArea(
       child: SingleChildScrollView(
@@ -104,25 +116,31 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     ? Container(
                         width: double.infinity,
                         height: 160,
-                        //color: MyColors.primary,
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
                           image: DecorationImage(
-                              image: NetworkImage(userdata!.coverPhoto!),
-                              fit: BoxFit.fill),
+                            image: NetworkImage(userdata!.coverPhoto!),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       )
                     : Container(
                         width: double.infinity,
                         height: 160,
-                        color: MyColors.primary,
                       ),
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(15),
-                  color: (userdata != null && userdata!.coverPhoto != "")
-                      ? Colors.black54
-                      : MyColors.primary,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.blue[300]!,
+                        Colors.purple[100]!,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
                   child: Column(
                     children: <Widget>[
                       (userdata != null && userdata!.avatar != "")
@@ -291,6 +309,100 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     ),
                   ),
                   Container(height: 15),
+                  Divider(height: 1, color: Colors.grey),
+                  Container(height: 8),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, EventsListScreen.routeName);
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.event, size: 20.0),
+                          Container(width: 10),
+                          Text('Events',
+                              style: TextStyles.subhead(context).copyWith(
+                                fontSize: 15,
+                              )),
+                          Spacer(),
+                          Icon(Icons.navigate_next,
+                              size: 25.0, color: Colors.grey[400]),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(height: 8),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, InboxListScreenState.routeName);
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.inbox, size: 20.0),
+                          Container(width: 10),
+                          Text('Inbox',
+                              style: TextStyles.subhead(context).copyWith(
+                                fontSize: 15,
+                              )),
+                          Spacer(),
+                          Icon(Icons.navigate_next,
+                              size: 25.0, color: Colors.grey[400]),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(height: 8),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, NotesListScreen.routeName);
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.note, size: 20.0),
+                          Container(width: 10),
+                          Text('Notes',
+                              style: TextStyles.subhead(context).copyWith(
+                                fontSize: 15,
+                              )),
+                          Spacer(),
+                          Icon(Icons.navigate_next,
+                              size: 25.0, color: Colors.grey[400]),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(height: 8),
+                  InkWell(
+                    onTap: () {
+                      openSocialBrowserTab(ApiUrl.DONATE);
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.monetization_on, size: 20.0),
+                          Container(width: 10),
+                          Text('Offering',
+                              style: TextStyles.subhead(context).copyWith(
+                                fontSize: 15,
+                              )),
+                          Spacer(),
+                          Icon(Icons.navigate_next,
+                              size: 25.0, color: Colors.grey[400]),
+                        ],
+                      ),
+                    ),
+                  ),
                   Divider(height: 1, color: Colors.grey),
                   Container(height: 8),
                   InkWell(
@@ -552,7 +664,75 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ],
               ),
             ),
-            Container(height: 0),
+            Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
+                child: Text(
+                  "Follow us on",
+                  style: TextStyles.headline(context).copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "serif",
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  InkWell(
+                    onTap: () {
+                      openSocialBrowserTab(
+                          homeProvider.data['facebook_page'] as String);
+                    },
+                    child: Container(
+                      child: Image.asset(Img.get('img_social_facebook.png')),
+                      width: 40,
+                      height: 40,
+                    ),
+                  ),
+                  Container(width: 10),
+                  InkWell(
+                    onTap: () {
+                      openSocialBrowserTab(
+                          homeProvider.data['youtube_page'] as String);
+                    },
+                    child: Container(
+                      child: Image.asset(Img.get('img_social_youtube.png')),
+                      width: 40,
+                      height: 40,
+                    ),
+                  ),
+                  Container(width: 10),
+                  InkWell(
+                    onTap: () {
+                      openSocialBrowserTab(
+                          homeProvider.data['twitter_page'] as String);
+                    },
+                    child: Container(
+                      child: Image.asset(Img.get('img_social_twitter.png')),
+                      width: 40,
+                      height: 40,
+                    ),
+                  ),
+                  Container(width: 10),
+                  InkWell(
+                    onTap: () {
+                      openSocialBrowserTab(
+                          homeProvider.data['instagram_page'] as String);
+                    },
+                    child: Container(
+                      child: Image.asset(Img.get('img_social_instagram.png')),
+                      width: 40,
+                      height: 40,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -605,5 +785,24 @@ class _DrawerScreenState extends State<DrawerScreen> {
       Navigator.of(context).pop();
       Alerts.show(context, "", exception.toString());
     }
+  }
+
+  openSocialBrowserTab(String url) async {
+    await FlutterWebBrowser.openWebPage(
+      url: url,
+      customTabsOptions: CustomTabsOptions(
+        colorScheme: CustomTabsColorScheme.dark,
+        instantAppsEnabled: true,
+        showTitle: true,
+        urlBarHidingEnabled: true,
+      ),
+      safariVCOptions: SafariViewControllerOptions(
+        barCollapsingEnabled: true,
+        preferredBarTintColor: MyColors.primary,
+        preferredControlTintColor: MyColors.primary,
+        dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
+        modalPresentationCapturesStatusBarAppearance: true,
+      ),
+    );
   }
 }

@@ -1,4 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:churchapp_flutter/models/ScreenArguements.dart';
+import 'package:churchapp_flutter/models/Userdata.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
+import 'package:churchapp_flutter/providers/HomeProvider.dart';
+import 'package:churchapp_flutter/screens/BibleScreen.dart';
+import 'package:churchapp_flutter/screens/HymnsListScreen.dart';
+import 'package:churchapp_flutter/socials/UserProfileScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/img.dart';
 import 'package:flutter/cupertino.dart';
@@ -50,6 +57,8 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
 
   @override
   Widget build(BuildContext context) {
+    Userdata? userdata = Provider.of<AppStateManager>(context).userdata;
+
     return WillPopScope(
       onWillPop: () async {
         if (Provider.of<AudioPlayerModel>(context, listen: false)
@@ -215,15 +224,49 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                       ),
                     ),
                     Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.2,
-                        children: [
-                          _buildGridItem('Sermons', Img.get('new/sermon.png')),
-                          _buildGridItem('Bible', Img.get('new/bible.png')),
-                          _buildGridItem('Q & A\'s', Img.get('new/Q&A.png')),
-                          _buildGridItem('Tools', Img.get('new/tools.png')),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.2,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20,
+                          children: [
+                            _buildGridItem(
+                              title: 'Sermons',
+                              iconPath: Img.get('new/sermon.png'),
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed(HymnsListScreen.routeName);
+                              },
+                            ),
+                            //bible
+                            _buildGridItem(
+                              title: 'Bible',
+                              iconPath: Img.get('new/bible.png'),
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushNamed(BibleScreen.routeName);
+                              },
+                            ),
+                            //Q&A
+                            _buildGridItem(
+                              title: 'Q & A\'s',
+                              iconPath: Img.get('new/Q&A.png'),
+                              onTap: () {
+                                // Navigator.of(context).pushNamed(QnAScreen.routeName);
+                              },
+                            ),
+                            //tools
+                            _buildGridItem(
+                              title: 'Tools',
+                              iconPath: Img.get('new/tools.png'),
+                              onTap: () {
+                                scaffoldKey.currentState!.openDrawer();
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -236,7 +279,13 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
           color: MyColors.grey_95,
           width: 300,
           child: Drawer(
-            child: DrawerScreen(),
+            child:ChangeNotifierProvider(
+                create: (context) => HomeProvider(),
+                child:
+
+             DrawerScreen(
+             )
+            ),
           ),
         ),
         key: scaffoldKey,
@@ -269,6 +318,25 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                 setState(() {
                   _currentNavIndex = index;
                 });
+                if (index == 1) {
+                  // route to hymns
+                  Navigator.of(context).pushNamed(HymnsListScreen.routeName);
+                } else if (index == 2) {
+                  Navigator.of(context).pushNamed(BibleScreen.routeName);
+                } else if (index == 3) {
+                  //profile
+                  Navigator.of(context).pushNamed(
+                    UserProfileScreen.routeName,
+                    arguments: ScreenArguements(
+                      items: new Userdata(
+                        email: "test@gmail.com",
+                        name: "test Name",
+                        avatar: "",
+                        coverPhoto: "",
+                      ),
+                    ),
+                  );
+                }
               },
               items: [
                 BottomNavigationBarItem(
@@ -287,12 +355,13 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                   label: "Sermon",
                 ),
                 BottomNavigationBarItem(
-                    icon: Image.asset(
-                      Img.get('new/menu_bible.png'),
-                      width: 30,
-                      height: 30,
-                    ),
-                    label: "Bible"),
+                  icon: Image.asset(
+                    Img.get('new/menu_bible.png'),
+                    width: 30,
+                    height: 30,
+                  ),
+                  label: "Bible",
+                ),
                 BottomNavigationBarItem(
                     icon: Image.asset(
                       Img.get('new/profile.png'),
@@ -308,22 +377,33 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
     );
   }
 
-  Widget _buildGridItem(String title, String iconPath) {
-    return InkWell(
-      onTap: () {},
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(iconPath, height: 100),
-            Text(
-              title,
-              style: TextStyles.title(context)
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-          ],
+  Widget _buildGridItem({
+    required String title,
+    required String iconPath,
+    required Function() onTap,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.grey, width: 1.23),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(iconPath, height: 100),
+              Text(
+                title,
+                style: TextStyles.title(context)
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+  
 }
