@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/notes/NotesListScreen.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
 import 'package:churchapp_flutter/screens/CategoriesScreen.dart';
+import 'package:churchapp_flutter/screens/Downloader.dart';
 import 'package:churchapp_flutter/screens/EventsListScreen.dart';
 import 'package:churchapp_flutter/screens/InboxListScreen.dart';
 import 'package:churchapp_flutter/utils/Alerts.dart';
@@ -323,7 +325,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         children: <Widget>[
                           Icon(Icons.event, size: 20.0),
                           Container(width: 10),
-                          Text('Events',
+                          Text(t.events,
                               style: TextStyles.subhead(context).copyWith(
                                 fontSize: 15,
                               )),
@@ -347,7 +349,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         children: <Widget>[
                           Icon(Icons.inbox, size: 20.0),
                           Container(width: 10),
-                          Text('Inbox',
+                          Text(t.inbox,
                               style: TextStyles.subhead(context).copyWith(
                                 fontSize: 15,
                               )),
@@ -370,7 +372,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         children: <Widget>[
                           Icon(Icons.note, size: 20.0),
                           Container(width: 10),
-                          Text('Notes',
+                          Text(t.notes,
                               style: TextStyles.subhead(context).copyWith(
                                 fontSize: 15,
                               )),
@@ -393,7 +395,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         children: <Widget>[
                           Icon(Icons.monetization_on, size: 20.0),
                           Container(width: 10),
-                          Text('Offering',
+                          Text(t.offering,
                               style: TextStyles.subhead(context).copyWith(
                                 fontSize: 15,
                               )),
@@ -416,7 +418,34 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         children: <Widget>[
                           Icon(Icons.category, size: 20.0),
                           Container(width: 10),
-                          Text('Category',
+                          Text(t.category,
+                              style: TextStyles.subhead(context).copyWith(
+                                fontSize: 15,
+                              )),
+                          Spacer(),
+                          Icon(Icons.navigate_next,
+                              size: 25.0, color: Colors.grey[400]),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(height: 8),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, Downloader.routeName,
+                          arguments: ScreenArguements(
+                            position: 0,
+                            items: null,
+                          ));
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.cloud_download, size: 20.0),
+                          Container(width: 10),
+                          Text(t.download,
                               style: TextStyles.subhead(context).copyWith(
                                 fontSize: 15,
                               )),

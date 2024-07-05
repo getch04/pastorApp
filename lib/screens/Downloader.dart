@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import '../i18n/strings.g.dart';
-import '../models/Media.dart';
-import '../providers/BookmarksModel.dart';
-import '../screens/AddPlaylistScreen.dart';
-import '../utils/rounded_bordered_container.dart';
 import 'package:isolated_download_manager/isolated_download_manager.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import '../providers/DownloadsModel.dart';
+
+import '../audio_player/player_page.dart';
+import '../i18n/strings.g.dart';
 import '../models/Downloads.dart';
+import '../models/Media.dart';
+import '../models/ScreenArguements.dart';
+import '../providers/AudioPlayerModel.dart';
+import '../providers/BookmarksModel.dart';
+import '../providers/DownloadsModel.dart';
+import '../screens/AddPlaylistScreen.dart';
 import '../utils/TextStyles.dart';
 import '../utils/TimUtil.dart';
-import '../widgets/MediaPopupMenu.dart';
-import '../video_player/VideoPlayer.dart';
-import '../models/ScreenArguements.dart';
 import '../utils/Utility.dart';
-import '../providers/AudioPlayerModel.dart';
-import '../audio_player/player_page.dart';
+import '../utils/rounded_bordered_container.dart';
+import '../video_player/VideoPlayer.dart';
+import '../widgets/MediaPopupMenu.dart';
 
 class Downloader extends StatefulWidget with WidgetsBindingObserver {
   final TargetPlatform? platform;
@@ -90,6 +91,18 @@ class _MyHomePageState extends State<Downloader> {
             Navigator.pop(context);
           },
         ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
         actions: <Widget>[
           showClear
               ? IconButton(
@@ -108,7 +121,7 @@ class _MyHomePageState extends State<Downloader> {
       ),
       /*new AppBar(
         title: new Text(Strings.downloads),
-        
+
       ),*/
       body: BuildBodyPage(downloadsModel: downloadsModel, filter: filter),
     );
@@ -171,10 +184,7 @@ class ItemTile extends StatefulWidget {
     required this.index,
     required this.object,
     required this.downloadsModel,
-  })  : assert(index != null),
-        assert(object != null),
-        assert(downloadsModel != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _ItemTileState createState() => _ItemTileState();
@@ -270,7 +280,10 @@ class _ItemTileState extends State<ItemTile> {
                                     context,
                                     AddPlaylistScreen.routeName,
                                     arguments: ScreenArguements(
-                                        position: 0, items: widget.object),
+                                      position: 0,
+                                      items: Downloads.mapMediaFromDownload(
+                                          widget.object),
+                                    ),
                                   );
                                 },
                                 icon: Icon(

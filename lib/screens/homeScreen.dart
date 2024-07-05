@@ -1,13 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:churchapp_flutter/auth/LoginScreen.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/Userdata.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
 import 'package:churchapp_flutter/screens/BibleScreen.dart';
-import 'package:churchapp_flutter/screens/HymnsListScreen.dart';
+import 'package:churchapp_flutter/screens/CategoriesScreen.dart';
+import 'package:churchapp_flutter/screens/Downloader.dart';
 import 'package:churchapp_flutter/socials/UserProfileScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/img.dart';
+import 'package:churchapp_flutter/utils/title_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -111,7 +114,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text("My Virtual Pastor",
+          title: Text(t.appname.toTitleCase(),
               style: TextStyles.title(context)
                   .copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
           centerTitle: true,
@@ -140,6 +143,35 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
               ),
             ),
           ),
+          actions: [
+            Container(
+              margin: EdgeInsets.only(left: 0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius:
+                        BorderRadius.circular(AppBar().preferredSize.height),
+                    child: Icon(
+                      Icons.cloud_download,
+                      color: Colors.white,
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Downloader.routeName,
+                          arguments: ScreenArguements(
+                            position: 0,
+                            items: null,
+                          ));
+                    },
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            )
+          ],
         ),
         body: Container(
           decoration: BoxDecoration(
@@ -215,7 +247,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                 child: Column(
                   children: [
                     Text(
-                      '\"Your Pastor for 1 year, to help you grow into a person God called you to be.\"',
+                      '\"${t.homesentence}\"',
                       textAlign: TextAlign.center,
                       style: TextStyles.subhead(context).copyWith(
                         color: MyColors.nearlyBlack,
@@ -234,16 +266,16 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                           crossAxisSpacing: 20,
                           children: [
                             _buildGridItem(
-                              title: 'Sermons',
+                              title: t.sermons,
                               iconPath: Img.get('new/sermon.png'),
                               onTap: () {
                                 Navigator.of(context)
-                                    .pushNamed(HymnsListScreen.routeName);
+                                    .pushNamed(CategoriesScreen.routeName);
                               },
                             ),
                             //bible
                             _buildGridItem(
-                              title: 'Bible',
+                              title: t.biblebooks,
                               iconPath: Img.get('new/bible.png'),
                               onTap: () {
                                 Navigator.of(context)
@@ -260,7 +292,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                             ),
                             //tools
                             _buildGridItem(
-                              title: 'Tools',
+                              title: t.tools,
                               iconPath: Img.get('new/tools.png'),
                               onTap: () {
                                 scaffoldKey.currentState!.openDrawer();
@@ -316,22 +348,19 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                 });
                 if (index == 1) {
                   // route to hymns
-                  Navigator.of(context).pushNamed(HymnsListScreen.routeName);
+                  Navigator.of(context).pushNamed(CategoriesScreen.routeName);
                 } else if (index == 2) {
                   Navigator.of(context).pushNamed(BibleScreen.routeName);
                 } else if (index == 3) {
-                  //profile
-                  Navigator.of(context).pushNamed(
-                    UserProfileScreen.routeName,
-                    arguments: ScreenArguements(
-                      items: new Userdata(
-                        email: "test@gmail.com",
-                        name: "test Name",
-                        avatar: "",
-                        coverPhoto: "",
-                      ),
-                    ),
-                  );
+                  if (userdata == null) {
+                    //route to login
+                    Navigator.of(context).pushNamed(LoginScreen.routeName);
+                    return;
+                  } else {
+                    //profile
+                    Navigator.of(context).pushNamed(UserProfileScreen.routeName,
+                        arguments: ScreenArguements(items: userdata));
+                  }
                 }
               },
               items: [
@@ -341,14 +370,14 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                       width: 25,
                       height: 25,
                     ),
-                    label: "Home"),
+                    label: t.home),
                 BottomNavigationBarItem(
                   icon: Image.asset(
                     Img.get('new/menu_sermon.png'),
                     width: 25,
                     height: 25,
                   ),
-                  label: "Sermon",
+                  label: t.sermons,
                 ),
                 BottomNavigationBarItem(
                   icon: Image.asset(
@@ -356,7 +385,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                     width: 25,
                     height: 25,
                   ),
-                  label: "Bible",
+                  label: t.biblebooks,
                 ),
                 BottomNavigationBarItem(
                     icon: Image.asset(
@@ -364,7 +393,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                       width: 25,
                       height: 25,
                     ),
-                    label: "Profile"),
+                    label: t.profile),
               ],
             ),
           ),
@@ -394,6 +423,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                 title,
                 style: TextStyles.title(context)
                     .copyWith(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
             ],
           ),

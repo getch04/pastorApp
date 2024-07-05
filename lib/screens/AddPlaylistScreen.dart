@@ -1,15 +1,17 @@
+import 'dart:math';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:churchapp_flutter/utils/Alerts.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import '../providers/PlaylistsModel.dart';
+
+import '../i18n/strings.g.dart';
 import '../models/Media.dart';
 import '../models/Playlists.dart';
+import '../providers/PlaylistsModel.dart';
 import '../utils/TextStyles.dart';
-import 'dart:math';
 import '../utils/my_colors.dart';
-import '../i18n/strings.g.dart';
-import 'package:flutter/cupertino.dart';
 
 class AddPlaylistScreen extends StatelessWidget {
   static const routeName = "/addplaylists";
@@ -68,6 +70,18 @@ class AddPlaylistScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.addtoplaylist),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: Container(
         // decoration: BoxDecoration(color: Colors.white),

@@ -266,7 +266,10 @@ class _HomePageItemState extends State<HomePageItem> {
           color: MyColors.grey_95,
           width: 300,
           child: Drawer(
-            child: DrawerScreen(),
+            child: ChangeNotifierProvider(
+              create: (context) => HomeProvider(),
+              child: DrawerScreen(),
+            ),
           ),
         ),
         key: scaffoldKey,

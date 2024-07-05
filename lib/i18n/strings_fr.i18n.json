@@ -1,5 +1,5 @@
 {
-  "appname": "MyVirtualPastor App",
+  "appname": "MyVirtualPastor",
   "deleteaccount":"Delete my account",
   "deletemyaccount":"Delete my account",
 "deleteaccounthint":"This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.",
@@ -22,6 +22,8 @@
   "articles":"Des articles",
   "notes":"Remarques",
   "donate":"Faire un don",
+  "offering":"Offre",
+
   "deletenote":"Supprimer la note",
   "deletenotehint":"Voulez-vous supprimer cette note? Cette action ne peut pas être annulée.",
   "savenotetitle":"Titre de la note",
@@ -66,7 +68,11 @@
   "videos" : "Vidéos",
   "audios" : "Audios",
   "biblebooks" : "Bible",
+  "sermons": "Sermons",
+  "profile": "Profil",
+  "tools": "Outils",
   "audiobible" : "Bible audio",
+  "homesentence": "Votre pasteur pour 1 an, pour vous aider à devenir la personne que Dieu vous a appelé à être.",
   "livestreams" : "Livestreams",
   "radio" : "Radio",
 
