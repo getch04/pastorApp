@@ -1,21 +1,23 @@
-import 'package:churchapp_flutter/utils/Alerts.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import '../models/Bible.dart';
-import '../database/SQLiteDbProvider.dart';
-import '../providers/BibleModel.dart';
-import 'package:path_provider/path_provider.dart';
+
+import 'package:churchapp_flutter/utils/Alerts.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import '../utils/ApiUrl.dart';
+
+import '../database/SQLiteDbProvider.dart';
+import '../i18n/strings.g.dart';
+import '../models/Bible.dart';
 import '../models/Versions.dart';
+import '../providers/BibleModel.dart';
+import '../utils/ApiUrl.dart';
 import '../utils/TextStyles.dart';
 import '../utils/img.dart';
 import 'NoitemScreen.dart';
-import '../i18n/strings.g.dart';
 
 class BibleVersionsScreen extends StatelessWidget {
   static const routeName = "/bibleversions";
@@ -25,6 +27,18 @@ class BibleVersionsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.downloadbible),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 12),
@@ -359,7 +373,7 @@ class _ItemTileState extends State<ItemTile> {
                             builder: (context, bibleModel, child) {
                               if(bibleModel
                                   .isBibleVersionDownloaded(widget.versions);
-                              
+
                             },
                           ),*/
                           InkWell(

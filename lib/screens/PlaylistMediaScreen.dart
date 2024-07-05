@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import '../providers/PlaylistsModel.dart';
-import '../models/Playlists.dart';
-import '../utils/TextStyles.dart';
-import '../models/Media.dart';
-import '../widgets/MediaItemTile.dart';
+
 import '../i18n/strings.g.dart';
+import '../models/Media.dart';
+import '../models/Playlists.dart';
+import '../providers/PlaylistsModel.dart';
+import '../utils/TextStyles.dart';
+import '../widgets/MediaItemTile.dart';
 
 class PlaylistMediaScreen extends StatelessWidget {
   static const routeName = "/playlistsmedia";
@@ -23,7 +23,18 @@ class PlaylistMediaScreen extends StatelessWidget {
           playlists!.title! + " " + t.playlistitm,
           maxLines: 1,
         ),
-        
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: Container(
         // decoration: BoxDecoration(color: Colors.white),

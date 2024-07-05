@@ -1,3 +1,4 @@
+import 'package:churchapp_flutter/utils/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,6 @@ import '../screens/BibleSearchScreen.dart';
 import '../screens/BibleVersionsScreen.dart';
 import '../screens/BibleViewScreen.dart';
 import '../utils/TextStyles.dart';
-import '../utils/my_colors.dart';
 
 class BibleScreen extends StatefulWidget {
   static const routeName = "/biblescreen";
@@ -89,19 +89,26 @@ class EmptyLayout extends StatelessWidget {
                 Container(
                   width: 180,
                   height: 40,
-                  child: ElevatedButton(
-                    child: Text(t.downloadbible,
-                        style: TextStyle(color: Colors.white)),
-                    style: TextButton.styleFrom(
-                      backgroundColor: MyColors.primary,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
+                  child: CustomButton(
+                    title: t.downloadbible,
                     onPressed: () {
                       Navigator.of(context)
                           .pushNamed(BibleVersionsScreen.routeName);
                     },
                   ),
+                  // ElevatedButton(
+                  //   child: Text(t.downloadbible,
+                  //       style: TextStyle(color: Colors.white)),
+                  //   style: TextButton.styleFrom(
+                  //     backgroundColor: MyColors.primary,
+                  //     shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(20)),
+                  //   ),
+                  //   onPressed: () {
+                  //     Navigator.of(context)
+                  //         .pushNamed(BibleVersionsScreen.routeName);
+                  //   },
+                  // ),
                 )
               ],
             ),

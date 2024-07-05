@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:churchapp_flutter/utils/custom_button.dart';
 import 'package:churchapp_flutter/utils/img.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ import '../i18n/strings.g.dart';
 import '../utils/Alerts.dart';
 import '../utils/ApiUrl.dart';
 import '../utils/TextStyles.dart';
-import '../utils/my_colors.dart';
 import 'LoginScreen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -135,8 +135,8 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
                 children: [
                   Image(
                     image: AssetImage(Img.get("icon.png")),
-                    width: 50,
-                    height: 50,
+                    width: 100,
+                    height: 100,
                   ),
                   Container(height: 5),
                   Text(t.createaccount,
@@ -263,24 +263,9 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
                 ),
               ),
               Container(height: 25),
-              Container(
-                width: double.infinity,
-                height: 40,
-                child: TextButton(
-                  child: Text(
-                    t.register,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: TextButton.styleFrom(
-                    backgroundColor: MyColors.primary,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20)),
-                  ),
-                  onPressed: () {
-                    verifyFormAndSubmit();
-                  },
-                ),
-              ),
+              //register
+              CustomButton(title: t.register, onPressed: verifyFormAndSubmit),
+
               Container(
                 width: double.infinity,
                 child: TextButton(

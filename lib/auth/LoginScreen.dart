@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:churchapp_flutter/auth/ForgotPasswordScreen.dart';
 import 'package:churchapp_flutter/auth/RegisterScreen.dart';
+import 'package:churchapp_flutter/utils/custom_button.dart';
 import 'package:churchapp_flutter/utils/img.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,6 @@ import '../providers/AppStateManager.dart';
 import '../utils/Alerts.dart';
 import '../utils/ApiUrl.dart';
 import '../utils/TextStyles.dart';
-import '../utils/my_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = "/login";
@@ -28,6 +28,7 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenRouteState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
 
   verifyFormAndSubmit() {
     String _email = emailController.text.trim();
@@ -55,9 +56,6 @@ class LoginScreenRouteState extends State<LoginScreen> {
       final response = await http.post(Uri.parse(ApiUrl.LOGIN),
           body: jsonEncode({"data": data}));
       if (response.statusCode == 200) {
-        // Navigator.pop(context);
-        // If the server did return a 200 OK response,
-        // then parse the JSON.
         Navigator.of(context).pop();
         print(response.body);
         Map<String, dynamic> res = json.decode(response.body);
@@ -65,19 +63,15 @@ class LoginScreenRouteState extends State<LoginScreen> {
           Alerts.show(context, t.error, res["message"]);
         } else {
           print(res["user"]);
-          //Alerts.show(context, Strings.success, res["message"]);
           Provider.of<AppStateManager>(context, listen: false)
               .setUserData(Userdata.fromJson(res["user"]));
 
           Navigator.of(context).pop();
         }
-        //print(res);
       }
     } catch (exception) {
       Navigator.of(context).pop();
       Alerts.show(context, t.error, exception.toString());
-      // Navigator.pop(context);
-      // I get no exception here
       print(exception);
     }
   }
@@ -89,8 +83,6 @@ class LoginScreenRouteState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -100,20 +92,16 @@ class LoginScreenRouteState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
       resizeToAvoidBottomInset: true,
-      //backgroundColor: Colors.white,
       appBar:
           PreferredSize(child: Container(), preferredSize: Size.fromHeight(0)),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           width: double.infinity,
-          //height: double.infinity,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Container(
-                height: 15,
-              ),
+              Container(height: 15),
               InkWell(
                 onTap: () {
                   Navigator.of(context).pop();
@@ -122,21 +110,17 @@ class LoginScreenRouteState extends State<LoginScreen> {
                   padding: const EdgeInsets.fromLTRB(0.0, 0, 0, 0),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Icon(
-                      Icons.arrow_back,
-                    ),
+                    child: Icon(Icons.arrow_back),
                   ),
                 ),
               ),
-              Container(
-                height: 25,
-              ),
+              Container(height: 25),
               Column(
                 children: [
                   Image(
                     image: AssetImage(Img.get("icon.png")),
-                    width: 50,
-                    height: 50,
+                    width: 100,
+                    height: 100,
                   ),
                   Container(height: 5),
                   Text(t.signintocontinue,
@@ -144,8 +128,6 @@ class LoginScreenRouteState extends State<LoginScreen> {
                 ],
               ),
               Container(height: 25),
-              Container(height: 5),
-              Container(height: 0),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(t.emailaddress,
@@ -174,7 +156,7 @@ class LoginScreenRouteState extends State<LoginScreen> {
               TextField(
                 controller: passwordController,
                 keyboardType: TextInputType.text,
-                obscureText: true,
+                obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
                   enabledBorder: UnderlineInputBorder(
                     borderSide:
@@ -183,6 +165,18 @@ class LoginScreenRouteState extends State<LoginScreen> {
                   focusedBorder: UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Colors.blueGrey[400]!, width: 2),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
                   ),
                 ),
               ),
@@ -204,23 +198,11 @@ class LoginScreenRouteState extends State<LoginScreen> {
                 ),
               ),
               Container(height: 20),
-              Container(
-                width: double.infinity,
-                height: 40,
-                child: ElevatedButton(
-                  child: Text(
-                    t.signin,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  style: TextButton.styleFrom(
-                    backgroundColor: MyColors.primary,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20)),
-                  ),
-                  onPressed: () {
-                    verifyFormAndSubmit();
-                  },
-                ),
+              CustomButton(
+                title: t.signin,
+                onPressed: () {
+                  verifyFormAndSubmit();
+                },
               ),
               Container(
                 width: double.infinity,
