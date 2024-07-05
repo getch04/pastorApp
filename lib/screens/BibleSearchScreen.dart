@@ -1,3 +1,4 @@
+import 'package:churchapp_flutter/utils/custom_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -355,17 +356,8 @@ class BibleSearchScreenRouteState extends State<BibleSearchScreen> {
             Container(
               height: 12,
             ),
-            Container(
-              width: double.infinity,
-              height: 40,
-              child: ElevatedButton(
-                child:
-                    Text(t.setfilters, style: TextStyle(color: Colors.white)),
-                style: TextButton.styleFrom(
-                  backgroundColor: MyColors.primary,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                ),
+            CustomButton(
+                title: t.setfilters,
                 onPressed: () {
                   Navigator.of(context).pop();
                   if (query != "") {
@@ -374,9 +366,7 @@ class BibleSearchScreenRouteState extends State<BibleSearchScreen> {
                           oldTestament, newTestament, limit);
                     });
                   }
-                },
-              ),
-            ),
+                }),
             Container(
               height: 15,
             ),
