@@ -1,13 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
+import '../i18n/strings.g.dart';
 import '../models/Categories.dart';
 import '../models/ScreenArguements.dart';
 import '../providers/CategoriesModel.dart';
-import '../screens/NoitemScreen.dart';
 import '../screens/CategoriesMediaScreen.dart';
-import '../i18n/strings.g.dart';
+import '../screens/NoitemScreen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   static const routeName = "/categories";
@@ -25,6 +26,18 @@ class CategoriesScreenRouteState extends State<CategoriesScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(t.categories),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blue[300]!,
+                  Colors.purple[100]!,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
         ),
         body: Padding(
           padding: EdgeInsets.only(top: 12),

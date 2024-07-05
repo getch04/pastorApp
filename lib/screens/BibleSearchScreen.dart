@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/BibleModel.dart';
-import '../utils/StringsUtils.dart';
+import 'package:select_dialog/select_dialog.dart';
+
 import '../i18n/strings.g.dart';
 import '../models/Bible.dart';
-import '../utils/TextStyles.dart';
-import '../widgets/BibleVersesTileSearch.dart';
 import '../models/Versions.dart';
-import 'package:select_dialog/select_dialog.dart';
+import '../providers/BibleModel.dart';
+import '../utils/StringsUtils.dart';
+import '../utils/TextStyles.dart';
 import '../utils/my_colors.dart';
+import '../widgets/BibleVersesTileSearch.dart';
 
 class BibleSearchScreen extends StatefulWidget {
   static const routeName = "/biblesearchscreen";
@@ -78,6 +79,18 @@ class BibleSearchScreenRouteState extends State<BibleSearchScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
         ),
         actions: <Widget>[
           showClear

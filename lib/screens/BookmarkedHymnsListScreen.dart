@@ -1,16 +1,18 @@
-import 'package:churchapp_flutter/utils/Alerts.dart';
-import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
-import '../models/ScreenArguements.dart';
 import 'dart:math';
+
+import 'package:churchapp_flutter/utils/Alerts.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/HymnsBookmarksModel.dart';
-import 'HymnsViewerScreen.dart';
-import '../models/Hymns.dart';
+import 'package:share_plus/share_plus.dart';
+
 import '../i18n/strings.g.dart';
-import '../utils/TextStyles.dart';
+import '../models/Hymns.dart';
+import '../models/ScreenArguements.dart';
+import '../providers/HymnsBookmarksModel.dart';
 import '../screens/EmptyListScreen.dart';
+import '../utils/TextStyles.dart';
+import 'HymnsViewerScreen.dart';
 
 class BookmarkedHymnsListScreen extends StatefulWidget {
   static const routeName = "/bookmarkedhymnslist";
@@ -61,6 +63,18 @@ class _HymnsListScreenState extends State<BookmarkedHymnsListScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
         ),
         actions: <Widget>[
           showClear

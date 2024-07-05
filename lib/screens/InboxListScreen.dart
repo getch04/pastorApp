@@ -1,18 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import '../screens/InboxViewerScreen.dart';
-import '../models/ScreenArguements.dart';
 import 'dart:async';
-import 'dart:math';
-import '../utils/TimUtil.dart';
-import '../models/Inbox.dart';
-import 'NoitemScreen.dart';
-import '../i18n/strings.g.dart';
-import '../utils/TextStyles.dart';
 import 'dart:convert';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'dart:math';
+
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import '../i18n/strings.g.dart';
+import '../models/Inbox.dart';
+import '../models/ScreenArguements.dart';
+import '../screens/InboxViewerScreen.dart';
 import '../utils/ApiUrl.dart';
+import '../utils/TextStyles.dart';
+import '../utils/TimUtil.dart';
+import 'NoitemScreen.dart';
 
 class InboxListScreenState extends StatelessWidget {
   static const routeName = "/inboxlist";
@@ -22,6 +24,18 @@ class InboxListScreenState extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.inbox),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 12),

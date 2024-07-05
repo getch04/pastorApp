@@ -1,13 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/Categories.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import '../i18n/strings.g.dart';
+import '../models/Categories.dart';
 import '../models/Media.dart';
 import '../providers/CategoryMediaScreensModel.dart';
-import 'package:flutter/cupertino.dart';
-import '../widgets/MediaItemTile.dart';
 import '../screens/NoitemScreen.dart';
-import '../i18n/strings.g.dart';
+import '../widgets/MediaItemTile.dart';
 
 class CategoriesMediaScreen extends StatelessWidget {
   static const routeName = "/categoriesmedia";
@@ -23,6 +24,18 @@ class CategoriesMediaScreen extends StatelessWidget {
           title: Text(
             categories!.title! + " " + t.category,
             maxLines: 1,
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blue[300]!,
+                  Colors.purple[100]!,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
           ),
         ),
         body: Container(

@@ -1,23 +1,25 @@
-import 'package:churchapp_flutter/utils/Alerts.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:share_plus/share_plus.dart';
-import '../models/ScreenArguements.dart';
 import 'dart:async';
-import 'dart:math';
-import '../screens/BookmarkedHymnsListScreen.dart';
-import 'package:clipboard/clipboard.dart';
-import 'package:provider/provider.dart';
-import '../providers/HymnsBookmarksModel.dart';
-import '../screens/HymnsViewerScreen.dart';
-import '../models/Hymns.dart';
-import 'NoitemScreen.dart';
-import '../i18n/strings.g.dart';
-import '../utils/TextStyles.dart';
 import 'dart:convert';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'dart:math';
+
+import 'package:churchapp_flutter/utils/Alerts.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../i18n/strings.g.dart';
+import '../models/Hymns.dart';
+import '../models/ScreenArguements.dart';
+import '../providers/HymnsBookmarksModel.dart';
+import '../screens/BookmarkedHymnsListScreen.dart';
+import '../screens/HymnsViewerScreen.dart';
 import '../utils/ApiUrl.dart';
+import '../utils/TextStyles.dart';
+import 'NoitemScreen.dart';
 
 class HymnsListScreen extends StatefulWidget {
   static const routeName = "/hymnslist";
@@ -56,6 +58,18 @@ class _HymnsListScreenState extends State<HymnsListScreen> {
             border: InputBorder.none,
             hintText: t.hymns,
             hintStyle: TextStyle(fontSize: 20.0, color: Colors.white70),
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
         ),
         leading: IconButton(
@@ -267,8 +281,7 @@ class ItemTile extends StatelessWidget {
   const ItemTile({
     Key? key,
     required this.object,
-  })  : 
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

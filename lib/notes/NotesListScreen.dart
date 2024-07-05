@@ -1,22 +1,24 @@
+import 'dart:convert';
+
 import 'package:churchapp_flutter/notes/NotesEditorScreen.dart';
 import 'package:churchapp_flutter/utils/Alerts.dart';
+import 'package:clipboard/clipboard.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
-import 'package:share_plus/share_plus.dart';
-import 'dart:convert';
-import '../models/ScreenArguements.dart';
 import 'package:provider/provider.dart';
-import '../providers/NotesProvider.dart';
-import 'NewNoteScreen.dart';
-import 'package:clipboard/clipboard.dart';
-import '../utils/my_colors.dart';
-import '../utils/TimUtil.dart';
-import '../models/Notes.dart';
+import 'package:share_plus/share_plus.dart';
+
 import '../i18n/strings.g.dart';
-import '../utils/TextStyles.dart';
+import '../models/Notes.dart';
+import '../models/ScreenArguements.dart';
+import '../providers/NotesProvider.dart';
 import '../screens/EmptyListScreen.dart';
+import '../utils/TextStyles.dart';
+import '../utils/TimUtil.dart';
+import '../utils/my_colors.dart';
+import 'NewNoteScreen.dart';
 
 class NotesListScreen extends StatefulWidget {
   static const routeName = "/noteslist";
@@ -69,6 +71,18 @@ class NotesListScreenRouteState extends State<NotesListScreen> {
             border: InputBorder.none,
             hintText: t.notes,
             hintStyle: TextStyle(fontSize: 20.0, color: Colors.white70),
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
         ),
         leading: IconButton(

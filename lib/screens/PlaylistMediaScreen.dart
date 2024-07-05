@@ -23,6 +23,7 @@ class PlaylistMediaScreen extends StatelessWidget {
           playlists!.title! + " " + t.playlistitm,
           maxLines: 1,
         ),
+        
       ),
       body: Container(
         // decoration: BoxDecoration(color: Colors.white),

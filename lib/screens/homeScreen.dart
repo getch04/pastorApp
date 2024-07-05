@@ -229,7 +229,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                             vertical: 20, horizontal: 35),
                         child: GridView.count(
                           crossAxisCount: 2,
-                          childAspectRatio: 1.4,
+                          childAspectRatio: 1.175,
                           mainAxisSpacing: 20,
                           crossAxisSpacing: 20,
                           children: [

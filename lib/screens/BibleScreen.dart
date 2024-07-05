@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import '../providers/BibleModel.dart';
-import 'package:provider/provider.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+
+import '../i18n/strings.g.dart';
+import '../providers/BibleModel.dart';
+import '../screens/BibleSearchScreen.dart';
+import '../screens/BibleVersionsScreen.dart';
 import '../screens/BibleViewScreen.dart';
 import '../utils/TextStyles.dart';
 import '../utils/my_colors.dart';
-import '../i18n/strings.g.dart';
-import '../screens/BibleSearchScreen.dart';
-import '../screens/BibleVersionsScreen.dart';
 
 class BibleScreen extends StatefulWidget {
   static const routeName = "/biblescreen";
@@ -36,6 +37,18 @@ class _BibleScreenState extends State<BibleScreen> {
             ),
           )
         ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: bibleversionsize == 0 ? EmptyLayout() : BibleViewScreen(),
     );

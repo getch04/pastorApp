@@ -1,14 +1,16 @@
+import 'dart:math';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import '../utils/TextStyles.dart';
-import '../models/Playlists.dart';
+
 import '../i18n/strings.g.dart';
+import '../models/Playlists.dart';
+import '../models/ScreenArguements.dart';
 import '../providers/PlaylistsModel.dart';
 import '../screens/PlaylistMediaScreen.dart';
-import '../models/ScreenArguements.dart';
-import 'dart:math';
+import '../utils/TextStyles.dart';
 
 class PlaylistsScreen extends StatefulWidget {
   static const routeName = "/myplaylists";
@@ -104,6 +106,18 @@ class MediaScreenRouteState extends State<PlaylistsScreen> {
       appBar: AppBar(
         toolbarHeight: 60.0,
         title: Text(t.myplaylists),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 10),

@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
+
 import 'package:churchapp_flutter/models/Notes.dart';
 import 'package:churchapp_flutter/providers/NotesProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:provider/provider.dart';
+
 import '../i18n/strings.g.dart';
 
 class NewNotesScreen extends StatefulWidget {
@@ -45,6 +47,18 @@ class _NewNotesScreenState extends State<NewNotesScreen> {
         centerTitle: false,
         title: const Text(
           'Create Note',
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
         ),
         actions: [
           IconButton(

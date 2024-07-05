@@ -1,19 +1,21 @@
-import 'package:churchapp_flutter/screens/EmptyListScreen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import '../screens/EventsViewerScreen.dart';
-import '../models/ScreenArguements.dart';
 import 'dart:async';
 import 'dart:convert';
-import '../utils/img.dart';
-import 'package:dio/dio.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
-import '../utils/ApiUrl.dart';
-import '../models/Events.dart';
-import '../utils/TextStyles.dart';
-import 'NoitemScreen.dart';
+import 'package:churchapp_flutter/screens/EmptyListScreen.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import '../i18n/strings.g.dart';
+import '../models/Events.dart';
+import '../models/ScreenArguements.dart';
+import '../screens/EventsViewerScreen.dart';
+import '../utils/ApiUrl.dart';
+import '../utils/TextStyles.dart';
+import '../utils/img.dart';
+import 'NoitemScreen.dart';
 
 class EventsListScreen extends StatefulWidget {
   static const routeName = "/eventslist";
@@ -54,6 +56,18 @@ class _EventsListScreenState extends State<EventsListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(t.events),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
         actions: [
           SizedBox(
             height: 38,

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../utils/TextStyles.dart';
-import '../models/Media.dart';
+
 import '../i18n/strings.g.dart';
+import '../models/Media.dart';
 import '../providers/BookmarksModel.dart';
+import '../utils/TextStyles.dart';
 import '../widgets/MediaItemTile.dart';
 
 class BookmarksScreen extends StatefulWidget {
@@ -29,6 +30,18 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
       appBar: AppBar(
         toolbarHeight: 60.0,
         title: Text(t.bookmarks),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue[300]!,
+                Colors.purple[100]!,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 10),
