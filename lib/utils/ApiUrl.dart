@@ -1,5 +1,6 @@
 class ApiUrl {
   static const String BASEURL = "https://myvirtualpastor.winmotto.com/";
+  static const String ABOUTUS = "${BASEURL}api/app_details";
   static const String TERMS = "https://dashboard.mychurchapp.xyz/privacy";
   static const String PRIVACY = "https://dashboard.mychurchapp.xyz/privacy";
   static const String ABOUT = "https://dashboard.mychurchapp.xyz/privacy";

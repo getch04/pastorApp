@@ -7,6 +7,9 @@ import 'package:churchapp_flutter/screens/CategoriesScreen.dart';
 import 'package:churchapp_flutter/screens/Downloader.dart';
 import 'package:churchapp_flutter/screens/EventsListScreen.dart';
 import 'package:churchapp_flutter/screens/InboxListScreen.dart';
+import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
+import 'package:churchapp_flutter/screens/appTermsScreen.dart';
+import 'package:churchapp_flutter/screens/privacyScreen.dart';
 import 'package:churchapp_flutter/utils/Alerts.dart';
 import 'package:churchapp_flutter/utils/img.dart';
 import 'package:dio/dio.dart';
@@ -108,6 +111,46 @@ class _DrawerScreenState extends State<DrawerScreen> {
         AppLanguage.values[appManager.preferredLanguage]]!['name']!;
     final homeProvider = Provider.of<HomeProvider>(context, listen: false);
 
+    var onTap = () {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            scrollable: true,
+            title: SizedBox(width: 180, child: Text(t.chooseapplanguage)),
+            content: Container(
+              height: 450.0,
+              width: 450.0,
+              child: ListView.builder(
+                primary: true,
+                itemCount: appLanguageData.length,
+                scrollDirection: Axis.vertical,
+                itemBuilder: (BuildContext context, int index) {
+                  var selected =
+                      appLanguageData[AppLanguage.values[index]]!['name'] ==
+                          language;
+                  return ListTile(
+                    trailing: selected
+                        ? Icon(Icons.check)
+                        : Container(
+                            height: 0,
+                            width: 0,
+                          ),
+                    title: Text(
+                      appLanguageData[AppLanguage.values[index]]!['name']!,
+                    ),
+                    onTap: () {
+                      appManager.setAppLanguage(index);
+                      Navigator.of(context).pop();
+                    },
+                  );
+                },
+              ),
+            ),
+          );
+        },
+      );
+    };
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -459,47 +502,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Divider(height: 1, color: Colors.grey),
                   Container(height: 8),
                   InkWell(
-                    onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              scrollable: true,
-                              title: SizedBox(
-                                  width: 180, child: Text(t.chooseapplanguage)),
-                              content: Container(
-                                height: 250.0,
-                                width: 400.0,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: appLanguageData.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    var selected = appLanguageData[AppLanguage
-                                            .values[index]]!['name'] ==
-                                        language;
-                                    return ListTile(
-                                      trailing: selected
-                                          ? Icon(Icons.check)
-                                          : Container(
-                                              height: 0,
-                                              width: 0,
-                                            ),
-                                      title: Text(
-                                        appLanguageData[AppLanguage
-                                            .values[index]]!['name']!,
-                                      ),
-                                      onTap: () {
-                                        appManager.setAppLanguage(index);
-                                        Navigator.of(context).pop();
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            );
-                          });
-                    },
+                    onTap: onTap,
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 15, vertical: 13),
@@ -512,10 +515,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                 fontSize: 15,
                               )),
                           Spacer(),
-                          Text(
-                            language,
-                            style: TextStyles.subhead(context).copyWith(
-                                color: MyColors.primary, fontSize: 13),
+                          Expanded(
+                            child: Text(
+                              language,
+                              style: TextStyles.subhead(context).copyWith(
+                                  color: MyColors.primary, fontSize: 13),
+                            ),
                           ),
                           Container(width: 10)
                         ],
@@ -618,7 +623,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Container(height: 10),
                   InkWell(
                     onTap: () {
-                      openBrowserTab(t.about, ApiUrl.ABOUT);
+                      Navigator.pushNamed(context, AboutUsScreen.routeName);
+                      // openBrowserTab(t.about, ApiUrl.ABOUT);
                     },
                     child: Container(
                       padding:
@@ -641,7 +647,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Container(height: 10),
                   InkWell(
                     onTap: () {
-                      openBrowserTab(t.terms, ApiUrl.TERMS);
+                      Navigator.pushNamed(
+                          context, AppTermsAndConditionsScreen.routeName);
+                      // openBrowserTab(t.terms, ApiUrl.TERMS);
                     },
                     child: Container(
                       padding:
@@ -665,7 +673,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Container(height: 10),
                   InkWell(
                     onTap: () {
-                      openBrowserTab(t.privacy, ApiUrl.PRIVACY);
+                      Navigator.pushNamed(
+                          context, PrivacyPolicyScreen.routeName);
+                      // openBrowserTab(t.privacy, ApiUrl.PRIVACY);
                     },
                     child: Container(
                       padding:

@@ -9,7 +9,10 @@ import 'package:churchapp_flutter/models/Inbox.dart';
 import 'package:churchapp_flutter/models/Notes.dart';
 import 'package:churchapp_flutter/models/Playlists.dart';
 import 'package:churchapp_flutter/models/UserPosts.dart';
+import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
+import 'package:churchapp_flutter/screens/appTermsScreen.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
+import 'package:churchapp_flutter/screens/privacyScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -56,7 +59,6 @@ import './screens/DevotionalScreen.dart';
 import './screens/Downloader.dart';
 import './screens/EventsListScreen.dart';
 import './screens/EventsViewerScreen.dart';
-import './screens/HomePage.dart';
 import './screens/HymnsListScreen.dart';
 import './screens/HymnsViewerScreen.dart';
 import './screens/InboxListScreen.dart';
@@ -816,6 +818,30 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return SubscriptionScreen();
+              },
+            );
+          }
+
+          if (settings.name == AboutUsScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return AboutUsScreen();
+              },
+            );
+          }
+
+          if (settings.name == AppTermsAndConditionsScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return AppTermsAndConditionsScreen();
+              },
+            );
+          }
+
+          if (settings.name == PrivacyPolicyScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return PrivacyPolicyScreen();
               },
             );
           }
