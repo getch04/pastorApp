@@ -5,6 +5,10 @@ class ApiUrl {
   static const String PRIVACY = "https://dashboard.mychurchapp.xyz/privacy";
   static const String ABOUT = "https://dashboard.mychurchapp.xyz/privacy";
 
+
+  //FAQ
+   static const String GET_FAQ=BASEURL+"api/fetch_faqs";
+
   //DO NOT EDIT THE LINES BELOW, ELSE THE APPLICATION WILL MISBEHAVE
   static const String GET_BIBLE = BASEURL + "getBibleVersions";
   static const String DONATE = BASEURL + "donate";

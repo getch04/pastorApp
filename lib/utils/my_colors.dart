@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'Utility.dart';
 
 class MyColors {
-  static Color primary = Color.fromARGB(255, 76, 8, 88);
-  static Color primaryDark = Color.fromARGB(255, 76, 8, 88);
-  static Color? primaryLight = Color.fromARGB(255, 76, 8, 88);
+  static Color primary = Color(0xff008afc);
+  static Color primaryDark = Color(0xff008afc);
+  static Color? primaryLight = Color(0xff008afc);
   static Color? primaryVeryLight = Colors.pink[100];
   static const Color accent = Color(0xFFFF4081);
   static const Color accentDark = Color(0xFFF50057);
@@ -20,6 +19,7 @@ class MyColors {
   static const Color grey_90 = Color(0xFF263238);
   static const Color grey_95 = Color(0xFF1a1a1a);
   static const Color grey_100_ = Color(0xFF0d0d0d);
+  static const Color black = Color(0xFF000000);
 
   static const Color notWhite = Color(0xFFEDF0F2);
   static const Color nearlyWhite = Color(0xFFFEFEFE);
@@ -36,4 +36,7 @@ class MyColors {
   static const Color chipBackground = Color(0xFFEEF1F3);
   static const Color spacer = Color(0xFFF2F2F2);
   static const String fontName = 'WorkSans';
+
+  static const Color bgTop = Color(0xffffde59);
+  static const Color bgBottom = Color(0xfff49d09);
 }

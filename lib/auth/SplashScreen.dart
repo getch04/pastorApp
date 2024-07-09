@@ -1,10 +1,10 @@
-import 'package:churchapp_flutter/screens/HomePage.dart';
 import 'package:churchapp_flutter/screens/OnboardingPage.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
+import 'package:churchapp_flutter/utils/my_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = "/SplashScreen";
@@ -46,17 +46,25 @@ class SplashScreenState extends State<SplashScreen> {
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              stops: [
-                0.5,
-                0.9,
-              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [
-                Color.fromARGB(255, 255, 244, 148),
-                Color.fromARGB(255, 181, 255, 185)
+                MyColors.bgTop,
+                MyColors.bgBottom,
               ],
             ),
+            // gradient: LinearGradient(
+            //   begin: Alignment.topRight,
+            //   end: Alignment.bottomLeft,
+            //   stops: [
+            //     0.5,
+            //     0.9,
+            //   ],
+            //   colors: [
+            //     Color.fromARGB(255, 255, 225, 0),
+            //     Color.fromARGB(255, 255, 166, 0)
+            //   ],
+            // ),
           ),
           child: Center(
             child: Padding(
@@ -74,22 +82,34 @@ class SplashScreenState extends State<SplashScreen> {
                       ),
                     ],
                     child: Image.asset(
-                      'assets/images/icon.png',
-                      width: 320,
+                      'assets/images/new/bibl.png',
+                      width: 200,
+                      height: 110,
+                      fit: BoxFit.fill,
                     ),
                   ),
-                  Animate(
-                    effects: [
-                      MoveEffect(
-                        begin: Offset(0, 200),
-                        end: Offset(0, 0),
-                        duration: Duration(seconds: 2),
-                        curve: Curves.easeOut,
-                      ),
-                    ],
-                    child: Text('My Virtual Pastor',
-                        style: TextStyles.display3(context)),
+                  Image.asset(
+                    'assets/images/new/cross.png',
+                    width: 320,
                   ),
+                  // ),
+                  // Animate(
+                  //   effects: [
+                  //     MoveEffect(
+                  //       begin: Offset(0, 200),
+                  //       end: Offset(0, 0),
+                  //       duration: Duration(seconds: 2),
+                  //       curve: Curves.easeOut,
+                  //     ),
+                  //   ],
+                  //   child:
+
+                  Text(
+                    'My Virtual Pastor',
+                    style: TextStyles.display3(context)
+                        .copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  //   ),
                 ],
               ),
             ),

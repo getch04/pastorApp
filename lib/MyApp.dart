@@ -12,6 +12,16 @@ import 'package:churchapp_flutter/models/UserPosts.dart';
 import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
 import 'package:churchapp_flutter/screens/appTermsScreen.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
+import 'package:churchapp_flutter/screens/pages/aboutUsScreen.dart';
+import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
+import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
+import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
+import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
+import 'package:churchapp_flutter/screens/pages/sermonListScreen.dart';
+import 'package:churchapp_flutter/screens/pages/sermonPlayerScreen.dart';
+import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
+import 'package:churchapp_flutter/screens/pages/toolsDetailScreen.dart';
+import 'package:churchapp_flutter/screens/pages/toolsScreen.dart';
 import 'package:churchapp_flutter/screens/privacyScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -849,6 +859,76 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return HomeScreen();
+              },
+            );
+          }
+          if (settings.name == SermonScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return SermonScreen();
+              },
+            );
+          }
+          if (settings.name == SermonPlayerScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return SermonPlayerScreen();
+              },
+            );
+          }
+          if (settings.name == SermonListScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return SermonListScreen();
+              },
+            );
+          }
+          if (settings.name == BiblePlayerScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return BiblePlayerScreen();
+              },
+            );
+          }
+          if (settings.name == QAListScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return QAListScreen();
+              },
+            );
+          }
+          if (settings.name == QAAnswerScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return QAAnswerScreen();
+              },
+            );
+          }
+          if (settings.name == AboutUsNewScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return AboutUsNewScreen();
+              },
+            );
+          }
+          if (settings.name == OfferingScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return OfferingScreen();
+              },
+            );
+          }
+          if (settings.name == ToolsScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return ToolsScreen();
+              },
+            );
+          }
+          if (settings.name == ToolsDetailScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return ToolsDetailScreen();
               },
             );
           }

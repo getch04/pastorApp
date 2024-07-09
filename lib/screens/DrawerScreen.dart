@@ -1,34 +1,26 @@
 import 'dart:convert';
 
-import 'package:churchapp_flutter/models/ScreenArguements.dart';
-import 'package:churchapp_flutter/notes/NotesListScreen.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
-import 'package:churchapp_flutter/screens/CategoriesScreen.dart';
-import 'package:churchapp_flutter/screens/Downloader.dart';
-import 'package:churchapp_flutter/screens/EventsListScreen.dart';
-import 'package:churchapp_flutter/screens/InboxListScreen.dart';
-import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
-import 'package:churchapp_flutter/screens/appTermsScreen.dart';
-import 'package:churchapp_flutter/screens/privacyScreen.dart';
+import 'package:churchapp_flutter/screens/homeScreen.dart';
+import 'package:churchapp_flutter/screens/pages/aboutUsScreen.dart';
+import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
+import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
+import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
+import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
+import 'package:churchapp_flutter/screens/pages/toolsScreen.dart';
 import 'package:churchapp_flutter/utils/Alerts.dart';
+import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/img.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 
-import '../auth/LoginScreen.dart';
 import '../i18n/strings.g.dart';
 import '../models/Userdata.dart';
 import '../providers/AppStateManager.dart';
-import '../screens/BookmarkScreen.dart';
-import '../screens/PlaylistsScreen.dart';
-import '../socials/SocialActivity.dart';
-import '../socials/UpdateUserProfile.dart';
 import '../utils/ApiUrl.dart';
-import '../utils/TextStyles.dart';
 import '../utils/app_themes.dart';
 import '../utils/langs.dart';
 import '../utils/my_colors.dart';
@@ -151,651 +143,672 @@ class _DrawerScreenState extends State<DrawerScreen> {
         },
       );
     };
-    return SafeArea(
+    return Container(
+      color: Color(0xffff5c00),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Stack(
-              children: [
-                (userdata != null && userdata!.coverPhoto != "")
-                    ? Container(
-                        width: double.infinity,
-                        height: 160,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          image: DecorationImage(
-                            image: NetworkImage(userdata!.coverPhoto!),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      )
-                    : Container(
-                        width: double.infinity,
-                        height: 160,
-                      ),
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.blue[300]!,
-                        Colors.purple[100]!,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      (userdata != null && userdata!.avatar != "")
-                          ? Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: NetworkImage(userdata!.avatar!),
-                                    fit: BoxFit.fill),
-                              ),
-                            )
-                          : CircleAvatar(
-                              radius: 20,
-                              backgroundColor: MyColors.primary,
-                              child: Icon(
-                                Icons.account_circle,
-                                //color: Colors.white,
-                                size: 40,
-                              ),
-                            ),
-                      Container(height: 10),
-                      Text(userdata == null ? t.guestuser : userdata!.name!,
-                          style:
-                              TextStyles.title(context).copyWith(fontSize: 17)),
-                      Container(height: 3),
-                      Container(
-                        height: 12,
-                      ),
-                      Container(
-                        width: 150,
-                        height: 35,
-                        child: ElevatedButton(
-                          child: Text(
-                            userdata != null ? t.logout : t.login,
-                            style: TextStyle(color: MyColors.primary),
-                          ),
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(20)),
-                          ),
-                          onPressed: () {
-                            if (userdata != null) {
-                              showLogoutAlert();
-                            } else {
-                              Navigator.pushNamed(
-                                  context, LoginScreen.routeName);
-                            }
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            ListTile(
+              leading: Icon(
+                Icons.home_outlined,
+                size: 60,
+                color: Colors.black54,
+              ),
+              title: Text(
+                t.home,
+                style: TextStyles.title(context).copyWith(fontSize: 35),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, HomeScreen.routeName);
+              },
             ),
-            Container(height: 15),
-            Container(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(height: 15),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, PlaylistsScreen.routeName);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.playlist_play,
-                              size: 20.0, color: MyColors.primary),
-                          Container(width: 10),
-                          Text(t.myplaylists,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 15),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, BookmarksScreen.routeName);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.collections_bookmark,
-                              size: 20.0, color: MyColors.primary),
-                          Container(width: 10),
-                          Text(t.bookmarks,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 15),
-                  InkWell(
-                    onTap: () {
-                      if (userdata == null) {
-                        Navigator.pushNamed(context, LoginScreen.routeName);
-                      } else if (userdata!.activated == 1) {
-                        showDialog(
-                          context: context,
-                          builder: (context) => new CupertinoAlertDialog(
-                            title: new Text(t.updateprofile),
-                            content: new Text(t.updateprofilehint),
-                            actions: <Widget>[
-                              new ElevatedButton(
-                                onPressed: () => Navigator.of(context).pop(),
-                                child: new Text(t.cancel),
-                              ),
-                              new ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  Navigator.pushNamed(
-                                      context, UpdateUserProfile.routeName);
-                                },
-                                child: new Text(t.ok),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else {
-                        Navigator.pushNamed(context, SocialActivity.routeName);
-                      }
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.group,
-                              size: 20.0, color: MyColors.primary),
-                          Container(width: 10),
-                          SizedBox(
-                            width: 180,
-                            child: Text(t.gosocial,
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: true,
-                                style: TextStyles.subhead(context).copyWith(
-                                  fontSize: 15,
-                                )),
-                          ),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 15),
-                  Divider(height: 1, color: Colors.grey),
-                  Container(height: 8),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, EventsListScreen.routeName);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.event, size: 20.0),
-                          Container(width: 10),
-                          Text(t.events,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 8),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, InboxListScreenState.routeName);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.inbox, size: 20.0),
-                          Container(width: 10),
-                          Text(t.inbox,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 8),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, NotesListScreen.routeName);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.note, size: 20.0),
-                          Container(width: 10),
-                          Text(t.notes,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 8),
-                  InkWell(
-                    onTap: () {
-                      openSocialBrowserTab(ApiUrl.DONATE);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.monetization_on, size: 20.0),
-                          Container(width: 10),
-                          Text(t.offering,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 8),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, CategoriesScreen.routeName);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.category, size: 20.0),
-                          Container(width: 10),
-                          Text(t.category,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 8),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, Downloader.routeName,
-                          arguments: ScreenArguements(
-                            position: 0,
-                            items: null,
-                          ));
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.cloud_download, size: 20.0),
-                          Container(width: 10),
-                          Text(t.download,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[400]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Divider(height: 1, color: Colors.grey),
-                  Container(height: 8),
-                  InkWell(
-                    onTap: onTap,
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 13),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.language, size: 20.0),
-                          Container(width: 10),
-                          Text(t.selectlanguage,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Expanded(
-                            child: Text(
-                              language,
-                              style: TextStyles.subhead(context).copyWith(
-                                  color: MyColors.primary, fontSize: 13),
-                            ),
-                          ),
-                          Container(width: 10)
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 0),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.color_lens, size: 20.0),
-                          Container(width: 10),
-                          Text(t.nightmode,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Switch(
-                            value: themeSwitch,
-                            onChanged: (value) {
-                              appManager.setTheme(
-                                  value ? AppTheme.Dark : AppTheme.White);
-                            },
-                            activeColor: MyColors.primary,
-                            inactiveThumbColor: Colors.grey,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 0),
-                  Visibility(
-                    visible: false,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.video_library, size: 20.0),
-                            Container(width: 10),
-                            SizedBox(
-                              width: 180,
-                              child: Text(t.autoplayvideos,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyles.subhead(context).copyWith(
-                                    fontSize: 15,
-                                  )),
-                            ),
-                            Spacer(),
-                            Switch(
-                              value: appManager.autoPlayVideos,
-                              onChanged: (value) {
-                                appManager.setAutoPlayVideos(value);
-                              },
-                              activeColor: MyColors.primary,
-                              inactiveThumbColor: Colors.grey,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(height: 20),
-                  Divider(height: 1, color: Colors.grey),
-                  Container(height: 20),
-                  InkWell(
-                    onTap: () async {
-                      final InAppReview inAppReview = InAppReview.instance;
 
-                      if (await inAppReview.isAvailable()) {
-                        inAppReview.requestReview();
-                      }
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.rate_review,
-                              size: 20.0, color: Colors.grey[500]),
-                          Container(width: 10),
-                          Text(t.rate,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[300]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 10),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, AboutUsScreen.routeName);
-                      // openBrowserTab(t.about, ApiUrl.ABOUT);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.info, size: 20.0, color: Colors.grey[500]),
-                          Container(width: 10),
-                          Text(t.about,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[300]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 10),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, AppTermsAndConditionsScreen.routeName);
-                      // openBrowserTab(t.terms, ApiUrl.TERMS);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.chrome_reader_mode,
-                              size: 20.0, color: Colors.grey[500]),
-                          Container(width: 10),
-                          Text(t.terms,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[300]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 10),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, PrivacyPolicyScreen.routeName);
-                      // openBrowserTab(t.privacy, ApiUrl.PRIVACY);
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.label_important,
-                              size: 20.0, color: Colors.grey[500]),
-                          Container(width: 10),
-                          Text(t.privacy,
-                              style: TextStyles.subhead(context).copyWith(
-                                fontSize: 15,
-                              )),
-                          Spacer(),
-                          Icon(Icons.navigate_next,
-                              size: 25.0, color: Colors.grey[300]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(height: 10),
-                  InkWell(
-                    onTap: () {
-                      showDeleteAccountAlert();
-                    },
-                    child: Visibility(
-                      visible: userdata != null,
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.delete_forever,
-                                size: 20.0, color: Colors.red[500]),
-                            Container(width: 10),
-                            Text(t.deleteaccount,
-                                style: TextStyles.subhead(context).copyWith(
-                                  fontSize: 15,
-                                )),
-                            Spacer(),
-                            Icon(Icons.navigate_next,
-                                size: 25.0, color: Colors.grey[300]),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(height: 10),
-                ],
+            SizedBox(height: 10),
+            ListTile(
+              leading: Image.asset(
+                'assets/images/new/Sermons.png',
+                width: 60,
+                height: 50,
               ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
-                child: Text(
-                  "Follow us on",
-                  style: TextStyles.headline(context).copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "serif",
-                    fontSize: 14,
-                  ),
-                ),
+              title: Text(
+                t.sermons,
+                style: TextStyles.title(context).copyWith(fontSize: 35),
               ),
+              onTap: () {
+                Navigator.pushNamed(context, SermonScreen.routeName);
+              },
             ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      openSocialBrowserTab(
-                          homeProvider.data['facebook_page'] as String);
-                    },
-                    child: Container(
-                      child: Image.asset(Img.get('img_social_facebook.png')),
-                      width: 40,
-                      height: 40,
-                    ),
-                  ),
-                  Container(width: 10),
-                  InkWell(
-                    onTap: () {
-                      openSocialBrowserTab(
-                          homeProvider.data['youtube_page'] as String);
-                    },
-                    child: Container(
-                      child: Image.asset(Img.get('img_social_youtube.png')),
-                      width: 40,
-                      height: 40,
-                    ),
-                  ),
-                  Container(width: 10),
-                  InkWell(
-                    onTap: () {
-                      openSocialBrowserTab(
-                          homeProvider.data['twitter_page'] as String);
-                    },
-                    child: Container(
-                      child: Image.asset(Img.get('img_social_twitter.png')),
-                      width: 40,
-                      height: 40,
-                    ),
-                  ),
-                  Container(width: 10),
-                  InkWell(
-                    onTap: () {
-                      openSocialBrowserTab(
-                          homeProvider.data['instagram_page'] as String);
-                    },
-                    child: Container(
-                      child: Image.asset(Img.get('img_social_instagram.png')),
-                      width: 40,
-                      height: 40,
-                    ),
-                  ),
-                ],
+            SizedBox(height: 10),
+
+            ListTile(
+              leading: Image.asset(
+                'assets/images/new/bible1.png',
+                width: 60,
+                height: 50,
               ),
+              title: Text(
+                t.biblebooks,
+                style: TextStyles.title(context).copyWith(fontSize: 35),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, BiblePlayerScreen.routeName);
+              },
             ),
+            SizedBox(height: 10),
+
+            ListTile(
+              leading: Image.asset(
+                Img.get('new/qa1.png'),
+                height: 60,
+                width: 60,
+              ),
+              title: Text(
+                'Q&A',
+                style: TextStyles.title(context).copyWith(fontSize: 35),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, QAListScreen.routeName);
+              },
+            ),
+            SizedBox(height: 10),
+
+            ListTile(
+              leading: Image.asset(
+                'assets/images/new/tools.png',
+                width: 60,
+                height: 50,
+              ),
+              title: Text(
+                t.tools,
+                style: TextStyles.title(context).copyWith(fontSize: 35),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, ToolsScreen.routeName);
+              },
+            ),
+            SizedBox(height: 10),
+            ListTile(
+              leading: Image.asset(
+                'assets/images/new/offer.png',
+                width: 60,
+                height: 50,
+              ),
+              title: Text(
+                t.offering,
+                style: TextStyles.title(context).copyWith(fontSize: 35),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, OfferingScreen.routeName);
+              },
+            ),
+            SizedBox(height: 10),
+            ListTile(
+              leading: Icon(
+                Icons.info_outline_rounded,
+                size: 60,
+                color: Colors.black54,
+              ),
+              title: Text(
+                t.about,
+                style: TextStyles.title(context).copyWith(fontSize: 35),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, AboutUsNewScreen.routeName);
+              },
+            ),
+
+            // Container(
+            //   width: double.infinity,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: <Widget>[
+            //       Container(height: 15),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(context, PlaylistsScreen.routeName);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.playlist_play,
+            //                   size: 20.0, color: MyColors.primary),
+            //               Container(width: 10),
+            //               Text(t.myplaylists,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[400]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 15),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(context, BookmarksScreen.routeName);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.collections_bookmark,
+            //                   size: 20.0, color: MyColors.primary),
+            //               Container(width: 10),
+            //               Text(t.bookmarks,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[400]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 15),
+            //       // InkWell(
+            //       //   onTap: () {
+            //       //     if (userdata == null) {
+            //       //       Navigator.pushNamed(context, LoginScreen.routeName);
+            //       //     } else if (userdata!.activated == 1) {
+            //       //       showDialog(
+            //       //         context: context,
+            //       //         builder: (context) => new CupertinoAlertDialog(
+            //       //           title: new Text(t.updateprofile),
+            //       //           content: new Text(t.updateprofilehint),
+            //       //           actions: <Widget>[
+            //       //             new ElevatedButton(
+            //       //               onPressed: () => Navigator.of(context).pop(),
+            //       //               child: new Text(t.cancel),
+            //       //             ),
+            //       //             new ElevatedButton(
+            //       //               onPressed: () {
+            //       //                 Navigator.of(context).pop();
+            //       //                 Navigator.pushNamed(
+            //       //                     context, UpdateUserProfile.routeName);
+            //       //               },
+            //       //               child: new Text(t.ok),
+            //       //             ),
+            //       //           ],
+            //       //         ),
+            //       //       );
+            //       //     } else {
+            //       //       Navigator.pushNamed(context, SocialActivity.routeName);
+            //       //     }
+            //       //   },
+            //       //   child: Container(
+            //       //     padding:
+            //       //         EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            //       //     child: Row(
+            //       //       children: <Widget>[
+            //       //         Icon(Icons.group,
+            //       //             size: 20.0, color: MyColors.primary),
+            //       //         Container(width: 10),
+            //       //         SizedBox(
+            //       //           width: 180,
+            //       //           child: Text(t.gosocial,
+            //       //               overflow: TextOverflow.ellipsis,
+            //       //               softWrap: true,
+            //       //               style: TextStyles.subhead(context).copyWith(
+            //       //                 fontSize: 15,
+            //       //               )),
+            //       //         ),
+            //       //         Spacer(),
+            //       //         Icon(Icons.navigate_next,
+            //       //             size: 25.0, color: Colors.grey[400]),
+            //       //       ],
+            //       //     ),
+            //       //   ),
+            //       // ),
+            //       // Container(height: 15),
+            //       Divider(height: 1, color: Colors.grey),
+            //       Container(height: 8),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(context, EventsListScreen.routeName);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.event, size: 20.0),
+            //               Container(width: 10),
+            //               Text(t.events,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[400]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 8),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(
+            //               context, InboxListScreenState.routeName);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.inbox, size: 20.0),
+            //               Container(width: 10),
+            //               Text(t.inbox,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[400]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 8),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(context, NotesListScreen.routeName);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.note, size: 20.0),
+            //               Container(width: 10),
+            //               Text(t.notes,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[400]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 8),
+            //       InkWell(
+            //         onTap: () {
+            //           openSocialBrowserTab(ApiUrl.DONATE);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.monetization_on, size: 20.0),
+            //               Container(width: 10),
+            //               Text(t.offering,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[400]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 8),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(context, CategoriesScreen.routeName);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.category, size: 20.0),
+            //               Container(width: 10),
+            //               Text(t.category,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[400]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 8),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(context, Downloader.routeName,
+            //               arguments: ScreenArguements(
+            //                 position: 0,
+            //                 items: null,
+            //               ));
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.cloud_download, size: 20.0),
+            //               Container(width: 10),
+            //               Text(t.download,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[400]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Divider(height: 1, color: Colors.grey),
+            //       Container(height: 8),
+            //       InkWell(
+            //         onTap: onTap,
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.language, size: 20.0),
+            //               Container(width: 10),
+            //               Text(t.selectlanguage,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Expanded(
+            //                 child: Text(
+            //                   language,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                       color: MyColors.primary, fontSize: 13),
+            //                 ),
+            //               ),
+            //               Container(width: 10)
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 0),
+            //       InkWell(
+            //         onTap: () {},
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.color_lens, size: 20.0),
+            //               Container(width: 10),
+            //               Text(t.nightmode,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Switch(
+            //                 value: themeSwitch,
+            //                 onChanged: (value) {
+            //                   appManager.setTheme(
+            //                       value ? AppTheme.Dark : AppTheme.White);
+            //                 },
+            //                 activeColor: MyColors.primary,
+            //                 inactiveThumbColor: Colors.grey,
+            //               )
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 0),
+            //       Visibility(
+            //         visible: false,
+            //         child: InkWell(
+            //           onTap: () {},
+            //           child: Container(
+            //             padding:
+            //                 EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+            //             child: Row(
+            //               children: <Widget>[
+            //                 Icon(Icons.video_library, size: 20.0),
+            //                 Container(width: 10),
+            //                 SizedBox(
+            //                   width: 180,
+            //                   child: Text(t.autoplayvideos,
+            //                       maxLines: 1,
+            //                       overflow: TextOverflow.ellipsis,
+            //                       style: TextStyles.subhead(context).copyWith(
+            //                         fontSize: 15,
+            //                       )),
+            //                 ),
+            //                 Spacer(),
+            //                 Switch(
+            //                   value: appManager.autoPlayVideos,
+            //                   onChanged: (value) {
+            //                     appManager.setAutoPlayVideos(value);
+            //                   },
+            //                   activeColor: MyColors.primary,
+            //                   inactiveThumbColor: Colors.grey,
+            //                 )
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 20),
+            //       Divider(height: 1, color: Colors.grey),
+            //       Container(height: 20),
+            //       InkWell(
+            //         onTap: () async {
+            //           final InAppReview inAppReview = InAppReview.instance;
+
+            //           if (await inAppReview.isAvailable()) {
+            //             inAppReview.requestReview();
+            //           }
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.rate_review,
+            //                   size: 20.0, color: Colors.grey[500]),
+            //               Container(width: 10),
+            //               Text(t.rate,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[300]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 10),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(context, AboutUsScreen.routeName);
+            //           // openBrowserTab(t.about, ApiUrl.ABOUT);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.info, size: 20.0, color: Colors.grey[500]),
+            //               Container(width: 10),
+            //               Text(t.about,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[300]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 10),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(
+            //               context, AppTermsAndConditionsScreen.routeName);
+            //           // openBrowserTab(t.terms, ApiUrl.TERMS);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.chrome_reader_mode,
+            //                   size: 20.0, color: Colors.grey[500]),
+            //               Container(width: 10),
+            //               Text(t.terms,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[300]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 10),
+            //       InkWell(
+            //         onTap: () {
+            //           Navigator.pushNamed(
+            //               context, PrivacyPolicyScreen.routeName);
+            //           // openBrowserTab(t.privacy, ApiUrl.PRIVACY);
+            //         },
+            //         child: Container(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            //           child: Row(
+            //             children: <Widget>[
+            //               Icon(Icons.label_important,
+            //                   size: 20.0, color: Colors.grey[500]),
+            //               Container(width: 10),
+            //               Text(t.privacy,
+            //                   style: TextStyles.subhead(context).copyWith(
+            //                     fontSize: 15,
+            //                   )),
+            //               Spacer(),
+            //               Icon(Icons.navigate_next,
+            //                   size: 25.0, color: Colors.grey[300]),
+            //             ],
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 10),
+            //       InkWell(
+            //         onTap: () {
+            //           showDeleteAccountAlert();
+            //         },
+            //         child: Visibility(
+            //           visible: userdata != null,
+            //           child: Container(
+            //             padding:
+            //                 EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+            //             child: Row(
+            //               children: <Widget>[
+            //                 Icon(Icons.delete_forever,
+            //                     size: 20.0, color: Colors.red[500]),
+            //                 Container(width: 10),
+            //                 Text(t.deleteaccount,
+            //                     style: TextStyles.subhead(context).copyWith(
+            //                       fontSize: 15,
+            //                     )),
+            //                 Spacer(),
+            //                 Icon(Icons.navigate_next,
+            //                     size: 25.0, color: Colors.grey[300]),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       Container(height: 10),
+            //     ],
+            //   ),
+            // ),
+            // Align(
+            //   alignment: Alignment.center,
+            //   child: Padding(
+            //     padding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
+            //     child: Text(
+            //       "Follow us on",
+            //       style: TextStyles.headline(context).copyWith(
+            //         fontWeight: FontWeight.bold,
+            //         fontFamily: "serif",
+            //         fontSize: 14,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: <Widget>[
+            //       InkWell(
+            //         onTap: () {
+            //           openSocialBrowserTab(
+            //               homeProvider.data['facebook_page'] as String);
+            //         },
+            //         child: Container(
+            //           child: Image.asset(Img.get('img_social_facebook.png')),
+            //           width: 40,
+            //           height: 40,
+            //         ),
+            //       ),
+            //       Container(width: 10),
+            //       InkWell(
+            //         onTap: () {
+            //           openSocialBrowserTab(
+            //               homeProvider.data['youtube_page'] as String);
+            //         },
+            //         child: Container(
+            //           child: Image.asset(Img.get('img_social_youtube.png')),
+            //           width: 40,
+            //           height: 40,
+            //         ),
+            //       ),
+            //       Container(width: 10),
+            //       InkWell(
+            //         onTap: () {
+            //           openSocialBrowserTab(
+            //               homeProvider.data['twitter_page'] as String);
+            //         },
+            //         child: Container(
+            //           child: Image.asset(Img.get('img_social_twitter.png')),
+            //           width: 40,
+            //           height: 40,
+            //         ),
+            //       ),
+            //       Container(width: 10),
+            //       InkWell(
+            //         onTap: () {
+            //           openSocialBrowserTab(
+            //               homeProvider.data['instagram_page'] as String);
+            //         },
+            //         child: Container(
+            //           child: Image.asset(Img.get('img_social_instagram.png')),
+            //           width: 40,
+            //           height: 40,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),

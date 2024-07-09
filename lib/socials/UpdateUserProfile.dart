@@ -320,6 +320,18 @@ class UpdateUserProfileState extends State<UpdateUserProfile> {
                   ));
             },
           ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blue[300]!,
+                  Colors.purple[100]!,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.done_all),

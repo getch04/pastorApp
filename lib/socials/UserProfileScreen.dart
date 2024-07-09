@@ -1,23 +1,24 @@
-import '../socials/UserFollowersScreen.dart';
-import '../socials/UpdateUserProfile.dart';
-import '../socials/UserdataPosts.dart';
-import '../utils/Utility.dart';
+import 'dart:convert';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import '../models/ScreenArguements.dart';
-import '../utils/my_colors.dart';
-import '../utils/TextStyles.dart';
-import '../utils/img.dart';
 import 'package:provider/provider.dart';
-import '../providers/AppStateManager.dart';
-import '../utils/ApiUrl.dart';
+
 import '../i18n/strings.g.dart';
+import '../models/ScreenArguements.dart';
 import '../models/Userdata.dart';
+import '../providers/AppStateManager.dart';
 import '../screens/NoitemScreen.dart';
-import 'dart:convert';
-import 'package:dio/dio.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import '../socials/UpdateUserProfile.dart';
+import '../socials/UserFollowersScreen.dart';
+import '../socials/UserdataPosts.dart';
+import '../utils/ApiUrl.dart';
+import '../utils/Utility.dart';
+import '../utils/img.dart';
+import '../utils/my_colors.dart';
 
 class UserProfileScreen extends StatefulWidget {
   static String routeName = "/userprofile";
@@ -139,6 +140,18 @@ class UserProfileScreenRouteState extends State<UserProfileScreen> {
           return <Widget>[
             SliverAppBar(
               expandedHeight: 220.0,
+              //          flexibleSpace: Container(
+              //   decoration: BoxDecoration(
+              //     gradient: LinearGradient(
+              //       colors: [
+              //         Colors.blue[300]!,
+              //         Colors.purple[100]!,
+              //       ],
+              //       begin: Alignment.topLeft,
+              //       end: Alignment.bottomRight,
+              //     ),
+              //   ),
+              // ),
               flexibleSpace: FlexibleSpaceBar(
                 background: _user!.coverPhoto == ""
                     ? Image.asset(Img.get('cover_photos.jpg'),

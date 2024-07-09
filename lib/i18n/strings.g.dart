@@ -5,7 +5,7 @@
  * Locales: 16
  * Strings: 4592 (287.0 per locale)
  *
- * Built on 2024-07-06 at 19:12 UTC
+ * Built on 2024-07-09 at 06:54 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -406,7 +406,7 @@ class _StringsEn {
 	late final _StringsEn _root = this; // ignore: unused_field
 
 	// Translations
-	String get appname => 'MyVirtualPastor';
+	String get appname => 'VirtualPastor';
 	String get selectlanguage => 'Select Language';
 	String get deletemyaccount => 'Delete my account';
 	String get deleteaccount => 'Delete my account';
@@ -1339,7 +1339,7 @@ class _StringsEs implements _StringsEn {
 	@override late final _StringsEs _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get deleteaccount => 'Delete my account';
 	@override String get deletemyaccount => 'Delete my account';
 	@override String get deleteaccounthint => 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.';
@@ -1650,7 +1650,7 @@ class _StringsFr implements _StringsEn {
 	@override late final _StringsFr _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get deleteaccount => 'Delete my account';
 	@override String get deletemyaccount => 'Delete my account';
 	@override String get deleteaccounthint => 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.';
@@ -2272,7 +2272,7 @@ class _StringsId implements _StringsEn {
 	@override late final _StringsId _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'Pastor Virtual Saya';
+	@override String get appname => 'Pastor Virtual';
 	@override String get selectlanguage => 'Pilih Bahasa';
 	@override String get deletemyaccount => 'Hapus akun saya';
 	@override String get deleteaccount => 'Hapus akun saya';
@@ -3827,7 +3827,7 @@ class _StringsPa implements _StringsEn {
 	@override late final _StringsPa _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get selectlanguage => 'ਭਾਸ਼ਾ ਚੁਣੋ';
 	@override String get deletemyaccount => 'ਮੇਰਾ ਖਾਤਾ ਮਿਟਾਓ';
 	@override String get deleteaccount => 'ਖਾਤਾ ਮਿਟਾਓ';
@@ -4138,7 +4138,7 @@ class _StringsPt implements _StringsEn {
 	@override late final _StringsPt _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get deleteaccount => 'Delete my account';
 	@override String get deletemyaccount => 'Delete my account';
 	@override String get deleteaccounthint => 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.';
@@ -4449,7 +4449,7 @@ class _StringsTa implements _StringsEn {
 	@override late final _StringsTa _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get selectlanguage => 'மொழியைத் தேர்ந்தெடுக்கவும்';
 	@override String get deletemyaccount => 'என் கணக்கை நீக்கவும்';
 	@override String get deleteaccount => 'கணக்கை நீக்கவும்';
@@ -4760,7 +4760,7 @@ class _StringsTe implements _StringsEn {
 	@override late final _StringsTe _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get selectlanguage => 'భాషను ఎంచుకోండి';
 	@override String get deletemyaccount => 'నా ఖాతాను తొలగించండి';
 	@override String get deleteaccount => 'ఖాతాను తొలగించండి';
@@ -5372,7 +5372,7 @@ class _StringsUr implements _StringsEn {
 extension on _StringsEn {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'selectlanguage': 'Select Language',
 			'deletemyaccount': 'Delete my account',
 			'deleteaccount': 'Delete my account',
@@ -6254,7 +6254,7 @@ extension on _StringsDz {
 extension on _StringsEs {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'deleteaccount': 'Delete my account',
 			'deletemyaccount': 'Delete my account',
 			'deleteaccounthint': 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.',
@@ -6548,7 +6548,7 @@ extension on _StringsEs {
 extension on _StringsFr {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'deleteaccount': 'Delete my account',
 			'deletemyaccount': 'Delete my account',
 			'deleteaccounthint': 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.',
@@ -7136,7 +7136,7 @@ extension on _StringsHi {
 extension on _StringsId {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'Pastor Virtual Saya',
+			'appname': 'Pastor Virtual',
 			'selectlanguage': 'Pilih Bahasa',
 			'deletemyaccount': 'Hapus akun saya',
 			'deleteaccount': 'Hapus akun saya',
@@ -8606,7 +8606,7 @@ extension on _StringsOr {
 extension on _StringsPa {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'selectlanguage': 'ਭਾਸ਼ਾ ਚੁਣੋ',
 			'deletemyaccount': 'ਮੇਰਾ ਖਾਤਾ ਮਿਟਾਓ',
 			'deleteaccount': 'ਖਾਤਾ ਮਿਟਾਓ',
@@ -8900,7 +8900,7 @@ extension on _StringsPa {
 extension on _StringsPt {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'deleteaccount': 'Delete my account',
 			'deletemyaccount': 'Delete my account',
 			'deleteaccounthint': 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.',
@@ -9194,7 +9194,7 @@ extension on _StringsPt {
 extension on _StringsTa {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'selectlanguage': 'மொழியைத் தேர்ந்தெடுக்கவும்',
 			'deletemyaccount': 'என் கணக்கை நீக்கவும்',
 			'deleteaccount': 'கணக்கை நீக்கவும்',
@@ -9488,7 +9488,7 @@ extension on _StringsTa {
 extension on _StringsTe {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'selectlanguage': 'భాషను ఎంచుకోండి',
 			'deletemyaccount': 'నా ఖాతాను తొలగించండి',
 			'deleteaccount': 'ఖాతాను తొలగించండి',
