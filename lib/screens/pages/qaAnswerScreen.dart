@@ -1,4 +1,5 @@
 import 'package:churchapp_flutter/i18n/strings.g.dart';
+import 'package:churchapp_flutter/models/faqResult.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
 import 'package:churchapp_flutter/screens/DrawerScreen.dart';
@@ -11,8 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class QAAnswerScreen extends StatefulWidget {
-  QAAnswerScreen({Key? key}) : super(key: key);
+  QAAnswerScreen({Key? key, required this.faq}) : super(key: key);
   static const routeName = "/QAAnswerScreen";
+
+  final FAQ faq;
 
   @override
   _QAAnswerScreenState createState() => _QAAnswerScreenState();
@@ -21,14 +24,14 @@ class QAAnswerScreen extends StatefulWidget {
 class _QAAnswerScreenState extends State<QAAnswerScreen> {
   @override
   Widget build(BuildContext context) {
-    return QAAnswerScreenItem();
+    return QAAnswerScreenItem(faq: widget.faq);
   }
 }
 
 class QAAnswerScreenItem extends StatefulWidget {
-  QAAnswerScreenItem({
-    Key? key,
-  }) : super(key: key);
+  QAAnswerScreenItem({Key? key, required this.faq}) : super(key: key);
+
+  final FAQ faq;
 
   @override
   _QAAnswerScreenItemState createState() => _QAAnswerScreenItemState();
@@ -172,12 +175,13 @@ class _QAAnswerScreenItemState extends State<QAAnswerScreenItem> {
                 child: Container(
                   color: Colors.white,
                   width: MediaQuery.of(context).size.width,
-                  child: Column(
+                  child: ListView(
+                    shrinkWrap: true,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
-                          "Why should I get Baptised?",
+                          widget.faq.question,
                           textAlign: TextAlign.center,
                           style: TextStyles.title(context).copyWith(
                             fontWeight: FontWeight.bold,
@@ -185,12 +189,15 @@ class _QAAnswerScreenItemState extends State<QAAnswerScreenItem> {
                           ),
                         ),
                       ),
-                      Text(
-                        "Answer here",
-                        textAlign: TextAlign.center,
-                        style: TextStyles.title(context).copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          widget.faq.answer,
+                          textAlign: TextAlign.center,
+                          style: TextStyles.title(context).copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ],

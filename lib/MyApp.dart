@@ -9,6 +9,7 @@ import 'package:churchapp_flutter/models/Inbox.dart';
 import 'package:churchapp_flutter/models/Notes.dart';
 import 'package:churchapp_flutter/models/Playlists.dart';
 import 'package:churchapp_flutter/models/UserPosts.dart';
+import 'package:churchapp_flutter/models/faqResult.dart';
 import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
 import 'package:churchapp_flutter/screens/appTermsScreen.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
@@ -898,9 +899,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             );
           }
           if (settings.name == QAAnswerScreen.routeName) {
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements?;
             return MaterialPageRoute(
               builder: (context) {
-                return QAAnswerScreen();
+                return QAAnswerScreen(
+                  faq: args!.items as FAQ,
+                );
               },
             );
           }

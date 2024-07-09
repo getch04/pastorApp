@@ -53,63 +53,59 @@ class SplashScreenState extends State<SplashScreen> {
                 MyColors.bgBottom,
               ],
             ),
-            // gradient: LinearGradient(
-            //   begin: Alignment.topRight,
-            //   end: Alignment.bottomLeft,
-            //   stops: [
-            //     0.5,
-            //     0.9,
-            //   ],
-            //   colors: [
-            //     Color.fromARGB(255, 255, 225, 0),
-            //     Color.fromARGB(255, 255, 166, 0)
-            //   ],
-            // ),
           ),
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Animate(
-                    effects: [
-                      MoveEffect(
-                        begin: Offset(0, -200),
-                        end: Offset(0, 0),
-                        duration: Duration(seconds: 2),
-                        curve: Curves.easeOut,
-                      ),
-                    ],
-                    child: Image.asset(
-                      'assets/images/new/bibl.png',
-                      width: 200,
-                      height: 110,
-                      fit: BoxFit.fill,
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.65,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Positioned(
+                          top: 180,
+                          child: Animate(
+                            effects: [
+                              MoveEffect(
+                                begin: Offset(0, -200),
+                                end: Offset(0, 0),
+                                duration: Duration(seconds: 2),
+                                curve: Curves.easeOut,
+                              ),
+                            ],
+                            child: Container(
+                              child: Image.asset(
+                                'assets/images/new/bibl.png',
+                                width: 200,
+                                height: 100,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 250,
+                          child: Image.asset(
+                            'assets/images/new/cross.png',
+                            width: 320,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/images/new/cross.png',
-                    width: 320,
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      'My Virtual Pastor',
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
+                      style: TextStyles.display3(context)
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  // ),
-                  // Animate(
-                  //   effects: [
-                  //     MoveEffect(
-                  //       begin: Offset(0, 200),
-                  //       end: Offset(0, 0),
-                  //       duration: Duration(seconds: 2),
-                  //       curve: Curves.easeOut,
-                  //     ),
-                  //   ],
-                  //   child:
-
-                  Text(
-                    'My Virtual Pastor',
-                    style: TextStyles.display3(context)
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  //   ),
                 ],
               ),
             ),

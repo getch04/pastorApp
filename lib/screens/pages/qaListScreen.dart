@@ -1,12 +1,18 @@
+import 'dart:convert';
+
 import 'package:churchapp_flutter/i18n/strings.g.dart';
+import 'package:churchapp_flutter/models/ScreenArguements.dart';
+import 'package:churchapp_flutter/models/faqResult.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
 import 'package:churchapp_flutter/screens/DrawerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
+import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/img.dart';
 import 'package:churchapp_flutter/utils/my_colors.dart';
 import 'package:churchapp_flutter/utils/title_case.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,31 +44,31 @@ class QAListScreenItem extends StatefulWidget {
 class _QAListScreenItemState extends State<QAListScreenItem> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-//  String? text;
-//   bool isLoading = true;
-//   Dio dio = Dio();
+  FAQResponse? faqResult;
+  bool isLoading = true;
+  Dio dio = Dio();
 
-//   Future<void> getAboutUs() async {
-//     try {
-//       var response = await dio.get(ApiUrl.ABOUTUS);
-//       final abtUs = AboutUs.fromJson(jsonDecode(response.data));
-//       setState(() {
-//         text = abtUs.about_us;
-//         isLoading = false;
-//       });
-//     } catch (e) {
-//       setState(() {
-//         isLoading = false;
-//       });
-//       print(e);
-//     }
-//   }
+  Future<void> getAboutUs() async {
+    try {
+      var response = await dio.get(ApiUrl.GET_FAQ);
+      final faq = FAQResponse.fromJson(jsonDecode(response.data));
+      setState(() {
+        faqResult = faq;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      print(e);
+    }
+  }
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     getAboutUs();
-//   }
+  @override
+  void initState() {
+    super.initState();
+    getAboutUs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -145,95 +151,92 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
                 create: (context) => HomeProvider(), child: DrawerScreen()),
           ),
         ),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                MyColors.bgTop,
-                MyColors.bgBottom,
-              ],
-            ),
-          ),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                color: MyColors.primary,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        Img.get('new/qa1.png'),
-                        height: 50,
-                        width: 50,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Questions & Answers',
-                            textAlign: TextAlign.center,
-                            style: TextStyles.title(context).copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                            ),
-                          ),
-                        ),
-                      ),
+        body: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      MyColors.bgTop,
+                      MyColors.bgBottom,
                     ],
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, QAAnswerScreen.routeName);
-                },
-                child: Container(
-                  color: Colors.white,
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      "Why should I get Baptised?",
-                      textAlign: TextAlign.center,
-                      style: TextStyles.title(context).copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      color: MyColors.primary,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Img.get('new/qa1.png'),
+                              height: 50,
+                              width: 50,
+                            ),
+                            Expanded(
+                              child: Center(
+                                child: Text(
+                                  'Questions & Answers',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyles.title(context).copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    "More question here",
-                    textAlign: TextAlign.center,
-                    style: TextStyles.title(context).copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: faqResult?.faqs.length ?? 0,
+                        itemBuilder: (context, index) {
+                          final faq = faqResult!.faqs[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, QAAnswerScreen.routeName,
+                                    arguments: ScreenArguements(items: faq));
+                              },
+                              child: Container(
+                                color: Colors.white,
+                                width: MediaQuery.of(context).size.width,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Text(
+                                    faq.question,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyles.title(context).copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              )
-            ],
-          ),
-        ),
+              ),
       ),
     );
   }
