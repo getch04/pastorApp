@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:churchapp_flutter/i18n/strings.g.dart';
+import 'package:churchapp_flutter/models/aboutus.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
-import 'package:churchapp_flutter/providers/HomeProvider.dart';
-import 'package:churchapp_flutter/screens/DrawerScreen.dart';
+import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
-import 'package:churchapp_flutter/utils/img.dart';
-import 'package:churchapp_flutter/utils/my_colors.dart';
-import 'package:churchapp_flutter/utils/title_case.dart';
+import 'package:churchapp_flutter/utils/components/common_item_card.dart';
+import 'package:churchapp_flutter/utils/components/global_scafold.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,22 +21,32 @@ class AboutUsNewScreen extends StatefulWidget {
 }
 
 class _AboutUsNewScreenState extends State<AboutUsNewScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return AboutUsNewScreenItem();
+  String? text;
+  bool isLoading = true;
+  Dio dio = Dio();
+
+  Future<void> getAboutUs() async {
+    try {
+      var response = await dio.get(ApiUrl.ABOUTUS);
+      final abtUs = AboutUs.fromJson(jsonDecode(response.data));
+      setState(() {
+        text = abtUs.about_us;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      print(e);
+    }
   }
-}
-
-class AboutUsNewScreenItem extends StatefulWidget {
-  AboutUsNewScreenItem({
-    Key? key,
-  }) : super(key: key);
 
   @override
-  _AboutUsNewScreenItemState createState() => _AboutUsNewScreenItemState();
-}
+  void initState() {
+    super.initState();
+    getAboutUs();
+  }
 
-class _AboutUsNewScreenItemState extends State<AboutUsNewScreenItem> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -74,122 +86,49 @@ class _AboutUsNewScreenItemState extends State<AboutUsNewScreenItem> {
         }
         return true;
       },
-      child: Scaffold(
-        key: scaffoldKey,
-        drawerScrimColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: MyColors.primaryLight,
-          automaticallyImplyLeading: false,
-          leadingWidth: 80,
-          leading: Container(
-            height: 30,
-            width: 30,
-            margin: EdgeInsets.only(left: 20),
-            child: Image.asset(
-              Img.get('new/1.png'),
-              height: 150,
-              width: 150,
-            ),
-          ),
-          title: Text(
-            t.appname.toTitleCase(),
-            style: TextStyles.title(context)
-                .copyWith(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-          centerTitle: true,
-          actions: [
-            GestureDetector(
-              onTap: () {
-                scaffoldKey.currentState?.openDrawer();
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 20),
-                height: 30,
-                width: 30,
-                child: Image.asset(
-                  Img.get('new/menu.png'),
-                ),
-              ),
-            ),
-          ],
-        ),
-        drawer: Container(
-          padding: EdgeInsets.only(top: statusBarHeight + appBarHeight + 1),
-          child: Drawer(
-            child: ChangeNotifierProvider(
-                create: (context) => HomeProvider(), child: DrawerScreen()),
-          ),
-        ),
+      child: GlobalScaffold(
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                MyColors.bgTop,
-                MyColors.bgBottom,
-              ],
-            ),
-          ),
-          child: Column(
+          child: ListView(
             children: [
+              Container(
+                height: 70,
+                width: 100,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: CommonItemCard(
+                    title: t.about,
+                    icon: Icon(
+                      Icons.info_outline_rounded,
+                      size: 40,
+                      color: Colors.black54,
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
-              Container(
-                color: MyColors.primary,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        size: 50,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            t.about,
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: isLoading
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : Text(
+                            text ?? '',
                             textAlign: TextAlign.center,
                             style: TextStyles.title(context).copyWith(
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize: 20,
                             ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 40,
-                      )
-                    ],
                   ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.white,
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          "content here",
-                          textAlign: TextAlign.center,
-                          style: TextStyles.title(context).copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ],
               ),
             ],
           ),

@@ -214,9 +214,11 @@ class ItemTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(branches.email!,
-                          style: TextStyles.subhead(context)
-                              .copyWith(fontWeight: FontWeight.w500)),
+                      Text(
+                        branches.email!,
+                        style: TextStyles.subhead(context)
+                            .copyWith(fontWeight: FontWeight.w500),
+                      ),
                     ],
                   ),
                   Spacer(),

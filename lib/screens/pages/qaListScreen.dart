@@ -4,14 +4,12 @@ import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
-import 'package:churchapp_flutter/providers/HomeProvider.dart';
-import 'package:churchapp_flutter/screens/DrawerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
+import 'package:churchapp_flutter/utils/components/common_item_card.dart';
+import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:churchapp_flutter/utils/img.dart';
-import 'package:churchapp_flutter/utils/my_colors.dart';
-import 'package:churchapp_flutter/utils/title_case.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -105,127 +103,72 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
         }
         return true;
       },
-      child: Scaffold(
-        key: scaffoldKey,
-        drawerScrimColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: MyColors.primaryLight,
-          automaticallyImplyLeading: false,
-          leadingWidth: 80,
-          leading: Container(
-            height: 30,
-            width: 30,
-            margin: EdgeInsets.only(left: 20),
-            child: Image.asset(
-              Img.get('new/1.png'),
-              height: 150,
-              width: 150,
-            ),
-          ),
-          title: Text(
-            t.appname.toTitleCase(),
-            style: TextStyles.title(context)
-                .copyWith(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-          centerTitle: true,
-          actions: [
-            GestureDetector(
-              onTap: () {
-                scaffoldKey.currentState?.openDrawer();
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 20),
-                height: 30,
-                width: 30,
-                child: Image.asset(
-                  Img.get('new/menu.png'),
-                ),
-              ),
-            ),
-          ],
-        ),
-        drawer: Container(
-          padding: EdgeInsets.only(top: statusBarHeight + appBarHeight + 1),
-          child: Drawer(
-            child: ChangeNotifierProvider(
-                create: (context) => HomeProvider(), child: DrawerScreen()),
-          ),
-        ),
-        body: isLoading
-            ? Center(child: CircularProgressIndicator())
-            : Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      MyColors.bgTop,
-                      MyColors.bgBottom,
-                    ],
-                  ),
-                ),
-                child: Column(
+      child: GlobalScaffold(
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: isLoading
+              ? Center(child: CircularProgressIndicator())
+              : ListView(
                   children: [
-                    SizedBox(
-                      height: 10,
-                    ),
                     Container(
-                      color: MyColors.primary,
+                      height: 70,
+                      width: 100,
                       child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              Img.get('new/qa1.png'),
-                              height: 50,
-                              width: 50,
-                            ),
-                            Expanded(
-                              child: Center(
-                                child: Text(
-                                  'Questions & Answers',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyles.title(context).copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                        child: CommonItemCard(
+                          title: 'Q & A',
+                          icon: Image.asset(
+                            Img.get('new/Q&A.png'),
+                            width: 40,
+                            height: 40,
+                          ),
+                          onTap: () {},
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
-                    Expanded(
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      width: MediaQuery.of(context).size.width,
                       child: ListView.builder(
                         itemCount: faqResult?.faqs.length ?? 0,
                         itemBuilder: (context, index) {
                           final faq = faqResult!.faqs[index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, QAAnswerScreen.routeName,
-                                    arguments: ScreenArguements(items: faq));
-                              },
-                              child: Container(
-                                color: Colors.white,
-                                width: MediaQuery.of(context).size.width,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Text(
-                                    faq.question,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyles.title(context).copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ),
+                          return InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                QAAnswerScreen.routeName,
+                                arguments: ScreenArguements(items: faq),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: index / 2 == 0
+                                      ? Colors.lightBlue.shade200
+                                      : Colors.white,
+                                  boxShadow: index / 2 != 0
+                                      ? null
+                                      : [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 5,
+                                            blurRadius: 7,
+                                            offset: Offset(0, 3),
+                                          ),
+                                        ]),
+                              width: MediaQuery.of(context).size.width,
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  faq.question,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyles.title(context).copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
                                   ),
                                 ),
                               ),
@@ -236,7 +179,7 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
                     ),
                   ],
                 ),
-              ),
+        ),
       ),
     );
   }

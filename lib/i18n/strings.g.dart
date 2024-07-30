@@ -5,7 +5,7 @@
  * Locales: 16
  * Strings: 4592 (287.0 per locale)
  *
- * Built on 2024-07-09 at 06:54 UTC
+ * Built on 2024-07-25 at 02:25 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -476,7 +476,7 @@ class _StringsEn {
 	String get tools => 'Tools';
 	String get profile => 'Profile';
 	String get audiobible => 'Audio Bible';
-	String get homesentence => 'Your Pastor for 1 year, to help you grow into a person God called you to be.';
+	String get homesentence => 'Your Pastor for a Year: Helping You Grow into Your Calling';
 	String get livestreams => 'Livestreams';
 	String get radio => 'Radio';
 	String get allitems => 'All Items';
@@ -5438,7 +5438,7 @@ extension on _StringsEn {
 			'tools': 'Tools',
 			'profile': 'Profile',
 			'audiobible': 'Audio Bible',
-			'homesentence': 'Your Pastor for 1 year, to help you grow into a person God called you to be.',
+			'homesentence': 'Your Pastor for a Year: Helping You Grow into Your Calling',
 			'livestreams': 'Livestreams',
 			'radio': 'Radio',
 			'allitems': 'All Items',

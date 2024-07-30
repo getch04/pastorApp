@@ -1,10 +1,11 @@
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:isolated_download_manager/isolated_download_manager.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './providers/AudioPlayerModel.dart';
 import './providers/BibleModel.dart';
@@ -34,9 +35,13 @@ void main() async {
       notificationColor: MyColors.primary);
   //InAppPurchaseConnection.enablePendingPurchases();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: MyColors.primaryDark,
-      statusBarBrightness: Brightness.light));
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+        statusBarColor: Color(0xff3d93be),
+        statusBarBrightness: Brightness.light),
+  );
+
+  await dotenv.load(fileName: ".env");
 
   runApp(
     TranslationProvider(

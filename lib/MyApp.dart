@@ -10,9 +10,11 @@ import 'package:churchapp_flutter/models/Notes.dart';
 import 'package:churchapp_flutter/models/Playlists.dart';
 import 'package:churchapp_flutter/models/UserPosts.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
+import 'package:churchapp_flutter/screens/HomePage.dart';
 import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
 import 'package:churchapp_flutter/screens/appTermsScreen.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
+import 'package:churchapp_flutter/screens/pages/CategoriesMediaScreen.dart';
 import 'package:churchapp_flutter/screens/pages/aboutUsScreen.dart';
 import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
@@ -259,36 +261,40 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         theme: appStateManager.themeData,
         navigatorKey: navigatorKey,
         title: 'App',
-        home: appStateManager.isLoadingTheme
-            ? Container(
-                child: Center(
-                  child: Container(
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Container(height: 10),
-                        Text(t.appname,
-                            style: TextStyles.medium(context).copyWith(
-                                fontFamily: "serif",
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30)),
-                        Container(height: 12),
-                        Text(t.initializingapp,
-                            style: TextStyles.body1(context)
-                                .copyWith(color: Colors.grey[500])),
-                        Container(height: 50),
-                        CupertinoActivityIndicator(
-                          radius: 20,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              )
-            : SplashScreen(),
+        home:
+
+            // appStateManager.isLoadingTheme
+            //     ? Container(
+            //         child: Center(
+            //           child: Container(
+            //             width: double.infinity,
+            //             alignment: Alignment.center,
+            //             child: Column(
+            //               mainAxisSize: MainAxisSize.min,
+            //               children: <Widget>[
+            //                 Container(height: 10),
+            //                 Text(t.appname,
+            //                     style: TextStyles.medium(context).copyWith(
+            //                         fontFamily: "serif",
+            //                         color: Colors.white,
+            //                         fontWeight: FontWeight.bold,
+            //                         fontSize: 30)),
+            //                 Container(height: 12),
+            //                 Text(t.initializingapp,
+            //                     style: TextStyles.body1(context)
+            //                         .copyWith(color: Colors.grey[500])),
+            //                 Container(height: 50),
+            //                 CupertinoActivityIndicator(
+            //                   radius: 20,
+            //                 )
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       )
+            //     :
+
+            SplashScreen(),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: (settings) {
           if (settings.name == AddPlaylistScreen.routeName) {
@@ -375,7 +381,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return UserProfileScreen(
-                  user: args!.items as Userdata?,
+                  user: args?.items as Userdata?,
                 );
               },
             );
@@ -871,9 +877,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             );
           }
           if (settings.name == SermonPlayerScreen.routeName) {
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements?;
             return MaterialPageRoute(
               builder: (context) {
-                return SermonPlayerScreen();
+                return SermonPlayerScreen(
+                  media: args!.items as Media?,
+                );
               },
             );
           }
@@ -924,16 +934,36 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             );
           }
           if (settings.name == ToolsScreen.routeName) {
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements?;
             return MaterialPageRoute(
               builder: (context) {
-                return ToolsScreen();
+                return ToolsScreen(
+                  cat: args!.items as Categories?,
+                );
               },
             );
           }
           if (settings.name == ToolsDetailScreen.routeName) {
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements?;
             return MaterialPageRoute(
               builder: (context) {
-                return ToolsDetailScreen();
+                return ToolsDetailScreen(
+                  media: args!.items as Media?,
+                );
+              },
+            );
+          }
+          if (settings.name == CategoriesMediaScreenNew.routeName) {
+            // Cast the arguments to the correct type: ScreenArguments.
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements?;
+            return MaterialPageRoute(
+              builder: (context) {
+                return CategoriesMediaScreenNew(
+                  categories: args!.items as Categories?,
+                );
               },
             );
           }

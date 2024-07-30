@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:churchapp_flutter/auth/LoginScreen.dart';
+import 'package:churchapp_flutter/utils/custom_button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -153,7 +155,7 @@ class UserProfileScreenRouteState extends State<UserProfileScreen> {
               //   ),
               // ),
               flexibleSpace: FlexibleSpaceBar(
-                background: _user!.coverPhoto == ""
+                background: _user?.coverPhoto == "" || _user?.coverPhoto == null
                     ? Image.asset(Img.get('cover_photos.jpg'),
                         fit: BoxFit.cover)
                     : CachedNetworkImage(
@@ -184,7 +186,7 @@ class UserProfileScreenRouteState extends State<UserProfileScreen> {
                   child: CircleAvatar(
                     radius: 50,
                     backgroundColor: Colors.grey[200],
-                    child: _user!.avatar == ""
+                    child: _user?.avatar == "" || _user?.avatar == null
                         ? CircleAvatar(
                             radius: 48,
                             backgroundImage: AssetImage(Img.get("avatar.png")),
@@ -224,7 +226,19 @@ class UserProfileScreenRouteState extends State<UserProfileScreen> {
             ),
           ];
         },
-        body: getProfileBody(),
+        body: _user == null
+            ? Container(
+                height: 400,
+                child: Center(
+                  child: CustomButton(
+                      title: 'Please login',
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, LoginScreen.routeName);
+                      }),
+                ),
+              )
+            : getProfileBody(),
       ),
     );
   }

@@ -170,7 +170,9 @@ class _SermonListScreenItemState extends State<SermonListScreenItem> {
                             InkWell(
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, SermonPlayerScreen.routeName);
+                                  context,
+                                  SermonPlayerScreen.routeName,
+                                );
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(bottom: 20),

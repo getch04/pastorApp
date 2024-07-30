@@ -1,15 +1,17 @@
+import 'dart:math';
+
 import 'package:churchapp_flutter/i18n/strings.g.dart';
+import 'package:churchapp_flutter/models/Categories.dart';
+import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
-import 'package:churchapp_flutter/providers/HomeProvider.dart';
-import 'package:churchapp_flutter/screens/CategoriesScreen.dart';
-import 'package:churchapp_flutter/screens/DrawerScreen.dart';
-import 'package:churchapp_flutter/screens/pages/sermonPlayerScreen.dart';
+import 'package:churchapp_flutter/providers/CategoriesModel.dart';
+import 'package:churchapp_flutter/screens/NoitemScreen.dart';
+import 'package:churchapp_flutter/screens/pages/CategoriesMediaScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
-import 'package:churchapp_flutter/utils/img.dart';
-import 'package:churchapp_flutter/utils/my_colors.dart';
-import 'package:churchapp_flutter/utils/title_case.dart';
+import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_arc_text/flutter_arc_text.dart';
 import 'package:provider/provider.dart';
 
 class SermonScreen extends StatefulWidget {
@@ -98,154 +100,26 @@ class _SermonScreenItemState extends State<SermonScreenItem> {
         //       false;
         // }
       },
-      child: Scaffold(
-        key: scaffoldKey,
-        drawerScrimColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: MyColors.primaryLight,
-          automaticallyImplyLeading: false,
-          leadingWidth: 80,
-          leading: Container(
-            height: 30,
-            width: 30,
-            margin: EdgeInsets.only(left: 20),
-            child: Image.asset(
-              Img.get('new/1.png'),
-              height: 150,
-              width: 150,
-            ),
-          ),
-          title: Text(
-            t.appname.toTitleCase(),
-            style: TextStyles.title(context)
-                .copyWith(fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-          centerTitle: true,
-          actions: [
-            GestureDetector(
-              onTap: () {
-                scaffoldKey.currentState?.openDrawer();
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 20),
-                height: 30,
-                width: 30,
-                child: Image.asset(
-                  Img.get('new/menu.png'),
-                ),
-              ),
-            ),
-          ],
-        ),
-        drawer: Container(
-          padding: EdgeInsets.only(top: statusBarHeight + appBarHeight + 1),
-          child: Drawer(
-            child: ChangeNotifierProvider(
-                create: (context) => HomeProvider(), child: DrawerScreen()),
-          ),
-        ),
+      child: GlobalScaffold(
         body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                MyColors.bgTop,
-                MyColors.bgBottom,
+          height: MediaQuery.of(context).size.height * 0.83,
+          width: MediaQuery.of(context).size.width,
+          child: ChangeNotifierProvider(
+            create: (context) => CategoriesModel(),
+            child: Column(
+              // shrinkWrap: true,
+              children: [
+                SizedBox(
+                  height: 10.0,
+                ),
+                Text(
+                  "1 Year of Sermons",
+                  style: TextStyles.title(context)
+                      .copyWith(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+                SermonBody()
               ],
             ),
-          ),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10.0,
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, CategoriesScreen.routeName);
-                      },
-                      child: Container(
-                        color: MyColors.primaryLight,
-                        height: 70,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/new/Sermons.png',
-                              width: 60,
-                              height: 50,
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              '1 year of Sermons',
-                              style: TextStyles.title(context).copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: ListView(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, SermonPlayerScreen.routeName);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 20),
-                                child: Container(
-                                  color: MyColors.white,
-                                  padding: EdgeInsets.symmetric(vertical: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        width: 30,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text('week', style: style),
-                                          Text("1.", style: style)
-                                        ],
-                                      ),
-                                      // Spacer(),
-                                      Expanded(
-                                        child: Text(
-                                          'How to teach',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyles.title(context)
-                                              .copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 30),
-                                        ),
-                                      ),
-                                      // Spacer()
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
           ),
         ),
       ),
@@ -253,45 +127,157 @@ class _SermonScreenItemState extends State<SermonScreenItem> {
   }
 }
 
-class HomeTileItem extends StatelessWidget {
-  const HomeTileItem({
+class SermonBody extends StatelessWidget {
+  const SermonBody({
     super.key,
-    required this.title,
-    required this.iconPath,
-    required this.onTap,
   });
 
-  final String title;
-  final String iconPath;
-  final Function() onTap;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        height: 120,
-        decoration: BoxDecoration(
-          color: MyColors.primaryLight,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyles.title(context)
-                        .copyWith(fontWeight: FontWeight.bold, fontSize: 35),
-                  ),
-                ],
+    CategoriesModel categoriesModel = Provider.of<CategoriesModel>(context);
+    List<Categories>? items = categoriesModel.categories;
+    if (categoriesModel.isLoading) {
+      return Center(
+          child: CupertinoActivityIndicator(
+        radius: 20,
+      ));
+    } else if (categoriesModel.isError) {
+      return NoitemScreen(
+          title: t.oops,
+          message: t.dataloaderror,
+          onClick: () {
+            categoriesModel.loadItems();
+          });
+    } else
+      return Container(
+        height: MediaQuery.of(context).size.height * 0.73,
+        width: MediaQuery.of(context).size.width,
+        child: ListView.builder(
+          itemCount: categoriesModel.categories?.length ?? 0,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (BuildContext context, int index) {
+            final cat = categoriesModel.categories?[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 10),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    CategoriesMediaScreenNew.routeName,
+                    arguments: ScreenArguements(
+                      position: 0,
+                      items: cat,
+                    ),
+                  );
+                },
+                child: SermonButton(
+                  week: index + 1,
+                  category: cat,
+                ),
               ),
-            ),
-          ],
+            );
+          },
         ),
-      ),
+      );
+  }
+}
+
+class SermonButton extends StatelessWidget {
+  final int week;
+  final Categories? category;
+
+  SermonButton({required this.week, required this.category});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: 90,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 3, 92, 164),
+                Color(0xff0ebef4),
+              ],
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft,
+            ),
+            border: Border.all(
+              width: 2,
+              color: Colors.white,
+            ),
+            borderRadius: BorderRadius.circular(50.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                offset: Offset(3, 3),
+                blurRadius: 5,
+              ),
+            ],
+          ),
+          child: Center(
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                ),
+                Container(
+                  height: 80,
+                  width: 80,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 62,
+                        left: 30,
+                        child: ArcText(
+                          radius: 55,
+                          text: 'WEEK',
+                          textStyle: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                          startAngle: -pi / 45,
+                          startAngleAlignment: StartAngleAlignment.center,
+                          placement: Placement.inside,
+                          direction: Direction.clockwise,
+                        ),
+                      ),
+                      Positioned(
+                        top: 30,
+                        left: 20,
+                        child: Text(
+                          '$week',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: FittedBox(
+                    child: Text(
+                      category?.title ?? 'UNKNOWN',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        letterSpacing: 3,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 65,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

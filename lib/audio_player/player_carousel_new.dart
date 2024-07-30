@@ -1,272 +1,225 @@
-import 'package:churchapp_flutter/utils/TextStyles.dart';
-import 'package:churchapp_flutter/utils/my_colors.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../providers/AudioPlayerModel.dart';
-import '../providers/MediaPlayerModel.dart';
+class PlayerNew extends StatefulWidget {
+  final String audioUrl;
+  final bool showTableOfContent;
 
-class PlayerNew extends StatelessWidget {
-  PlayerNew({this.showTableOfContent = true});
+  PlayerNew({required this.audioUrl, this.showTableOfContent = true});
 
-  bool? showTableOfContent;
   @override
-  Widget build(BuildContext context) {
-    AudioPlayerModel audioPlayerModel = Provider.of<AudioPlayerModel>(context);
-    return Column(
-      children: _controllers(context, audioPlayerModel),
-    );
+  _PlayerNewState createState() => _PlayerNewState();
+}
+
+class _PlayerNewState extends State<PlayerNew> {
+  late AudioPlayer _audioPlayer;
+  bool _isPlaying = false;
+  Duration _duration = Duration.zero;
+  Duration _position = Duration.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    _initializePlayer();
+
+    _audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
+      setState(() {
+        _isPlaying = state == PlayerState.playing;
+      });
+    });
+
+    _audioPlayer.onDurationChanged.listen((Duration duration) {
+      setState(() {
+        _duration = duration;
+      });
+    });
+
+    _audioPlayer.onPositionChanged.listen((Duration position) {
+      setState(() {
+        _position = position;
+      });
+    });
   }
 
-  Widget _timer(BuildContext context, AudioPlayerModel audioPlayerModel) {
-    var style = new TextStyle(
-      color: Colors.grey,
-      fontSize: 15,
-    );
-    return StreamBuilder(
-      initialData: audioPlayerModel.backgroundAudioPositionSeconds,
-      stream: audioPlayerModel.audioProgressStreams.stream.asBroadcastStream(),
-      builder: (BuildContext? context, dynamic snapshot) {
-        double? seekSliderValue = 0;
-        if (snapshot.data != null) {
-          seekSliderValue = snapshot.data /
-              audioPlayerModel.backgroundAudioDurationSeconds.floor();
-          if (seekSliderValue!.isNaN || seekSliderValue < 0) {
-            seekSliderValue = 0;
-          }
-          if (seekSliderValue > 1) {
-            seekSliderValue = 1;
-          }
-          print("snapshot.data = " + snapshot.data.toString());
-          print("backgroundAudioDurationSeconds = " +
-              audioPlayerModel.backgroundAudioDurationSeconds.toString());
-          print("seekSliderValue = " + seekSliderValue.toString());
-        }
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            // Text(
-            //   TimUtil.stringForSeconds(
-            //       (snapshot == null || snapshot.data == null)
-            //           ? 0.0
-            //           : snapshot.data),
-            //   style: style,
-            // ),
-            Expanded(
-              child: Slider(
-                  activeColor: Colors.black,
-                  value: seekSliderValue,
-                  inactiveColor: Colors.black54,
-                  onChangeEnd: (v) {
-                    audioPlayerModel.onStartSeek();
-                  },
-                  onChanged: (double val) {
-                    final double positionSeconds =
-                        val * audioPlayerModel.backgroundAudioDurationSeconds;
-                    audioPlayerModel.seekTo(positionSeconds);
-                  }),
-            ),
-            // new Text(
-            //   TimUtil.stringForSeconds(
-            //       audioPlayerModel.backgroundAudioDurationSeconds),
-            //   style: style,
-            // ),
-          ],
-        );
-      },
-    );
+  Future<void> _initializePlayer() async {
+    try {
+      if (widget.audioUrl.isNotEmpty) {
+        await _audioPlayer.setSourceUrl(widget.audioUrl);
+        await _audioPlayer.resume();
+      }
+    } catch (e) {
+      print('Error loading audio: $e');
+    }
   }
 
-  List<Widget> _controllers(
-      BuildContext context, AudioPlayerModel audioPlayerModel) {
+  void _playPause() {
+    if (_isPlaying) {
+      _audioPlayer.pause();
+    } else {
+      _audioPlayer.resume();
+    }
+  }
+
+  void _skipPrevious() {
+    _audioPlayer.seek(Duration.zero);
+  }
+
+  void _skipNext() {
+    _audioPlayer.seek(Duration.zero);
+  }
+
+  void _shuffle() {
+    // Implement shuffle logic if needed
+  }
+
+  void _repeat() {
+    // Implement repeat logic if needed
+  }
+
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = duration.inHours;
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
     return [
-      Visibility(
-        visible: !audioPlayerModel.showList,
-        child: new Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-          ),
-          child: _timer(context, audioPlayerModel),
-        ),
-      ),
+      if (hours > 0) twoDigits(hours),
+      twoDigits(minutes),
+      twoDigits(seconds)
+    ].join(':');
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  List<Widget> _controllers(BuildContext context) {
+    return [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: new Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            IconButton(
-              onPressed: () {
-                // widget.audioPlayerModel.shufflePlaylist();
-                // Provider.of<MediaPlayerModel>(context, listen: false)
-                //     .setMediaLikesCommentsCount(
-                //         widget.audioPlayerModel.currentMedia!);
+        child: Column(
+          children: [
+            Slider(
+              activeColor: Colors.orange,
+              inactiveColor: Colors.grey,
+              min: 0.0,
+              max: _duration.inSeconds.toDouble(),
+              value: _position.inSeconds.toDouble(),
+              onChanged: (double value) {
+                setState(() {
+                  _audioPlayer.seek(Duration(seconds: value.toInt()));
+                });
               },
-              icon: Icon(
-                Icons.shuffle,
-                size: 45.0,
-                color: Colors.black,
-              ),
             ),
-            IconButton(
-              onPressed: () {
-                audioPlayerModel.skipPrevious();
-                Provider.of<MediaPlayerModel>(context, listen: false)
-                    .setMediaLikesCommentsCount(audioPlayerModel.currentMedia!);
-              },
-              icon: Icon(
-                Icons.skip_previous,
-                // Icons.fast_rewind,
-                size: 45.0,
-                color: Colors.black,
-              ),
-            ),
-            ClipOval(
-                child: Container(
-              color: MyColors.black,
-              width: 70.0,
-              height: 70.0,
-              child: IconButton(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                onPressed: () {
-                  audioPlayerModel.onPressed();
-                },
-                icon: audioPlayerModel.icon(),
-              ),
-            )),
-            IconButton(
-              onPressed: () {
-                audioPlayerModel.skipNext();
-                Provider.of<MediaPlayerModel>(context, listen: false)
-                    .setMediaLikesCommentsCount(audioPlayerModel.currentMedia!);
-              },
-              icon: Icon(
-                Icons.skip_next,
-                // Icons.fast_forward,
-                size: 45.0,
-                color: Colors.black,
-              ),
-            ),
-
-            // IconButton(
-            //   onPressed: () => widget.audioPlayerModel
-            //       .setShowList(!widget.audioPlayerModel.showList),
-            //   icon: Icon(
-            //     Icons.playlist_play,
-            //     size: 27.0,
-            //     color: Colors.white,
-            //   ),
-            // ),
-            IconButton(
-              // onPressed: () => widget.audioPlayerModel.changeRepeat(),
-              // icon: widget.audioPlayerModel.isRepeat == true
-              //     ? Icon(
-              //         Icons.repeat_one,
-              //         size: 26.0,
-              //         color: Colors.white,
-              //       )
-              //     :
-              onPressed: () {},
-              icon: Icon(
-                Icons.repeat,
-                size: 45.0,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
-      ),
-      if (showTableOfContent!)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-          child: Container(
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Colors.black,
-                width: 1,
-              ),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  'Table of contents',
-                  style: TextStyles.title(context),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.brightness_1, size: 15),
-                          SizedBox(width: 10),
-                          Text(
-                            "0:00 - prayer",
-                            style: TextStyles.title(context),
-                          ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.fast_forward,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.brightness_1,
-                            size: 15,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            "0:00 - worship",
-                            style: TextStyles.title(context),
-                          ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.fast_forward,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.brightness_1, size: 15),
-                          SizedBox(width: 10),
-                          Text(
-                            "0:00 - Sermon",
-                            style: TextStyles.title(context),
-                          ),
-                          SizedBox(width: 10),
-                          Icon(
-                            Icons.fast_forward,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                        ],
-                      ),
-                    ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    _formatDuration(_position),
+                    style: TextStyle(),
                   ),
+                  Text(
+                    _formatDuration(_duration),
+                    style: TextStyle(),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                _playerIcon(
+                  icon: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Icon(
+                      Icons.shuffle,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPress: _shuffle,
                 ),
-                SizedBox(
-                  height: 10,
+                _playerIcon(
+                  icon: Icon(
+                    Icons.skip_previous,
+                    size: 45.0,
+                    color: Colors.white,
+                  ),
+                  onPress: _skipPrevious,
+                ),
+                _playerIcon(
+                  icon: Icon(
+                    _isPlaying ? Icons.pause : Icons.play_arrow,
+                    size: 60.0,
+                    color: Colors.white,
+                  ),
+                  onPress: _playPause,
+                ),
+                _playerIcon(
+                  icon: Icon(
+                    Icons.skip_next,
+                    size: 45.0,
+                    color: Colors.white,
+                  ),
+                  onPress: _skipNext,
+                ),
+                _playerIcon(
+                  icon: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Icon(
+                      Icons.refresh,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPress: _repeat,
                 ),
               ],
             ),
-          ),
+          ],
         ),
+      ),
     ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: _controllers(context),
+    );
+  }
+}
+
+class _playerIcon extends StatelessWidget {
+  const _playerIcon({
+    required this.onPress,
+    required this.icon,
+  });
+
+  final VoidCallback onPress;
+  final Widget icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPress,
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(colors: [
+            const Color.fromARGB(255, 255, 102, 0),
+            Colors.orange,
+          ]),
+        ),
+        child: icon,
+      ),
+    );
   }
 }

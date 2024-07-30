@@ -93,12 +93,19 @@ dependencies:
   flutter_animate: ^4.5.0
   intl_phone_field: ^3.2.0
   google_nav_bar: ^5.0.6
+  flutter_svg: ^2.0.10+1
+  flutter_arc_text: ^0.6.0
+  video_player: ^2.9.1
+  chewie: ^1.8.1
+  flutter_dotenv: ^5.1.0
+  audioplayers: ^6.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: any
   flutter_launcher_icons: ^0.13.1
+
 
 dependency_overrides:
   #wakelock_windows: ^0.2.1
@@ -111,7 +118,7 @@ dependency_overrides:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/icon.png"
+  image_path: "assets/images/new/Logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -128,6 +135,7 @@ flutter:
     - assets/images/
     - assets/images/new/
     - assets/lottie/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -160,3 +168,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/new/Logo.png"
+  min_sdk_android: 21

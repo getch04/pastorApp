@@ -1,14 +1,17 @@
-import 'package:churchapp_flutter/models/Userdata.dart';
+import 'package:churchapp_flutter/auth/LoginScreen.dart';
+import 'package:churchapp_flutter/models/Categories.dart';
+import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
-import 'package:churchapp_flutter/providers/HomeProvider.dart';
-import 'package:churchapp_flutter/screens/DrawerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
 import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsScreen.dart';
+import 'package:churchapp_flutter/socials/UserProfileScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
+import 'package:churchapp_flutter/utils/components/common_item_card.dart';
+import 'package:churchapp_flutter/utils/components/global_scafold.dart';
+import 'package:churchapp_flutter/utils/components/swipable_button.dart';
 import 'package:churchapp_flutter/utils/img.dart';
-import 'package:churchapp_flutter/utils/title_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,34 +22,24 @@ import '../i18n/strings.g.dart';
 import '../providers/AudioPlayerModel.dart';
 import '../utils/my_colors.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
   static const routeName = "/homeScreen";
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
-    return HomeScreenItem();
+    return const HomeScreenItem();
   }
 }
 
 class HomeScreenItem extends StatefulWidget {
-  HomeScreenItem({
-    Key? key,
-  }) : super(key: key);
+  const HomeScreenItem({Key? key}) : super(key: key);
 
   @override
   _HomeScreenItemState createState() => _HomeScreenItemState();
 }
 
 class _HomeScreenItemState extends State<HomeScreenItem> {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
-  int _currentIndex = 0;
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   int _currentNavIndex = 0;
 
   void onTabTapped(int index) {
@@ -55,206 +48,174 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    Userdata? userdata = Provider.of<AppStateManager>(context).userdata;
-    var statusBarHeight = MediaQuery.of(context).padding.top;
-    var appBarHeight = kToolbarHeight;
-    return WillPopScope(
-      onWillPop: () async {
-        if (Provider.of<AudioPlayerModel>(context, listen: false)
-                .currentMedia !=
-            null) {
-          return (await (showDialog(
-                context: context,
-                builder: (context) => CupertinoAlertDialog(
-                  title: Text(t.quitapp),
-                  content: Text(t.quitappaudiowarning),
-                  actions: <Widget>[
-                    ElevatedButton(
-                      onPressed: () => Navigator.of(context).pop(false),
-                      child: Text(t.cancel),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Provider.of<AudioPlayerModel>(context, listen: false)
-                            .cleanUpResources();
-                        Navigator.of(context).pop(true);
-                      },
-                      child: Text(t.ok),
-                    ),
-                  ],
+  Future<bool> _onWillPop() async {
+    final audioPlayerModel =
+        Provider.of<AudioPlayerModel>(context, listen: false);
+    if (audioPlayerModel.currentMedia != null) {
+      return await showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+              title: Text(t.quitapp),
+              content: Text(t.quitappaudiowarning),
+              actions: <Widget>[
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text(t.cancel),
                 ),
-              ))) ??
-              false;
-        } else {
-          return (await (showDialog(
-                context: context,
-                builder: (context) => CupertinoAlertDialog(
-                  title: Text(t.quitapp),
-                  content: Text(t.quitappwarning),
-                  actions: <Widget>[
-                    ElevatedButton(
-                      onPressed: () => Navigator.of(context).pop(false),
-                      child: Text(t.cancel),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        SystemNavigator.pop();
-                      },
-                      child: Text(t.ok),
-                    ),
-                  ],
+                ElevatedButton(
+                  onPressed: () {
+                    audioPlayerModel.cleanUpResources();
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text(t.ok),
                 ),
-              ))) ??
-              false;
-        }
-      },
-      child: Scaffold(
-        key: scaffoldKey,
-        drawerScrimColor: Colors.transparent,
-        appBar: AppBar(
-          backgroundColor: MyColors.primaryLight,
-          automaticallyImplyLeading: false,
-          leadingWidth: 80,
-          leading: Container(
-            height: 30,
-            width: 30,
-            margin: EdgeInsets.only(left: 20),
-            child: Image.asset(
-              Img.get('new/1.png'),
-              height: 150,
-              width: 150,
-            ),
-          ),
-          title: Text(
-            t.appname.toTitleCase(),
-            style: TextStyles.title(context)
-                .copyWith(fontWeight: FontWeight.bold, fontSize: 30),
-          ),
-          centerTitle: true,
-          actions: [
-            GestureDetector(
-              onTap: () {
-                scaffoldKey.currentState?.openDrawer();
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 20),
-                height: 30,
-                width: 30,
-                child: Image.asset(
-                  Img.get('new/menu.png'),
-                ),
-              ),
-            ),
-          ],
-        ),
-        drawer: Container(
-          padding: EdgeInsets.only(top: statusBarHeight + appBarHeight + 1),
-          child: Drawer(
-            child: ChangeNotifierProvider(
-                create: (context) => HomeProvider(), child: DrawerScreen()),
-          ),
-        ),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                MyColors.bgTop,
-                MyColors.bgBottom,
               ],
             ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10.0,
+          ) ??
+          false;
+    } else {
+      return await showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+              title: Text(t.quitapp),
+              content: Text(t.quitappwarning),
+              actions: <Widget>[
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text(t.cancel),
                 ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        '${t.homesentence}',
-                        textAlign: TextAlign.center,
-                        style: TextStyles.subhead(context).copyWith(
-                          color: MyColors.nearlyBlack,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+                ElevatedButton(
+                  onPressed: () {
+                    SystemNavigator.pop();
+                  },
+                  child: Text(t.ok),
+                ),
+              ],
+            ),
+          ) ??
+          false;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final userdata = Provider.of<AppStateManager>(context).userdata;
+
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: GlobalScaffold(
+        body: Container(
+          height: MediaQuery.of(context).size.height * 0.83,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 10.0),
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      t.homesentence,
+                      textAlign: TextAlign.center,
+                      style: TextStyles.subhead(context).copyWith(
+                        color: MyColors.nearlyBlack,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 35),
-                          child: ListView(
-                            children: [
-                              HomeTileItem(
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 35),
+                        child: ListView.separated(
+                          itemCount:
+                              4, // Adjust this to the number of items you have
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 20),
+                          itemBuilder: (context, index) {
+                            final List<Widget> commonItemCards = [
+                              CommonItemCard(
                                 title: t.sermons,
-                                iconPath: Img.get('new/sermon.png'),
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .pushNamed(SermonScreen.routeName);
-                                },
+                                icon: Image.asset(
+                                  Img.get('new/sermon.png'),
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                onTap: () => Navigator.of(context)
+                                    .pushNamed(SermonScreen.routeName),
                               ).animate().fadeIn(duration: 300.ms).slide(
                                     duration: 300.ms,
                                     curve: Curves.easeOut,
                                     begin: Offset(0, 0.5),
                                     end: Offset(0, 0),
                                   ),
-                              HomeTileItem(
+                              CommonItemCard(
                                 title: t.biblebooks,
-                                iconPath: Img.get('new/bible.png'),
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .pushNamed(BiblePlayerScreen.routeName);
-                                },
+                                icon: Image.asset(
+                                  Img.get('new/bible.png'),
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                onTap: () => Navigator.of(context)
+                                    .pushNamed(BiblePlayerScreen.routeName),
                               ).animate().fadeIn(duration: 600.ms).slide(
                                     duration: 600.ms,
                                     curve: Curves.easeOut,
                                     begin: Offset(0, 0.5),
                                     end: Offset(0, 0),
                                   ),
-                              HomeTileItem(
-                                title: 'Q & A\'s',
-                                iconPath: Img.get('new/Q&A.png'),
-                                onTap: () {
-                                  Navigator.of(context)
-                                      .pushNamed(QAListScreen.routeName);
-                                },
+                              CommonItemCard(
+                                title: 'Q & A',
+                                icon: Image.asset(
+                                  Img.get('new/Q&A.png'),
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                onTap: () => Navigator.of(context)
+                                    .pushNamed(QAListScreen.routeName),
                               ).animate().fadeIn(duration: 900.ms).slide(
                                     duration: 900.ms,
                                     curve: Curves.easeOut,
                                     begin: Offset(0, 0.5),
                                     end: Offset(0, 0),
                                   ),
-                              HomeTileItem(
+                              CommonItemCard(
                                 title: t.tools,
-                                iconPath: Img.get('new/tools.png'),
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    ToolsScreen.routeName,
-                                  );
-                                },
+                                icon: Image.asset(
+                                  Img.get('new/tools.png'),
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  ToolsScreen.routeName,
+                                  arguments: ScreenArguements(
+                                    position: 0,
+                                    items: Categories(
+                                      id: 28,
+                                      mediaCount: 1,
+                                      thumbnailUrl: '',
+                                      title: 'Tools',
+                                    ),
+                                  ),
+                                ),
                               ).animate().fadeIn(duration: 1200.ms).slide(
                                     duration: 1200.ms,
                                     curve: Curves.easeOut,
                                     begin: Offset(0, 0.5),
                                     end: Offset(0, 0),
                                   ),
-                            ],
-                          ),
+                            ];
+                            return commonItemCards[index];
+                          },
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              const BottomNavigation(),
+            ],
           ),
         ),
       ),
@@ -262,40 +223,173 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
   }
 }
 
-class HomeTileItem extends StatelessWidget {
-  const HomeTileItem({
-    super.key,
-    required this.title,
-    required this.iconPath,
-    required this.onTap,
-  });
+class BottomNavigation extends StatelessWidget {
+  const BottomNavigation({super.key});
 
-  final String title;
-  final String iconPath;
-  final Function() onTap;
   @override
   Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+      height: 60,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        gradient: const LinearGradient(
+          begin: Alignment.centerRight,
+          end: Alignment.centerLeft,
+          colors: [
+            Color.fromARGB(255, 3, 92, 164),
+            Color(0xff0ebef4),
+          ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: const Color.fromARGB(255, 164, 164, 164).withOpacity(0.3),
+            blurRadius: 1,
+            spreadRadius: 5,
+            offset: const Offset(0.5, 0.5),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildNavItem(
+            context,
+            icon: Icons.home_outlined,
+            label: 'Home',
+            routeName: HomeScreen.routeName,
+          ),
+          _buildNavItem(
+            context,
+            icon: Icons.category_outlined,
+            label: 'Sermons',
+            routeName: SermonScreen.routeName,
+          ),
+          _buildNavItem(
+            context,
+            icon: Icons.menu_book_outlined,
+            label: 'Bible',
+            routeName: BiblePlayerScreen.routeName,
+          ),
+          _buildNavItem(
+            context,
+            icon: Icons.account_circle_outlined,
+            label: 'Profile',
+            routeName: UserProfileScreen.routeName,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavItem(BuildContext context,
+      {required IconData icon,
+      required String label,
+      required String routeName}) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => Navigator.pushNamed(context, routeName),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: Colors.white),
+          Text(label, style: const TextStyle(color: Colors.white)),
+        ],
+      ),
+    );
+  }
+}
+
+class RateUsWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        height: 120,
+        padding: EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: MyColors.primaryLight,
-          borderRadius: BorderRadius.circular(15),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyles.title(context)
-                        .copyWith(fontWeight: FontWeight.bold, fontSize: 35),
+            Icon(Icons.share, size: 50, color: Colors.black),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Rate Us',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    Row(
+                      children: List.generate(5, (index) {
+                        return Icon(Icons.star, color: Colors.amber, size: 20);
+                      }),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+              width: 140,
+              child: SwipeButton.expand(
+                elevation: 10,
+                thumb: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
-                ],
+                  child: Center(
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                activeThumbColor: Colors.blue,
+                activeTrackColor: Colors.blue.withOpacity(0.3),
+                onSwipe: () {
+                  Navigator.pushNamed(context, LoginScreen.routeName);
+                },
+                child: Container(
+                  height: 60.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    color: Colors.blue,
+                  ),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Text(
+                          'LOG IN',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
