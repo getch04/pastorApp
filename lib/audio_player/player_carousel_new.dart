@@ -1,80 +1,133 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-class PlayerNew extends StatefulWidget {
+class PlayerNew extends StatelessWidget {
   final String audioUrl;
-  final bool showTableOfContent;
+  final VoidCallback onNext;
+  final VoidCallback onPrevious;
+  final bool isPlaying;
+  final bool isLoading;
+  final Duration duration;
+  final Duration position;
+  final VoidCallback onPlay;
+  final VoidCallback onPause;
+  final Function(Duration) onSeek;
 
-  PlayerNew({required this.audioUrl, this.showTableOfContent = true});
+  PlayerNew({
+    required this.audioUrl,
+    required this.onNext,
+    required this.onPrevious,
+    required this.isPlaying,
+    required this.isLoading,
+    required this.duration,
+    required this.position,
+    required this.onPlay,
+    required this.onPause,
+    required this.onSeek,
+  });
 
   @override
-  _PlayerNewState createState() => _PlayerNewState();
-}
-
-class _PlayerNewState extends State<PlayerNew> {
-  late AudioPlayer _audioPlayer;
-  bool _isPlaying = false;
-  Duration _duration = Duration.zero;
-  Duration _position = Duration.zero;
-
-  @override
-  void initState() {
-    super.initState();
-    _audioPlayer = AudioPlayer();
-    _initializePlayer();
-
-    _audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
-      setState(() {
-        _isPlaying = state == PlayerState.playing;
-      });
-    });
-
-    _audioPlayer.onDurationChanged.listen((Duration duration) {
-      setState(() {
-        _duration = duration;
-      });
-    });
-
-    _audioPlayer.onPositionChanged.listen((Duration position) {
-      setState(() {
-        _position = position;
-      });
-    });
-  }
-
-  Future<void> _initializePlayer() async {
-    try {
-      if (widget.audioUrl.isNotEmpty) {
-        await _audioPlayer.setSourceUrl(widget.audioUrl);
-        await _audioPlayer.resume();
-      }
-    } catch (e) {
-      print('Error loading audio: $e');
-    }
-  }
-
-  void _playPause() {
-    if (_isPlaying) {
-      _audioPlayer.pause();
-    } else {
-      _audioPlayer.resume();
-    }
-  }
-
-  void _skipPrevious() {
-    _audioPlayer.seek(Duration.zero);
-  }
-
-  void _skipNext() {
-    _audioPlayer.seek(Duration.zero);
-  }
-
-  void _shuffle() {
-    // Implement shuffle logic if needed
-  }
-
-  void _repeat() {
-    // Implement repeat logic if needed
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+          child: Column(
+            children: [
+              Slider(
+                activeColor: Colors.orange,
+                inactiveColor: Colors.grey,
+                min: 0.0,
+                max: duration.inSeconds.toDouble(),
+                value: position.inSeconds.toDouble(),
+                onChanged: (double value) {
+                  onSeek(Duration(seconds: value.toInt()));
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      _formatDuration(position),
+                      style: TextStyle(),
+                    ),
+                    Text(
+                      _formatDuration(duration),
+                      style: TextStyle(),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  _playerIcon(
+                    icon: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Icon(
+                        Icons.shuffle,
+                        size: 25.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPress: () {},
+                  ),
+                  _playerIcon(
+                    icon: Icon(
+                      Icons.skip_previous,
+                      size: 45.0,
+                      color: Colors.white,
+                    ),
+                    onPress: onPrevious,
+                  ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      if (isLoading)
+                        CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.orange),
+                        ),
+                      _playerIcon(
+                        icon: Icon(
+                          isPlaying ? Icons.pause : Icons.play_arrow,
+                          size: 60.0,
+                          color: Colors.white,
+                        ),
+                        onPress: isPlaying ? onPause : onPlay,
+                      ),
+                    ],
+                  ),
+                  _playerIcon(
+                    icon: Icon(
+                      Icons.skip_next,
+                      size: 45.0,
+                      color: Colors.white,
+                    ),
+                    onPress: onNext,
+                  ),
+                  _playerIcon(
+                    icon: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Icon(
+                        Icons.refresh,
+                        size: 25.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPress: () {}, // Implement repeat logic if needed
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   String _formatDuration(Duration duration) {
@@ -87,113 +140,6 @@ class _PlayerNewState extends State<PlayerNew> {
       twoDigits(minutes),
       twoDigits(seconds)
     ].join(':');
-  }
-
-  @override
-  void dispose() {
-    _audioPlayer.dispose();
-    super.dispose();
-  }
-
-  List<Widget> _controllers(BuildContext context) {
-    return [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: Column(
-          children: [
-            Slider(
-              activeColor: Colors.orange,
-              inactiveColor: Colors.grey,
-              min: 0.0,
-              max: _duration.inSeconds.toDouble(),
-              value: _position.inSeconds.toDouble(),
-              onChanged: (double value) {
-                setState(() {
-                  _audioPlayer.seek(Duration(seconds: value.toInt()));
-                });
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    _formatDuration(_position),
-                    style: TextStyle(),
-                  ),
-                  Text(
-                    _formatDuration(_duration),
-                    style: TextStyle(),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                _playerIcon(
-                  icon: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Icon(
-                      Icons.shuffle,
-                      size: 25.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPress: _shuffle,
-                ),
-                _playerIcon(
-                  icon: Icon(
-                    Icons.skip_previous,
-                    size: 45.0,
-                    color: Colors.white,
-                  ),
-                  onPress: _skipPrevious,
-                ),
-                _playerIcon(
-                  icon: Icon(
-                    _isPlaying ? Icons.pause : Icons.play_arrow,
-                    size: 60.0,
-                    color: Colors.white,
-                  ),
-                  onPress: _playPause,
-                ),
-                _playerIcon(
-                  icon: Icon(
-                    Icons.skip_next,
-                    size: 45.0,
-                    color: Colors.white,
-                  ),
-                  onPress: _skipNext,
-                ),
-                _playerIcon(
-                  icon: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Icon(
-                      Icons.refresh,
-                      size: 25.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPress: _repeat,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: _controllers(context),
-    );
   }
 }
 

@@ -99,6 +99,7 @@ dependencies:
   chewie: ^1.8.1
   flutter_dotenv: ^5.1.0
   audioplayers: ^6.0.0
+  infinite_scroll_pagination: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -118,7 +119,7 @@ dependency_overrides:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/new/Logo.png"
+  image_path: "assets/images/new/mvp.jpeg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -169,8 +170,3 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/images/new/Logo.png"
-  min_sdk_android: 21

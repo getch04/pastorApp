@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:churchapp_flutter/auth/LoginScreen.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
+import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
+import 'package:churchapp_flutter/screens/pages/howToScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
 import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsScreen.dart';
@@ -16,6 +20,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 import '../i18n/strings.g.dart';
@@ -107,29 +112,84 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
         body: Container(
           height: MediaQuery.of(context).size.height * 0.83,
           width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Stack(
             children: [
-              const SizedBox(height: 10.0),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      t.homesentence,
-                      textAlign: TextAlign.center,
-                      style: TextStyles.subhead(context).copyWith(
-                        color: MyColors.nearlyBlack,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+              SingleChildScrollView(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        t.homesentence,
+                        textAlign: TextAlign.center,
+                        style: TextStyles.subhead(context).copyWith(
+                          color: MyColors.nearlyBlack,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Padding(
+                      FutureBuilder(
+                        future: http.get(Uri.parse(
+                            "https://beta.ourmanna.com/api/v1/get?format=json&order=daily")),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return SizedBox.shrink();
+                          }
+                          if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          }
+                          if (snapshot.hasData) {
+                            final response = json.decode(snapshot.data!.body);
+
+                            return ClipPath(
+                              clipper: BannerClipper(),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 10,
+                                  horizontal: 20,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color:
+                                        const Color.fromARGB(255, 255, 170, 0),
+                                    width: 2,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: Text(
+                                  response['verse']['details']['text'],
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            );
+                          }
+                          return SizedBox.shrink();
+                        },
+                      ),
+                      Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 20, horizontal: 35),
+                          vertical: 20,
+                          horizontal: 35,
+                        ),
                         child: ListView.separated(
-                          itemCount:
-                              4, // Adjust this to the number of items you have
+                          itemCount: 5,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           separatorBuilder: (context, index) =>
                               const SizedBox(height: 20),
                           itemBuilder: (context, index) {
@@ -156,8 +216,9 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                   width: 50,
                                   height: 50,
                                 ),
-                                onTap: () => Navigator.of(context)
-                                    .pushNamed(BiblePlayerScreen.routeName),
+                                onTap: () => Navigator.of(context).pushNamed(
+                                  BibleScreenNew.routeName,
+                                ),
                               ).animate().fadeIn(duration: 600.ms).slide(
                                     duration: 600.ms,
                                     curve: Curves.easeOut,
@@ -205,21 +266,72 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                     begin: Offset(0, 0.5),
                                     end: Offset(0, 0),
                                   ),
+                              CommonItemCard(
+                                title: t.howTo,
+                                icon: Image.asset(
+                                  Img.get('new/howto.png'),
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  HowToScreen.routeName,
+                                ),
+                              ).animate().fadeIn(duration: 1200.ms).slide(
+                                    duration: 1200.ms,
+                                    curve: Curves.easeOut,
+                                    begin: Offset(0, 0.5),
+                                    end: Offset(0, 0),
+                                  ),
+                              SizedBox(
+                                height: 170,
+                              ),
                             ];
                             return commonItemCards[index];
                           },
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 100,
+                      )
+                    ],
+                  ),
                 ),
               ),
-              const BottomNavigation(),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: const BottomNavigation(),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class BannerClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.lineTo(0, size.height / 2 + 20);
+    path.lineTo(20, size.height / 2);
+    path.lineTo(0, size.height / 2 - 20);
+    path.lineTo(0, 0);
+    path.moveTo(size.width, size.height / 2 - 20);
+    path.lineTo(size.width - 20, size.height / 2);
+    path.lineTo(size.width, size.height / 2 + 20);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
   }
 }
 
@@ -256,25 +368,25 @@ class BottomNavigation extends StatelessWidget {
           _buildNavItem(
             context,
             icon: Icons.home_outlined,
-            label: 'Home',
+            label: t.home,
             routeName: HomeScreen.routeName,
           ),
           _buildNavItem(
             context,
             icon: Icons.category_outlined,
-            label: 'Sermons',
+            label: t.sermons,
             routeName: SermonScreen.routeName,
           ),
           _buildNavItem(
             context,
             icon: Icons.menu_book_outlined,
-            label: 'Bible',
+            label: t.biblebooks,
             routeName: BiblePlayerScreen.routeName,
           ),
           _buildNavItem(
             context,
             icon: Icons.account_circle_outlined,
-            label: 'Profile',
+            label: t.profile,
             routeName: UserProfileScreen.routeName,
           ),
         ],

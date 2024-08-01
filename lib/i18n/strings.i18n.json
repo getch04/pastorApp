@@ -1,6 +1,6 @@
 {
     "appname": "VirtualPastor",
-    "selectlanguage": "Select Language",
+    "selectlanguage": "selectLanguage",
     "deletemyaccount":"Delete my account",
     "deleteaccount":"Delete my account",
     "deleteaccounthint":"This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.",
@@ -313,6 +313,10 @@
 "clearconversationhintone": "This action will clear all your conversation with ",
 "clearconversationhinttwo":".\n  Please note that this only deletes your side of the conversation, the messages will still show on your partners chat.",
 
-"facebookloginerror":"Something went wrong with the login process.\n, Here is the error Facebook gave us"
+"facebookloginerror":"Something went wrong with the login process.\n, Here is the error Facebook gave us",
+
+
+"selectLanguage": "selectLanguage",
+"howTo":"howTo"
 
 }

@@ -10,13 +10,18 @@ import 'package:churchapp_flutter/models/Notes.dart';
 import 'package:churchapp_flutter/models/Playlists.dart';
 import 'package:churchapp_flutter/models/UserPosts.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
-import 'package:churchapp_flutter/screens/HomePage.dart';
+import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
+import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
 import 'package:churchapp_flutter/screens/appTermsScreen.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
 import 'package:churchapp_flutter/screens/pages/CategoriesMediaScreen.dart';
 import 'package:churchapp_flutter/screens/pages/aboutUsScreen.dart';
+import 'package:churchapp_flutter/screens/pages/bibleFilterScreen.dart';
 import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
+import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
+import 'package:churchapp_flutter/screens/pages/chapterVerseScreen.dart';
+import 'package:churchapp_flutter/screens/pages/howToScreen.dart';
 import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
@@ -26,7 +31,6 @@ import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsDetailScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsScreen.dart';
 import 'package:churchapp_flutter/screens/privacyScreen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -42,7 +46,6 @@ import './chat/photoviewer.dart';
 import './comments/CommentsScreen.dart';
 import './comments/RepliesScreen.dart';
 import './database/SQLiteDbProvider.dart';
-import './i18n/strings.g.dart';
 import './livetvplayer/LivestreamsPlayer.dart';
 import './models/CommentsArguement.dart';
 import './models/LiveStreams.dart';
@@ -91,7 +94,6 @@ import './socials/UserFollowersScreen.dart';
 import './socials/UserProfileScreen.dart';
 import './socials/UserdataPosts.dart';
 import './socials/likesPostPeople.dart';
-import './utils/TextStyles.dart';
 import './video_player/VideoPlayer.dart';
 import 'notes/NotesListScreen.dart';
 import 'providers/ChatManager.dart';
@@ -882,8 +884,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return SermonPlayerScreen(
-                  media: args!.items as Media?,
-                );
+                    // media: args!.items as Media?,
+                    );
               },
             );
           }
@@ -894,10 +896,33 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               },
             );
           }
-          if (settings.name == BiblePlayerScreen.routeName) {
+          if (settings.name == BibleScreenNew.routeName) {
             return MaterialPageRoute(
               builder: (context) {
-                return BiblePlayerScreen();
+                return BibleScreenNew();
+              },
+            );
+          }
+          if (settings.name == BibleFilterScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return BibleFilterScreen();
+              },
+            );
+          }
+          if (settings.name == BiblePlayerScreen.routeName) {
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements;
+            return MaterialPageRoute(
+              builder: (context) {
+                return BiblePlayerScreen(
+                  data: args!.items as (
+                    int,
+                    BibleData,
+                    String,
+                  BibleBook,
+                  ),
+                );
               },
             );
           }
@@ -905,6 +930,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return QAListScreen();
+              },
+            );
+          }
+          if (settings.name == ChapterVerseScreen.routeName) {
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements?;
+            return MaterialPageRoute(
+              builder: (context) {
+                return ChapterVerseScreen(
+                  book: args!.items as (BibleBook, BibleData),
+                );
               },
             );
           }
@@ -930,6 +966,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return OfferingScreen();
+              },
+            );
+          }
+          if (settings.name == HowToScreen.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return HowToScreen();
               },
             );
           }

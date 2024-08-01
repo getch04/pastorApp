@@ -306,5 +306,8 @@
   "clearconversationhintone": "یہ عمل آپ کی تمام گفتگو صاف کر دے گا ",
   "clearconversationhinttwo": ".\n براہ کرم نوٹ کریں کہ یہ آپ کی طرف کی گفتگو کو ہی صاف کرے گا، پیغامات ابھی بھی آپ کے پارٹنر کے چیٹ میں دکھائی دیں گے۔",
 
-  "facebookloginerror": "لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے"
+  "facebookloginerror": "لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے",
+
+  "selectLanguage": "selectLanguage",
+"howTo":"howTo"
 }

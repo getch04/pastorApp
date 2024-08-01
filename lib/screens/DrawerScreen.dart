@@ -7,6 +7,7 @@ import 'package:churchapp_flutter/screens/appTermsScreen.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
 import 'package:churchapp_flutter/screens/pages/aboutUsScreen.dart';
 import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
+import 'package:churchapp_flutter/screens/pages/howToScreen.dart';
 import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
 import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
@@ -152,9 +153,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
       height: double.infinity,
       width: double.infinity,
       child: Stack(children: [
-        Image.asset(
-          Img.get('new/bg_home.png'),
-          fit: BoxFit.fitHeight,
+        Transform.scale(
+          scale: 1.1,
+          child: Image.asset(
+            Img.get('new/bg_home.png'),
+            fit: BoxFit.fitHeight,
+          ),
         ),
         SingleChildScrollView(
           child: Padding(
@@ -166,7 +170,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 //replace all with CommonItemCard
                 CommonItemCard(
                   title: t.home,
-                  height: 80,
+                  height: 65,
                   borderSize: 2,
                   icon: Icon(
                     Icons.home_outlined,
@@ -181,7 +185,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 CommonItemCard(
                   title: t.sermons,
-                  height: 80,
+                  height: 65,
                   borderSize: 2,
                   icon: Image.asset(
                     'assets/images/new/Sermons.png',
@@ -197,7 +201,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 CommonItemCard(
                   title: t.biblebooks,
-                  height: 80,
+                  height: 65,
                   borderSize: 2,
                   icon: Image.asset(
                     'assets/images/new/bible1.png',
@@ -212,7 +216,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 CommonItemCard(
                   title: 'Q&A',
-                  height: 80,
+                  height: 65,
                   borderSize: 2,
                   icon: Image.asset(
                     Img.get('new/qa1.png'),
@@ -227,7 +231,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 CommonItemCard(
                   title: t.tools,
-                  height: 80,
+                  height: 65,
                   borderSize: 2,
                   icon: Image.asset(
                     'assets/images/new/tools.png',
@@ -254,7 +258,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 CommonItemCard(
                   title: t.offering,
-                  height: 80,
+                  height: 65,
                   borderSize: 2,
                   icon: Image.asset(
                     'assets/images/new/offer.png',
@@ -270,7 +274,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 CommonItemCard(
                   title: t.profile,
-                  height: 80,
+                  height: 65,
                   borderSize: 2,
                   icon: Icon(
                     Icons.account_circle_outlined,
@@ -281,10 +285,25 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     Navigator.pushNamed(context, UserProfileScreen.routeName);
                   },
                 ),
+                SizedBox(height: 10),
+
+                CommonItemCard(
+                  title: t.profile,
+                  height: 65,
+                  borderSize: 2,
+                  icon: Image.asset(
+                    Img.get('new/howto.png'),
+                    width: 50,
+                    height: 50,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, HowToScreen.routeName);
+                  },
+                ),
 
                 Divider(),
                 ListTile(
-                  title: Text('Select Language'),
+                  title: Text('selectLanguage'),
                   trailing: DropdownButton(
                     value: language,
                     items: appLanguageData.entries
@@ -306,7 +325,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ),
 //rate app
                 ListTile(
-                  title: Text('Rate App'),
+                  title: Text(t.rate),
                   leading: Icon(Icons.star),
                   onTap: () {
                     openBrowserTab('Rate App',
@@ -314,9 +333,19 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   },
                 ),
 
+                //share app
+                ListTile(
+                  title: Text(t.share),
+                  leading: Icon(Icons.share),
+                  onTap: () {
+                    openBrowserTab('Share App',
+                        'https://play.google.com/store/apps/details?id=com.churchapp');
+                  },
+                ),
+
                 //about us
                 ListTile(
-                  title: Text('About Us'),
+                  title: Text(t.about),
                   leading: Icon(Icons.info_outline),
                   onTap: () {
                     Navigator.pushNamed(context, AboutUsNewScreen.routeName);
@@ -325,7 +354,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 //privacy policy
                 ListTile(
-                  title: Text('Privacy Policy'),
+                  title: Text(t.privacy),
                   leading: Icon(Icons.privacy_tip),
                   onTap: () {
                     Navigator.pushNamed(context, PrivacyPolicyScreen.routeName);
@@ -334,7 +363,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 //app terms
                 ListTile(
-                  title: Text('App Terms'),
+                  title: Text(t.terms),
                   leading: Icon(Icons.book_outlined),
                   onTap: () {
                     Navigator.pushNamed(

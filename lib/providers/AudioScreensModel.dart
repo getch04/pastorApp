@@ -1,3 +1,4 @@
+import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -16,6 +17,7 @@ class AudioScreensModel with ChangeNotifier {
       RefreshController(initialRefresh: false);
   String apiURL = "";
   int page = 0;
+  Categories? categories;
 
   AudioScreensModel(Userdata? userdata) {
     this.mediaList = [];
@@ -82,7 +84,8 @@ class AudioScreensModel with ChangeNotifier {
             "email": userdata == null ? "null" : userdata!.email,
             "version": "v2",
             "page": page.toString(),
-            "media_type": "audio"
+            "media_type": "audio",
+            'category': ''
           }
         }),
       );

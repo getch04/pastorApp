@@ -14,6 +14,7 @@ class GlobalScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     var statusBarHeight = MediaQuery.of(context).padding.top;
     var appBarHeight = kToolbarHeight;
+    final size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
@@ -34,8 +35,9 @@ class GlobalScaffold extends StatelessWidget {
           width: double.infinity,
           child: Stack(
             children: [
-              Transform.scale(
-                scale: 1.06,
+              Container(
+                width: size.width,
+                height: size.height,
                 child: Image.asset(
                   Img.get('new/bg_home.png'),
                   fit: BoxFit.fill,

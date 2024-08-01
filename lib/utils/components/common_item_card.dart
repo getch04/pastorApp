@@ -9,13 +9,15 @@ class CommonItemCard extends StatelessWidget {
     required this.icon,
     required this.onTap,
     this.borderSize = 2,
-    this.height = 100,
+    this.haveDecoration = true,
+    this.height = 80,
   });
 
   final String title;
   final Widget icon;
   final double height;
   final int borderSize;
+  final bool haveDecoration;
   final Function() onTap;
 
   @override
@@ -31,30 +33,32 @@ class CommonItemCard extends StatelessWidget {
           return Container(
             // margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             height: cardHeight,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(35),
-              border: Border.all(
-                color: MyColors.white,
-                width: borderSize.toDouble(),
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-                colors: [
-                  Color.fromARGB(255, 3, 92, 164),
-                  Color(0xff0ebef4),
-                ],
-              ),
-              // boxShadow: [
-              //   BoxShadow(
-              //     color:
-              //         const Color.fromARGB(255, 164, 164, 164).withOpacity(0.3),
-              //     blurRadius: 1,
-              //     spreadRadius: 5,
-              //     offset: Offset(0.5, 0.5),
-              //   ),
-              // ],
-            ),
+            decoration: !haveDecoration
+                ? null
+                : BoxDecoration(
+                    borderRadius: BorderRadius.circular(35),
+                    border: Border.all(
+                      color: MyColors.white,
+                      width: borderSize.toDouble(),
+                    ),
+                    gradient: LinearGradient(
+                      begin: Alignment.centerRight,
+                      end: Alignment.centerLeft,
+                      colors: [
+                        Color.fromARGB(255, 3, 92, 164),
+                        Color(0xff0ebef4),
+                      ],
+                    ),
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     color:
+                    //         const Color.fromARGB(255, 164, 164, 164).withOpacity(0.3),
+                    //     blurRadius: 1,
+                    //     spreadRadius: 5,
+                    //     offset: Offset(0.5, 0.5),
+                    //   ),
+                    // ],
+                  ),
             child: Center(
               child: ListTile(
                 contentPadding:

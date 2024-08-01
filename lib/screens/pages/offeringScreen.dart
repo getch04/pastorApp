@@ -1,13 +1,7 @@
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
-import 'package:churchapp_flutter/providers/HomeProvider.dart';
-import 'package:churchapp_flutter/screens/DrawerScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
-import 'package:churchapp_flutter/utils/components/common_item_card.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
-import 'package:churchapp_flutter/utils/img.dart';
-import 'package:churchapp_flutter/utils/my_colors.dart';
-import 'package:churchapp_flutter/utils/title_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -82,24 +76,22 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
           width: MediaQuery.of(context).size.width,
           child: ListView(
             children: [
-              Container(
-                height: 70,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: CommonItemCard(
-                    title: t.offering,
-                    icon: Image.asset(
-                      Img.get('new/offer.png'),
-                      width: 40,
-                      height: 40,
+              Text(
+                t.offering.toUpperCase(),
+                textAlign: TextAlign.center,
+                style: TextStyles.title(context).copyWith(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 10,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 10.0,
+                      color: Colors.black,
+                      offset: Offset(2.0, 2.0),
                     ),
-                    onTap: () {},
-                  ),
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 20,
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),

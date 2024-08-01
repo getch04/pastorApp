@@ -303,4 +303,9 @@
   "clearconversationhintone": "Esta ação irá limpar toda a sua conversa com ",
   "clearconversationhinttwo": ".\n  Observe que isso apenas exclui o seu lado da conversa, as mensagens ainda serão exibidas no bate-papo de seus parceiros.",
   "facebookloginerror": "Something went wrong with the login process.\n, Here is the error Facebook gave us"
+,
+
+"selectLanguage": "selectLanguage",
+"howTo":"howTo"
+
 }

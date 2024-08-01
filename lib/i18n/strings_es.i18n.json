@@ -303,5 +303,8 @@
   "clearconversation": "Conversación clara",
   "clearconversationhintone": "Esta acción borrará toda su conversación con ",
   "clearconversationhinttwo": ".\n  Tenga en cuenta que esto solo elimina su lado de la conversación, los mensajes aún se mostrarán en el chat de sus socios.",
-  "facebookloginerror": "Something went wrong with the login process.\n, Here is the error Facebook gave us"
+  "facebookloginerror": "Something went wrong with the login process.\n, Here is the error Facebook gave us",
+  "selectLanguage": "selectLanguage",
+  "howTo":"howTo"
+
 }

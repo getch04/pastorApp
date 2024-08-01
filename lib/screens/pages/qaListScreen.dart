@@ -111,24 +111,22 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
               ? Center(child: CircularProgressIndicator())
               : ListView(
                   children: [
-                    Container(
-                      height: 70,
-                      width: 100,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
-                        child: CommonItemCard(
-                          title: 'Q & A',
-                          icon: Image.asset(
-                            Img.get('new/Q&A.png'),
-                            width: 40,
-                            height: 40,
+                      Text(
+                      'Q&A'.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: TextStyles.title(context).copyWith(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 10,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 10.0,
+                            color: Colors.black,
+                            offset: Offset(2.0, 2.0),
                           ),
-                          onTap: () {},
-                        ),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.7,

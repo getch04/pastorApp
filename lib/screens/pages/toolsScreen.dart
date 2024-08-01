@@ -8,9 +8,7 @@ import 'package:churchapp_flutter/screens/NoitemScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsDetailScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/MediaItemTile.dart';
-import 'package:churchapp_flutter/utils/components/common_item_card.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
-import 'package:churchapp_flutter/utils/img.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -73,25 +71,42 @@ class _ToolsScreenState extends State<ToolsScreen> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: ListView(children: [
-              Container(
-                height: 70,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: CommonItemCard(
-                    title: t.tools,
-                    icon: Image.asset(
-                      Img.get('new/tools.png'),
-                      width: 40,
-                      height: 40,
+              Text(
+                t.tools.toUpperCase(),
+                textAlign: TextAlign.center,
+                style: TextStyles.title(context).copyWith(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 10,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 10.0,
+                      color: Colors.black,
+                      offset: Offset(2.0, 2.0),
                     ),
-                    onTap: () {},
-                  ),
+                  ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              // Container(
+              //   height: 70,
+              //   width: 100,
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 50),
+              //     child: CommonItemCard(
+              //       title: t.tools,
+              //       icon: Image.asset(
+              //         Img.get('new/tools.png'),
+              //         width: 40,
+              //         height: 40,
+              //       ),
+              //       onTap: () {},
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 20,
+              // ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.6,
                 width: MediaQuery.of(context).size.width,
@@ -114,7 +129,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
               //         child: Padding(
               //           padding: const EdgeInsets.all(20.0),
               //           child: Text(
-              //             "How to heal the sick?",
+              //             "howTo heal the sick?",
               //             textAlign: TextAlign.center,
               //             style: TextStyles.title(context).copyWith(
               //               fontWeight: FontWeight.bold,

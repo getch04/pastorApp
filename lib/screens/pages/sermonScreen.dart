@@ -7,6 +7,7 @@ import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/providers/CategoriesModel.dart';
 import 'package:churchapp_flutter/screens/NoitemScreen.dart';
 import 'package:churchapp_flutter/screens/pages/CategoriesMediaScreen.dart';
+import 'package:churchapp_flutter/screens/pages/sermonPlayerScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/cupertino.dart';
@@ -150,7 +151,7 @@ class SermonBody extends StatelessWidget {
           });
     } else
       return Container(
-        height: MediaQuery.of(context).size.height * 0.73,
+        height: MediaQuery.of(context).size.height * 0.76,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
           itemCount: categoriesModel.categories?.length ?? 0,
@@ -163,7 +164,7 @@ class SermonBody extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    CategoriesMediaScreenNew.routeName,
+                    SermonPlayerScreen.routeName,
                     arguments: ScreenArguements(
                       position: 0,
                       items: cat,

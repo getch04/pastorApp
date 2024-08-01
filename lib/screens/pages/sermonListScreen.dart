@@ -197,7 +197,7 @@ class _SermonListScreenItemState extends State<SermonListScreenItem> {
                                       // Spacer(),
                                       Expanded(
                                         child: Text(
-                                          'How to teach',
+                                          'howTo teach',
                                           textAlign: TextAlign.center,
                                           style: TextStyles.title(context)
                                               .copyWith(
