@@ -46,15 +46,9 @@ class _AboutUsNewScreenState extends State<AboutUsNewScreen> {
     getAboutUs();
   }
 
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    var statusBarHeight = MediaQuery.of(context).padding.top;
-    var appBarHeight = kToolbarHeight;
-
-    final style = TextStyles.title(context)
-        .copyWith(fontWeight: FontWeight.bold, fontSize: 20);
     return WillPopScope(
       onWillPop: () async {
         if (Provider.of<AudioPlayerModel>(context, listen: false)
@@ -91,25 +85,6 @@ class _AboutUsNewScreenState extends State<AboutUsNewScreen> {
           width: MediaQuery.of(context).size.width,
           child: ListView(
             children: [
-              // Container(
-              //   height: 70,
-              //   width: 100,
-              //   child: Padding(
-              //     padding: const EdgeInsets.symmetric(horizontal: 50),
-              //     child: CommonItemCard(
-              //       title: t.about,
-              //       icon: Icon(
-              //         Icons.info_outline_rounded,
-              //         size: 40,
-              //         color: Colors.black54,
-              //       ),
-              //       onTap: () {},
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // ),
               Text(
                 t.about.toUpperCase(),
                 textAlign: TextAlign.center,

@@ -884,7 +884,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return SermonPlayerScreen(
-                    // media: args!.items as Media?,
+                    categories: args!.items as Categories,
                     );
               },
             );

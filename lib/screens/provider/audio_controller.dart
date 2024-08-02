@@ -15,7 +15,7 @@ class AudioController extends ChangeNotifier {
   StreamSubscription<PlayerState>? _playerStateSubscription;
   StreamSubscription<Duration>? _durationSubscription;
   StreamSubscription<Duration>? _positionSubscription;
-  bool _disposed = false; // Add this flag
+  bool _disposed = false;
 
   AudioController() {
     _audioPlayer = AudioPlayer();
@@ -30,29 +30,29 @@ class AudioController extends ChangeNotifier {
   void _initializeListeners() {
     _playerStateSubscription =
         _audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
-      if (_disposed) return; // Check if disposed
+      if (_disposed) return;
       _isPlaying = state == PlayerState.playing;
-      _isLoading = true;
+      _isLoading = state == false;
       notifyListeners();
     });
 
     _durationSubscription =
         _audioPlayer.onDurationChanged.listen((Duration duration) {
-      if (_disposed) return; // Check if disposed
+      if (_disposed) return;
       _duration = duration;
       notifyListeners();
     });
 
     _positionSubscription =
         _audioPlayer.onPositionChanged.listen((Duration position) {
-      if (_disposed) return; // Check if disposed
+      if (_disposed) return;
       _position = position;
       notifyListeners();
     });
   }
 
   Future<void> play(String audioUrl) async {
-    if (_disposed) return; // Check if disposed
+    if (_disposed) return;
     if (_currentlyPlaying != null && _currentlyPlaying != this) {
       _currentlyPlaying!.stop();
     }
@@ -69,23 +69,21 @@ class AudioController extends ChangeNotifier {
   }
 
   void pause() {
-    if (_disposed) return; // Check if disposed
+    if (_disposed) return;
     _audioPlayer.pause();
   }
 
   void seek(Duration position) {
-    if (_disposed) return; // Check if disposed
+    if (_disposed) return;
     _audioPlayer.seek(position);
   }
 
   Future<void> stop() async {
-    if (!this._disposed) {
-      await _audioPlayer.stop();
-      _isPlaying = false;
-      _position = Duration.zero;
-      notifyListeners();
-      return;
-    }
+    if (_disposed) return;
+    await _audioPlayer.stop();
+    _isPlaying = false;
+    _position = Duration.zero;
+    notifyListeners();
   }
 
   @override
@@ -94,7 +92,6 @@ class AudioController extends ChangeNotifier {
     _playerStateSubscription?.cancel();
     _durationSubscription?.cancel();
     _positionSubscription?.cancel();
-    // stop();
     _audioPlayer.dispose();
     super.dispose();
   }

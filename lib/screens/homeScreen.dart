@@ -129,57 +129,58 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                           fontSize: 18,
                         ),
                       ),
-                      FutureBuilder(
-                        future: http.get(Uri.parse(
-                            "https://beta.ourmanna.com/api/v1/get?format=json&order=daily")),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return SizedBox.shrink();
-                          }
-                          if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          }
-                          if (snapshot.hasData) {
-                            final response = json.decode(snapshot.data!.body);
-
-                            return ClipPath(
-                              clipper: BannerClipper(),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 10,
-                                  horizontal: 20,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color:
-                                        const Color.fromARGB(255, 255, 170, 0),
-                                    width: 2,
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 5,
-                                      offset: Offset(0, 3),
-                                    ),
-                                  ],
-                                ),
-                                child: Text(
-                                  response['verse']['details']['text'],
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
+                      ClipPath(
+                        clipper: BannerClipper(),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 20,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: const Color.fromARGB(255, 255, 170, 0),
+                              width: 2,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
                               ),
-                            );
-                          }
-                          return SizedBox.shrink();
-                        },
+                            ],
+                          ),
+                          child: FutureBuilder(
+                              future: http.get(Uri.parse(
+                                  "https://beta.ourmanna.com/api/v1/get?format=json&order=daily")),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('Error: ${snapshot.error}');
+                                }
+                                if (snapshot.hasData) {
+                                  final response =
+                                      json.decode(snapshot.data!.body);
+                                  return Text(
+                                    response['verse']['details']['text'],
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+
+                                return SizedBox(
+                                  height: 60,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                );
+                              }),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(

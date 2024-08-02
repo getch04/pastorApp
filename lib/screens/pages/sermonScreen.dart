@@ -6,7 +6,6 @@ import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/providers/CategoriesModel.dart';
 import 'package:churchapp_flutter/screens/NoitemScreen.dart';
-import 'package:churchapp_flutter/screens/pages/CategoriesMediaScreen.dart';
 import 'package:churchapp_flutter/screens/pages/sermonPlayerScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
@@ -166,7 +165,6 @@ class SermonBody extends StatelessWidget {
                     context,
                     SermonPlayerScreen.routeName,
                     arguments: ScreenArguements(
-                      position: 0,
                       items: cat,
                     ),
                   );
@@ -259,15 +257,15 @@ class SermonButton extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: FittedBox(
-                    child: Text(
-                      category?.title ?? 'UNKNOWN',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        letterSpacing: 3,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  child: Text(
+                    category?.title ?? 'UNKNOWN',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      letterSpacing: 3,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

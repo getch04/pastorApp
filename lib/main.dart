@@ -2,6 +2,7 @@ import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
 import 'package:churchapp_flutter/screens/provider/bible_media_controller.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
+import 'package:churchapp_flutter/screens/provider/search_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

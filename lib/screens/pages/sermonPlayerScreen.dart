@@ -1,180 +1,155 @@
-import 'package:churchapp_flutter/i18n/strings.g.dart';
-import 'package:churchapp_flutter/models/Media.dart';
-import 'package:churchapp_flutter/providers/AppStateManager.dart';
-import 'package:churchapp_flutter/providers/AudioScreensModel.dart';
-import 'package:churchapp_flutter/screens/NoitemScreen.dart';
+import 'dart:convert';
+
+import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
+import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
+import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class SermonPlayerScreen extends StatefulWidget {
-  SermonPlayerScreen({Key? key}) : super(key: key);
+  SermonPlayerScreen({Key? key, required this.categories}) : super(key: key);
   static const routeName = "/SermonPlayerScreen";
 
-  // final Media? media;
+  final Categories categories;
 
   @override
   _SermonPlayerScreenState createState() => _SermonPlayerScreenState();
 }
 
 class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => AudioController(),
-      child: ChangeNotifierProvider(
-        create: (context) => AudioScreensModel(
-            Provider.of<AppStateManager>(context, listen: false).userdata),
-        child: MediaBody(widget: widget),
-      ),
-    );
-  }
-}
+  String? streamUrl;
+  String? description;
+  bool isLoading = true;
+  Dio dio = Dio();
+  AudioController? _audioController;
 
-class MediaBody extends StatefulWidget {
-  const MediaBody({
-    super.key,
-    required this.widget,
-  });
-
-  final SermonPlayerScreen widget;
-
-  @override
-  State<MediaBody> createState() => _MediaBodyState();
-}
-
-class _MediaBodyState extends State<MediaBody> {
-  late AudioController _audioController;
-
-  late AudioScreensModel mediaScreensModel;
-  List<Media>? items;
-
-  void _onRefresh() async {
-    mediaScreensModel.loadItems();
-  }
-
-  void _onLoading() async {
-    mediaScreensModel.loadMoreItems();
+  Future<void> getCategoryAudio() async {
+    try {
+      var response =
+          await dio.get(ApiUrl.CATEGORY_AUDIO + '${widget.categories.id}');
+      final res = jsonDecode(response.data);
+      if (res['audio'] != null && res['audio']['stream'] != null) {
+        final streamUrl = res['audio']['stream'] as String?;
+        final des = res['audio']['description'] as String?;
+        setState(() {
+          this.streamUrl = streamUrl;
+          this.description = des;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          streamUrl = null;
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      print(e);
+    }
   }
 
   @override
   void initState() {
     super.initState();
+    getCategoryAudio();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     _audioController = Provider.of<AudioController>(context, listen: false);
-    Future.delayed(const Duration(milliseconds: 0), () {
-      Provider.of<AudioScreensModel>(context, listen: false).loadItems();
-    });
   }
 
   @override
   void dispose() {
-    _audioController.stop();
+    _audioController?.stop();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    mediaScreensModel = Provider.of<AudioScreensModel>(context);
-    items = mediaScreensModel.mediaList;
     return GlobalScaffold(
       body: Container(
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height * 0.83,
         width: MediaQuery.of(context).size.width,
-        child: SmartRefresher(
-          key: UniqueKey(),
-          enablePullDown: true,
-          enablePullUp: true,
-          header: WaterDropHeader(),
-          footer: CustomFooter(
-            builder: (BuildContext context, LoadStatus? mode) {
-              Widget body;
-              if (mode == LoadStatus.idle) {
-                body = Text(t.pulluploadmore);
-              } else if (mode == LoadStatus.loading) {
-                body = CupertinoActivityIndicator();
-              } else if (mode == LoadStatus.failed) {
-                body = Text(t.loadfailedretry);
-              } else if (mode == LoadStatus.canLoading) {
-                body = Text(t.releaseloadmore);
-              } else {
-                body = Text(t.nomoredata);
-              }
-              return Container(
-                height: 55.0,
-                child: Center(child: body),
-              );
-            },
-          ),
-          controller: mediaScreensModel.refreshController,
-          onRefresh: _onRefresh,
-          onLoading: _onLoading,
-          child: (mediaScreensModel.isError == true && items!.length == 0)
-              ? NoitemScreen(
-                  title: t.oops, message: t.dataloaderror, onClick: _onRefresh)
-              : Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'howTo Pray',
-                        style: TextStyles.title(context).copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Text(
-                        'Worship Audio',
-                        style: TextStyles.title(context).copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
-                      ),
-                      // PlayerNew(
-                      //   audioUrl: '',
-                      //   onNext: () {},
-                      //   onPrevious: () {},
-                      // ),
-                      SizedBox(
-                        height: 25,
-                      ),
-                      Text(
-                        'Sermon Audio',
-                        style: TextStyles.title(context).copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
-                      ),
-                      // PlayerNew(
-                      //   audioUrl: widget.media?.streamUrl ?? '',
-                      //   onNext: () {},
-                      //   onPrevious: () {},
-                      // ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 20),
-                        child: Text(
-                          'testing....',
-                          style: TextStyles.title(context).copyWith(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              widget.categories.title ?? '',
+              style: TextStyles.title(context).copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Text(
+              'Worship Audio',
+              style: TextStyles.title(context).copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+            PlayerNew(
+              audioUrl: streamUrl ?? '',
+              onNext: () {},
+              onPrevious: () {},
+              isPlaying: false,
+              isLoading: false,
+              duration: Duration.zero,
+              position: Duration.zero,
+              onPlay: () {},
+              onPause: () {},
+              onSeek: (val) {},
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Text(
+              'Sermon Audio',
+              style: TextStyles.title(context).copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+            if (!isLoading && streamUrl != null)
+              Consumer<AudioController>(builder: (context, ctr, child) {
+                return PlayerNew(
+                  audioUrl: streamUrl ?? '',
+                  onNext: () {},
+                  onPrevious: () {},
+                  isPlaying: ctr.isPlaying,
+                  isLoading: ctr.isLoading,
+                  duration: ctr.duration,
+                  position: ctr.position,
+                  onPlay: () => ctr.play(streamUrl ?? ''),
+                  onPause: ctr.pause,
+                  onSeek: ctr.seek,
+                );
+              }),
+            SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Text(
+                description ?? '',
+                style: TextStyles.title(context).copyWith(
+                  fontSize: 18,
                 ),
+              ),
+            ),
+          ],
         ),
       ),
     );

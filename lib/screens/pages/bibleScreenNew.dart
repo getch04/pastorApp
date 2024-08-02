@@ -1,38 +1,33 @@
-import 'dart:convert';
-
-import 'package:churchapp_flutter/core/common.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
-import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/bibleFilterScreen.dart';
 import 'package:churchapp_flutter/screens/pages/chapterVerseScreen.dart';
+import 'package:churchapp_flutter/screens/provider/bible_book_provider.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
+import 'package:churchapp_flutter/screens/provider/search_provider.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-class BibleScreenNew extends StatefulWidget {
+class BibleScreenNew extends StatelessWidget {
   BibleScreenNew({Key? key}) : super(key: key);
   static const routeName = "/BibleScreenNew";
 
   @override
-  _BibleScreenNewState createState() => _BibleScreenNewState();
-}
-
-class _BibleScreenNewState extends State<BibleScreenNew> {
-  @override
   Widget build(BuildContext context) {
-    return BibleScreenNewItem();
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
+        ChangeNotifierProvider(create: (context) => BibleFilterProvider()),
+        ChangeNotifierProvider(create: (context) => BibleBooksProvider()),
+      ],
+      child: BibleScreenNewItem(),
+    );
   }
 }
 
 class BibleScreenNewItem extends StatefulWidget {
-  BibleScreenNewItem({
-    Key? key,
-  }) : super(key: key);
-
   @override
   _BibleScreenNewItemState createState() => _BibleScreenNewItemState();
 }
@@ -40,83 +35,26 @@ class BibleScreenNewItem extends StatefulWidget {
 class _BibleScreenNewItemState extends State<BibleScreenNewItem>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  List<BibleBook> filteredBooks = [];
-  List<BibleBook> oldTestamentBooks = [];
-  List<BibleBook> newTestamentBooks = [];
-  String searchQuery = "";
-  bool isLoading = false;
   late BibleFilterProvider filterProvider;
+  late BibleBooksProvider bibleBooksProvider;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    filterProvider = Provider.of<BibleFilterProvider>(context, listen: false);
 
-    // Listen for changes in the selected Bible
-    filterProvider.addListener(() {
-      fetchBooks();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      filterProvider = Provider.of<BibleFilterProvider>(context, listen: false);
+      bibleBooksProvider =
+          Provider.of<BibleBooksProvider>(context, listen: false);
 
-    fetchBooks();
-  }
-
-  Future<void> fetchBooks() async {
-    final selectedBible = filterProvider.selectedBible?.abbr ?? 'ENGESV';
-
-    final url =
-        '$BIBLE_BASE_URL/bibles/$selectedBible/book?v=4&key=$BIBLE_API_KEY';
-
-    setState(() {
-      isLoading = true;
-    });
-
-    try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body)['data'] as List;
-        final books = data.map((json) => BibleBook.fromJson(json)).toList();
-
-        setState(() {
-          oldTestamentBooks
-              .addAll(books.where((book) => book.testament == 'OT').toList());
-          newTestamentBooks
-              .addAll(books.where((book) => book.testament == 'NT').toList());
-          filteredBooks = oldTestamentBooks;
-          isLoading = false;
-        });
-      } else {
-        throw Exception('Failed to load books');
-      }
-    } catch (e) {
-      setState(() {
-        isLoading = false;
+      filterProvider.addListener(() {
+        bibleBooksProvider
+            .fetchBooks(filterProvider.selectedBible?.abbr ?? 'ENGESV');
       });
-      print(e);
-    }
-  }
 
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
-  void updateSearchQuery(String newQuery) {
-    setState(() {
-      searchQuery = newQuery;
-      filterBooks();
-    });
-  }
-
-  void filterBooks() {
-    List<BibleBook> books =
-        _tabController.index == 0 ? oldTestamentBooks : newTestamentBooks;
-    setState(() {
-      filteredBooks = books
-          .where((book) =>
-              book.name.toLowerCase().contains(searchQuery.toLowerCase()))
-          .toList();
+      bibleBooksProvider
+          .fetchBooks(filterProvider.selectedBible?.abbr ?? 'ENGESV');
     });
   }
 
@@ -172,100 +110,46 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
                 child: SafeArea(
                   child: Column(
                     children: [
-                      TabBar(
-                        controller: _tabController,
-                        tabs: [
-                          Tab(text: 'Old Testament'),
-                          Tab(text: 'New Testament'),
-                        ],
-                        onTap: (index) {
-                          setState(() {
-                            filteredBooks = index == 0
-                                ? oldTestamentBooks
-                                : newTestamentBooks;
-                            filterBooks();
-                          });
-                        },
-                        indicatorColor: Colors.white,
-                        labelColor: Colors.white,
-                        unselectedLabelColor: Colors.white70,
+                      Consumer<BibleBooksProvider>(
+                        builder: (context, provider, child) => TabBar(
+                          controller: _tabController,
+                          tabs: [
+                            Tab(text: 'Old Testament'),
+                            Tab(text: 'New Testament'),
+                          ],
+                          indicatorColor: Colors.white,
+                          labelColor: Colors.white,
+                          unselectedLabelColor: Colors.white70,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: FocusScope(
-                          child: Focus(
-                            onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                FocusScope.of(context).unfocus();
-                              }
-                            },
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: "Search books...",
-                                fillColor: Colors.white,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                prefixIcon: Icon(Icons.search),
-                              ),
-                              onChanged: updateSearchQuery,
-                            ),
-                          ),
-                        ),
+                        child: SearchBox(),
                       ),
                     ],
                   ),
                 ),
               ),
               Expanded(
-                child: isLoading
-                    ? Center(child: CircularProgressIndicator())
-                    : TabBarView(
-                        controller: _tabController,
-                        children: [
-                          buildBooksListView(context),
-                          buildBooksListView(context),
-                        ],
-                      ),
+                child: Consumer<BibleBooksProvider>(
+                  builder: (context, provider, child) {
+                    if (provider.isLoading) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    return TabBarView(
+                      controller: _tabController,
+                      children: [
+                        BooksListView(isOldTestament: true),
+                        BooksListView(isOldTestament: false),
+                      ],
+                    );
+                  },
+                ),
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildBooksListView(BuildContext context) {
-    return ListView.separated(
-      padding: EdgeInsets.all(8.0),
-      itemCount: filteredBooks.length,
-      separatorBuilder: (context, index) => Divider(),
-      itemBuilder: (context, index) {
-        final book = filteredBooks[index];
-        return ListTile(
-          title: Text(book.name, style: TextStyle(fontWeight: FontWeight.bold)),
-          trailing: Icon(Icons.arrow_forward_ios),
-          onTap: () {
-            // if (settings.name == ChapterVerseScreen.routeName) {
-            //      final ScreenArguements? args =
-            //       settings.arguments as ScreenArguements?;
-            //   return MaterialPageRoute(
-            //     builder: (context) {
-            //       return ChapterVerseScreen(
-            //         book: args!.items as BibleBook,
-            //         bibleId: args.itemsList as String,
-            //       );
-            //     },
-            //   );
-            // }
-            Navigator.pushNamed(context, ChapterVerseScreen.routeName,
-                arguments: ScreenArguements(
-                  items: (book, filterProvider.selectedBible),
-                ));
-          },
-        );
-      },
     );
   }
 
@@ -309,6 +193,65 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
           ],
         ),
       ),
+    );
+  }
+}
+
+class BooksListView extends StatefulWidget {
+  final bool isOldTestament;
+
+  BooksListView({Key? key, required this.isOldTestament}) : super(key: key);
+
+  @override
+  _BooksListViewState createState() => _BooksListViewState();
+}
+
+class _BooksListViewState extends State<BooksListView>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return Consumer2<BibleBooksProvider, SearchProvider>(
+      builder: (context, booksProvider, searchProvider, child) {
+        final books = widget.isOldTestament
+            ? booksProvider.oldTestamentBooks
+            : booksProvider.newTestamentBooks;
+        final filteredBooks = books
+            .where((book) => book.name
+                .toLowerCase()
+                .contains(searchProvider.searchQuery.toLowerCase()))
+            .toList();
+
+        return ListView.separated(
+          padding: EdgeInsets.all(8.0),
+          itemCount: filteredBooks.length,
+          separatorBuilder: (context, index) => Divider(),
+          itemBuilder: (context, index) {
+            final book = filteredBooks[index];
+            return ListTile(
+              title: Text(book.name,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  ChapterVerseScreen.routeName,
+                  arguments: ScreenArguements(
+                    items: (
+                      book,
+                      Provider.of<BibleFilterProvider>(context, listen: false)
+                          .selectedBible
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        );
+      },
     );
   }
 }
