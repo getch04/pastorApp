@@ -1,22 +1,22 @@
-class Country {
-  final String name;
-  final String continentCode;
-  final Codes codes;
+// class Country {
+//   final String name;
+//   final String continentCode;
+//   final Codes codes;
 
-  Country({
-    required this.name,
-    required this.continentCode,
-    required this.codes,
-  });
+//   Country({
+//     required this.name,
+//     required this.continentCode,
+//     required this.codes,
+//   });
 
-  factory Country.fromJson(Map<String, dynamic> json) {
-    return Country(
-      name: json['name'],
-      continentCode: json['continent_code'],
-      codes: Codes.fromJson(json['codes']),
-    );
-  }
-}
+//   factory Country.fromJson(Map<String, dynamic> json) {
+//     return Country(
+//       name: json['name'],
+//       continentCode: json['continent_code'],
+//       codes: Codes.fromJson(json['codes']),
+//     );
+//   }
+// }
 
 class Codes {
   final String? fips;
@@ -87,20 +87,20 @@ class Links {
   }
 }
 
-class CountryData {
-  final List<Country> data;
-  final Meta meta;
+// class CountryData {
+//   final List<Country> data;
+//   final Meta meta;
 
-  CountryData({required this.data, required this.meta});
+//   CountryData({required this.data, required this.meta});
 
-  factory CountryData.fromJson(Map<String, dynamic> json) {
-    var dataList = json['data'] as List;
-    List<Country> countriesList =
-        dataList.map((i) => Country.fromJson(i)).toList();
+//   factory CountryData.fromJson(Map<String, dynamic> json) {
+//     var dataList = json['data'] as List;
+//     List<Country> countriesList =
+//         dataList.map((i) => Country.fromJson(i)).toList();
 
-    return CountryData(
-      data: countriesList,
-      meta: Meta.fromJson(json['meta']),
-    );
-  }
-}
+//     return CountryData(
+//       data: countriesList,
+//       meta: Meta.fromJson(json['meta']),
+//     );
+//   }
+// }

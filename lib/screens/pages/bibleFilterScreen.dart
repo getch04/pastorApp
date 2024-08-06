@@ -42,11 +42,11 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
 
   late PaginationProvider<BibleData> biblesProvider;
   late PaginationProvider<Language> languagesProvider;
-  late PaginationProvider<Country> countriesProvider;
+  // late PaginationProvider<Country> countriesProvider;
 
   String selectedFilter = 'Bibles';
   ValueNotifier<BibleData?> selectedBibleItem = ValueNotifier<BibleData?>(null);
-  ValueNotifier<Country?> selectedCountryItem = ValueNotifier<Country?>(null);
+  // ValueNotifier<Country?> selectedCountryItem = ValueNotifier<Country?>(null);
   ValueNotifier<Language?> selectedLanguageItem =
       ValueNotifier<Language?>(null);
 
@@ -65,33 +65,24 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
       fromJson: (json) => Language.fromJson(json),
       apiKey: BIBLE_API_KEY,
     );
-    countriesProvider = PaginationProvider<Country>(
-      endpoint: COUNTRIES_ENDPOINT,
-      fromJson: (json) => Country.fromJson(json),
-      apiKey: BIBLE_API_KEY,
-    );
   }
 
   @override
   void dispose() {
     biblesProvider.dispose();
     languagesProvider.dispose();
-    countriesProvider.dispose();
     super.dispose();
   }
 
   void onFilterSelected(String filter) {
     setState(() {
       selectedFilter = filter;
-      selectedCountryItem.value = null;
       selectedBibleItem.value = null;
       selectedLanguageItem.value = null;
       if (selectedFilter == 'Bibles') {
         biblesProvider.pagingController.refresh();
-      } else if (selectedFilter == 'Languages') {
-        languagesProvider.pagingController.refresh();
       } else {
-        countriesProvider.pagingController.refresh();
+        languagesProvider.pagingController.refresh();
       }
     });
   }
@@ -114,12 +105,6 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
     selectedLanguageItem.value = item;
     Provider.of<BibleFilterProvider>(context, listen: false)
         .setSelectedLanguage(item);
-  }
-
-  void onCountryItemSelected(Country item) {
-    selectedCountryItem.value = item;
-    Provider.of<BibleFilterProvider>(context, listen: false)
-        .setSelectedCountry(item);
   }
 
   void onBibleItemSelected(BibleData item) {
@@ -181,11 +166,6 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
                       selected: selectedFilter == 'Languages',
                       onSelected: (selected) => onFilterSelected('Languages'),
                     ),
-                    ChoiceChip(
-                      label: Text('Countries'),
-                      selected: selectedFilter == 'Countries',
-                      onSelected: (selected) => onFilterSelected('Countries'),
-                    ),
                   ],
                 ),
               ),
@@ -214,21 +194,16 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
   String _getSelectedItemDisplayName() {
     if (selectedFilter == 'Bibles' && selectedBibleItem.value != null) {
       return selectedBibleItem.value!.name;
-    } else if (selectedFilter == 'Languages' &&
-        selectedLanguageItem.value != null) {
-      return selectedLanguageItem.value!.name;
     } else {
-      return selectedCountryItem.value?.name ?? '';
+      return selectedLanguageItem.value?.name ?? '';
     }
   }
 
   Widget _buildContent() {
     if (selectedFilter == 'Bibles') {
       return _buildBiblesContent();
-    } else if (selectedFilter == 'Languages') {
-      return _buildLanguagesContent();
     } else {
-      return _buildCountriesContent();
+      return _buildLanguagesContent();
     }
   }
 
@@ -321,45 +296,6 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
               );
             },
           );
-        },
-      ),
-    );
-  }
-
-  Widget _buildCountriesContent() {
-    return PagedListView<int, Country>(
-      pagingController: countriesProvider.pagingController,
-      builderDelegate: PagedChildBuilderDelegate<Country>(
-        itemBuilder: (context, country, index) {
-          return ValueListenableBuilder(
-              valueListenable: selectedCountryItem,
-              builder: (context, value, child) {
-                return ListTile(
-                  leading: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: value == country
-                          ? Theme.of(context).primaryColor
-                          : Colors.grey,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: Text(
-                        country.codes.isoA2,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  title: Text(country.name),
-                  subtitle: Text('Continent: ${country.continentCode}'),
-                  selected: value == country,
-                  onTap: () => onCountryItemSelected(country),
-                );
-              });
         },
       ),
     );

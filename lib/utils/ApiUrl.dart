@@ -9,6 +9,7 @@ class ApiUrl {
 
   //FAQ
    static const String GET_FAQ=BASEURL+"api/fetch_faqs";
+   static const String GET_HOWTO=BASEURL+"api/fetch_hows";
 
   //DO NOT EDIT THE LINES BELOW, ELSE THE APPLICATION WILL MISBEHAVE
   static const String GET_BIBLE = BASEURL + "getBibleVersions";

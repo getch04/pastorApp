@@ -12,6 +12,7 @@ import 'package:churchapp_flutter/models/UserPosts.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
 import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
+import 'package:churchapp_flutter/models/models/howto_model.dart';
 import 'package:churchapp_flutter/models/models/splash.dart';
 import 'package:churchapp_flutter/screens/OnboardingPage.dart';
 import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
@@ -99,6 +100,7 @@ import './socials/likesPostPeople.dart';
 import './video_player/VideoPlayer.dart';
 import 'notes/NotesListScreen.dart';
 import 'providers/ChatManager.dart';
+import 'screens/pages/howToScreenDetail.dart';
 import 'socials/FollowPeople.dart';
 import 'socials/UpdateUserProfile.dart';
 
@@ -984,6 +986,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return HowToScreen();
+              },
+            );
+          }
+          if (settings.name == HowToDetailScreen.routeName) {
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements?;
+            return MaterialPageRoute(
+              builder: (context) {
+                return HowToDetailScreen(
+                  howToModel: args!.items as HowToModel,
+                );
               },
             );
           }

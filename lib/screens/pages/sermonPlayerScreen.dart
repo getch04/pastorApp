@@ -89,92 +89,110 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height * 0.83,
         width: MediaQuery.of(context).size.width,
-        child: isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Column(
-                children: [
-                  SizedBox(height: 10.0),
-                  Text(
-                    widget.categories.title ?? '',
-                    style: TextStyles.title(context).copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
-                  ),
-                  SizedBox(height: 25),
-                  Text(
-                    'Worship Audio',
-                    style: TextStyles.title(context).copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
-                  ),
-                  if (!isLoading && worshipUrl != null)
-                    Consumer<AudioController2>(builder: (context, ctr, child) {
-                      return PlayerNew(
-                        audioUrl: worshipUrl ?? '',
-                        onNext: () {},
-                        onPrevious: () {},
-                        isPlaying: ctr.isPlaying,
-                        isLoading: ctr.isLoading,
-                        duration: ctr.duration,
-                        position: ctr.position,
-                        onPlay: () {
-                          _audioController?.pause();
-                          ctr.play(worshipUrl ?? '');
-                        },
-                        onPause: ctr.pause,
-                        onSeek: ctr.seek,
-                      );
-                    }),
-                  SizedBox(height: 25),
-                  Text(
-                    'Sermon Audio',
-                    style: TextStyles.title(context).copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
-                  ),
-                  if (!isLoading && sermonUrl != null)
-                    Consumer<AudioController>(builder: (context, ctr, child) {
-                      return PlayerNew(
-                        audioUrl: sermonUrl ?? '',
-                        onNext: () {},
-                        onPrevious: () {},
-                        isPlaying: ctr.isPlaying,
-                        isLoading: ctr.isLoading,
-                        duration: ctr.duration,
-                        position: ctr.position,
-                        onPlay: () {
-                          _audioController2?.pause();
-                          ctr.play(sermonUrl ?? '');
-                        },
-                        onPause: ctr.pause,
-                        onSeek: ctr.seek,
-                      );
-                    }),
-                  SizedBox(height: 15),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 20),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              expandedHeight: MediaQuery.of(context).size.height * 0.55,
+              automaticallyImplyLeading: false,
+              flexibleSpace: FlexibleSpaceBar(
+                background: ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    SizedBox(height: 10.0),
+                    Center(
                       child: Text(
-                        description1 ?? '',
-                        style: TextStyles.title(context).copyWith(fontSize: 18),
+                        widget.categories.title ?? '',
+                        style: TextStyles.title(context).copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        ),
                       ),
                     ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  //   child: Text(
-                  //     description2 ?? '',
-                  //     style: TextStyles.title(context).copyWith(fontSize: 18),
-                  //   ),
-                  // ),
-                ],
+                    if (!isLoading && worshipUrl != null) ...[
+                      SizedBox(height: 10),
+                      Center(
+                        child: Text(
+                          'Worship Audio',
+                          style: TextStyles.title(context).copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Consumer<AudioController2>(
+                          builder: (context, ctr, child) {
+                            return PlayerNew(
+                              audioUrl: worshipUrl ?? '',
+                              onNext: () {},
+                              onPrevious: () {},
+                              isPlaying: ctr.isPlaying,
+                              isLoading: ctr.isLoading,
+                              duration: ctr.duration,
+                              position: ctr.position,
+                              onPlay: () {
+                                _audioController?.pause();
+                                ctr.play(worshipUrl ?? '');
+                              },
+                              onPause: ctr.pause,
+                              onSeek: ctr.seek,
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                    if (!isLoading && sermonUrl != null) ...[
+                      Center(
+                        child: Text(
+                          'Sermon Audio',
+                          style: TextStyles.title(context).copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Consumer<AudioController>(
+                          builder: (context, ctr, child) {
+                            return PlayerNew(
+                              audioUrl: sermonUrl ?? '',
+                              onNext: () {},
+                              onPrevious: () {},
+                              isPlaying: ctr.isPlaying,
+                              isLoading: ctr.isLoading,
+                              duration: ctr.duration,
+                              position: ctr.position,
+                              onPlay: () {
+                                _audioController2?.pause();
+                                ctr.play(sermonUrl ?? '');
+                              },
+                              onPause: ctr.pause,
+                              onSeek: ctr.seek,
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
               ),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: Text(
+                    description1 ?? '',
+                    style: TextStyles.title(context).copyWith(fontSize: 18),
+                  ),
+                ),
+              ]),
+            ),
+          ],
+        ),
       ),
     );
   }

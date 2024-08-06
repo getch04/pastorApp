@@ -6,7 +6,7 @@ import 'package:churchapp_flutter/providers/HomeProvider.dart';
 import 'package:churchapp_flutter/screens/appTermsScreen.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
 import 'package:churchapp_flutter/screens/pages/aboutUsScreen.dart';
-import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
+import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
 import 'package:churchapp_flutter/screens/pages/howToScreen.dart';
 import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
@@ -209,7 +209,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     height: 40,
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, BiblePlayerScreen.routeName);
+                    Navigator.pushNamed(context, BibleScreenNew.routeName);
                   },
                 ),
                 SizedBox(height: 10),
@@ -286,7 +286,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 SizedBox(height: 10),
 
                 CommonItemCard(
-                  title: t.profile,
+                  title: t.howTo,
                   height: 65,
                   borderSize: 2,
                   icon: Image.asset(
@@ -301,7 +301,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
                 Divider(),
                 ListTile(
-                  title: Text('selectLanguage'),
+                  title: Text(
+                    t.selectLanguage,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                   trailing: DropdownButton(
                     value: language,
                     items: appLanguageData.entries

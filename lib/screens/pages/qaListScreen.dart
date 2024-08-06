@@ -7,9 +7,7 @@ import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
-import 'package:churchapp_flutter/utils/components/common_item_card.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
-import 'package:churchapp_flutter/utils/img.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +109,7 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
               ? Center(child: CircularProgressIndicator())
               : ListView(
                   children: [
-                      Text(
+                    Text(
                       'Q&A'.toUpperCase(),
                       textAlign: TextAlign.center,
                       style: TextStyles.title(context).copyWith(
@@ -145,7 +143,7 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: index / 2 == 0
+                                  color: index % 2 == 0
                                       ? Colors.lightBlue.shade200
                                       : Colors.white,
                                   boxShadow: index / 2 != 0

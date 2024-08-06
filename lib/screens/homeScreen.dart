@@ -4,7 +4,6 @@ import 'package:churchapp_flutter/auth/LoginScreen.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
-import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
 import 'package:churchapp_flutter/screens/pages/howToScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
@@ -161,14 +160,34 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                 if (snapshot.hasData) {
                                   final response =
                                       json.decode(snapshot.data!.body);
-                                  return Text(
-                                    response['verse']['details']['text'],
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                    textAlign: TextAlign.center,
+                                  final verseText =
+                                      response['verse']['details']['text'];
+                                  final verseReference =
+                                      response['verse']['details']['reference'];
+
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        verseText,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        verseReference,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontStyle: FontStyle.italic,
+                                          color: Colors.black54,
+                                        ),
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ],
                                   );
                                 }
 
