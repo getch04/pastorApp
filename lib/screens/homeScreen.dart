@@ -382,7 +382,7 @@ class BottomNavigation extends StatelessWidget {
             context,
             icon: Icons.menu_book_outlined,
             label: t.biblebooks,
-            routeName: BiblePlayerScreen.routeName,
+            routeName: BibleScreenNew.routeName,
           ),
           _buildNavItem(
             context,

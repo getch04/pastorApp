@@ -1,8 +1,12 @@
+import 'dart:convert';
+import 'package:churchapp_flutter/models/models/splash.dart';
+import 'package:dio/dio.dart';
 import 'package:churchapp_flutter/screens/OnboardingPage.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../utils/ApiUrl.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = "/SplashScreen";
@@ -19,14 +23,35 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   _navigateToNextScreen() async {
-    await Future.delayed(Duration(seconds: 3));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? seenOnboarding = prefs.getBool("user_seen_onboarding_page");
 
-    if (seenOnboarding == null || !seenOnboarding) {
-      Navigator.pushReplacementNamed(context, OnboardingPage.routeName);
+    await Future.delayed(Duration(seconds: 3));
+    if (seenOnboarding == null) {
+      List<Splash> splashes = await _fetchSplashData();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => OnboardingPage(splashes: splashes),
+        ),
+      );
     } else {
       Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+    }
+  }
+
+  Future<List<Splash>> _fetchSplashData() async {
+    try {
+      Dio dio = Dio();
+      var response = await dio.get(ApiUrl.BASEURL + 'api/splashes');
+      var data = jsonDecode(response.data);
+      List<Splash> splashes = (data['splashes'] as List)
+          .map((item) => Splash.fromJson(item))
+          .toList();
+      return splashes;
+    } catch (e) {
+      print(e);
+      return [];
     }
   }
 
@@ -67,7 +92,6 @@ class SplashScreenState extends State<SplashScreen> {
                     ),
                   ),
                 ),
-                // SizedBox(height: 10),
                 Column(
                   children: [
                     Image.asset(

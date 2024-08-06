@@ -122,10 +122,10 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
                           unselectedLabelColor: Colors.white70,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SearchBox(),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: SearchBox(),
+                      // ),
                     ],
                   ),
                 ),

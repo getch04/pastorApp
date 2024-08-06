@@ -67,10 +67,10 @@ class BibleMediaController extends ChangeNotifier {
 
       if (audioFilesetId.isNotEmpty && bibleBook?.testament == 'NT') {
         audiofileSetId =
-            audioFilesetId.where((element) => element.size == 'NT').first.id;
+            audioFilesetId.where((element) => element.size == 'NT').last.id;
       } else if (audioFilesetId.isNotEmpty && bibleBook?.testament == 'OT') {
         audiofileSetId =
-            audioFilesetId.where((element) => element.size == 'OT').first.id;
+            audioFilesetId.where((element) => element.size == 'OT').last.id;
       }
 
       if (textFilesetId.isNotEmpty && bibleBook?.testament == 'NT') {

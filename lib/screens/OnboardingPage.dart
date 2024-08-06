@@ -1,35 +1,53 @@
+import 'package:churchapp_flutter/models/models/splash.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../i18n/strings.g.dart';
 import '../models/Onboarder.dart';
 import '../providers/AppStateManager.dart';
-import '../screens/HomePage.dart';
 import '../utils/TextStyles.dart';
 import '../utils/my_colors.dart';
 
 class OnboardingPage extends StatefulWidget {
   static const routeName = "/onboarding";
-  OnboardingPage();
+  List<Splash> splashes;
+
+  OnboardingPage({required this.splashes});
 
   @override
   OnboarderPageState createState() => new OnboarderPageState();
 }
 
 class OnboarderPageState extends State<OnboardingPage> {
-  List<Onboarder> onboarderItem = Onboarder.getOnboardingItems(
-      t.onboardingpagetitles, t.onboardingpagehints);
+  List<Onboarder> onboarderItem = [];
   PageController pageController = PageController(
     initialPage: 0,
   );
   int page = 0;
   bool isLast = false;
 
+  Future<void> getSplash() async {
+    final title = widget.splashes.map((splash) => splash.title).toList();
+    final des = widget.splashes.map((splash) => splash.description).toList();
+    final images = widget.splashes.map((splash) => splash.splash).toList();
+
+    onboarderItem = Onboarder.getOnboardingItems(
+      title,
+      des,
+      images,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getSplash();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(0),
@@ -129,18 +147,21 @@ class OnboarderPageState extends State<OnboardingPage> {
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.all(20),
-                          child: Lottie.asset(
+                          child: Image.network(
                             onboarder.image,
                             width: 250,
                             height: 250,
-                          ), //Image.asset(Img.get(onboarder.image),
+                          ),
                         ),
-                        Text(onboarder.title,
-                            style: TextStyles.medium(context).copyWith(
-                                color: MyColors.grey_80,
-                                fontFamily: "serif",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 23)),
+                        Text(
+                          onboarder.title,
+                          textAlign: TextAlign.center,
+                          style: TextStyles.medium(context).copyWith(
+                              color: MyColors.grey_80,
+                              fontFamily: "serif",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 23),
+                        ),
                         Container(
                           width: 120,
                           height: 2,
@@ -149,12 +170,14 @@ class OnboarderPageState extends State<OnboardingPage> {
                         Container(
                           margin: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 25),
-                          child: Text(onboarder.hint,
-                              textAlign: TextAlign.center,
-                              style: TextStyles.subhead(context).copyWith(
-                                color: MyColors.grey_60,
-                                fontSize: 15,
-                              )),
+                          child: Text(
+                            onboarder.hint,
+                            textAlign: TextAlign.center,
+                            style: TextStyles.subhead(context).copyWith(
+                              color: MyColors.grey_60,
+                              fontSize: 15,
+                            ),
+                          ),
                         ),
                       ],
                     )

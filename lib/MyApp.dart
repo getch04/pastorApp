@@ -12,6 +12,8 @@ import 'package:churchapp_flutter/models/UserPosts.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
 import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
+import 'package:churchapp_flutter/models/models/splash.dart';
+import 'package:churchapp_flutter/screens/OnboardingPage.dart';
 import 'package:churchapp_flutter/screens/aboutUsScreen.dart';
 import 'package:churchapp_flutter/screens/appTermsScreen.dart';
 import 'package:churchapp_flutter/screens/homeScreen.dart';
@@ -884,8 +886,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return SermonPlayerScreen(
-                    categories: args!.items as Categories,
-                    );
+                  categories: args!.items as Categories,
+                );
               },
             );
           }
@@ -920,7 +922,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                     int,
                     BibleData,
                     String,
-                  BibleBook,
+                    BibleBook,
                   ),
                 );
               },
@@ -930,6 +932,15 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return QAListScreen();
+              },
+            );
+          }
+          if (settings.name == OnboardingPage.routeName) {
+            return MaterialPageRoute(
+              builder: (context) {
+                return OnboardingPage(
+                  splashes: settings.arguments as List<Splash>,
+                );
               },
             );
           }

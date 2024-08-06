@@ -269,9 +269,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     Navigator.pushNamed(context, OfferingScreen.routeName);
                   },
                 ),
-
                 SizedBox(height: 10),
-
                 CommonItemCard(
                   title: t.profile,
                   height: 65,

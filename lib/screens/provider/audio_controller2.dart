@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-class AudioController extends ChangeNotifier {
-  static AudioController? _currentlyPlaying;
+class AudioController2 extends ChangeNotifier {
+  static AudioController2? _currentlyPlaying;
 
   late AudioPlayer _audioPlayer;
   bool _isPlaying = false;
@@ -16,7 +16,7 @@ class AudioController extends ChangeNotifier {
   StreamSubscription<Duration>? _positionSubscription;
   bool _disposed = false;
 
-  AudioController() {
+  AudioController2() {
     _audioPlayer = AudioPlayer();
     _initializeListeners();
   }

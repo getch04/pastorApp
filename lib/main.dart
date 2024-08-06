@@ -1,5 +1,6 @@
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
+import 'package:churchapp_flutter/screens/provider/audio_controller2.dart';
 import 'package:churchapp_flutter/screens/provider/bible_media_controller.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/screens/provider/search_provider.dart';
@@ -64,6 +65,7 @@ void main() async {
           ChangeNotifierProvider(create: (_) => ChatManager()),
           ChangeNotifierProvider(create: (_) => BibleFilterProvider()),
           ChangeNotifierProvider(create: (_) => AudioController()),
+          ChangeNotifierProvider(create: (_) => AudioController2()),
         ],
         child: MyApp(),
       ),
