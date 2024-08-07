@@ -5,7 +5,7 @@ class Language {
   final String name;
   final String? autonym;
   final int bibles;
-  final int filesets;
+  final int? filesets;
   final String? rolvCode;
   final String? deletedAt;
 
@@ -16,7 +16,7 @@ class Language {
     required this.name,
     required this.autonym,
     required this.bibles,
-    required this.filesets,
+    this.filesets = 0,
     this.rolvCode,
     this.deletedAt,
   });

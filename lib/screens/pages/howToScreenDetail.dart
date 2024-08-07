@@ -1,7 +1,6 @@
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/models/howto_model.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
-import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +17,6 @@ class HowToDetailScreen extends StatefulWidget {
 }
 
 class _HowToDetailScreenState extends State<HowToDetailScreen> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

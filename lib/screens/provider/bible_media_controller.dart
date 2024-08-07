@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:churchapp_flutter/core/common.dart';
-import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/models/models/bible_file_response.dart';
 import 'package:churchapp_flutter/models/models/bible_text_response.dart';
+import 'package:churchapp_flutter/models/models/language_detail.dart';
+import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,16 +19,20 @@ class BibleMediaController extends ChangeNotifier {
   int maxChapter = 1;
   String audiofileSetId = '';
   String textfileSetId = '';
-  BibleData? bibleData;
+  // BibleData? bibleData;
+  BibleVersion? bibleVersion;
   BibleBook? bibleBook;
   late AudioController audioController;
 
   //set current chapter
-  void initData(int chapter, BibleData data, BibleBook book, int max) {
+  void initData(
+      int chapter, BibleFilterProvider prov, BibleBook book, int max) {
     currentChapter = chapter;
-    bibleData = data;
+    bibleVersion = prov.bibleVersion;
     bibleBook = book;
     maxChapter = max;
+    audiofileSetId = bibleVersion?.getAudioFilesetId(prov.selectedType) ?? '';
+    textfileSetId = bibleVersion?.getTextFilesetId(prov.selectedType) ?? '';
     fetchBibleContent();
   }
 
@@ -58,30 +63,6 @@ class BibleMediaController extends ChangeNotifier {
     try {
       await audioController.stop();
 
-      final audioFilesetId = (bibleData?.filesets ?? [])
-          .where((fileset) => fileset.type == 'audio')
-          .toList();
-      final textFilesetId = (bibleData?.filesets ?? [])
-          .where((fileset) => fileset.type.startsWith('text_plain'))
-          .toList();
-
-      if (audioFilesetId.isNotEmpty && bibleBook?.testament == 'NT') {
-        audiofileSetId =
-            audioFilesetId.where((element) => element.size == 'NT').last.id;
-      } else if (audioFilesetId.isNotEmpty && bibleBook?.testament == 'OT') {
-        audiofileSetId =
-            audioFilesetId.where((element) => element.size == 'OT').last.id;
-      }
-
-      if (textFilesetId.isNotEmpty && bibleBook?.testament == 'NT') {
-        textfileSetId = textFilesetId
-            .where((element) => element.size == 'C' || element.size == "NT")
-            .first
-            .id;
-      } else if (textFilesetId.isNotEmpty && bibleBook?.testament == 'OT') {
-        textfileSetId =
-            textFilesetId.where((element) => element.size == 'OT').first.id;
-      }
       await Future.wait([
         fetchBibleAudioByVerse(audiofileSetId, currentChapter),
         fetchBibleTextByVerse(textfileSetId, currentChapter),
@@ -108,9 +89,10 @@ class BibleMediaController extends ChangeNotifier {
     }
   }
 
-  Future<void> fetchBibleAudioByVerse(String textFilesetId, int chapter) async {
+  Future<void> fetchBibleAudioByVerse(
+      String textAudiosetId, int chapter) async {
     final URL =
-        'https://4.dbt.io/api/bibles/filesets/$textFilesetId/${bibleBook?.bookId ?? ''}/$chapter?v=4';
+        'https://4.dbt.io/api/bibles/filesets/$textAudiosetId/${bibleBook?.bookId ?? ''}/$chapter?v=4';
     final response = await http.get(
       Uri.parse(URL),
       headers: {

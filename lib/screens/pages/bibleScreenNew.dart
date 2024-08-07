@@ -1,4 +1,5 @@
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
+import 'package:churchapp_flutter/models/models/language_detail.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/bibleFilterScreen.dart';
 import 'package:churchapp_flutter/screens/pages/chapterVerseScreen.dart';
@@ -36,6 +37,7 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
   late TabController _tabController;
   late BibleFilterProvider filterProvider;
   late BibleBooksProvider bibleBooksProvider;
+  BibleVersion? bibleVersion;
 
   @override
   void initState() {
@@ -52,6 +54,9 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
       });
 
       bibleBooksProvider.fetchBooks(filterProvider.bibleVersion);
+
+      bibleVersion = filterProvider.bibleVersion;
+      setState(() {});
     });
   }
 
@@ -92,65 +97,71 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
         body: Container(
           height: MediaQuery.of(context).size.height * 0.81,
           width: MediaQuery.of(context).size.width,
-          child: Column(
-            children: [
-              buildBookDropdown(context,
-                  'English Standard Version® - Hear the Word Audio Bible'),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.brown, Colors.brown[300]!],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: SafeArea(
-                  child: Column(
-                    children: [
-                      Consumer<BibleBooksProvider>(
-                        builder: (context, provider, child) => TabBar(
-                          controller: _tabController,
-                          tabs: [
-                            Tab(text: 'Old Testament'),
-                            Tab(text: 'New Testament'),
-                          ],
-                          indicatorColor: Colors.white,
-                          labelColor: Colors.white,
-                          unselectedLabelColor: Colors.white70,
+          child: bibleVersion == null
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Column(
+                  children: [
+                    buildBookDropdown(
+                      context,
+                      bibleVersion!,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Colors.brown, Colors.brown[300]!],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: SearchBox(),
-                      // ),
-                    ],
-                  ),
+                      child: SafeArea(
+                        child: Column(
+                          children: [
+                            Consumer<BibleBooksProvider>(
+                              builder: (context, provider, child) => TabBar(
+                                controller: _tabController,
+                                tabs: [
+                                  Tab(text: 'Old Testament'),
+                                  Tab(text: 'New Testament'),
+                                ],
+                                onTap: (value) {
+                                  filterProvider.setSelectedType(
+                                      value == 0 ? 'OT' : 'NT');
+                                },
+                                indicatorColor: Colors.white,
+                                labelColor: Colors.white,
+                                unselectedLabelColor: Colors.white70,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Consumer<BibleBooksProvider>(
+                        builder: (context, provider, child) {
+                          if (provider.isLoading) {
+                            return Center(child: CircularProgressIndicator());
+                          }
+                          return TabBarView(
+                            controller: _tabController,
+                            children: [
+                              BooksListView(isOldTestament: true),
+                              BooksListView(isOldTestament: false),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Expanded(
-                child: Consumer<BibleBooksProvider>(
-                  builder: (context, provider, child) {
-                    if (provider.isLoading) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    return TabBarView(
-                      controller: _tabController,
-                      children: [
-                        BooksListView(isOldTestament: true),
-                        BooksListView(isOldTestament: false),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
   }
 
-  Widget buildBookDropdown(BuildContext context, String label) {
+  Widget buildBookDropdown(BuildContext context, BibleVersion version) {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, BibleFilterScreen.routeName);
@@ -177,12 +188,22 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Text(
-                label,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.brown[900],
+              child: ListTile(
+                contentPadding: EdgeInsets.all(0),
+                title: Text(
+                  version.name,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.brown[900],
+                  ),
+                ),
+                subtitle: Text(
+                  version.language,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.brown[900],
+                  ),
                 ),
               ),
             ),
@@ -216,11 +237,6 @@ class _BooksListViewState extends State<BooksListView>
         final books = widget.isOldTestament
             ? booksProvider.oldTestamentBooks
             : booksProvider.newTestamentBooks;
-        // final filteredBooks = books
-        //     .where((book) => book.name
-        //         .toLowerCase()
-        //         .contains(searchProvider.searchQuery.toLowerCase()))
-        //     .toList();
 
         return ListView.separated(
           padding: EdgeInsets.all(8.0),
@@ -237,11 +253,7 @@ class _BooksListViewState extends State<BooksListView>
                   context,
                   ChapterVerseScreen.routeName,
                   arguments: ScreenArguements(
-                    items: (
-                      book,
-                      Provider.of<BibleFilterProvider>(context, listen: false)
-                          .selectedBible
-                    ),
+                    items: book,
                   ),
                 );
               },

@@ -6,6 +6,7 @@ import 'package:churchapp_flutter/models/models/bible_text_response.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
 import 'package:churchapp_flutter/screens/provider/bible_media_controller.dart';
+import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +19,6 @@ class BiblePlayerScreen extends StatefulWidget {
 
   final (
     int, //max chapter
-    BibleData,
     String,
     BibleBook,
   ) data;
@@ -47,13 +47,8 @@ class _BiblePlayerScreenState extends State<BiblePlayerScreen> {
 
 class BiblePlayerScreenItem extends StatefulWidget {
   BiblePlayerScreenItem({Key? key, required this.data}) : super(key: key);
-  final (
-    int, //max chapter
-    BibleData,
-    String, // chapter id
-    BibleBook
-  ) data;
-
+  final (int, String, BibleBook) data;
+  //max chapter ,// chapter id
   @override
   _BiblePlayerScreenItemState createState() => _BiblePlayerScreenItemState();
 }
@@ -61,6 +56,7 @@ class BiblePlayerScreenItem extends StatefulWidget {
 class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
   final ScrollController _scrollController = ScrollController();
   late BibleMediaController _bibleMediaController;
+  late BibleFilterProvider _filterProvider;
 
   @override
   void initState() {
@@ -68,8 +64,10 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _bibleMediaController =
           Provider.of<BibleMediaController>(context, listen: false);
-      _bibleMediaController.initData(
-          int.tryParse(widget.data.$3) ?? 1, widget.data.$2, widget.data.$4,widget.data.$1);
+      _filterProvider =
+          Provider.of<BibleFilterProvider>(context, listen: false);
+      _bibleMediaController.initData(int.tryParse(widget.data.$2) ?? 1,
+          _filterProvider, widget.data.$3, widget.data.$1);
     });
   }
 

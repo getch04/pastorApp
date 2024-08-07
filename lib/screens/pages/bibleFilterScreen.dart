@@ -1,15 +1,13 @@
+import 'dart:async';
 import 'package:churchapp_flutter/core/common.dart';
-import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
-import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
-import 'package:churchapp_flutter/models/models/country_data.dart';
 import 'package:churchapp_flutter/models/models/language.dart';
-import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
+import 'package:churchapp_flutter/providers/HomeProvider.dart';
+import 'package:churchapp_flutter/screens/DrawerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/languageDetailScreen.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/screens/provider/pagination_ptovider.dart';
-import 'package:churchapp_flutter/utils/components/global_scafold.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:churchapp_flutter/utils/img.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -23,9 +21,126 @@ class BibleFilterScreen extends StatefulWidget {
 }
 
 class _BibleFilterScreenState extends State<BibleFilterScreen> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BibleFilterScreenItem();
+    var statusBarHeight = MediaQuery.of(context).padding.top;
+    var appBarHeight = kToolbarHeight;
+    final size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        key: scaffoldKey,
+        drawerScrimColor: Colors.transparent,
+        drawer: Container(
+          padding: EdgeInsets.only(top: statusBarHeight + appBarHeight - 30),
+          child: Drawer(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: ChangeNotifierProvider(
+              create: (context) => HomeProvider(),
+              child: DrawerScreen(),
+            ),
+          ),
+        ),
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              Container(
+                width: size.width,
+                height: size.height,
+                child: Image.asset(
+                  Img.get('new/bg_home.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.centerRight,
+                      end: Alignment.centerLeft,
+                      colors: [
+                        Color.fromARGB(255, 88, 138, 179),
+                        Color.fromARGB(255, 160, 209, 224),
+                      ],
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 90,
+                          width: 90,
+                          child: Image.asset(
+                            Img.get('new/Logo.png'),
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'MY VIRTUAL',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Text(
+                              'PASTOR',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                letterSpacing: 6,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(),
+                        GestureDetector(
+                          onTap: () {
+                            scaffoldKey.currentState?.openDrawer();
+                          },
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            child: Image.asset(
+                              Img.get('new/menu.png'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 100,
+                right: 0,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.82,
+                  width: MediaQuery.of(context).size.width,
+                  child: BibleFilterScreenItem(),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -37,58 +152,53 @@ class BibleFilterScreenItem extends StatefulWidget {
 }
 
 class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
-  static const String BIBLES_ENDPOINT =
-      'https://4.dbt.io/api/bibles?language_code=ENG&v=4';
-  static const String LANGUAGES_ENDPOINT = 'https://4.dbt.io/api/languages?v=4';
+  String LANGUAGES_ENDPOINT = 'https://4.dbt.io/api/languages?v=4';
 
-  late PaginationProvider<BibleData> biblesProvider;
   late PaginationProvider<Language> languagesProvider;
-  // late PaginationProvider<Country> countriesProvider;
-
-  String selectedFilter = 'Bibles';
-  ValueNotifier<BibleData?> selectedBibleItem = ValueNotifier<BibleData?>(null);
-  // ValueNotifier<Country?> selectedCountryItem = ValueNotifier<Country?>(null);
   ValueNotifier<Language?> selectedLanguageItem =
       ValueNotifier<Language?>(null);
+  final TextEditingController _searchController = TextEditingController();
+  String searchQuery = '';
+  Timer? _debounce;
 
   @override
   void initState() {
     super.initState();
-    biblesProvider = PaginationProvider<BibleData>(
-      endpoint: BIBLES_ENDPOINT,
+    languagesProvider = PaginationProvider<Language>(
+      endpoint: LANGUAGES_ENDPOINT,
       fromJson: (json) {
-        return BibleData.fromJson(json);
+        return Language.fromJson(json);
       },
       apiKey: BIBLE_API_KEY,
     );
-    languagesProvider = PaginationProvider<Language>(
-      endpoint: LANGUAGES_ENDPOINT,
-      fromJson: (json) => Language.fromJson(json),
-      apiKey: BIBLE_API_KEY,
-    );
+    _searchController.addListener(_onSearchChanged);
   }
 
   @override
   void dispose() {
-    biblesProvider.dispose();
     languagesProvider.dispose();
+    _searchController.removeListener(_onSearchChanged);
+    _searchController.dispose();
+    _debounce?.cancel();
     super.dispose();
   }
 
-  void onFilterSelected(String filter) {
-    setState(() {
-      selectedFilter = filter;
-      selectedBibleItem.value = null;
-      selectedLanguageItem.value = null;
-      if (selectedFilter == 'Bibles') {
-        biblesProvider.pagingController.refresh();
-      } else {
+  void _onSearchChanged() {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      if (searchQuery != _searchController.text) {
+        setState(() {
+          searchQuery = _searchController.text;
+          LANGUAGES_ENDPOINT =
+              'https://4.dbt.io/api/languages/search/${searchQuery}?v=4';
+        });
+
         languagesProvider.pagingController.refresh();
       }
     });
   }
 
-  void onLangeageItemSelected(Language item) {
+  void onLanguageItemSelected(Language item) {
     selectedLanguageItem.value = item;
     Provider.of<BibleFilterProvider>(context, listen: false)
         .setSelectedLanguage(item);
@@ -96,152 +206,44 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
         arguments: ScreenArguements(items: item.id));
   }
 
-  void onBibleItemSelected(BibleData item) {
-    selectedBibleItem.value = item;
-    Provider.of<BibleFilterProvider>(context, listen: false)
-        .setSelectedBible(item);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        if (Provider.of<AudioPlayerModel>(context, listen: false)
-                .currentMedia !=
-            null) {
-          return (await showDialog(
-                context: context,
-                builder: (context) => CupertinoAlertDialog(
-                  title: Text(t.quitapp),
-                  content: Text(t.quitappaudiowarning),
-                  actions: <Widget>[
-                    ElevatedButton(
-                      onPressed: () => Navigator.of(context).pop(false),
-                      child: Text(t.cancel),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Provider.of<AudioPlayerModel>(context, listen: false)
-                            .cleanUpResources();
-                        Navigator.of(context).pop(true);
-                      },
-                      child: Text(t.ok),
-                    ),
-                  ],
-                ),
-              )) ??
-              false;
-        }
-        return true;
-      },
-      child: GlobalScaffold(
-        body: Container(
-          height: MediaQuery.of(context).size.height * 0.81,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Wrap(
+            spacing: 8.0,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Wrap(
-                  spacing: 8.0,
-                  children: [
-                    ChoiceChip(
-                      label: Text('Bibles'),
-                      selected: selectedFilter == 'Bibles',
-                      onSelected: (selected) => onFilterSelected('Bibles'),
-                    ),
-                    ChoiceChip(
-                      label: Text('Languages'),
-                      selected: selectedFilter == 'Languages',
-                      onSelected: (selected) => onFilterSelected('Languages'),
-                    ),
-                  ],
-                ),
+              ChoiceChip(
+                label: Text('Languages'),
+                selected: true,
+                onSelected: (_) {},
               ),
-              Expanded(
-                child: _buildContent(),
-              ),
-              // ValueListenableBuilder(
-              //   valueListenable: selectedItem,
-              //   builder: (context, value, child) {
-              //     if (value != null) {
-              //       return Padding(
-              //         padding: const EdgeInsets.all(8.0),
-              //         child: Text('Selected: ${_getSelectedItemDisplayName()}'),
-              //       );
-              //     }
-              //     return Container();
-              //   },
-              // ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  String _getSelectedItemDisplayName() {
-    if (selectedFilter == 'Bibles' && selectedBibleItem.value != null) {
-      return selectedBibleItem.value!.name;
-    } else {
-      return selectedLanguageItem.value?.name ?? '';
-    }
-  }
-
-  Widget _buildContent() {
-    if (selectedFilter == 'Bibles') {
-      return _buildBiblesContent();
-    } else {
-      return _buildLanguagesContent();
-    }
-  }
-
-  Widget _buildBiblesContent() {
-    return PagedListView<int, BibleData>(
-      pagingController: biblesProvider.pagingController,
-      builderDelegate: PagedChildBuilderDelegate<BibleData>(
-        itemBuilder: (context, item, index) {
-          return ValueListenableBuilder(
-            valueListenable: selectedBibleItem,
-            builder: (context, value, child) {
-              return ListTile(
-                leading: Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: value == item
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      item.abbr.toString().substring(3, 6),
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                title: Text(
-                  item.name,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                subtitle: Text('Language: ${item.language}'),
-                selected: value == item,
-                onTap: () {
-                  onBibleItemSelected(item);
-                },
-              );
-            },
-          );
-        },
-      ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            key: Key('searchBox'),
+            controller: _searchController,
+            decoration: InputDecoration(
+              hintText: "Search languages...",
+              fillColor: Colors.white,
+              filled: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              prefixIcon: Icon(Icons.search),
+            ),
+            textInputAction: TextInputAction.search,
+          ),
+        ),
+        Expanded(
+          child: _buildLanguagesContent(),
+        ),
+      ],
     );
   }
 
@@ -250,6 +252,12 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
       pagingController: languagesProvider.pagingController,
       builderDelegate: PagedChildBuilderDelegate<Language>(
         itemBuilder: (context, language, index) {
+          if (searchQuery.isNotEmpty &&
+              !language.name
+                  .toLowerCase()
+                  .contains(searchQuery.toLowerCase())) {
+            return Container();
+          }
           return ValueListenableBuilder(
             valueListenable: selectedLanguageItem,
             builder: (context, value, child) {
@@ -281,12 +289,53 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
                 subtitle: Text(
                     'Bibles: ${language.bibles}, Filesets: ${language.filesets}'),
                 selected: value == language,
-                onTap: () => onLangeageItemSelected(language),
+                onTap: () => onLanguageItemSelected(language),
               );
             },
           );
         },
       ),
+    );
+  }
+}
+
+class SearchBoxWidget extends StatefulWidget {
+  final Function(String) onSearch;
+
+  const SearchBoxWidget({Key? key, required this.onSearch}) : super(key: key);
+
+  @override
+  _SearchBoxWidgetState createState() => _SearchBoxWidgetState();
+}
+
+class _SearchBoxWidgetState extends State<SearchBoxWidget> {
+  final TextEditingController _controller = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      key: Key('searchBox'),
+      controller: _controller,
+      focusNode: _focusNode,
+      decoration: InputDecoration(
+        hintText: "Search languages...",
+        fillColor: Colors.white,
+        filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        prefixIcon: Icon(Icons.search),
+      ),
+      textInputAction: TextInputAction.search,
+      onChanged: widget.onSearch,
     );
   }
 }

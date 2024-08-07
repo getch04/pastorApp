@@ -1,24 +1,17 @@
-import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/language.dart';
 import 'package:churchapp_flutter/models/models/language_detail.dart';
 import 'package:flutter/material.dart';
 
 class BibleFilterProvider with ChangeNotifier {
-  //ENGESV
-  BibleData _selectedBible = sampleBibleData;
-  //6411
   Language? _selectedLanguage;
 
-  BibleVersion? _bibleVersion;
+  BibleVersion _bibleVersion = defaultBibleVersion;
 
-  BibleData? get selectedBible => _selectedBible;
+  String _selectedType = 'OT';
+
   Language? get selectedLanguage => _selectedLanguage;
-  BibleVersion? get bibleVersion => _bibleVersion;
-
-  void setSelectedBible(BibleData bible) {
-    _selectedBible = bible;
-    notifyListeners();
-  }
+  BibleVersion get bibleVersion => _bibleVersion;
+  String get selectedType => _selectedType;
 
   void setSelectedLanguage(Language language) {
     _selectedLanguage = language;
@@ -27,6 +20,11 @@ class BibleFilterProvider with ChangeNotifier {
 
   void setTranslation(BibleVersion v) {
     _bibleVersion = v;
+    notifyListeners();
+  }
+
+  void setSelectedType(String type) {
+    _selectedType = type;
     notifyListeners();
   }
 }

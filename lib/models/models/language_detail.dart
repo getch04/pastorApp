@@ -3,7 +3,7 @@ class BibleVersion {
   String name;
   String? vname;
   String language;
-  String autonym;
+  String? autonym;
   int languageId;
   String? languageRolvCode;
   String iso;
@@ -63,11 +63,12 @@ class BibleVersion {
     };
   }
 
-  // Method to get the first fileset id with type of "text_plain" or "text"
-  String? get getTextFilesetId {
+  // Method to get the first fileset id with type of "text_plain" or "text" and specific size
+  String? getTextFilesetId(String size) {
     if (filesets.containsKey('dbp-prod')) {
       for (var fileset in filesets['dbp-prod']!) {
-        if (fileset.type == 'text_plain' || fileset.type == 'text') {
+        if ((fileset.type == 'text' || fileset.type == 'text_plain' || fileset.type=='text_usx' || fileset.type=='text_json') &&
+            (fileset.size.toUpperCase() == size || fileset.size == 'C')) {
           return fileset.id;
         }
       }
@@ -75,11 +76,11 @@ class BibleVersion {
     return null;
   }
 
-  // Method to get the first fileset id with type of "audio"
-  String? get getAudioFilesetId {
+  // Method to get the first fileset id with type of "audio" and specific size
+  String? getAudioFilesetId(String size) {
     if (filesets.containsKey('dbp-prod')) {
       for (var fileset in filesets['dbp-prod']!) {
-        if (fileset.type == 'audio') {
+        if (fileset.type == 'audio' && fileset.size == size) {
           return fileset.id;
         }
       }
@@ -135,3 +136,80 @@ class Fileset {
     };
   }
 }
+
+
+BibleVersion defaultBibleVersion = BibleVersion(
+  abbr: "ENGKJV",
+  name: "King James Version",
+  vname: "King James Version",
+  language: "English: USA",
+  autonym: "English",
+  languageId: 17045,
+  languageRolvCode: "00025",
+  iso: "eng",
+  date: null,
+  filesets: {
+    "dbp-prod": [
+      Fileset(
+        id: "ENGKJVO2SA",
+        type: "audio_drama_stream",
+        size: "OT",
+        stockNo: null,
+        volume: "King James Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGKJVN2DA-opus16",
+        type: "audio_drama",
+        size: "NT",
+        stockNo: null,
+        volume: "King James Version",
+        bitrate: "16kbps",
+        codec: "opus",
+        container: "webm",
+      ),
+      Fileset(
+        id: "ENGKJVN_ET-usx",
+        type: "text_usx",
+        size: "NT",
+        stockNo: null,
+        volume: "King James Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGKJVO1DA-opus16",
+        type: "audio",
+        size: "OT",
+        stockNo: null,
+        volume: "King James Version",
+        bitrate: "16kbps",
+        codec: "opus",
+        container: "webm",
+      ),
+      Fileset(
+        id: "ENGKJVO_ET-json",
+        type: "text_json",
+        size: "OT",
+        stockNo: null,
+        volume: "King James Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGKJVN_ET-json",
+        type: "text_json",
+        size: "NT",
+        stockNo: null,
+        volume: "King James Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+    ],
+  },
+);

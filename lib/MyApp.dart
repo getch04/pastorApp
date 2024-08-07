@@ -923,7 +923,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 return BiblePlayerScreen(
                   data: args!.items as (
                     int,
-                    BibleData,
                     String,
                     BibleBook,
                   ),
@@ -953,7 +952,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return ChapterVerseScreen(
-                  book: args!.items as (BibleBook, BibleData),
+                  book: args!.items as BibleBook,
                 );
               },
             );

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:churchapp_flutter/core/common.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
-import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/models/models/verse.dart';
 import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
@@ -16,7 +15,7 @@ import 'package:shimmer/shimmer.dart';
 
 class ChapterVerseScreen extends StatelessWidget {
   static const routeName = '/chapter-verse';
-  final (BibleBook, BibleData) book;
+  final BibleBook book;
 
   const ChapterVerseScreen({super.key, required this.book});
 
@@ -27,7 +26,7 @@ class ChapterVerseScreen extends StatelessWidget {
 }
 
 class ChapterVerseScreenContent extends StatefulWidget {
-  final (BibleBook, BibleData) book;
+  final BibleBook book;
 
   ChapterVerseScreenContent({required this.book});
 
@@ -55,7 +54,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
 
   void fetchChapters() {
     setState(() {
-      chapters = widget.book.$1.chapters;
+      chapters = widget.book.chapters;
       fetchVerses(selectedChapter);
     });
   }
@@ -66,7 +65,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
     });
 
     final url =
-        '$BIBLE_BASE_URL/bibles/filesets/${filterProvider.bibleVersion?.getTextFilesetId}/${widget.book.$1.bookId}/$chapter?v=4&language_code=${filterProvider.bibleVersion?.languageId ?? ''}&key=$BIBLE_API_KEY';
+        '$BIBLE_BASE_URL/bibles/filesets/${filterProvider.bibleVersion.getTextFilesetId(filterProvider.selectedType)}/${widget.book.bookId}/$chapter?v=4&language_code=${filterProvider.bibleVersion.languageId ?? ''}&key=$BIBLE_API_KEY';
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -77,7 +76,8 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
         setState(() {
           verses = versesList
               .where((verse) =>
-                  verse.chapter == chapter && verse.verseText != null)
+                  (verse.chapter ?? verse.chapterStart) == chapter &&
+                  verse.verseText != null)
               .map((verse) => verse.verseText!)
               .toList();
           isLoading = false;
@@ -113,7 +113,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
             children: [
               Center(
                 child: Text(
-                  '${widget.book.$1.name}'.toUpperCase(),
+                  '${widget.book.name}'.toUpperCase(),
                   style: TextStyles.title(context).copyWith(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
@@ -131,9 +131,31 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Chapters',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Chapters',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    OutlinedButton.icon(
+                        icon: Icon(Icons.play_arrow),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            BiblePlayerScreen.routeName,
+                            arguments: ScreenArguements(
+                              items: (
+                                chapters.isNotEmpty ? chapters.last : 0,
+                                selectedChapter.toString(),
+                                widget.book,
+                              ),
+                            ),
+                          );
+                        },
+                        label: Text("Play")),
+                  ],
                 ),
               ),
               Container(
@@ -213,9 +235,8 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
                                   arguments: ScreenArguements(
                                     items: (
                                       chapters.isNotEmpty ? chapters.last : 0,
-                                      widget.book.$2,
                                       selectedChapter.toString(),
-                                      widget.book.$1,
+                                      widget.book,
                                     ),
                                   ),
                                 );

@@ -3,7 +3,7 @@ class Verse {
   final String bookId;
   final String bookName;
   final String? bookNameAlt;
-  final int chapter;
+  final int? chapter;
   final int? chapterStart;
   final String? chapterAlt;
   final int verseStart;
