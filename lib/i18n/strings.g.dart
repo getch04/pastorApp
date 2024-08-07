@@ -3,9 +3,9 @@
  * Generated file. Do not edit.
  *
  * Locales: 16
- * Strings: 4624 (289.0 per locale)
+ * Strings: 4736 (296.0 per locale)
  *
- * Built on 2024-08-06 at 16:47 UTC
+ * Built on 2024-08-07 at 14:21 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -701,6 +701,13 @@ class _StringsEn {
 	String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
 	String get selectLanguage => 'Select Language';
 	String get howTo => 'How To';
+	String get noBibleTextsAvailable => 'No Bible texts available';
+	String get languages => 'Languages';
+	String get searchLanguages => 'Search languages...';
+	String get biblesFilesets => 'Bibles: {bibles}, Filesets: {filesets}';
+	String get oldTestament => 'Old Testament';
+	String get newTestament => 'New Testament';
+	String get play => 'play';
 }
 
 // Path: <root>
@@ -1014,6 +1021,13 @@ class _StringsBn implements _StringsEn {
 	@override String get facebookloginerror => 'লগইন প্রক্রিয়ায় কিছু ভুল হয়েছে।\n, এখানে ফেসবুক আমাদের যা ত্রুটি দিয়েছে';
 	@override String get selectLanguage => 'ভাষা নির্বাচন করুন';
 	@override String get howTo => 'কিভাবে';
+	@override String get noBibleTextsAvailable => 'কোন বাইবেল পাঠ্য উপলব্ধ নয়';
+	@override String get languages => 'ভাষাসমূহ';
+	@override String get searchLanguages => 'ভাষা অনুসন্ধান করুন...';
+	@override String get biblesFilesets => 'বাইবেল: {bibles}, ফাইলসেট: {filesets}';
+	@override String get oldTestament => 'পুরাতন নিয়ম';
+	@override String get newTestament => 'নতুন নিয়ম';
+	@override String get play => 'বাজান';
 }
 
 // Path: <root>
@@ -1327,6 +1341,13 @@ class _StringsDz implements _StringsEn {
 	@override String get facebookloginerror => 'དངུལ་རྫས་གཏོང་སྒྲིག་གཏོང་དྲི་བཟུང་སྒྲིག་སྒྲིག་。\n, དངུལ་རྫས་གཏོང་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་';
 	@override String get selectLanguage => 'དབྱིན་རྒྱུད་སྐད་འབྱུང་།';
 	@override String get howTo => 'ག་འདྲ་བྱས།';
+	@override String get noBibleTextsAvailable => 'བཀོལ་སྟོན་ནང་མིན་འདུག';
+	@override String get languages => 'སྐད་ཡིག';
+	@override String get searchLanguages => 'སྐད་ཡིག་འཚོལ་སྐབས...';
+	@override String get biblesFilesets => 'བཀོལ་སྟོན: {bibles}, ཡིག་སྒེའི་མིང་།: {filesets}';
+	@override String get oldTestament => 'རྒྱལ་མཚན་རྒྱུད་རྙིང་པ།';
+	@override String get newTestament => 'རྒྱལ་མཚན་རྒྱུད་གསར་པ།';
+	@override String get play => 'གཏོང་';
 }
 
 // Path: <root>
@@ -1640,6 +1661,13 @@ class _StringsEs implements _StringsEn {
 	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
 	@override String get selectLanguage => 'Seleccionar idioma';
 	@override String get howTo => 'Cómo';
+	@override String get noBibleTextsAvailable => 'No hay textos bíblicos disponibles';
+	@override String get languages => 'Idiomas';
+	@override String get searchLanguages => 'Buscar idiomas...';
+	@override String get biblesFilesets => 'Biblias: {bibles}, Conjuntos de archivos: {filesets}';
+	@override String get oldTestament => 'Antiguo Testamento';
+	@override String get newTestament => 'Nuevo Testamento';
+	@override String get play => 'Reproducir';
 }
 
 // Path: <root>
@@ -1953,6 +1981,13 @@ class _StringsFr implements _StringsEn {
 	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
 	@override String get selectLanguage => 'Choisir la langue';
 	@override String get howTo => 'Comment';
+	@override String get noBibleTextsAvailable => 'Aucun texte biblique disponible';
+	@override String get languages => 'Langues';
+	@override String get searchLanguages => 'Rechercher des langues...';
+	@override String get biblesFilesets => 'Bibles: {bibles}, Jeux de fichiers: {filesets}';
+	@override String get oldTestament => 'Ancien Testament';
+	@override String get newTestament => 'Nouveau Testament';
+	@override String get play => 'Reproducir';
 }
 
 // Path: <root>
@@ -2266,6 +2301,13 @@ class _StringsHi implements _StringsEn {
 	@override String get facebookloginerror => 'लॉगिन प्रक्रिया के साथ कुछ गलत हो गया।\n, यहाँ फेसबुक ने हमें त्रुटि दी है';
 	@override String get selectLanguage => 'भाषा चुनें';
 	@override String get howTo => 'कैसे';
+	@override String get noBibleTextsAvailable => 'कोई बाइबल पाठ उपलब्ध नहीं है';
+	@override String get languages => 'भाषाएँ';
+	@override String get searchLanguages => 'भाषाओं की खोज करें...';
+	@override String get biblesFilesets => 'बाइबल: {bibles}, फाइलसेट्स: {filesets}';
+	@override String get oldTestament => 'पुराना नियम';
+	@override String get newTestament => 'नया नियम';
+	@override String get play => 'चलाएं';
 }
 
 // Path: <root>
@@ -2579,6 +2621,13 @@ class _StringsId implements _StringsEn {
 	@override String get facebookloginerror => 'Ada yang salah dengan proses login.\n, Ini kesalahan yang diberikan Facebook kepada kami';
 	@override String get selectLanguage => 'Pilih Bahasa';
 	@override String get howTo => 'Cara';
+	@override String get noBibleTextsAvailable => 'Tidak ada teks Alkitab yang tersedia';
+	@override String get languages => 'Bahasa';
+	@override String get searchLanguages => 'Cari bahasa...';
+	@override String get biblesFilesets => 'Alkitab: {bibles}, Set berkas: {filesets}';
+	@override String get oldTestament => 'Perjanjian Lama';
+	@override String get newTestament => 'Perjanjian Baru';
+	@override String get play => 'Putar';
 }
 
 // Path: <root>
@@ -2892,6 +2941,13 @@ class _StringsKn implements _StringsEn {
 	@override String get facebookloginerror => 'ಲಾಗಿನ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ.\n, ಫೇಸ್ಬುಕ್ ನಮಗೆ ನೀಡಿದ ದೋಷ ಇಲ್ಲಿದೆ';
 	@override String get selectLanguage => 'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ';
 	@override String get howTo => 'ಹೇಗೆ';
+	@override String get noBibleTextsAvailable => 'ಯಾವುದೇ ಬೈಬಲ್ ಪಾಠಗಳೂ ಲಭ್ಯವಿಲ್ಲ';
+	@override String get languages => 'ಭಾಷೆಗಳು';
+	@override String get searchLanguages => 'ಭಾಷೆಗಳನ್ನು ಹುಡುಕಿ...';
+	@override String get biblesFilesets => 'ಬೈಬಲ್ಗಳು: {bibles}, ಕಡತಗಳ ಸೆಟ್‌ಗಳು: {filesets}';
+	@override String get oldTestament => 'ಹಳೆಯ ಒಡಂಬಡಿಕೆ';
+	@override String get newTestament => 'ಹೊಸ ಒಡಂಬಡಿಕೆ';
+	@override String get play => 'ಆಡಲು';
 }
 
 // Path: <root>
@@ -3205,6 +3261,13 @@ class _StringsMr implements _StringsEn {
 	@override String get facebookloginerror => 'लॉगिन प्रक्रियेत काहीतरी चुकीचे झाले.\n, येथे फेसबुकने आम्हाला दिलेली त्रुटी आहे';
 	@override String get selectLanguage => 'भाषा निवडा';
 	@override String get howTo => 'कसे';
+	@override String get noBibleTextsAvailable => 'कोणतेही बायबल मजकूर उपलब्ध नाहीत';
+	@override String get languages => 'भाषा';
+	@override String get searchLanguages => 'भाषा शोधा...';
+	@override String get biblesFilesets => 'बायबल: {bibles}, फाईलसेट: {filesets}';
+	@override String get oldTestament => 'जुना करार';
+	@override String get newTestament => 'नवीन करार';
+	@override String get play => 'वाजवा';
 }
 
 // Path: <root>
@@ -3518,6 +3581,13 @@ class _StringsNe implements _StringsEn {
 	@override String get facebookloginerror => 'लॉगिन प्रक्रियामा केही गडबड भयो।\n यहाँ फेसबुकले हामीलाई दिएको त्रुटि छ';
 	@override String get selectLanguage => 'भाषा चयन गर्नुहोस्';
 	@override String get howTo => 'कसरी';
+	@override String get noBibleTextsAvailable => 'कुनै बाइबल पाठ उपलब्ध छैन';
+	@override String get languages => 'भाषाहरू';
+	@override String get searchLanguages => 'भाषाहरू खोज्नुहोस्...';
+	@override String get biblesFilesets => 'बाइबल: {bibles}, फाइलसेटहरू: {filesets}';
+	@override String get oldTestament => 'पुरानो करार';
+	@override String get newTestament => 'नयाँ करार';
+	@override String get play => 'बजाउनुहोस्';
 }
 
 // Path: <root>
@@ -3831,6 +3901,13 @@ class _StringsOr implements _StringsEn {
 	@override String get facebookloginerror => 'ଲଗଇନ୍ ପ୍ରକ୍ରିୟାରେ କିଛି ତ୍ରୁଟି ହୋଇଛି।\n ଏହି ସମୟରେ ଫେସବୁକ୍ ଆମକୁ ଯେତେବେଳେ ତ୍ରୁଟି ଦେଲା';
 	@override String get selectLanguage => 'ଭାଷା ଚୟନ କରନ୍ତୁ';
 	@override String get howTo => 'କିପରି';
+	@override String get noBibleTextsAvailable => 'କ any ଣସି ବାଇବେଲ ଟେକ୍ସଟ୍ ଉପଲବ୍ଧ ନାହିଁ';
+	@override String get languages => 'ଭାଷାଗୁଡିକ';
+	@override String get searchLanguages => 'ଭାଷାଗୁଡିକୁ ଖୋଜନ୍ତୁ...';
+	@override String get biblesFilesets => 'ବାଇବେଲ: {bibles}, ଫାଇଲସେଟ୍‌ସ: {filesets}';
+	@override String get oldTestament => 'ପୁରାତନ ନିୟମ';
+	@override String get newTestament => 'ନୂତନ ନିୟମ';
+	@override String get play => 'ଖେଳିବା';
 }
 
 // Path: <root>
@@ -4144,6 +4221,13 @@ class _StringsPa implements _StringsEn {
 	@override String get facebookloginerror => 'ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ';
 	@override String get selectLanguage => 'ਭਾਸ਼ਾ ਚੁਣੋ';
 	@override String get howTo => 'ਕਿਵੇਂ';
+	@override String get noBibleTextsAvailable => 'ਕੋਈ ਬਾਈਬਲ ਪਾਠ ਉਪਲਬਧ ਨਹੀਂ ਹੈ';
+	@override String get languages => 'ਭਾਸ਼ਾਵਾਂ';
+	@override String get searchLanguages => 'ਭਾਸ਼ਾਵਾਂ ਦੀ ਖੋਜ ਕਰੋ...';
+	@override String get biblesFilesets => 'ਬਾਈਬਲ: {bibles}, ਫਾਈਲਸੈਟਸ: {filesets}';
+	@override String get oldTestament => 'ਪੁਰਾਣਾ ਨਿਯਮ';
+	@override String get newTestament => 'ਨਵਾਂ ਨਿਯਮ';
+	@override String get play => 'ਚਲਾਓ';
 }
 
 // Path: <root>
@@ -4457,6 +4541,13 @@ class _StringsPt implements _StringsEn {
 	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
 	@override String get selectLanguage => 'Selecione o idioma';
 	@override String get howTo => 'Como';
+	@override String get noBibleTextsAvailable => 'Nenhum texto bíblico disponível';
+	@override String get languages => 'Idiomas';
+	@override String get searchLanguages => 'Pesquisar idiomas...';
+	@override String get biblesFilesets => 'Bíblias: {bibles}, Conjuntos de arquivos: {filesets}';
+	@override String get oldTestament => 'Antigo Testamento';
+	@override String get newTestament => 'Novo Testamento';
+	@override String get play => 'Tocar';
 }
 
 // Path: <root>
@@ -4770,6 +4861,13 @@ class _StringsTa implements _StringsEn {
 	@override String get facebookloginerror => 'உள்நுழைவு செயல்முறையில் ஏதோ தவறாகிவிட்டது.\n இதோ இங்கே பேஸ்புக் நமக்கு கொடுத்த பிழை';
 	@override String get selectLanguage => 'மொழியைத் தேர்ந்தெடுக்கவும்';
 	@override String get howTo => 'எப்படி';
+	@override String get noBibleTextsAvailable => 'யாதொரு பைபிள் உரைகளும் கிடைக்கவில்லை';
+	@override String get languages => 'மொழிகள்';
+	@override String get searchLanguages => 'மொழிகளைத் தேடுங்கள்...';
+	@override String get biblesFilesets => 'பைபிள்கள்: {bibles}, கோப்புகளின் தொகுப்புகள்: {filesets}';
+	@override String get oldTestament => 'பழைய ஏற்பாடு';
+	@override String get newTestament => 'புதிய ஏற்பாடு';
+	@override String get play => 'விளையாடு';
 }
 
 // Path: <root>
@@ -5083,6 +5181,13 @@ class _StringsTe implements _StringsEn {
 	@override String get facebookloginerror => 'లాగిన్ ప్రక్రియలో ఏదో తేడా జరిగింది.\n ఇది ఫేస్‌బుక్ మాకు ఇచ్చిన లోపం';
 	@override String get selectLanguage => 'భాషను ఎంచుకోండి';
 	@override String get howTo => 'ఎలా';
+	@override String get noBibleTextsAvailable => 'ఎటువంటి బైబిల్ గ్రంథాలు అందుబాటులో లేవు';
+	@override String get languages => 'భాషలు';
+	@override String get searchLanguages => 'భాషలు శోధించండి...';
+	@override String get biblesFilesets => 'బైబిల్స్: {bibles}, ఫైల్సెట్లను: {filesets}';
+	@override String get oldTestament => 'పాత నిబంధన';
+	@override String get newTestament => 'కొత్త నిబంధన';
+	@override String get play => 'ఆడించు';
 }
 
 // Path: <root>
@@ -5396,6 +5501,13 @@ class _StringsUr implements _StringsEn {
 	@override String get facebookloginerror => 'لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے';
 	@override String get selectLanguage => 'زبان منتخب کریں';
 	@override String get howTo => 'کیسے';
+	@override String get noBibleTextsAvailable => 'کوئی بائبل کے متن دستیاب نہیں ہیں';
+	@override String get languages => 'زبانیں';
+	@override String get searchLanguages => 'زبانیں تلاش کریں...';
+	@override String get biblesFilesets => 'بائبل: {bibles}, فائلسیٹ: {filesets}';
+	@override String get oldTestament => 'پرانا عہد نامہ';
+	@override String get newTestament => 'نیا عہد نامہ';
+	@override String get play => 'چلائیں';
 }
 
 /// Flat map(s) containing all translations.
@@ -5693,6 +5805,13 @@ extension on _StringsEn {
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
 			'selectLanguage': 'Select Language',
 			'howTo': 'How To',
+			'noBibleTextsAvailable': 'No Bible texts available',
+			'languages': 'Languages',
+			'searchLanguages': 'Search languages...',
+			'biblesFilesets': 'Bibles: {bibles}, Filesets: {filesets}',
+			'oldTestament': 'Old Testament',
+			'newTestament': 'New Testament',
+			'play': 'play',
 		};
 	}
 }
@@ -5989,6 +6108,13 @@ extension on _StringsBn {
 			'facebookloginerror': 'লগইন প্রক্রিয়ায় কিছু ভুল হয়েছে।\n, এখানে ফেসবুক আমাদের যা ত্রুটি দিয়েছে',
 			'selectLanguage': 'ভাষা নির্বাচন করুন',
 			'howTo': 'কিভাবে',
+			'noBibleTextsAvailable': 'কোন বাইবেল পাঠ্য উপলব্ধ নয়',
+			'languages': 'ভাষাসমূহ',
+			'searchLanguages': 'ভাষা অনুসন্ধান করুন...',
+			'biblesFilesets': 'বাইবেল: {bibles}, ফাইলসেট: {filesets}',
+			'oldTestament': 'পুরাতন নিয়ম',
+			'newTestament': 'নতুন নিয়ম',
+			'play': 'বাজান',
 		};
 	}
 }
@@ -6285,6 +6411,13 @@ extension on _StringsDz {
 			'facebookloginerror': 'དངུལ་རྫས་གཏོང་སྒྲིག་གཏོང་དྲི་བཟུང་སྒྲིག་སྒྲིག་。\n, དངུལ་རྫས་གཏོང་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་',
 			'selectLanguage': 'དབྱིན་རྒྱུད་སྐད་འབྱུང་།',
 			'howTo': 'ག་འདྲ་བྱས།',
+			'noBibleTextsAvailable': 'བཀོལ་སྟོན་ནང་མིན་འདུག',
+			'languages': 'སྐད་ཡིག',
+			'searchLanguages': 'སྐད་ཡིག་འཚོལ་སྐབས...',
+			'biblesFilesets': 'བཀོལ་སྟོན: {bibles}, ཡིག་སྒེའི་མིང་།: {filesets}',
+			'oldTestament': 'རྒྱལ་མཚན་རྒྱུད་རྙིང་པ།',
+			'newTestament': 'རྒྱལ་མཚན་རྒྱུད་གསར་པ།',
+			'play': 'གཏོང་',
 		};
 	}
 }
@@ -6581,6 +6714,13 @@ extension on _StringsEs {
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
 			'selectLanguage': 'Seleccionar idioma',
 			'howTo': 'Cómo',
+			'noBibleTextsAvailable': 'No hay textos bíblicos disponibles',
+			'languages': 'Idiomas',
+			'searchLanguages': 'Buscar idiomas...',
+			'biblesFilesets': 'Biblias: {bibles}, Conjuntos de archivos: {filesets}',
+			'oldTestament': 'Antiguo Testamento',
+			'newTestament': 'Nuevo Testamento',
+			'play': 'Reproducir',
 		};
 	}
 }
@@ -6877,6 +7017,13 @@ extension on _StringsFr {
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
 			'selectLanguage': 'Choisir la langue',
 			'howTo': 'Comment',
+			'noBibleTextsAvailable': 'Aucun texte biblique disponible',
+			'languages': 'Langues',
+			'searchLanguages': 'Rechercher des langues...',
+			'biblesFilesets': 'Bibles: {bibles}, Jeux de fichiers: {filesets}',
+			'oldTestament': 'Ancien Testament',
+			'newTestament': 'Nouveau Testament',
+			'play': 'Reproducir',
 		};
 	}
 }
@@ -7173,6 +7320,13 @@ extension on _StringsHi {
 			'facebookloginerror': 'लॉगिन प्रक्रिया के साथ कुछ गलत हो गया।\n, यहाँ फेसबुक ने हमें त्रुटि दी है',
 			'selectLanguage': 'भाषा चुनें',
 			'howTo': 'कैसे',
+			'noBibleTextsAvailable': 'कोई बाइबल पाठ उपलब्ध नहीं है',
+			'languages': 'भाषाएँ',
+			'searchLanguages': 'भाषाओं की खोज करें...',
+			'biblesFilesets': 'बाइबल: {bibles}, फाइलसेट्स: {filesets}',
+			'oldTestament': 'पुराना नियम',
+			'newTestament': 'नया नियम',
+			'play': 'चलाएं',
 		};
 	}
 }
@@ -7469,6 +7623,13 @@ extension on _StringsId {
 			'facebookloginerror': 'Ada yang salah dengan proses login.\n, Ini kesalahan yang diberikan Facebook kepada kami',
 			'selectLanguage': 'Pilih Bahasa',
 			'howTo': 'Cara',
+			'noBibleTextsAvailable': 'Tidak ada teks Alkitab yang tersedia',
+			'languages': 'Bahasa',
+			'searchLanguages': 'Cari bahasa...',
+			'biblesFilesets': 'Alkitab: {bibles}, Set berkas: {filesets}',
+			'oldTestament': 'Perjanjian Lama',
+			'newTestament': 'Perjanjian Baru',
+			'play': 'Putar',
 		};
 	}
 }
@@ -7765,6 +7926,13 @@ extension on _StringsKn {
 			'facebookloginerror': 'ಲಾಗಿನ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ.\n, ಫೇಸ್ಬುಕ್ ನಮಗೆ ನೀಡಿದ ದೋಷ ಇಲ್ಲಿದೆ',
 			'selectLanguage': 'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ',
 			'howTo': 'ಹೇಗೆ',
+			'noBibleTextsAvailable': 'ಯಾವುದೇ ಬೈಬಲ್ ಪಾಠಗಳೂ ಲಭ್ಯವಿಲ್ಲ',
+			'languages': 'ಭಾಷೆಗಳು',
+			'searchLanguages': 'ಭಾಷೆಗಳನ್ನು ಹುಡುಕಿ...',
+			'biblesFilesets': 'ಬೈಬಲ್ಗಳು: {bibles}, ಕಡತಗಳ ಸೆಟ್‌ಗಳು: {filesets}',
+			'oldTestament': 'ಹಳೆಯ ಒಡಂಬಡಿಕೆ',
+			'newTestament': 'ಹೊಸ ಒಡಂಬಡಿಕೆ',
+			'play': 'ಆಡಲು',
 		};
 	}
 }
@@ -8061,6 +8229,13 @@ extension on _StringsMr {
 			'facebookloginerror': 'लॉगिन प्रक्रियेत काहीतरी चुकीचे झाले.\n, येथे फेसबुकने आम्हाला दिलेली त्रुटी आहे',
 			'selectLanguage': 'भाषा निवडा',
 			'howTo': 'कसे',
+			'noBibleTextsAvailable': 'कोणतेही बायबल मजकूर उपलब्ध नाहीत',
+			'languages': 'भाषा',
+			'searchLanguages': 'भाषा शोधा...',
+			'biblesFilesets': 'बायबल: {bibles}, फाईलसेट: {filesets}',
+			'oldTestament': 'जुना करार',
+			'newTestament': 'नवीन करार',
+			'play': 'वाजवा',
 		};
 	}
 }
@@ -8357,6 +8532,13 @@ extension on _StringsNe {
 			'facebookloginerror': 'लॉगिन प्रक्रियामा केही गडबड भयो।\n यहाँ फेसबुकले हामीलाई दिएको त्रुटि छ',
 			'selectLanguage': 'भाषा चयन गर्नुहोस्',
 			'howTo': 'कसरी',
+			'noBibleTextsAvailable': 'कुनै बाइबल पाठ उपलब्ध छैन',
+			'languages': 'भाषाहरू',
+			'searchLanguages': 'भाषाहरू खोज्नुहोस्...',
+			'biblesFilesets': 'बाइबल: {bibles}, फाइलसेटहरू: {filesets}',
+			'oldTestament': 'पुरानो करार',
+			'newTestament': 'नयाँ करार',
+			'play': 'बजाउनुहोस्',
 		};
 	}
 }
@@ -8653,6 +8835,13 @@ extension on _StringsOr {
 			'facebookloginerror': 'ଲଗଇନ୍ ପ୍ରକ୍ରିୟାରେ କିଛି ତ୍ରୁଟି ହୋଇଛି।\n ଏହି ସମୟରେ ଫେସବୁକ୍ ଆମକୁ ଯେତେବେଳେ ତ୍ରୁଟି ଦେଲା',
 			'selectLanguage': 'ଭାଷା ଚୟନ କରନ୍ତୁ',
 			'howTo': 'କିପରି',
+			'noBibleTextsAvailable': 'କ any ଣସି ବାଇବେଲ ଟେକ୍ସଟ୍ ଉପଲବ୍ଧ ନାହିଁ',
+			'languages': 'ଭାଷାଗୁଡିକ',
+			'searchLanguages': 'ଭାଷାଗୁଡିକୁ ଖୋଜନ୍ତୁ...',
+			'biblesFilesets': 'ବାଇବେଲ: {bibles}, ଫାଇଲସେଟ୍‌ସ: {filesets}',
+			'oldTestament': 'ପୁରାତନ ନିୟମ',
+			'newTestament': 'ନୂତନ ନିୟମ',
+			'play': 'ଖେଳିବା',
 		};
 	}
 }
@@ -8949,6 +9138,13 @@ extension on _StringsPa {
 			'facebookloginerror': 'ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ',
 			'selectLanguage': 'ਭਾਸ਼ਾ ਚੁਣੋ',
 			'howTo': 'ਕਿਵੇਂ',
+			'noBibleTextsAvailable': 'ਕੋਈ ਬਾਈਬਲ ਪਾਠ ਉਪਲਬਧ ਨਹੀਂ ਹੈ',
+			'languages': 'ਭਾਸ਼ਾਵਾਂ',
+			'searchLanguages': 'ਭਾਸ਼ਾਵਾਂ ਦੀ ਖੋਜ ਕਰੋ...',
+			'biblesFilesets': 'ਬਾਈਬਲ: {bibles}, ਫਾਈਲਸੈਟਸ: {filesets}',
+			'oldTestament': 'ਪੁਰਾਣਾ ਨਿਯਮ',
+			'newTestament': 'ਨਵਾਂ ਨਿਯਮ',
+			'play': 'ਚਲਾਓ',
 		};
 	}
 }
@@ -9245,6 +9441,13 @@ extension on _StringsPt {
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
 			'selectLanguage': 'Selecione o idioma',
 			'howTo': 'Como',
+			'noBibleTextsAvailable': 'Nenhum texto bíblico disponível',
+			'languages': 'Idiomas',
+			'searchLanguages': 'Pesquisar idiomas...',
+			'biblesFilesets': 'Bíblias: {bibles}, Conjuntos de arquivos: {filesets}',
+			'oldTestament': 'Antigo Testamento',
+			'newTestament': 'Novo Testamento',
+			'play': 'Tocar',
 		};
 	}
 }
@@ -9541,6 +9744,13 @@ extension on _StringsTa {
 			'facebookloginerror': 'உள்நுழைவு செயல்முறையில் ஏதோ தவறாகிவிட்டது.\n இதோ இங்கே பேஸ்புக் நமக்கு கொடுத்த பிழை',
 			'selectLanguage': 'மொழியைத் தேர்ந்தெடுக்கவும்',
 			'howTo': 'எப்படி',
+			'noBibleTextsAvailable': 'யாதொரு பைபிள் உரைகளும் கிடைக்கவில்லை',
+			'languages': 'மொழிகள்',
+			'searchLanguages': 'மொழிகளைத் தேடுங்கள்...',
+			'biblesFilesets': 'பைபிள்கள்: {bibles}, கோப்புகளின் தொகுப்புகள்: {filesets}',
+			'oldTestament': 'பழைய ஏற்பாடு',
+			'newTestament': 'புதிய ஏற்பாடு',
+			'play': 'விளையாடு',
 		};
 	}
 }
@@ -9837,6 +10047,13 @@ extension on _StringsTe {
 			'facebookloginerror': 'లాగిన్ ప్రక్రియలో ఏదో తేడా జరిగింది.\n ఇది ఫేస్‌బుక్ మాకు ఇచ్చిన లోపం',
 			'selectLanguage': 'భాషను ఎంచుకోండి',
 			'howTo': 'ఎలా',
+			'noBibleTextsAvailable': 'ఎటువంటి బైబిల్ గ్రంథాలు అందుబాటులో లేవు',
+			'languages': 'భాషలు',
+			'searchLanguages': 'భాషలు శోధించండి...',
+			'biblesFilesets': 'బైబిల్స్: {bibles}, ఫైల్సెట్లను: {filesets}',
+			'oldTestament': 'పాత నిబంధన',
+			'newTestament': 'కొత్త నిబంధన',
+			'play': 'ఆడించు',
 		};
 	}
 }
@@ -10133,6 +10350,13 @@ extension on _StringsUr {
 			'facebookloginerror': 'لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے',
 			'selectLanguage': 'زبان منتخب کریں',
 			'howTo': 'کیسے',
+			'noBibleTextsAvailable': 'کوئی بائبل کے متن دستیاب نہیں ہیں',
+			'languages': 'زبانیں',
+			'searchLanguages': 'زبانیں تلاش کریں...',
+			'biblesFilesets': 'بائبل: {bibles}, فائلسیٹ: {filesets}',
+			'oldTestament': 'پرانا عہد نامہ',
+			'newTestament': 'نیا عہد نامہ',
+			'play': 'چلائیں',
 		};
 	}
 }

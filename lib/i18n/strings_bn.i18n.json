@@ -308,5 +308,18 @@
     "facebookloginerror": "লগইন প্রক্রিয়ায় কিছু ভুল হয়েছে।\n, এখানে ফেসবুক আমাদের যা ত্রুটি দিয়েছে",
 
     "selectLanguage": "ভাষা নির্বাচন করুন",
-    "howTo": "কিভাবে"
+    "howTo": "কিভাবে",
+
+      "noBibleTextsAvailable": "কোন বাইবেল পাঠ্য উপলব্ধ নয়",
+      "languages": "ভাষাসমূহ",
+      "searchLanguages": "ভাষা অনুসন্ধান করুন...",
+      "biblesFilesets": "বাইবেল: {bibles}, ফাইলসেট: {filesets}",
+
+  "oldTestament": "পুরাতন নিয়ম",
+  "newTestament": "নতুন নিয়ম",
+  "play": "বাজান"
+
+
+
+
 }

@@ -1,3 +1,4 @@
+import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/models/language_detail.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
@@ -122,8 +123,8 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
                               builder: (context, provider, child) => TabBar(
                                 controller: _tabController,
                                 tabs: [
-                                  Tab(text: 'Old Testament'),
-                                  Tab(text: 'New Testament'),
+                                  Tab(text: t.oldTestament),
+                                  Tab(text: t.newTestament),
                                 ],
                                 onTap: (value) {
                                   filterProvider.setSelectedType(

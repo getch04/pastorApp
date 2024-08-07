@@ -308,5 +308,18 @@
   "facebookloginerror": "लॉगिन प्रक्रियामा केही गडबड भयो।\n यहाँ फेसबुकले हामीलाई दिएको त्रुटि छ",
 
   "selectLanguage": "भाषा चयन गर्नुहोस्",
-  "howTo": "कसरी"
+  "howTo": "कसरी",
+
+    "noBibleTextsAvailable": "कुनै बाइबल पाठ उपलब्ध छैन",
+    "languages": "भाषाहरू",
+    "searchLanguages": "भाषाहरू खोज्नुहोस्...",
+    "biblesFilesets": "बाइबल: {bibles}, फाइलसेटहरू: {filesets}"
+,
+
+      "oldTestament": "पुरानो करार",
+      "newTestament": "नयाँ करार"
+
+,
+"play": "बजाउनुहोस्"
+
 }

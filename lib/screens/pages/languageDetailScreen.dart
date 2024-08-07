@@ -115,7 +115,7 @@ class _LanguageDetailScreenState extends State<LanguageDetailScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 15.0),
                             child: Text(
-                              '${result.first.language} bibles'.toTitleCase(),
+                              '${result.first.language}' + t.biblebooks,
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 20,

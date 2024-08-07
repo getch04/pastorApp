@@ -307,6 +307,19 @@
 
   "facebookloginerror": "ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ",
   "selectLanguage": "ਭਾਸ਼ਾ ਚੁਣੋ",
-  "howTo": "ਕਿਵੇਂ"
+  "howTo": "ਕਿਵੇਂ",
+
+    "noBibleTextsAvailable": "ਕੋਈ ਬਾਈਬਲ ਪਾਠ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+    "languages": "ਭਾਸ਼ਾਵਾਂ",
+    "searchLanguages": "ਭਾਸ਼ਾਵਾਂ ਦੀ ਖੋਜ ਕਰੋ...",
+    "biblesFilesets": "ਬਾਈਬਲ: {bibles}, ਫਾਈਲਸੈਟਸ: {filesets}",
+
+      "oldTestament": "ਪੁਰਾਣਾ ਨਿਯਮ",
+      "newTestament": "ਨਵਾਂ ਨਿਯਮ"
+
+,
+      "play": "ਚਲਾਓ"
+
+
 }
 

@@ -1,6 +1,5 @@
 import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
-import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/models/models/bible_text_response.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
@@ -165,7 +164,7 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
                       selector: (_, controller) => controller.currentChapter,
                       builder: (context, currentChapter, child) {
                         return Text(
-                          'Chapter $currentChapter',
+                          t.chapter + '$currentChapter',
                           textAlign: TextAlign.center,
                           style: TextStyles.title(context).copyWith(
                             fontSize: 20,
@@ -207,7 +206,7 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
                                         },
                                       )
                                     : Center(
-                                        child: Text('No Bible texts available'),
+                                        child: Text(t.noBibleTextsAvailable),
                                       );
                               },
                             ),

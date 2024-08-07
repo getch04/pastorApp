@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:churchapp_flutter/core/common.dart';
+import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/models/models/verse.dart';
@@ -135,7 +136,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Chapters',
+                      t.chapter,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
@@ -154,7 +155,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
                             ),
                           );
                         },
-                        label: Text("Play")),
+                        label: Text(t.play)),
                   ],
                 ),
               ),
@@ -223,7 +224,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
                           itemBuilder: (context, index) {
                             final verse = verses[index];
                             return ListTile(
-                              title: Text('Verse ${index + 1}',
+                              title: Text(t.verse + '${index + 1}',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,

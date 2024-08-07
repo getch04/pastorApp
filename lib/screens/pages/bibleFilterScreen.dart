@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:churchapp_flutter/core/common.dart';
+import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/models/language.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
@@ -216,7 +217,7 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
             spacing: 8.0,
             children: [
               ChoiceChip(
-                label: Text('Languages'),
+                label: Text(t.languages),
                 selected: true,
                 onSelected: (_) {},
               ),
@@ -229,7 +230,7 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
             key: Key('searchBox'),
             controller: _searchController,
             decoration: InputDecoration(
-              hintText: "Search languages...",
+              hintText: t.searchLanguages,
               fillColor: Colors.white,
               filled: true,
               border: OutlineInputBorder(
@@ -326,7 +327,7 @@ class _SearchBoxWidgetState extends State<SearchBoxWidget> {
       controller: _controller,
       focusNode: _focusNode,
       decoration: InputDecoration(
-        hintText: "Search languages...",
+        hintText: t.searchLanguages,
         fillColor: Colors.white,
         filled: true,
         border: OutlineInputBorder(

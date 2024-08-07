@@ -305,6 +305,16 @@
   "clearconversationhinttwo": ".\n  Tenga en cuenta que esto solo elimina su lado de la conversación, los mensajes aún se mostrarán en el chat de sus socios.",
   "facebookloginerror": "Something went wrong with the login process.\n, Here is the error Facebook gave us",
   "selectLanguage": "Seleccionar idioma",
-  "howTo": "Cómo"
+  "howTo": "Cómo",
+
+  "noBibleTextsAvailable": "No hay textos bíblicos disponibles",
+  "languages": "Idiomas",
+  "searchLanguages": "Buscar idiomas...",
+  "biblesFilesets": "Biblias: {bibles}, Conjuntos de archivos: {filesets}",
+
+    "oldTestament": "Antiguo Testamento",
+    "newTestament": "Nuevo Testamento"
+    ,"play": "Reproducir"
+
 
 }

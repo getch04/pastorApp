@@ -308,5 +308,17 @@
   "facebookloginerror": "लॉगिन प्रक्रिया के साथ कुछ गलत हो गया।\n, यहाँ फेसबुक ने हमें त्रुटि दी है",
 
   "selectLanguage": "भाषा चुनें",
-  "howTo": "कैसे"
+  "howTo": "कैसे",
+
+    "noBibleTextsAvailable": "कोई बाइबल पाठ उपलब्ध नहीं है",
+    "languages": "भाषाएँ",
+    "searchLanguages": "भाषाओं की खोज करें...",
+    "biblesFilesets": "बाइबल: {bibles}, फाइलसेट्स: {filesets}",
+
+      "oldTestament": "पुराना नियम",
+      "newTestament": "नया नियम"
+
+,"play": "चलाएं"
+
+
 }

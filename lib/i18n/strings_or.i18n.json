@@ -307,5 +307,18 @@
 
   "facebookloginerror": "ଲଗଇନ୍ ପ୍ରକ୍ରିୟାରେ କିଛି ତ୍ରୁଟି ହୋଇଛି।\n ଏହି ସମୟରେ ଫେସବୁକ୍ ଆମକୁ ଯେତେବେଳେ ତ୍ରୁଟି ଦେଲା",
   "selectLanguage": "ଭାଷା ଚୟନ କରନ୍ତୁ",
-  "howTo": "କିପରି"
+  "howTo": "କିପରି",
+
+    "noBibleTextsAvailable": "କ any ଣସି ବାଇବେଲ ଟେକ୍ସଟ୍ ଉପଲବ୍ଧ ନାହିଁ",
+    "languages": "ଭାଷାଗୁଡିକ",
+    "searchLanguages": "ଭାଷାଗୁଡିକୁ ଖୋଜନ୍ତୁ...",
+    "biblesFilesets": "ବାଇବେଲ: {bibles}, ଫାଇଲସେଟ୍‌ସ: {filesets}",
+
+      "oldTestament": "ପୁରାତନ ନିୟମ",
+      "newTestament": "ନୂତନ ନିୟମ"
+,
+"play": "ଖେଳିବା"
+
+
+
 }

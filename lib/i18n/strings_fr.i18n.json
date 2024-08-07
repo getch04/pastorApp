@@ -311,6 +311,18 @@
 "clearconversationhinttwo":".\n  Veuillez noter que cela ne supprime que votre côté de la conversation, les messages seront toujours affichés sur le chat de votre partenaire.",
 "facebookloginerror":"Something went wrong with the login process.\n, Here is the error Facebook gave us",
 "selectLanguage": "Choisir la langue",
-"howTo": "Comment"
+"howTo": "Comment",
+
+  "noBibleTextsAvailable": "Aucun texte biblique disponible",
+  "languages": "Langues",
+  "searchLanguages": "Rechercher des langues...",
+  "biblesFilesets": "Bibles: {bibles}, Jeux de fichiers: {filesets}"
+
+  ,
+    "oldTestament": "Ancien Testament",
+    "newTestament": "Nouveau Testament"
+
+,"play": "Reproducir"
+
 
 }

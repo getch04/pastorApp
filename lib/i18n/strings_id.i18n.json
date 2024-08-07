@@ -307,5 +307,19 @@
 
   "facebookloginerror": "Ada yang salah dengan proses login.\n, Ini kesalahan yang diberikan Facebook kepada kami"
  , "selectLanguage": "Pilih Bahasa",
-  "howTo": "Cara"
+  "howTo": "Cara",
+
+    "noBibleTextsAvailable": "Tidak ada teks Alkitab yang tersedia",
+    "languages": "Bahasa",
+    "searchLanguages": "Cari bahasa...",
+    "biblesFilesets": "Alkitab: {bibles}, Set berkas: {filesets}",
+
+      "oldTestament": "Perjanjian Lama",
+      "newTestament": "Perjanjian Baru"
+
+
+,
+"play": "Putar"
+
+
 }

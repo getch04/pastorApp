@@ -306,6 +306,19 @@
 ,
 
 "selectLanguage": "Selecione o idioma",
-"howTo": "Como"
+"howTo": "Como",
+
+  "noBibleTextsAvailable": "Nenhum texto bíblico disponível",
+  "languages": "Idiomas",
+  "searchLanguages": "Pesquisar idiomas...",
+  "biblesFilesets": "Bíblias: {bibles}, Conjuntos de arquivos: {filesets}"
+
+  ,
+    "oldTestament": "Antigo Testamento",
+    "newTestament": "Novo Testamento"
+,
+"play": "Tocar"
+
+
 
 }

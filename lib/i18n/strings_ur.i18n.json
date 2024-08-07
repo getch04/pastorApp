@@ -309,5 +309,15 @@
   "facebookloginerror": "لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے",
 
   "selectLanguage": "زبان منتخب کریں",
-  "howTo": "کیسے"
+  "howTo": "کیسے",
+
+  "noBibleTextsAvailable": "کوئی بائبل کے متن دستیاب نہیں ہیں",
+  "languages": "زبانیں",
+  "searchLanguages": "زبانیں تلاش کریں...",
+  "biblesFilesets": "بائبل: {bibles}, فائلسیٹ: {filesets}",
+
+  "oldTestament": "پرانا عہد نامہ",
+  "newTestament": "نیا عہد نامہ",
+  "play": "چلائیں"
+
 }
