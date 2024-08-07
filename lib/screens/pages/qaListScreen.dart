@@ -143,19 +143,13 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: index % 2 == 0
-                                      ? Colors.lightBlue.shade200
-                                      : Colors.white,
-                                  boxShadow: index / 2 != 0
-                                      ? null
-                                      : [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 5,
-                                            blurRadius: 7,
-                                            offset: Offset(0, 3),
-                                          ),
-                                        ]),
+                                  color: Colors.lightBlue.shade200,
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.white,
+                                      width: 1,
+                                    ),
+                                  )),
                               width: MediaQuery.of(context).size.width,
                               child: Padding(
                                 padding: const EdgeInsets.all(20.0),

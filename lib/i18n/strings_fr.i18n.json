@@ -310,7 +310,7 @@
 "clearconversationhintone": "Cette action effacera toute votre conversation avec ",
 "clearconversationhinttwo":".\n  Veuillez noter que cela ne supprime que votre côté de la conversation, les messages seront toujours affichés sur le chat de votre partenaire.",
 "facebookloginerror":"Something went wrong with the login process.\n, Here is the error Facebook gave us",
-"selectLanguage": "selectLanguage",
-"howTo":"howTo"
+"selectLanguage": "Choisir la langue",
+"howTo": "Comment"
 
 }

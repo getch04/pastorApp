@@ -2,14 +2,15 @@ class Verse {
   final String? filesetId;
   final String bookId;
   final String bookName;
-  final String bookNameAlt;
+  final String? bookNameAlt;
   final int chapter;
-  final String chapterAlt;
+  final int? chapterStart;
+  final String? chapterAlt;
   final int verseStart;
-  final String verseStartAlt;
-  final int verseEnd;
-  final String verseEndAlt;
-  final String verseText;
+  final String? verseStartAlt;
+  final int? verseEnd;
+  final String? verseEndAlt;
+  final String? verseText;
 
   Verse({
     required this.filesetId,
@@ -17,6 +18,7 @@ class Verse {
     required this.bookName,
     required this.bookNameAlt,
     required this.chapter,
+    required this.chapterStart,
     required this.chapterAlt,
     required this.verseStart,
     required this.verseStartAlt,
@@ -31,6 +33,7 @@ class Verse {
       bookId: json['book_id'],
       bookName: json['book_name'],
       bookNameAlt: json['book_name_alt'],
+      chapterStart: json['chapter_start'],
       chapter: json['chapter'],
       chapterAlt: json['chapter_alt'],
       verseStart: json['verse_start'],

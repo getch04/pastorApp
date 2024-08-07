@@ -25,6 +25,7 @@ import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
 import 'package:churchapp_flutter/screens/pages/chapterVerseScreen.dart';
 import 'package:churchapp_flutter/screens/pages/howToScreen.dart';
+import 'package:churchapp_flutter/screens/pages/languageDetailScreen.dart';
 import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
@@ -996,6 +997,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               builder: (context) {
                 return HowToDetailScreen(
                   howToModel: args!.items as HowToModel,
+                );
+              },
+            );
+          }
+          if (settings.name == LanguageDetailScreen.routeName) {
+            final ScreenArguements? args =
+                settings.arguments as ScreenArguements?;
+            return MaterialPageRoute(
+              builder: (context) {
+                return LanguageDetailScreen(
+                  languageId: args!.items as int,
                 );
               },
             );

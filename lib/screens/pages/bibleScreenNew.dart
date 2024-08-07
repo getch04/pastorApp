@@ -19,7 +19,6 @@ class BibleScreenNew extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => SearchProvider()),
-        ChangeNotifierProvider(create: (context) => BibleFilterProvider()),
         ChangeNotifierProvider(create: (context) => BibleBooksProvider()),
       ],
       child: BibleScreenNewItem(),
@@ -49,12 +48,10 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
           Provider.of<BibleBooksProvider>(context, listen: false);
 
       filterProvider.addListener(() {
-        bibleBooksProvider
-            .fetchBooks(filterProvider.selectedBible?.abbr ?? 'ENGESV');
+        bibleBooksProvider.fetchBooks(filterProvider.bibleVersion);
       });
 
-      bibleBooksProvider
-          .fetchBooks(filterProvider.selectedBible?.abbr ?? 'ENGESV');
+      bibleBooksProvider.fetchBooks(filterProvider.bibleVersion);
     });
   }
 
@@ -219,18 +216,18 @@ class _BooksListViewState extends State<BooksListView>
         final books = widget.isOldTestament
             ? booksProvider.oldTestamentBooks
             : booksProvider.newTestamentBooks;
-        final filteredBooks = books
-            .where((book) => book.name
-                .toLowerCase()
-                .contains(searchProvider.searchQuery.toLowerCase()))
-            .toList();
+        // final filteredBooks = books
+        //     .where((book) => book.name
+        //         .toLowerCase()
+        //         .contains(searchProvider.searchQuery.toLowerCase()))
+        //     .toList();
 
         return ListView.separated(
           padding: EdgeInsets.all(8.0),
-          itemCount: filteredBooks.length,
+          itemCount: books.length,
           separatorBuilder: (context, index) => Divider(),
           itemBuilder: (context, index) {
-            final book = filteredBooks[index];
+            final book = books[index];
             return ListTile(
               title: Text(book.name,
                   style: TextStyle(fontWeight: FontWeight.bold)),

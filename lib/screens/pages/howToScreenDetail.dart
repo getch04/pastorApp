@@ -1,9 +1,7 @@
-import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/models/howto_model.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
-import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
-import 'package:churchapp_flutter/screens/provider/audio_controller2.dart';
+import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,19 +18,8 @@ class HowToDetailScreen extends StatefulWidget {
 }
 
 class _HowToDetailScreenState extends State<HowToDetailScreen> {
-  AudioController? _audioController;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _audioController = Provider.of<AudioController>(context, listen: false);
-  }
 
-  @override
-  void dispose() {
-    _audioController?.stop();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,13 +57,6 @@ class _HowToDetailScreenState extends State<HowToDetailScreen> {
         body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          // decoration: BoxDecoration(
-          //   gradient: LinearGradient(
-          //     begin: Alignment.topCenter,
-          //     end: Alignment.bottomCenter,
-          //     colors: [Colors.blue.shade50, Colors.white],
-          //   ),
-          // ),
           child: SafeArea(
             child: SingleChildScrollView(
               padding: EdgeInsets.all(20),
@@ -91,26 +71,6 @@ class _HowToDetailScreenState extends State<HowToDetailScreen> {
                       color: Colors.blue.shade800,
                     ),
                     textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 10),
-                  Consumer<AudioController>(
-                    builder: (context, ctr, child) {
-                      return PlayerNew(
-                        audioUrl: widget.howToModel.audio,
-                        onNext: () {},
-                        onPrevious: () {},
-                        isPlaying: ctr.isPlaying,
-                        isLoading: ctr.isLoading,
-                        duration: ctr.duration,
-                        position: ctr.position,
-                        onPlay: () {
-                          _audioController?.pause();
-                          ctr.play(widget.howToModel.audio);
-                        },
-                        onPause: ctr.pause,
-                        onSeek: ctr.seek,
-                      );
-                    },
                   ),
                   Container(
                     padding: EdgeInsets.all(20),

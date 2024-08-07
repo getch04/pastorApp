@@ -5,7 +5,7 @@
  * Locales: 16
  * Strings: 4624 (289.0 per locale)
  *
- * Built on 2024-07-31 at 17:25 UTC
+ * Built on 2024-08-06 at 16:47 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -699,8 +699,8 @@ class _StringsEn {
 	String get clearconversationhintone => 'This action will clear all your conversation with ';
 	String get clearconversationhinttwo => '.\n  Please note that this only deletes your side of the conversation, the messages will still show on your partners chat.';
 	String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
-	String get selectLanguage => 'selectLanguage';
-	String get howTo => 'howTo';
+	String get selectLanguage => 'Select Language';
+	String get howTo => 'How To';
 }
 
 // Path: <root>
@@ -1012,8 +1012,8 @@ class _StringsBn implements _StringsEn {
 	@override String get clearconversationhintone => 'এই পদক্ষেপটি আপনার সাথে সমস্ত কথোপকথন পরিষ্কার করবে ';
 	@override String get clearconversationhinttwo => '.\n দয়া করে লক্ষ্য করুন যে এটি কেবল আপনার কথোপকথনটি মুছে দেয়, বার্তাগুলি এখনও আপনার অংশীদারের চ্যাটে প্রদর্শিত হবে।';
 	@override String get facebookloginerror => 'লগইন প্রক্রিয়ায় কিছু ভুল হয়েছে।\n, এখানে ফেসবুক আমাদের যা ত্রুটি দিয়েছে';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'ভাষা নির্বাচন করুন';
+	@override String get howTo => 'কিভাবে';
 }
 
 // Path: <root>
@@ -1325,8 +1325,8 @@ class _StringsDz implements _StringsEn {
 	@override String get clearconversationhintone => 'དངུལ་རྫས་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་གཏོང་དྲི་བཟུང་གཏོང་སྒྲིག་དྲི་བཟུང་ ';
 	@override String get clearconversationhinttwo => '.\n  དངུལ་རྫས་སྒྲིག་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་གཏོང་དྲི་བཟུང་སྒྲིག་';
 	@override String get facebookloginerror => 'དངུལ་རྫས་གཏོང་སྒྲིག་གཏོང་དྲི་བཟུང་སྒྲིག་སྒྲིག་。\n, དངུལ་རྫས་གཏོང་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'དབྱིན་རྒྱུད་སྐད་འབྱུང་།';
+	@override String get howTo => 'ག་འདྲ་བྱས།';
 }
 
 // Path: <root>
@@ -1638,8 +1638,8 @@ class _StringsEs implements _StringsEn {
 	@override String get clearconversationhintone => 'Esta acción borrará toda su conversación con ';
 	@override String get clearconversationhinttwo => '.\n  Tenga en cuenta que esto solo elimina su lado de la conversación, los mensajes aún se mostrarán en el chat de sus socios.';
 	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'Seleccionar idioma';
+	@override String get howTo => 'Cómo';
 }
 
 // Path: <root>
@@ -1951,8 +1951,8 @@ class _StringsFr implements _StringsEn {
 	@override String get clearconversationhintone => 'Cette action effacera toute votre conversation avec ';
 	@override String get clearconversationhinttwo => '.\n  Veuillez noter que cela ne supprime que votre côté de la conversation, les messages seront toujours affichés sur le chat de votre partenaire.';
 	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'Choisir la langue';
+	@override String get howTo => 'Comment';
 }
 
 // Path: <root>
@@ -2264,8 +2264,8 @@ class _StringsHi implements _StringsEn {
 	@override String get clearconversationhintone => 'यह कार्रवाई आपकी पूरी बातचीत को साफ़ कर देगी ';
 	@override String get clearconversationhinttwo => '.\n कृपया ध्यान दें कि यह केवल आपकी बातचीत का भाग हटाता है, संदेश अभी भी आपके साथी के चैट में दिखाए जाएंगे।';
 	@override String get facebookloginerror => 'लॉगिन प्रक्रिया के साथ कुछ गलत हो गया।\n, यहाँ फेसबुक ने हमें त्रुटि दी है';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'भाषा चुनें';
+	@override String get howTo => 'कैसे';
 }
 
 // Path: <root>
@@ -2577,8 +2577,8 @@ class _StringsId implements _StringsEn {
 	@override String get clearconversationhintone => 'Tindakan ini akan membersihkan semua percakapan Anda dengan ';
 	@override String get clearconversationhinttwo => '.\n Harap dicatat bahwa ini hanya menghapus sisi percakapan Anda, pesan masih akan terlihat di chat pasangan Anda.';
 	@override String get facebookloginerror => 'Ada yang salah dengan proses login.\n, Ini kesalahan yang diberikan Facebook kepada kami';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'Pilih Bahasa';
+	@override String get howTo => 'Cara';
 }
 
 // Path: <root>
@@ -2890,8 +2890,8 @@ class _StringsKn implements _StringsEn {
 	@override String get clearconversationhintone => 'ಈ ಕ್ರಿಯೆಯಿಂದ ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಸಂಭಾಷಣೆ ಶುದ್ಧಗೊಳಿಸಲಾಗುತ್ತದೆ ';
 	@override String get clearconversationhinttwo => '.\n ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಇದು ನಿಮ್ಮ ಪಾರ್ಟ್ನರ್‌ಗಾಗಿ ಮೆಸೇಜ್‌ಗಳನ್ನು ಇನ್ನೂ ತೋರಿಸುತ್ತದೆ.';
 	@override String get facebookloginerror => 'ಲಾಗಿನ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ.\n, ಫೇಸ್ಬುಕ್ ನಮಗೆ ನೀಡಿದ ದೋಷ ಇಲ್ಲಿದೆ';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ';
+	@override String get howTo => 'ಹೇಗೆ';
 }
 
 // Path: <root>
@@ -3203,8 +3203,8 @@ class _StringsMr implements _StringsEn {
 	@override String get clearconversationhintone => 'ही क्रिया आपले सर्व संभाषण स्वच्छ करेल ';
 	@override String get clearconversationhinttwo => '.\n कृपया लक्षात ठेवा की हे केवळ आपली बाजूची संभाषणे हटवते, संदेश अजूनही आपल्या पार्टनरच्या चॅटवर दिसतील.';
 	@override String get facebookloginerror => 'लॉगिन प्रक्रियेत काहीतरी चुकीचे झाले.\n, येथे फेसबुकने आम्हाला दिलेली त्रुटी आहे';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'भाषा निवडा';
+	@override String get howTo => 'कसे';
 }
 
 // Path: <root>
@@ -3516,8 +3516,8 @@ class _StringsNe implements _StringsEn {
 	@override String get clearconversationhintone => 'यस कार्यले तपाईंको सबै कुराकानी सफा गर्छ ';
 	@override String get clearconversationhinttwo => '.\n कृपया ध्यान दिनुहोस् कि यसले केवल तपाईंको पक्षको कुराकानी मेटाउँछ, सन्देशहरू अझै तपाईंको साथीको च्याटमा देखिन्छ।';
 	@override String get facebookloginerror => 'लॉगिन प्रक्रियामा केही गडबड भयो।\n यहाँ फेसबुकले हामीलाई दिएको त्रुटि छ';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'भाषा चयन गर्नुहोस्';
+	@override String get howTo => 'कसरी';
 }
 
 // Path: <root>
@@ -3829,8 +3829,8 @@ class _StringsOr implements _StringsEn {
 	@override String get clearconversationhintone => 'ଏହି କାର୍ଯ୍ୟଟି ଆପଣଙ୍କର ସମସ୍ତ କଥାବାର୍ତ୍ତାକୁ ସଫା କରିବ ';
 	@override String get clearconversationhinttwo => '.\n ଦୟାକରି ଧ୍ୟାନ ଦିଅନ୍ତୁ ଏହା କେବଳ ଆପଣଙ୍କର ପର୍ଯ୍ୟନ୍ତ କଥାବାର୍ତ୍ତାକୁ ବାହାର କରିବ, ସନ୍ଦେଶଗୁଡ଼ିକ ଏବେ ଆପଣଙ୍କର ସାଥୀଙ୍କର ଚ୍ୟାଟରେ ଦେଖାଯାଇପାରିବ।';
 	@override String get facebookloginerror => 'ଲଗଇନ୍ ପ୍ରକ୍ରିୟାରେ କିଛି ତ୍ରୁଟି ହୋଇଛି।\n ଏହି ସମୟରେ ଫେସବୁକ୍ ଆମକୁ ଯେତେବେଳେ ତ୍ରୁଟି ଦେଲା';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'ଭାଷା ଚୟନ କରନ୍ତୁ';
+	@override String get howTo => 'କିପରି';
 }
 
 // Path: <root>
@@ -4142,8 +4142,8 @@ class _StringsPa implements _StringsEn {
 	@override String get clearconversationhintone => 'ਇਹ ਕਾਰਵਾਈ ਤੁਹਾਡੇ ਸਾਰੇ ਗੱਲਬਾਤ ਨੂੰ ਸਾਫ਼ ਕਰੇਗੀ ';
 	@override String get clearconversationhinttwo => '.\n ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ, ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਚੈਟ \'ਤੇ ਵੇਖੇ ਜਾਣਗੇ।';
 	@override String get facebookloginerror => 'ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'ਭਾਸ਼ਾ ਚੁਣੋ';
+	@override String get howTo => 'ਕਿਵੇਂ';
 }
 
 // Path: <root>
@@ -4455,8 +4455,8 @@ class _StringsPt implements _StringsEn {
 	@override String get clearconversationhintone => 'Esta ação irá limpar toda a sua conversa com ';
 	@override String get clearconversationhinttwo => '.\n  Observe que isso apenas exclui o seu lado da conversa, as mensagens ainda serão exibidas no bate-papo de seus parceiros.';
 	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'Selecione o idioma';
+	@override String get howTo => 'Como';
 }
 
 // Path: <root>
@@ -4768,8 +4768,8 @@ class _StringsTa implements _StringsEn {
 	@override String get clearconversationhintone => 'இந்த செயல் உங்களின் அனைத்து உரையாடல்களையும் தூக்கிவிடும் ';
 	@override String get clearconversationhinttwo => '.\n தயவுசெய்து கவனிக்கவும், இது உங்கள் பக்கத்தின் உரையாடலை மட்டுமே நீக்கிவிடும், செய்திகள் இன்னும் உங்கள் நண்பரின் சாதனத்தில் தோன்றும்.';
 	@override String get facebookloginerror => 'உள்நுழைவு செயல்முறையில் ஏதோ தவறாகிவிட்டது.\n இதோ இங்கே பேஸ்புக் நமக்கு கொடுத்த பிழை';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'மொழியைத் தேர்ந்தெடுக்கவும்';
+	@override String get howTo => 'எப்படி';
 }
 
 // Path: <root>
@@ -5081,8 +5081,8 @@ class _StringsTe implements _StringsEn {
 	@override String get clearconversationhintone => 'ఈ చర్య మీ అన్ని సంభాషణలను తొలగిస్తుంది ';
 	@override String get clearconversationhinttwo => '.\n దయచేసి గమనించండి, ఇది మీ భాగంలో ఉన్న సంభాషణని మాత్రమే తొలగిస్తుంది, సందేశాలు ఇంకా మీ భాగస్వామి యొక్క పరికరంలో కనిపిస్తాయి.';
 	@override String get facebookloginerror => 'లాగిన్ ప్రక్రియలో ఏదో తేడా జరిగింది.\n ఇది ఫేస్‌బుక్ మాకు ఇచ్చిన లోపం';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'భాషను ఎంచుకోండి';
+	@override String get howTo => 'ఎలా';
 }
 
 // Path: <root>
@@ -5394,8 +5394,8 @@ class _StringsUr implements _StringsEn {
 	@override String get clearconversationhintone => 'یہ عمل آپ کی تمام گفتگو صاف کر دے گا ';
 	@override String get clearconversationhinttwo => '.\n براہ کرم نوٹ کریں کہ یہ آپ کی طرف کی گفتگو کو ہی صاف کرے گا، پیغامات ابھی بھی آپ کے پارٹنر کے چیٹ میں دکھائی دیں گے۔';
 	@override String get facebookloginerror => 'لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے';
-	@override String get selectLanguage => 'selectLanguage';
-	@override String get howTo => 'howTo';
+	@override String get selectLanguage => 'زبان منتخب کریں';
+	@override String get howTo => 'کیسے';
 }
 
 /// Flat map(s) containing all translations.
@@ -5691,8 +5691,8 @@ extension on _StringsEn {
 			'clearconversationhintone': 'This action will clear all your conversation with ',
 			'clearconversationhinttwo': '.\n  Please note that this only deletes your side of the conversation, the messages will still show on your partners chat.',
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'Select Language',
+			'howTo': 'How To',
 		};
 	}
 }
@@ -5987,8 +5987,8 @@ extension on _StringsBn {
 			'clearconversationhintone': 'এই পদক্ষেপটি আপনার সাথে সমস্ত কথোপকথন পরিষ্কার করবে ',
 			'clearconversationhinttwo': '.\n দয়া করে লক্ষ্য করুন যে এটি কেবল আপনার কথোপকথনটি মুছে দেয়, বার্তাগুলি এখনও আপনার অংশীদারের চ্যাটে প্রদর্শিত হবে।',
 			'facebookloginerror': 'লগইন প্রক্রিয়ায় কিছু ভুল হয়েছে।\n, এখানে ফেসবুক আমাদের যা ত্রুটি দিয়েছে',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'ভাষা নির্বাচন করুন',
+			'howTo': 'কিভাবে',
 		};
 	}
 }
@@ -6283,8 +6283,8 @@ extension on _StringsDz {
 			'clearconversationhintone': 'དངུལ་རྫས་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་གཏོང་དྲི་བཟུང་གཏོང་སྒྲིག་དྲི་བཟུང་ ',
 			'clearconversationhinttwo': '.\n  དངུལ་རྫས་སྒྲིག་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་གཏོང་དྲི་བཟུང་སྒྲིག་',
 			'facebookloginerror': 'དངུལ་རྫས་གཏོང་སྒྲིག་གཏོང་དྲི་བཟུང་སྒྲིག་སྒྲིག་。\n, དངུལ་རྫས་གཏོང་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'དབྱིན་རྒྱུད་སྐད་འབྱུང་།',
+			'howTo': 'ག་འདྲ་བྱས།',
 		};
 	}
 }
@@ -6579,8 +6579,8 @@ extension on _StringsEs {
 			'clearconversationhintone': 'Esta acción borrará toda su conversación con ',
 			'clearconversationhinttwo': '.\n  Tenga en cuenta que esto solo elimina su lado de la conversación, los mensajes aún se mostrarán en el chat de sus socios.',
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'Seleccionar idioma',
+			'howTo': 'Cómo',
 		};
 	}
 }
@@ -6875,8 +6875,8 @@ extension on _StringsFr {
 			'clearconversationhintone': 'Cette action effacera toute votre conversation avec ',
 			'clearconversationhinttwo': '.\n  Veuillez noter que cela ne supprime que votre côté de la conversation, les messages seront toujours affichés sur le chat de votre partenaire.',
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'Choisir la langue',
+			'howTo': 'Comment',
 		};
 	}
 }
@@ -7171,8 +7171,8 @@ extension on _StringsHi {
 			'clearconversationhintone': 'यह कार्रवाई आपकी पूरी बातचीत को साफ़ कर देगी ',
 			'clearconversationhinttwo': '.\n कृपया ध्यान दें कि यह केवल आपकी बातचीत का भाग हटाता है, संदेश अभी भी आपके साथी के चैट में दिखाए जाएंगे।',
 			'facebookloginerror': 'लॉगिन प्रक्रिया के साथ कुछ गलत हो गया।\n, यहाँ फेसबुक ने हमें त्रुटि दी है',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'भाषा चुनें',
+			'howTo': 'कैसे',
 		};
 	}
 }
@@ -7467,8 +7467,8 @@ extension on _StringsId {
 			'clearconversationhintone': 'Tindakan ini akan membersihkan semua percakapan Anda dengan ',
 			'clearconversationhinttwo': '.\n Harap dicatat bahwa ini hanya menghapus sisi percakapan Anda, pesan masih akan terlihat di chat pasangan Anda.',
 			'facebookloginerror': 'Ada yang salah dengan proses login.\n, Ini kesalahan yang diberikan Facebook kepada kami',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'Pilih Bahasa',
+			'howTo': 'Cara',
 		};
 	}
 }
@@ -7763,8 +7763,8 @@ extension on _StringsKn {
 			'clearconversationhintone': 'ಈ ಕ್ರಿಯೆಯಿಂದ ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಸಂಭಾಷಣೆ ಶುದ್ಧಗೊಳಿಸಲಾಗುತ್ತದೆ ',
 			'clearconversationhinttwo': '.\n ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಇದು ನಿಮ್ಮ ಪಾರ್ಟ್ನರ್‌ಗಾಗಿ ಮೆಸೇಜ್‌ಗಳನ್ನು ಇನ್ನೂ ತೋರಿಸುತ್ತದೆ.',
 			'facebookloginerror': 'ಲಾಗಿನ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ.\n, ಫೇಸ್ಬುಕ್ ನಮಗೆ ನೀಡಿದ ದೋಷ ಇಲ್ಲಿದೆ',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ',
+			'howTo': 'ಹೇಗೆ',
 		};
 	}
 }
@@ -8059,8 +8059,8 @@ extension on _StringsMr {
 			'clearconversationhintone': 'ही क्रिया आपले सर्व संभाषण स्वच्छ करेल ',
 			'clearconversationhinttwo': '.\n कृपया लक्षात ठेवा की हे केवळ आपली बाजूची संभाषणे हटवते, संदेश अजूनही आपल्या पार्टनरच्या चॅटवर दिसतील.',
 			'facebookloginerror': 'लॉगिन प्रक्रियेत काहीतरी चुकीचे झाले.\n, येथे फेसबुकने आम्हाला दिलेली त्रुटी आहे',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'भाषा निवडा',
+			'howTo': 'कसे',
 		};
 	}
 }
@@ -8355,8 +8355,8 @@ extension on _StringsNe {
 			'clearconversationhintone': 'यस कार्यले तपाईंको सबै कुराकानी सफा गर्छ ',
 			'clearconversationhinttwo': '.\n कृपया ध्यान दिनुहोस् कि यसले केवल तपाईंको पक्षको कुराकानी मेटाउँछ, सन्देशहरू अझै तपाईंको साथीको च्याटमा देखिन्छ।',
 			'facebookloginerror': 'लॉगिन प्रक्रियामा केही गडबड भयो।\n यहाँ फेसबुकले हामीलाई दिएको त्रुटि छ',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'भाषा चयन गर्नुहोस्',
+			'howTo': 'कसरी',
 		};
 	}
 }
@@ -8651,8 +8651,8 @@ extension on _StringsOr {
 			'clearconversationhintone': 'ଏହି କାର୍ଯ୍ୟଟି ଆପଣଙ୍କର ସମସ୍ତ କଥାବାର୍ତ୍ତାକୁ ସଫା କରିବ ',
 			'clearconversationhinttwo': '.\n ଦୟାକରି ଧ୍ୟାନ ଦିଅନ୍ତୁ ଏହା କେବଳ ଆପଣଙ୍କର ପର୍ଯ୍ୟନ୍ତ କଥାବାର୍ତ୍ତାକୁ ବାହାର କରିବ, ସନ୍ଦେଶଗୁଡ଼ିକ ଏବେ ଆପଣଙ୍କର ସାଥୀଙ୍କର ଚ୍ୟାଟରେ ଦେଖାଯାଇପାରିବ।',
 			'facebookloginerror': 'ଲଗଇନ୍ ପ୍ରକ୍ରିୟାରେ କିଛି ତ୍ରୁଟି ହୋଇଛି।\n ଏହି ସମୟରେ ଫେସବୁକ୍ ଆମକୁ ଯେତେବେଳେ ତ୍ରୁଟି ଦେଲା',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'ଭାଷା ଚୟନ କରନ୍ତୁ',
+			'howTo': 'କିପରି',
 		};
 	}
 }
@@ -8947,8 +8947,8 @@ extension on _StringsPa {
 			'clearconversationhintone': 'ਇਹ ਕਾਰਵਾਈ ਤੁਹਾਡੇ ਸਾਰੇ ਗੱਲਬਾਤ ਨੂੰ ਸਾਫ਼ ਕਰੇਗੀ ',
 			'clearconversationhinttwo': '.\n ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ, ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਚੈਟ \'ਤੇ ਵੇਖੇ ਜਾਣਗੇ।',
 			'facebookloginerror': 'ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'ਭਾਸ਼ਾ ਚੁਣੋ',
+			'howTo': 'ਕਿਵੇਂ',
 		};
 	}
 }
@@ -9243,8 +9243,8 @@ extension on _StringsPt {
 			'clearconversationhintone': 'Esta ação irá limpar toda a sua conversa com ',
 			'clearconversationhinttwo': '.\n  Observe que isso apenas exclui o seu lado da conversa, as mensagens ainda serão exibidas no bate-papo de seus parceiros.',
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'Selecione o idioma',
+			'howTo': 'Como',
 		};
 	}
 }
@@ -9539,8 +9539,8 @@ extension on _StringsTa {
 			'clearconversationhintone': 'இந்த செயல் உங்களின் அனைத்து உரையாடல்களையும் தூக்கிவிடும் ',
 			'clearconversationhinttwo': '.\n தயவுசெய்து கவனிக்கவும், இது உங்கள் பக்கத்தின் உரையாடலை மட்டுமே நீக்கிவிடும், செய்திகள் இன்னும் உங்கள் நண்பரின் சாதனத்தில் தோன்றும்.',
 			'facebookloginerror': 'உள்நுழைவு செயல்முறையில் ஏதோ தவறாகிவிட்டது.\n இதோ இங்கே பேஸ்புக் நமக்கு கொடுத்த பிழை',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'மொழியைத் தேர்ந்தெடுக்கவும்',
+			'howTo': 'எப்படி',
 		};
 	}
 }
@@ -9835,8 +9835,8 @@ extension on _StringsTe {
 			'clearconversationhintone': 'ఈ చర్య మీ అన్ని సంభాషణలను తొలగిస్తుంది ',
 			'clearconversationhinttwo': '.\n దయచేసి గమనించండి, ఇది మీ భాగంలో ఉన్న సంభాషణని మాత్రమే తొలగిస్తుంది, సందేశాలు ఇంకా మీ భాగస్వామి యొక్క పరికరంలో కనిపిస్తాయి.',
 			'facebookloginerror': 'లాగిన్ ప్రక్రియలో ఏదో తేడా జరిగింది.\n ఇది ఫేస్‌బుక్ మాకు ఇచ్చిన లోపం',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'భాషను ఎంచుకోండి',
+			'howTo': 'ఎలా',
 		};
 	}
 }
@@ -10131,8 +10131,8 @@ extension on _StringsUr {
 			'clearconversationhintone': 'یہ عمل آپ کی تمام گفتگو صاف کر دے گا ',
 			'clearconversationhinttwo': '.\n براہ کرم نوٹ کریں کہ یہ آپ کی طرف کی گفتگو کو ہی صاف کرے گا، پیغامات ابھی بھی آپ کے پارٹنر کے چیٹ میں دکھائی دیں گے۔',
 			'facebookloginerror': 'لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے',
-			'selectLanguage': 'selectLanguage',
-			'howTo': 'howTo',
+			'selectLanguage': 'زبان منتخب کریں',
+			'howTo': 'کیسے',
 		};
 	}
 }

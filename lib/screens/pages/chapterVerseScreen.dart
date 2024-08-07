@@ -6,10 +6,12 @@ import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/models/models/verse.dart';
 import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
+import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ChapterVerseScreen extends StatelessWidget {
@@ -40,10 +42,15 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
   int selectedChapter = 1;
   bool isLoading = false;
 
+  late BibleFilterProvider filterProvider;
+
   @override
   void initState() {
     super.initState();
-    fetchChapters();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      filterProvider = Provider.of<BibleFilterProvider>(context, listen: false);
+      fetchChapters();
+    });
   }
 
   void fetchChapters() {
@@ -59,7 +66,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
     });
 
     final url =
-        '$BIBLE_BASE_URL/bibles/filesets/${widget.book.$2.abbr}/${widget.book.$1.bookId}/$chapter?v=4&key=$BIBLE_API_KEY';
+        '$BIBLE_BASE_URL/bibles/filesets/${filterProvider.bibleVersion?.getTextFilesetId}/${widget.book.$1.bookId}/$chapter?v=4&language_code=${filterProvider.bibleVersion?.languageId ?? ''}&key=$BIBLE_API_KEY';
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -69,8 +76,9 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
 
         setState(() {
           verses = versesList
-              .where((verse) => verse.chapter == chapter)
-              .map((verse) => verse.verseText)
+              .where((verse) =>
+                  verse.chapter == chapter && verse.verseText != null)
+              .map((verse) => verse.verseText!)
               .toList();
           isLoading = false;
         });

@@ -1,9 +1,11 @@
 import 'package:churchapp_flutter/core/common.dart';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
+import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/country_data.dart';
 import 'package:churchapp_flutter/models/models/language.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
+import 'package:churchapp_flutter/screens/pages/languageDetailScreen.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/screens/provider/pagination_ptovider.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
@@ -38,7 +40,6 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
   static const String BIBLES_ENDPOINT =
       'https://4.dbt.io/api/bibles?language_code=ENG&v=4';
   static const String LANGUAGES_ENDPOINT = 'https://4.dbt.io/api/languages?v=4';
-  static const String COUNTRIES_ENDPOINT = 'https://4.dbt.io/api/countries?v=4';
 
   late PaginationProvider<BibleData> biblesProvider;
   late PaginationProvider<Language> languagesProvider;
@@ -87,24 +88,12 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
     });
   }
 
-  // void onItemSelected(dynamic item) {
-  //   selectedItem.value = item;
-
-  //   final filterProvider =
-  //       Provider.of<BibleFilterProvider>(context, listen: false);
-  //   if (selectedFilter == 'Bibles') {
-  //     filterProvider.setSelectedBible(item['abbr']);
-  //   } else if (selectedFilter == 'Languages') {
-  //     filterProvider.setSelectedLanguage(item.id.toString());
-  //   } else {
-  //     filterProvider.setSelectedCountry(item.codes.isoA2.toString());
-  //   }
-  // }
-
   void onLangeageItemSelected(Language item) {
     selectedLanguageItem.value = item;
     Provider.of<BibleFilterProvider>(context, listen: false)
         .setSelectedLanguage(item);
+    Navigator.pushNamed(context, LanguageDetailScreen.routeName,
+        arguments: ScreenArguements(items: item.id));
   }
 
   void onBibleItemSelected(BibleData item) {
