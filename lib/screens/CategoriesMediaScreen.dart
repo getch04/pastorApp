@@ -62,7 +62,7 @@ class _CategoriesMediaScreenState extends State<MediaScreen> {
   late List<Media> items;
 
   void _onRefresh() async {
-    mediaScreensModel.loadItems(widget.categories!.id);
+    mediaScreensModel.loadItems(widget.categories!.id, context);
   }
 
   void _onLoading() async {
@@ -74,7 +74,7 @@ class _CategoriesMediaScreenState extends State<MediaScreen> {
     super.initState();
     Future.delayed(const Duration(milliseconds: 0), () {
       Provider.of<CategoryMediaScreensModel>(context, listen: false)
-          .loadItems(widget.categories!.id);
+          .loadItems(widget.categories!.id, context);
     });
   }
 

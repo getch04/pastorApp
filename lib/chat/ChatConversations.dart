@@ -16,7 +16,6 @@ import '../models/ChatMessages.dart';
 import 'dart:math';
 import '../i18n/strings.g.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'dart:async';
 import 'ChatConversationopupMenu.dart';
 
@@ -352,9 +351,9 @@ class _GetPartnerChatBodyState extends State<GetPartnerChatBody> {
                               if (mounted) {
                                 if (result != null) {
                                   PlatformFile file = result.files.first;
-                                  final filePath =
-                                      await FlutterAbsolutePath.getAbsolutePath(
-                                          file.path!);
+                                  // final filePath =
+                                  //     await FlutterAbsolutePath.getAbsolutePath(
+                                  //         file.path!);
                                   //Toast.show(filePath, context);
                                   if (file.size > (1024 * 1)) {
                                     Alerts.showToast(
@@ -380,7 +379,7 @@ class _GetPartnerChatBodyState extends State<GetPartnerChatBody> {
                                         widget.chatManager!.userdata!.email,
                                     seen: 1,
                                     date: date,
-                                    uploadFile: filePath,
+                                    uploadFile: 'filePath',
                                     isSaved: false,
                                   )));
                                 }

@@ -19,37 +19,8 @@ class ToolsDetailScreen extends StatefulWidget {
 class _ToolsDetailScreenState extends State<ToolsDetailScreen> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  // late BetterPlayerController _betterPlayerController;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
-  //     BetterPlayerDataSourceType.network,
-  //     'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-  //   );
-  //   _betterPlayerController = BetterPlayerController(
-  //     BetterPlayerConfiguration(
-  //       autoPlay: true,
-  //       aspectRatio: 16 / 9,
-  //       controlsConfiguration: BetterPlayerControlsConfiguration(
-  //         showControlsOnInitialize: true,
-  //         enablePlayPause: true,
-  //         enableProgressText: true,
-  //         enableProgressBar: true,
-  //         enableMute: true,
-  //         enableFullscreen: true,
-  //         controlBarColor: Colors.black87,
-  //         iconsColor: Colors.white,
-  //       ),
-  //     ),
-  //     betterPlayerDataSource: betterPlayerDataSource,
-  //   );
-  // }
-
   @override
   void dispose() {
-    // _betterPlayerController.dispose();
     super.dispose();
   }
 
@@ -135,7 +106,7 @@ class _ToolsDetailScreenState extends State<ToolsDetailScreen> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      "howTo heal the sick?",
+                      widget.media?.title ?? 'Untitled',
                       textAlign: TextAlign.center,
                       style: TextStyles.title(context).copyWith(
                         fontWeight: FontWeight.bold,

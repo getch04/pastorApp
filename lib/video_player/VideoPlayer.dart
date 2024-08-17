@@ -127,7 +127,7 @@ class _VideoPlayerState extends State<VideoPlayer>
             TimUtil.parseDuration(event.parameters!["progress"].toString()),
             isUserSubscribed)) {
           _betterPlayerController?.pause();
-          Alerts.showPreviewSubscribeAlertDialog(context);
+          // Alerts.showPreviewSubscribeAlertDialog(context);
         }
       }
     });
@@ -152,7 +152,7 @@ class _VideoPlayerState extends State<VideoPlayer>
 
   @override
   Widget build(BuildContext context) {
-    isUserSubscribed = Provider.of<SubscriptionModel>(context).isSubscribed;
+    // isUserSubscribed = Provider.of<SubscriptionModel>(context).isSubscribed;
     return ChangeNotifierProvider(
       create: (context) => MediaPlayerModel(userdata, widget.media),
       child: Scaffold(

@@ -52,7 +52,7 @@ dependencies:
   isolated_download_manager: ^1.0.2
   in_app_purchase: ^3.0.8
   share_plus: ^9.0.0
-  package_info: ^2.0.2
+  # package_info: ^2.0.2
   in_app_review: ^2.0.4
   flutter_web_browser: "^0.17.1"
   lottie: ^3.1.2
@@ -66,9 +66,9 @@ dependencies:
   flutter_material_color_picker: ^1.1.0+2
   #dynamic_text_highlighting: ^2.2.0
   #media_picker_widget: ^0.0.7
-  flutter_absolute_path:
-    git:
-      url: https://github.com/canewsin/flutter_absolute_path.git
+  # flutter_absolute_path:
+  #   git:
+  #     url: https://github.com/canewsin/flutter_absolute_path.git
   smooth_page_indicator: ^1.0.0+2
   visibility_detector: ^0.4.0+2
   file_picker: ^8.0.3
@@ -100,6 +100,8 @@ dependencies:
   flutter_dotenv: ^5.1.0
   audioplayers: ^6.0.0
   infinite_scroll_pagination: ^4.0.0
+  translator: ^1.0.0
+  # youtube_player_flutter: ^8.1.2
 
 dev_dependencies:
   flutter_test:

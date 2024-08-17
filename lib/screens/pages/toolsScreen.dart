@@ -2,6 +2,7 @@ import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/Media.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/providers/CategoryMediaScreensModel.dart';
 import 'package:churchapp_flutter/screens/NoitemScreen.dart';
@@ -9,6 +10,7 @@ import 'package:churchapp_flutter/screens/pages/toolsDetailScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/MediaItemTile.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
+import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -193,7 +195,7 @@ class _CategoriesMediaScreenNewState extends State<MediaScreen> {
   late List<Media> items;
 
   void _onRefresh() async {
-    mediaScreensModel.loadItems(widget.categories!.id);
+    mediaScreensModel.loadItems(widget.categories!.id, context);
   }
 
   void _onLoading() async {
@@ -203,9 +205,10 @@ class _CategoriesMediaScreenNewState extends State<MediaScreen> {
   @override
   void initState() {
     super.initState();
+
     Future.delayed(const Duration(milliseconds: 0), () {
       Provider.of<CategoryMediaScreensModel>(context, listen: false)
-          .loadItems(widget.categories!.id);
+          .loadItems(widget.categories!.id, context);
     });
   }
 

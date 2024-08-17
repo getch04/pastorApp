@@ -66,7 +66,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
     });
 
     final url =
-        '$BIBLE_BASE_URL/bibles/filesets/${filterProvider.bibleVersion.getTextFilesetId(filterProvider.selectedType)}/${widget.book.bookId}/$chapter?v=4&language_code=${filterProvider.bibleVersion.languageId ?? ''}&key=$BIBLE_API_KEY';
+        '$BIBLE_BASE_URL/bibles/filesets/${filterProvider.bibleVersion.getTextFilesetId(filterProvider.selectedType)}/${widget.book.bookId}/$chapter?v=4&key=$BIBLE_API_KEY';
 
     try {
       final response = await http.get(Uri.parse(url));

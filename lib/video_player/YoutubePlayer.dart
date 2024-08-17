@@ -63,11 +63,11 @@ class _PlayerState extends State<YoutubeVideoPlayer>
 
   @override
   Widget build(BuildContext context) {
-    isUserSubscribed = Provider.of<SubscriptionModel>(context).isSubscribed;
+    // isUserSubscribed = Provider.of<SubscriptionModel>(context).isSubscribed;
     return YoutubePlayer(
       controller: _controller!,
       onReady: () {
-        _controller!.addListener(listener);
+        // _controller!.addListener(listener);
       },
       showVideoProgressIndicator: true,
       bottomActions: <Widget>[
@@ -81,14 +81,14 @@ class _PlayerState extends State<YoutubeVideoPlayer>
     );
   }
 
-  void listener() {
-    if (!mounted) return;
-    if (Utility.isPreviewDuration(
-        widget.media,
-        TimUtil.parseDuration(_controller!.value.position.toString()),
-        isUserSubscribed)) {
-      _controller?.pause();
-      Alerts.showPreviewSubscribeAlertDialog(context);
-    }
-  }
+  // void listener() {
+  //   if (!mounted) return;
+  //   if (Utility.isPreviewDuration(
+  //       widget.media,
+  //       TimUtil.parseDuration(_controller!.value.position.toString()),
+  //       isUserSubscribed)) {
+  //     _controller?.pause();
+  //     // Alerts.showPreviewSubscribeAlertDialog(context);
+  //   }
+  // }
 }

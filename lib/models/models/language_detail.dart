@@ -66,9 +66,40 @@ class BibleVersion {
   // Method to get the first fileset id with type of "text_plain" or "text" and specific size
   String? getTextFilesetId(String size) {
     if (filesets.containsKey('dbp-prod')) {
-      for (var fileset in filesets['dbp-prod']!) {
-        if ((fileset.type == 'text' || fileset.type == 'text_plain' || fileset.type=='text_usx' || fileset.type=='text_json') &&
-            (fileset.size.toUpperCase() == size || fileset.size == 'C')) {
+      List<Fileset> filteredFilesets = filesets['dbp-prod']
+              ?.where((val) => val.type.toString().startsWith('text'))
+              .where((fileset) {
+            // Exclude 'NT' if the size is 'OT' and vice versa
+            if (size.toUpperCase() == 'OT' &&
+                fileset.size.toUpperCase() == 'NT') {
+              return false;
+            }
+            if (size.toUpperCase() == 'NT' &&
+                fileset.size.toUpperCase() == 'OT') {
+              return false;
+            }
+            // Include all other sizes or matching sizes
+            return true;
+          }).toList() ??
+          [];
+
+      // Prioritize 'text' over other types, followed by 'text_plain', 'text_format', and 'text_json'
+      for (var preferredType in [
+        'text',
+        'text_plain',
+        'text_format',
+        'text_json'
+      ]) {
+        for (var fileset in filteredFilesets) {
+          if (fileset.type == preferredType) {
+            return fileset.id;
+          }
+        }
+      }
+
+      // If no 'text' fileset is found, return any other fileset that starts with 'text'
+      for (var fileset in filteredFilesets) {
+        if (fileset.type.startsWith('text')) {
           return fileset.id;
         }
       }
@@ -79,13 +110,80 @@ class BibleVersion {
   // Method to get the first fileset id with type of "audio" and specific size
   String? getAudioFilesetId(String size) {
     if (filesets.containsKey('dbp-prod')) {
-      for (var fileset in filesets['dbp-prod']!) {
-        if (fileset.type == 'audio' && fileset.size == size) {
-          return fileset.id;
-        }
+      List<Fileset> filteredFilesets = filesets['dbp-prod']!
+          .where((fileset) =>
+              (fileset.type.startsWith('audio') && fileset.size == size))
+          .toList();
+
+      // Prioritize based on bitrate, container, and codec
+      filteredFilesets.sort((a, b) {
+        int bitrateComparison = compareBitrate(a.bitrate, b.bitrate);
+        if (bitrateComparison != 0) return bitrateComparison;
+
+        int containerComparison = compareContainer(a.container, b.container);
+        if (containerComparison != 0) return containerComparison;
+
+        return compareCodec(a.codec, b.codec);
+      });
+
+      // Return the highest priority fileset ID
+      if (filteredFilesets.isNotEmpty) {
+        return filteredFilesets.first.id;
       }
     }
     return null;
+  }
+
+// Compare bitrates (higher bitrate is preferred)
+  int compareBitrate(String? bitrateA, String? bitrateB) {
+    if (bitrateA == null && bitrateB == null) return 0;
+    if (bitrateA == null) return 1; // Null is less preferred
+    if (bitrateB == null) return -1; // Null is less preferred
+
+    int bitrateValueA =
+        int.tryParse(bitrateA.replaceAll(RegExp(r'\D'), '')) ?? 0;
+    int bitrateValueB =
+        int.tryParse(bitrateB.replaceAll(RegExp(r'\D'), '')) ?? 0;
+
+    return bitrateValueB.compareTo(bitrateValueA); // Higher bitrate preferred
+  }
+
+// Compare containers (specific order of preference)
+  int compareContainer(String? containerA, String? containerB) {
+    List<String> preferredOrder = ['mp4', 'webm', 'hls'];
+
+    if (containerA == null && containerB == null) return 0;
+    if (containerA == null) return 1; // Null is less preferred
+    if (containerB == null) return -1; // Null is less preferred
+
+    int indexA = preferredOrder.indexOf(containerA);
+    int indexB = preferredOrder.indexOf(containerB);
+
+    if (indexA == -1 && indexB == -1) return 0;
+    if (indexA == -1) return 1; // Unknown containers are less preferred
+    if (indexB == -1) return -1; // Unknown containers are less preferred
+
+    return indexA
+        .compareTo(indexB); // Lower index (higher preference) preferred
+  }
+
+// Compare codecs (specific order of preference)
+  int compareCodec(String? codecA, String? codecB) {
+    List<String> preferredOrder = ['aac', 'opus', 'mp4'];
+
+    if (codecA == null && codecB == null) return 0;
+    if (codecA == null) return 1; // Null is less preferred
+    if (codecB == null) return -1; // Null is less preferred
+
+    int indexA = preferredOrder.indexOf(codecA);
+    int indexB = preferredOrder.indexOf(codecB);
+
+    if (indexA == -1 && indexB == -1) return 0;
+    if (indexA == -1) return 1; // Unknown codecs are less preferred
+    if (indexB == -1) return -1; // Unknown codecs are less preferred
+
+    return indexA
+        .compareTo(indexB); // Lower index (higher preference) preferred
   }
 }
 
@@ -137,75 +235,124 @@ class Fileset {
   }
 }
 
-
 BibleVersion defaultBibleVersion = BibleVersion(
-  abbr: "ENGKJV",
-  name: "King James Version",
-  vname: "King James Version",
-  language: "English: USA",
+  abbr: "ENGESV",
+  name: "English Standard Version",
+  vname: "English Standard Version",
+  language: "English",
   autonym: "English",
-  languageId: 17045,
-  languageRolvCode: "00025",
+  languageId: 6414,
+  languageRolvCode: null,
   iso: "eng",
-  date: null,
+  date: "2001",
   filesets: {
     "dbp-prod": [
       Fileset(
-        id: "ENGKJVO2SA",
-        type: "audio_drama_stream",
-        size: "OT",
-        stockNo: null,
-        volume: "King James Version",
-        bitrate: null,
-        codec: null,
-        container: null,
-      ),
-      Fileset(
-        id: "ENGKJVN2DA-opus16",
+        id: "ENGESVN2DA",
         type: "audio_drama",
         size: "NT",
         stockNo: null,
-        volume: "King James Version",
-        bitrate: "16kbps",
-        codec: "opus",
-        container: "webm",
-      ),
-      Fileset(
-        id: "ENGKJVN_ET-usx",
-        type: "text_usx",
-        size: "NT",
-        stockNo: null,
-        volume: "King James Version",
+        volume: "English Standard Version",
         bitrate: null,
         codec: null,
         container: null,
       ),
       Fileset(
-        id: "ENGKJVO1DA-opus16",
+        id: "ENGEKIS2DA",
+        type: "audio_drama",
+        size: "S",
+        stockNo: null,
+        volume: "English Standard Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGESV",
+        type: "text_plain",
+        size: "C",
+        stockNo: null,
+        volume: "English Standard Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGESVN2SA",
+        type: "audio_drama_stream",
+        size: "NT",
+        stockNo: null,
+        volume: "English Standard Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGESVO2SA",
+        type: "audio_drama_stream",
+        size: "OT",
+        stockNo: null,
+        volume: "English Standard Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGESVO2DA",
+        type: "audio_drama",
+        size: "OT",
+        stockNo: null,
+        volume: "English Standard Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGESVO1DA",
         type: "audio",
         size: "OT",
         stockNo: null,
-        volume: "King James Version",
-        bitrate: "16kbps",
-        codec: "opus",
-        container: "webm",
-      ),
-      Fileset(
-        id: "ENGKJVO_ET-json",
-        type: "text_json",
-        size: "OT",
-        stockNo: null,
-        volume: "King James Version",
+        volume: "English Standard Version",
         bitrate: null,
         codec: null,
         container: null,
       ),
       Fileset(
-        id: "ENGKJVN_ET-json",
-        type: "text_json",
+        id: "ENGESVO1SA",
+        type: "audio_stream",
+        size: "OT",
+        stockNo: null,
+        volume: "English Standard Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGESVN1SA",
+        type: "audio_stream",
         size: "NT",
         stockNo: null,
-        volume: "King James Version",
+        volume: "English Standard Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGESV",
+        type: "text_format",
+        size: "C",
+        stockNo: null,
+        volume: "English Standard Version",
+        bitrate: null,
+        codec: null,
+        container: null,
+      ),
+      Fileset(
+        id: "ENGESVN1DA",
+        type: "audio",
+        size: "NT",
+        stockNo: null,
+        volume: "English Standard Version",
         bitrate: null,
         codec: null,
         container: null,

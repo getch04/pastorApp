@@ -90,25 +90,31 @@ class BibleMediaController extends ChangeNotifier {
   }
 
   Future<void> fetchBibleAudioByVerse(
-      String textAudiosetId, int chapter) async {
-    final URL =
-        'https://4.dbt.io/api/bibles/filesets/$textAudiosetId/${bibleBook?.bookId ?? ''}/$chapter?v=4';
-    final response = await http.get(
-      Uri.parse(URL),
-      headers: {
-        'key': BIBLE_API_KEY,
-      },
-    );
+    String textAudiosetId,
+    int chapter,
+  ) async {
+    try {
+      final URL =
+          'https://4.dbt.io/api/bibles/filesets/$textAudiosetId/${bibleBook?.bookId ?? ''}/$chapter?v=4';
+      final response = await http.get(
+        Uri.parse(URL),
+        headers: {
+          'key': BIBLE_API_KEY,
+        },
+      );
 
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      if (data['data'].isNotEmpty) {
-        audioUrl = BibleFileResponse.fromJson(data).data.first.path ?? '';
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body);
+        if (data['data'].isNotEmpty) {
+          audioUrl = BibleFileResponse.fromJson(data).data.first.path ?? '';
+        } else {
+          throw Exception('No Bible text found');
+        }
       } else {
-        throw Exception('No Bible text found');
+        throw Exception(response);
       }
-    } else {
-      throw Exception('Failed to load Bible audio');
+    } catch (e) {
+      throw Exception('Failed to load Bible audio' + e.toString());
     }
   }
 

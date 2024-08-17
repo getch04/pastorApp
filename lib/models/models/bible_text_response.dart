@@ -7,7 +7,7 @@ class BibleText {
   final String? chapterAlt;
   final int verseStart;
   final String? verseStartAlt;
-  final int verseEnd;
+  final int? verseEnd;
   final String? verseEndAlt;
   final String verseText;
 

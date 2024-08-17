@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
+import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,10 +45,15 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
   FAQResponse? faqResult;
   bool isLoading = true;
   Dio dio = Dio();
+  late AppStateManager appManager;
 
-  Future<void> getAboutUs() async {
+  Future<void> getFAQ() async {
+    String language =
+        appLanguageData[AppLanguage.values[appManager.preferredLanguage]]
+                ?['value'] ??
+            'en';
     try {
-      var response = await dio.get(ApiUrl.GET_FAQ);
+      var response = await dio.get(ApiUrl.GET_FAQ + "?lang=$language");
       final faq = FAQResponse.fromJson(jsonDecode(response.data));
       setState(() {
         faqResult = faq;
@@ -63,7 +70,8 @@ class _QAListScreenItemState extends State<QAListScreenItem> {
   @override
   void initState() {
     super.initState();
-    getAboutUs();
+    appManager = Provider.of<AppStateManager>(context, listen: false);
+    getFAQ();
   }
 
   @override

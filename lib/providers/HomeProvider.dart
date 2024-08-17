@@ -33,7 +33,7 @@ class HomeProvider with ChangeNotifier {
 
   loadItems() {
     print("Initializing home fragment");
-    fetchItems();
+    // fetchItems();
   }
 
   Future<void> fetchItems() async {

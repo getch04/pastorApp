@@ -1,21 +1,20 @@
-import 'dart:async';
-
-import '../utils/my_colors.dart';
-import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 import 'dart:convert';
-import '../utils/Utility.dart';
-import '../utils/ApiUrl.dart';
-import '../utils/Alerts.dart';
-import '../models/Userdata.dart';
 import 'dart:io';
+
 import 'package:dio/dio.dart';
-import 'package:provider/provider.dart';
-import '../providers/AppStateManager.dart';
-import 'package:flutter/material.dart';
-import '../i18n/strings.g.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../i18n/strings.g.dart';
 import '../models/Files.dart';
+import '../models/Userdata.dart';
+import '../providers/AppStateManager.dart';
+import '../utils/Alerts.dart';
+import '../utils/ApiUrl.dart';
+import '../utils/Utility.dart';
 import '../utils/img.dart';
+import '../utils/my_colors.dart';
 
 class MakePostScreen extends StatefulWidget {
   static const routeName = "/makepostscreen";
@@ -56,14 +55,14 @@ class MakePostScreenState extends State<MakePostScreen> {
           return;
         }
 
-        final filePath = await FlutterAbsolutePath.getAbsolutePath(file.path!);
-        // print("video absolute path " + filePath);
-        _selectedFiles.add(new Files(
-            link: filePath,
-            type: "video",
-            filetype: file.extension,
-            length: file.size,
-            thumbnail: "null"));
+        // final filePath = await FlutterAbsolutePath.getAbsolutePath(file.path!);
+        // // print("video absolute path " + filePath);
+        // _selectedFiles.add(new Files(
+        //     link: filePath,
+        //     type: "video",
+        //     filetype: file.extension,
+        //     length: file.size,
+        //     thumbnail: "null"));
         //genThumbnailFile(_selectedFiles.length - 1);
       }
       setState(() {});
@@ -128,7 +127,7 @@ class MakePostScreenState extends State<MakePostScreen> {
       MapEntry("avatar", MultipartFile.fromFileSync(avatar)),
       MapEntry("cover_photo", MultipartFile.fromFileSync(coverPhoto)),
     ]);
-    
+
     formData.files.add(
         //MapEntry("avatar", MultipartFile.fromFileSync(avatar)),
         );*/
@@ -158,7 +157,7 @@ class MakePostScreenState extends State<MakePostScreen> {
         return;
       }
       Navigator.pop(context, true);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       Navigator.of(context).pop();
       Alerts.show(context, t.error, e.message);
       if (e.response != null) {

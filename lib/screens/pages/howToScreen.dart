@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/models/howto_model.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/howToScreenDetail.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
+import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +27,17 @@ class _HowToScreenState extends State<HowToScreen> {
   bool isLoading = true;
   Dio dio = Dio();
   List<HowToModel> howtoResult = [];
+  late AppStateManager appManager;
 
   Future<void> getHowTo() async {
+    String language =
+        appLanguageData[AppLanguage.values[appManager.preferredLanguage]]
+                ?['value'] ??
+            'en';
     try {
-      var response = await dio.get(ApiUrl.GET_HOWTO);
+      var response = await dio.get(ApiUrl.GET_HOWTO + "?lang=$language");
       final data = jsonDecode(response.data);
-      List<dynamic> faqsJson = data['faqs'];
+      List<dynamic> faqsJson = data['hows'];
       List<HowToModel> faqsList =
           faqsJson.map((faqJson) => HowToModel.fromJson(faqJson)).toList();
 
@@ -49,6 +56,7 @@ class _HowToScreenState extends State<HowToScreen> {
   @override
   void initState() {
     super.initState();
+    appManager = Provider.of<AppStateManager>(context, listen: false);
     getHowTo();
   }
 

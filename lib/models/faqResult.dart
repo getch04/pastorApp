@@ -29,20 +29,20 @@ class FAQ {
   final int id;
   final String question;
   final String answer;
-  final String audio;
+  final String? embed_code;
 
   FAQ(
       {required this.id,
       required this.question,
       required this.answer,
-      required this.audio});
+      required this.embed_code});
 
   factory FAQ.fromJson(Map<String, dynamic> json) {
     return FAQ(
       id: json['id'],
       question: json['question'],
       answer: json['answer'],
-      audio: json['audio'],
+      embed_code: json['embed_code'],
     );
   }
 
@@ -51,7 +51,7 @@ class FAQ {
       'id': id,
       'question': question,
       'answer': answer,
-      'audio': audio,
+      'embed_code': embed_code,
     };
   }
 }

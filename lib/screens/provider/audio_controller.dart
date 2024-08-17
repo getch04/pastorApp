@@ -97,7 +97,7 @@ class AudioController extends ChangeNotifier {
     _playerSubscription?.cancel();
     _durationSubscription?.cancel();
     _positionSubscription?.cancel();
-    _audioPlayer.dispose();
+    // _audioPlayer.dispose();
     super.dispose();
   }
 }

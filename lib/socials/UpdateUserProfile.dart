@@ -1,27 +1,26 @@
-import '../socials/UserProfileScreen.dart';
-import '../utils/ApiUrl.dart';
-import '../utils/Utility.dart';
-import '../utils/Alerts.dart';
-import '../models/Userdata.dart';
-import 'dart:io';
-import 'dart:convert';
 import 'dart:async';
-import '../socials/FollowPeople.dart';
-import '../models/ScreenArguements.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
-import 'package:provider/provider.dart';
-import '../providers/AppStateManager.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../i18n/strings.g.dart';
-import 'package:flutter_absolute_path/flutter_absolute_path.dart';
+import '../models/ScreenArguements.dart';
+import '../models/Userdata.dart';
+import '../providers/AppStateManager.dart';
+import '../socials/FollowPeople.dart';
+import '../socials/UserProfileScreen.dart';
+import '../utils/Alerts.dart';
+import '../utils/ApiUrl.dart';
+import '../utils/Utility.dart';
 import '../utils/img.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:file_picker/file_picker.dart';
-import '../models/Files.dart';
-import 'package:flutter_absolute_path/flutter_absolute_path.dart';
 
 class UpdateUserProfile extends StatefulWidget {
   static const routeName = "/updateprofile";
@@ -270,7 +269,7 @@ class UpdateUserProfileState extends State<UpdateUserProfile> {
               items: userdata,
             ));
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       Navigator.of(context).pop();
       Alerts.show(context, t.error, e.message);
       if (e.response != null) {

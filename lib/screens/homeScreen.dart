@@ -15,12 +15,14 @@ import 'package:churchapp_flutter/utils/components/common_item_card.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:churchapp_flutter/utils/components/swipable_button.dart';
 import 'package:churchapp_flutter/utils/img.dart';
+import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:translator/translator.dart';
 
 import '../i18n/strings.g.dart';
 import '../providers/AudioPlayerModel.dart';
@@ -44,12 +46,45 @@ class HomeScreenItem extends StatefulWidget {
 
 class _HomeScreenItemState extends State<HomeScreenItem> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  late AppStateManager appManager;
+  final translator = GoogleTranslator();
   int _currentNavIndex = 0;
 
   void onTabTapped(int index) {
     setState(() {
       _currentNavIndex = index;
     });
+  }
+
+  String get getLang {
+    //returns like en.hi....
+    appManager = Provider.of<AppStateManager>(context, listen: false);
+
+    return appLanguageData[AppLanguage.values[appManager.preferredLanguage]]![
+        'value']!;
+  }
+
+  Future<Map<String, String>> fetchAndTranslateVerse() async {
+    final response = await http.get(Uri.parse(
+        "https://beta.ourmanna.com/api/v1/get?format=json&order=daily"));
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final verseText = data['verse']['details']['text'];
+      final verseReference = data['verse']['details']['reference'];
+
+      final translatedVerseText =
+          await translator.translate(verseText, to: getLang);
+      final translatedVerseReference =
+          await translator.translate(verseReference, to: getLang);
+
+      return {
+        'verseText': translatedVerseText.text,
+        'verseReference': translatedVerseReference.text,
+      };
+    } else {
+      throw Exception('Failed to load verse');
+    }
   }
 
   Future<bool> _onWillPop() async {
@@ -104,7 +139,6 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
   @override
   Widget build(BuildContext context) {
     final userdata = Provider.of<AppStateManager>(context).userdata;
-
     return WillPopScope(
       onWillPop: _onWillPop,
       child: GlobalScaffold(
@@ -131,75 +165,65 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                       ClipPath(
                         clipper: BannerClipper(),
                         child: Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 20,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(
-                              color: const Color.fromARGB(255, 255, 170, 0),
-                              width: 2,
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10,
+                              horizontal: 20,
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: Offset(0, 3),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: const Color.fromARGB(255, 255, 170, 0),
+                                width: 2,
                               ),
-                            ],
-                          ),
-                          child: FutureBuilder(
-                              future: http.get(Uri.parse(
-                                  "https://beta.ourmanna.com/api/v1/get?format=json&order=daily")),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasError) {
-                                  return Text('Error: ${snapshot.error}');
-                                }
-                                if (snapshot.hasData) {
-                                  final response =
-                                      json.decode(snapshot.data!.body);
-                                  final verseText =
-                                      response['verse']['details']['text'];
-                                  final verseReference =
-                                      response['verse']['details']['reference'];
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: FutureBuilder<Map<String, String>>(
+                                future: fetchAndTranslateVerse(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    return Text('Error: ${snapshot.error}');
+                                  }
+                                  if (snapshot.hasData) {
+                                    final verseText =
+                                        snapshot.data!['verseText']!;
+                                    final verseReference =
+                                        snapshot.data!['verseReference']!;
 
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        verseText,
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          verseText,
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      SizedBox(height: 10),
-                                      Text(
-                                        verseReference,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontStyle: FontStyle.italic,
-                                          color: Colors.black54,
+                                        SizedBox(height: 10),
+                                        Text(
+                                          verseReference,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontStyle: FontStyle.italic,
+                                            color: Colors.black54,
+                                          ),
+                                          textAlign: TextAlign.end,
                                         ),
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ],
-                                  );
-                                }
-
-                                return SizedBox(
-                                  height: 60,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
-                                );
-                              }),
-                        ),
+                                      ],
+                                    );
+                                  } else {
+                                    return SizedBox();
+                                  }
+                                })),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(

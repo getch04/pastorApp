@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:package_info/package_info.dart';
+// import 'package:package_info/package_info.dart';
 import 'package:share_plus/share_plus.dart';
 import '../providers/BookmarksModel.dart';
 import '../providers/DownloadsModel.dart';
@@ -119,8 +119,9 @@ class MediaPopupMenu extends StatelessWidget {
 
 class ShareFile {
   static share(Media media) async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    String packageName = packageInfo.packageName;
+    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // String packageName = packageInfo.packageName;
+    String packageName = 'packageInfo.packageName';
     if (media.http!) {
       await Share.share(
         t.sharefiletitle +

@@ -2,7 +2,7 @@ class HowToModel {
   final int id;
   final String question;
   final String answer;
-  final String audio;
+  final String? audio;
 
   HowToModel({
     required this.id,
