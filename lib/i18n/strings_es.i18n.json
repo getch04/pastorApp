@@ -314,7 +314,9 @@
 
     "oldTestament": "Antiguo Testamento",
     "newTestament": "Nuevo Testamento"
-    ,"play": "Reproducir"
+    ,"play": "Reproducir",
+    "no_verse_content": "No hay contenido de versículos bíblicos disponible para mostrar.",
+    "no_audio_content": "No hay contenido de audio de la Biblia disponible para mostrar."
 
 
 }

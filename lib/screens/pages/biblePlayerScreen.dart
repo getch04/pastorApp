@@ -156,7 +156,27 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
                                       .goToPreviousChapter,
                                 ),
                               )
-                            : SizedBox.shrink();
+                            : Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.spatial_audio_off,
+                                      size: 64,
+                                      color: Colors.grey,
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      t.no_audio_content,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.grey[600],
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              );
                       },
                     ),
                     SizedBox(height: 10),
@@ -206,7 +226,35 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
                                         },
                                       )
                                     : Center(
-                                        child: Text(t.noBibleTextsAvailable),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.book_outlined,
+                                              size: 64,
+                                              color: Colors.grey,
+                                            ),
+                                            SizedBox(height: 16),
+                                            Text(
+                                              t.noitemstodisplay,
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            SizedBox(height: 8),
+                                            Text(
+                                              t.no_verse_content,
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.grey[600],
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
                                       );
                               },
                             ),

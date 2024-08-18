@@ -84,6 +84,11 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
           isLoading = false;
         });
       } else {
+        setState(() {
+          verses = [];
+          isLoading = false;
+        });
+        print('Failed to load verses');
         throw Exception('Failed to load verses');
       }
     } catch (e) {
@@ -216,42 +221,75 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
                           },
                         ),
                       )
-                    : Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView.separated(
-                          itemCount: verses.length,
-                          separatorBuilder: (context, index) => Divider(),
-                          itemBuilder: (context, index) {
-                            final verse = verses[index];
-                            return ListTile(
-                              title: Text(t.verse + '${index + 1}',
+                    : verses.isEmpty
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.book_outlined,
+                                  size: 64,
+                                  color: Colors.grey,
+                                ),
+                                SizedBox(height: 16),
+                                Text(
+                                  t.noitemstodisplay,
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                  )),
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  BiblePlayerScreen.routeName,
-                                  arguments: ScreenArguements(
-                                    items: (
-                                      chapters.isNotEmpty ? chapters.last : 0,
-                                      selectedChapter.toString(),
-                                      widget.book,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                SizedBox(height: 8),
+                                Text(
+                                  t.no_verse_content,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey[600],
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListView.separated(
+                              itemCount: verses.length,
+                              separatorBuilder: (context, index) => Divider(),
+                              itemBuilder: (context, index) {
+                                final verse = verses[index];
+                                return ListTile(
+                                  title: Text(t.verse + '${index + 1}',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      BiblePlayerScreen.routeName,
+                                      arguments: ScreenArguements(
+                                        items: (
+                                          chapters.isNotEmpty
+                                              ? chapters.last
+                                              : 0,
+                                          selectedChapter.toString(),
+                                          widget.book,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  subtitle: Text(
+                                    verse,
+                                    style: TextStyle(
+                                      fontSize: 16,
                                     ),
                                   ),
                                 );
                               },
-                              subtitle: Text(
-                                verse,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                            ),
+                          ),
               ),
             ],
           ),

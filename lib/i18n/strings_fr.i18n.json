@@ -322,7 +322,9 @@
     "oldTestament": "Ancien Testament",
     "newTestament": "Nouveau Testament"
 
-,"play": "Reproducir"
+,"play": "Reproducir",
+"no_verse_content": "Aucun contenu de verset biblique disponible à afficher.",
+"no_audio_content": "Aucun contenu audio de la Bible disponible à afficher."
 
 
 }

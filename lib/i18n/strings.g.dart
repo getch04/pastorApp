@@ -3,9 +3,9 @@
  * Generated file. Do not edit.
  *
  * Locales: 16
- * Strings: 4736 (296.0 per locale)
+ * Strings: 4768 (298.0 per locale)
  *
- * Built on 2024-08-07 at 14:21 UTC
+ * Built on 2024-08-18 at 09:12 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -708,6 +708,8 @@ class _StringsEn {
 	String get oldTestament => 'Old Testament';
 	String get newTestament => 'New Testament';
 	String get play => 'play';
+	String get no_verse_content => 'No Bible verse content available to display.';
+	String get no_audio_content => 'No Bible Audio content available to display.';
 }
 
 // Path: <root>
@@ -1028,6 +1030,8 @@ class _StringsBn implements _StringsEn {
 	@override String get oldTestament => 'পুরাতন নিয়ম';
 	@override String get newTestament => 'নতুন নিয়ম';
 	@override String get play => 'বাজান';
+	@override String get no_verse_content => 'প্রদর্শনের জন্য কোনও বাইবেলের আয়াতের সামগ্রী নেই।';
+	@override String get no_audio_content => 'প্রদর্শনের জন্য কোনও বাইবেলের অডিও সামগ্রী নেই।';
 }
 
 // Path: <root>
@@ -1348,6 +1352,8 @@ class _StringsDz implements _StringsEn {
 	@override String get oldTestament => 'རྒྱལ་མཚན་རྒྱུད་རྙིང་པ།';
 	@override String get newTestament => 'རྒྱལ་མཚན་རྒྱུད་གསར་པ།';
 	@override String get play => 'གཏོང་';
+	@override String get no_verse_content => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
+	@override String get no_audio_content => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
 }
 
 // Path: <root>
@@ -1668,6 +1674,8 @@ class _StringsEs implements _StringsEn {
 	@override String get oldTestament => 'Antiguo Testamento';
 	@override String get newTestament => 'Nuevo Testamento';
 	@override String get play => 'Reproducir';
+	@override String get no_verse_content => 'No hay contenido de versículos bíblicos disponible para mostrar.';
+	@override String get no_audio_content => 'No hay contenido de audio de la Biblia disponible para mostrar.';
 }
 
 // Path: <root>
@@ -1988,6 +1996,8 @@ class _StringsFr implements _StringsEn {
 	@override String get oldTestament => 'Ancien Testament';
 	@override String get newTestament => 'Nouveau Testament';
 	@override String get play => 'Reproducir';
+	@override String get no_verse_content => 'Aucun contenu de verset biblique disponible à afficher.';
+	@override String get no_audio_content => 'Aucun contenu audio de la Bible disponible à afficher.';
 }
 
 // Path: <root>
@@ -2308,6 +2318,8 @@ class _StringsHi implements _StringsEn {
 	@override String get oldTestament => 'पुराना नियम';
 	@override String get newTestament => 'नया नियम';
 	@override String get play => 'चलाएं';
+	@override String get no_verse_content => 'प्रदर्शित करने के लिए कोई बाइबिल पद्य सामग्री उपलब्ध नहीं है।';
+	@override String get no_audio_content => 'प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।';
 }
 
 // Path: <root>
@@ -2628,6 +2640,8 @@ class _StringsId implements _StringsEn {
 	@override String get oldTestament => 'Perjanjian Lama';
 	@override String get newTestament => 'Perjanjian Baru';
 	@override String get play => 'Putar';
+	@override String get no_verse_content => 'Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.';
+	@override String get no_audio_content => 'Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.';
 }
 
 // Path: <root>
@@ -2948,6 +2962,8 @@ class _StringsKn implements _StringsEn {
 	@override String get oldTestament => 'ಹಳೆಯ ಒಡಂಬಡಿಕೆ';
 	@override String get newTestament => 'ಹೊಸ ಒಡಂಬಡಿಕೆ';
 	@override String get play => 'ಆಡಲು';
+	@override String get no_verse_content => 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಪದ್ಯದ ವಿಷಯವಿಲ್ಲ.';
+	@override String get no_audio_content => 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಆಡಿಯೋ ವಿಷಯವಿಲ್ಲ.';
 }
 
 // Path: <root>
@@ -3268,6 +3284,8 @@ class _StringsMr implements _StringsEn {
 	@override String get oldTestament => 'जुना करार';
 	@override String get newTestament => 'नवीन करार';
 	@override String get play => 'वाजवा';
+	@override String get no_verse_content => 'प्रदर्शित करण्यासाठी कोणतीही बायबल श्लोक सामग्री उपलब्ध नाही.';
+	@override String get no_audio_content => 'प्रदर्शित करण्यासाठी कोणतीही बायबल ऑडिओ सामग्री उपलब्ध नाही.';
 }
 
 // Path: <root>
@@ -3588,6 +3606,8 @@ class _StringsNe implements _StringsEn {
 	@override String get oldTestament => 'पुरानो करार';
 	@override String get newTestament => 'नयाँ करार';
 	@override String get play => 'बजाउनुहोस्';
+	@override String get no_verse_content => 'प्रदर्शन गर्न कुनै बाइबल पद्य सामग्री उपलब्ध छैन।';
+	@override String get no_audio_content => 'प्रदर्शन गर्न कुनै बाइबल अडियो सामग्री उपलब्ध छैन।';
 }
 
 // Path: <root>
@@ -3908,6 +3928,8 @@ class _StringsOr implements _StringsEn {
 	@override String get oldTestament => 'ପୁରାତନ ନିୟମ';
 	@override String get newTestament => 'ନୂତନ ନିୟମ';
 	@override String get play => 'ଖେଳିବା';
+	@override String get no_verse_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଶ୍ଲୋକ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
+	@override String get no_audio_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
 }
 
 // Path: <root>
@@ -4228,6 +4250,8 @@ class _StringsPa implements _StringsEn {
 	@override String get oldTestament => 'ਪੁਰਾਣਾ ਨਿਯਮ';
 	@override String get newTestament => 'ਨਵਾਂ ਨਿਯਮ';
 	@override String get play => 'ਚਲਾਓ';
+	@override String get no_verse_content => 'ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅੱਧਿਆਇ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
+	@override String get no_audio_content => 'ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 }
 
 // Path: <root>
@@ -4548,6 +4572,8 @@ class _StringsPt implements _StringsEn {
 	@override String get oldTestament => 'Antigo Testamento';
 	@override String get newTestament => 'Novo Testamento';
 	@override String get play => 'Tocar';
+	@override String get no_verse_content => 'Nenhum conteúdo de versículo da Bíblia disponível para exibição.';
+	@override String get no_audio_content => 'Nenhum conteúdo de áudio da Bíblia disponível para exibição.';
 }
 
 // Path: <root>
@@ -4868,6 +4894,8 @@ class _StringsTa implements _StringsEn {
 	@override String get oldTestament => 'பழைய ஏற்பாடு';
 	@override String get newTestament => 'புதிய ஏற்பாடு';
 	@override String get play => 'விளையாடு';
+	@override String get no_verse_content => 'காட்ட Bible வசன உள்ளடக்கம் கிடைக்கவில்லை.';
+	@override String get no_audio_content => 'காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை.';
 }
 
 // Path: <root>
@@ -5188,6 +5216,8 @@ class _StringsTe implements _StringsEn {
 	@override String get oldTestament => 'పాత నిబంధన';
 	@override String get newTestament => 'కొత్త నిబంధన';
 	@override String get play => 'ఆడించు';
+	@override String get no_verse_content => 'ప్రదర్శించడానికి బైబిల్ వాక్య కంటెంట్ అందుబాటులో లేదు.';
+	@override String get no_audio_content => 'ప్రదర్శించడానికి బైబిల్ ఆడియో కంటెంట్ అందుబాటులో లేదు.';
 }
 
 // Path: <root>
@@ -5508,6 +5538,8 @@ class _StringsUr implements _StringsEn {
 	@override String get oldTestament => 'پرانا عہد نامہ';
 	@override String get newTestament => 'نیا عہد نامہ';
 	@override String get play => 'چلائیں';
+	@override String get no_verse_content => 'دکھانے کے لئے کوئی بائبل کی آیت کا مواد دستیاب نہیں ہے۔';
+	@override String get no_audio_content => 'دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔';
 }
 
 /// Flat map(s) containing all translations.
@@ -5812,6 +5844,8 @@ extension on _StringsEn {
 			'oldTestament': 'Old Testament',
 			'newTestament': 'New Testament',
 			'play': 'play',
+			'no_verse_content': 'No Bible verse content available to display.',
+			'no_audio_content': 'No Bible Audio content available to display.',
 		};
 	}
 }
@@ -6115,6 +6149,8 @@ extension on _StringsBn {
 			'oldTestament': 'পুরাতন নিয়ম',
 			'newTestament': 'নতুন নিয়ম',
 			'play': 'বাজান',
+			'no_verse_content': 'প্রদর্শনের জন্য কোনও বাইবেলের আয়াতের সামগ্রী নেই।',
+			'no_audio_content': 'প্রদর্শনের জন্য কোনও বাইবেলের অডিও সামগ্রী নেই।',
 		};
 	}
 }
@@ -6418,6 +6454,8 @@ extension on _StringsDz {
 			'oldTestament': 'རྒྱལ་མཚན་རྒྱུད་རྙིང་པ།',
 			'newTestament': 'རྒྱལ་མཚན་རྒྱུད་གསར་པ།',
 			'play': 'གཏོང་',
+			'no_verse_content': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
+			'no_audio_content': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
 		};
 	}
 }
@@ -6721,6 +6759,8 @@ extension on _StringsEs {
 			'oldTestament': 'Antiguo Testamento',
 			'newTestament': 'Nuevo Testamento',
 			'play': 'Reproducir',
+			'no_verse_content': 'No hay contenido de versículos bíblicos disponible para mostrar.',
+			'no_audio_content': 'No hay contenido de audio de la Biblia disponible para mostrar.',
 		};
 	}
 }
@@ -7024,6 +7064,8 @@ extension on _StringsFr {
 			'oldTestament': 'Ancien Testament',
 			'newTestament': 'Nouveau Testament',
 			'play': 'Reproducir',
+			'no_verse_content': 'Aucun contenu de verset biblique disponible à afficher.',
+			'no_audio_content': 'Aucun contenu audio de la Bible disponible à afficher.',
 		};
 	}
 }
@@ -7327,6 +7369,8 @@ extension on _StringsHi {
 			'oldTestament': 'पुराना नियम',
 			'newTestament': 'नया नियम',
 			'play': 'चलाएं',
+			'no_verse_content': 'प्रदर्शित करने के लिए कोई बाइबिल पद्य सामग्री उपलब्ध नहीं है।',
+			'no_audio_content': 'प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।',
 		};
 	}
 }
@@ -7630,6 +7674,8 @@ extension on _StringsId {
 			'oldTestament': 'Perjanjian Lama',
 			'newTestament': 'Perjanjian Baru',
 			'play': 'Putar',
+			'no_verse_content': 'Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.',
+			'no_audio_content': 'Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.',
 		};
 	}
 }
@@ -7933,6 +7979,8 @@ extension on _StringsKn {
 			'oldTestament': 'ಹಳೆಯ ಒಡಂಬಡಿಕೆ',
 			'newTestament': 'ಹೊಸ ಒಡಂಬಡಿಕೆ',
 			'play': 'ಆಡಲು',
+			'no_verse_content': 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಪದ್ಯದ ವಿಷಯವಿಲ್ಲ.',
+			'no_audio_content': 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಆಡಿಯೋ ವಿಷಯವಿಲ್ಲ.',
 		};
 	}
 }
@@ -8236,6 +8284,8 @@ extension on _StringsMr {
 			'oldTestament': 'जुना करार',
 			'newTestament': 'नवीन करार',
 			'play': 'वाजवा',
+			'no_verse_content': 'प्रदर्शित करण्यासाठी कोणतीही बायबल श्लोक सामग्री उपलब्ध नाही.',
+			'no_audio_content': 'प्रदर्शित करण्यासाठी कोणतीही बायबल ऑडिओ सामग्री उपलब्ध नाही.',
 		};
 	}
 }
@@ -8539,6 +8589,8 @@ extension on _StringsNe {
 			'oldTestament': 'पुरानो करार',
 			'newTestament': 'नयाँ करार',
 			'play': 'बजाउनुहोस्',
+			'no_verse_content': 'प्रदर्शन गर्न कुनै बाइबल पद्य सामग्री उपलब्ध छैन।',
+			'no_audio_content': 'प्रदर्शन गर्न कुनै बाइबल अडियो सामग्री उपलब्ध छैन।',
 		};
 	}
 }
@@ -8842,6 +8894,8 @@ extension on _StringsOr {
 			'oldTestament': 'ପୁରାତନ ନିୟମ',
 			'newTestament': 'ନୂତନ ନିୟମ',
 			'play': 'ଖେଳିବା',
+			'no_verse_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଶ୍ଲୋକ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
+			'no_audio_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
 		};
 	}
 }
@@ -9145,6 +9199,8 @@ extension on _StringsPa {
 			'oldTestament': 'ਪੁਰਾਣਾ ਨਿਯਮ',
 			'newTestament': 'ਨਵਾਂ ਨਿਯਮ',
 			'play': 'ਚਲਾਓ',
+			'no_verse_content': 'ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅੱਧਿਆਇ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
+			'no_audio_content': 'ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
 		};
 	}
 }
@@ -9448,6 +9504,8 @@ extension on _StringsPt {
 			'oldTestament': 'Antigo Testamento',
 			'newTestament': 'Novo Testamento',
 			'play': 'Tocar',
+			'no_verse_content': 'Nenhum conteúdo de versículo da Bíblia disponível para exibição.',
+			'no_audio_content': 'Nenhum conteúdo de áudio da Bíblia disponível para exibição.',
 		};
 	}
 }
@@ -9751,6 +9809,8 @@ extension on _StringsTa {
 			'oldTestament': 'பழைய ஏற்பாடு',
 			'newTestament': 'புதிய ஏற்பாடு',
 			'play': 'விளையாடு',
+			'no_verse_content': 'காட்ட Bible வசன உள்ளடக்கம் கிடைக்கவில்லை.',
+			'no_audio_content': 'காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை.',
 		};
 	}
 }
@@ -10054,6 +10114,8 @@ extension on _StringsTe {
 			'oldTestament': 'పాత నిబంధన',
 			'newTestament': 'కొత్త నిబంధన',
 			'play': 'ఆడించు',
+			'no_verse_content': 'ప్రదర్శించడానికి బైబిల్ వాక్య కంటెంట్ అందుబాటులో లేదు.',
+			'no_audio_content': 'ప్రదర్శించడానికి బైబిల్ ఆడియో కంటెంట్ అందుబాటులో లేదు.',
 		};
 	}
 }
@@ -10357,6 +10419,8 @@ extension on _StringsUr {
 			'oldTestament': 'پرانا عہد نامہ',
 			'newTestament': 'نیا عہد نامہ',
 			'play': 'چلائیں',
+			'no_verse_content': 'دکھانے کے لئے کوئی بائبل کی آیت کا مواد دستیاب نہیں ہے۔',
+			'no_audio_content': 'دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔',
 		};
 	}
 }

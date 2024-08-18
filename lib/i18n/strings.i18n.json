@@ -317,5 +317,7 @@
 
   "oldTestament": "Old Testament",
   "newTestament": "New Testament",
-  "play": "play"
+  "play": "play",
+  "no_verse_content": "No Bible verse content available to display.",
+  "no_audio_content": "No Bible Audio content available to display."
 }

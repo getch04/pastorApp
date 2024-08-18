@@ -153,7 +153,8 @@ class BibleFilterScreenItem extends StatefulWidget {
 }
 
 class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
-  String LANGUAGES_ENDPOINT = 'https://4.dbt.io/api/languages?v=4';
+  String LANGUAGES_ENDPOINT =
+      'https://4.dbt.io/api/languages?v=4&media="audio,text"';
 
   late PaginationProvider<Language> languagesProvider;
   ValueNotifier<Language?> selectedLanguageItem =

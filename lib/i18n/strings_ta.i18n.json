@@ -317,5 +317,7 @@
   "biblesFilesets": "பைபிள்கள்: {bibles}, கோப்புகளின் தொகுப்புகள்: {filesets}",
   "oldTestament": "பழைய ஏற்பாடு",
   "newTestament": "புதிய ஏற்பாடு",
-  "play": "விளையாடு"
+  "play": "விளையாடு",
+  "no_verse_content": "காட்ட Bible வசன உள்ளடக்கம் கிடைக்கவில்லை.",
+  "no_audio_content": "காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை."
 }
