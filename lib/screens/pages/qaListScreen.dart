@@ -24,22 +24,6 @@ class QAListScreen extends StatefulWidget {
 }
 
 class _QAListScreenState extends State<QAListScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return QAListScreenItem();
-  }
-}
-
-class QAListScreenItem extends StatefulWidget {
-  QAListScreenItem({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  _QAListScreenItemState createState() => _QAListScreenItemState();
-}
-
-class _QAListScreenItemState extends State<QAListScreenItem> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   FAQResponse? faqResult;

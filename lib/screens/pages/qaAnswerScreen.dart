@@ -1,11 +1,8 @@
-import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
-import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:youtube_player_flutter_quill/youtube_player_flutter_quill.dart';
 
 class QAAnswerScreen extends StatefulWidget {
   QAAnswerScreen({Key? key, required this.faq}) : super(key: key);
@@ -17,99 +14,121 @@ class QAAnswerScreen extends StatefulWidget {
   _QAAnswerScreenState createState() => _QAAnswerScreenState();
 }
 
-class _QAAnswerScreenState extends State<QAAnswerScreen> {
+class _QAAnswerScreenState extends State<QAAnswerScreen> with WidgetsBindingObserver {
+  YoutubePlayerController? _controller;
+
   @override
-  Widget build(BuildContext context) {
-    return QAAnswerScreenItem(faq: widget.faq);
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    String videoId = extractYoutubeVideoId(widget.faq.embed_code??'');
+    print("play youtube video = $videoId");
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId,
+      flags: YoutubePlayerFlags(
+        mute: false,
+        autoPlay: true,
+        disableDragSeek: false,
+        loop: false,
+        isLive: false,
+        forceHD: false,
+        enableCaption: true,
+      ),
+    );
   }
-}
 
-class QAAnswerScreenItem extends StatefulWidget {
-  QAAnswerScreenItem({Key? key, required this.faq}) : super(key: key);
-
-  final FAQ faq;
+  String extractYoutubeVideoId(String embedCode) {
+    RegExp regExp = RegExp(r'src="https://www.youtube.com/embed/([^"]+)"');
+    Match? match = regExp.firstMatch(embedCode);
+    return match?.group(1) ?? '';
+  }
 
   @override
-  _QAAnswerScreenItemState createState() => _QAAnswerScreenItemState();
-}
+  void deactivate() {
+    _controller?.pause();
+    super.deactivate();
+  }
 
-class _QAAnswerScreenItemState extends State<QAAnswerScreenItem> {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      _controller?.pause();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    var statusBarHeight = MediaQuery.of(context).padding.top;
-    var appBarHeight = kToolbarHeight;
-
-    final style = TextStyles.title(context)
-        .copyWith(fontWeight: FontWeight.bold, fontSize: 20);
-
-    return WillPopScope(
-      onWillPop: () async {
-        if (Provider.of<AudioPlayerModel>(context, listen: false)
-                .currentMedia !=
-            null) {
-          return (await (showDialog(
-                context: context,
-                builder: (context) => CupertinoAlertDialog(
-                  title: Text(t.quitapp),
-                  content: Text(t.quitappaudiowarning),
-                  actions: <Widget>[
-                    ElevatedButton(
-                      onPressed: () => Navigator.of(context).pop(false),
-                      child: Text(t.cancel),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Provider.of<AudioPlayerModel>(context, listen: false)
-                            .cleanUpResources();
-                        Navigator.of(context).pop(true);
-                      },
-                      child: Text(t.ok),
-                    ),
-                  ],
+    return GlobalScaffold(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: ListView(
+          children: [
+            Text(
+              'Q&A'.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: TextStyles.title(context).copyWith(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 10,
+                shadows: [
+                  Shadow(
+                    blurRadius: 10.0,
+                    color: Colors.black,
+                    offset: Offset(2.0, 2.0),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
                 ),
-              ))) ??
-              false;
-        }
-        return true;
-      },
-      child: GlobalScaffold(
-          body: Container(
-              height: MediaQuery.of(context).size.height,
+              ]),
               width: MediaQuery.of(context).size.width,
-              child: ListView(children: [
-                Text(
-                  'Q&A'.toUpperCase(),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  widget.faq.question,
                   textAlign: TextAlign.center,
                   style: TextStyles.title(context).copyWith(
-                    fontSize: 40,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 10,
-                    shadows: [
-                      Shadow(
-                        blurRadius: 10.0,
-                        color: Colors.black,
-                        offset: Offset(2.0, 2.0),
-                      ),
-                    ],
+                    fontSize: 20,
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    ),
-                  ]),
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
+              ),
+            ),
+            Container(
+              decoration:
+                  BoxDecoration(color: Colors.lightBlue.shade200, boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ]),
+              width: MediaQuery.of(context).size.width,
+              child: ListView(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      widget.faq.question,
+                      widget.faq.answer,
                       textAlign: TextAlign.center,
                       style: TextStyles.title(context).copyWith(
                         fontWeight: FontWeight.bold,
@@ -117,170 +136,29 @@ class _QAAnswerScreenItemState extends State<QAAnswerScreenItem> {
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.lightBlue.shade200,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset: Offset(0, 3),
-                        ),
-                      ]),
-                  width: MediaQuery.of(context).size.width,
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          widget.faq.answer,
-                          textAlign: TextAlign.center,
-                          style: TextStyles.title(context).copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: _controller != null
+                        ? YoutubePlayer(
+                            controller: _controller!,
+                            showVideoProgressIndicator: true,
+                            progressIndicatorColor: Colors.blueAccent,
+                            progressColors: ProgressBarColors(
+                              playedColor: Colors.blue,
+                              handleColor: Colors.blueAccent,
+                            ),
+                            onReady: () {
+                              print("Player is ready.");
+                            },
+                          )
+                        : CircularProgressIndicator(),
                   ),
-                )
-              ]))
-
-          // Scaffold(
-          //   key: scaffoldKey,
-          //   drawerScrimColor: Colors.transparent,
-          //   appBar: AppBar(
-          //     backgroundColor: MyColors.primaryLight,
-          //     automaticallyImplyLeading: false,
-          //     leadingWidth: 80,
-          //     leading: Container(
-          //       height: 30,
-          //       width: 30,
-          //       margin: EdgeInsets.only(left: 20),
-          //       child: Image.asset(
-          //         Img.get('new/1.png'),
-          //         height: 150,
-          //         width: 150,
-          //       ),
-          //     ),
-          //     title: Text(
-          //       t.appname.toTitleCase(),
-          //       style: TextStyles.title(context)
-          //           .copyWith(fontWeight: FontWeight.bold, fontSize: 25),
-          //     ),
-          //     centerTitle: true,
-          //     actions: [
-          //       GestureDetector(
-          //         onTap: () {
-          //           scaffoldKey.currentState?.openDrawer();
-          //         },
-          //         child: Container(
-          //           margin: EdgeInsets.only(right: 20),
-          //           height: 30,
-          //           width: 30,
-          //           child: Image.asset(
-          //             Img.get('new/menu.png'),
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          //   drawer: Container(
-          //     padding: EdgeInsets.only(top: statusBarHeight + appBarHeight + 1),
-          //     child: Drawer(
-          //       child: ChangeNotifierProvider(
-          //           create: (context) => HomeProvider(), child: DrawerScreen()),
-          //     ),
-          //   ),
-          //   body: Container(
-          //     height: MediaQuery.of(context).size.height,
-          //     width: MediaQuery.of(context).size.width,
-          //     decoration: BoxDecoration(
-          //       gradient: LinearGradient(
-          //         begin: Alignment.topCenter,
-          //         end: Alignment.bottomCenter,
-          //         colors: [
-          //           MyColors.bgTop,
-          //           MyColors.bgBottom,
-          //         ],
-          //       ),
-          //     ),
-          //     child: Column(
-          //       children: [
-          //         SizedBox(
-          //           height: 10,
-          //         ),
-          //         Container(
-          //           color: MyColors.primary,
-          //           child: Padding(
-          //             padding: const EdgeInsets.all(15.0),
-          //             child: Row(
-          //               children: [
-          //                 Image.asset(
-          //                   Img.get('new/qa1.png'),
-          //                   height: 50,
-          //                   width: 50,
-          //                 ),
-          //                 Expanded(
-          //                   child: Center(
-          //                     child: Text(
-          //                       'Questions & Answers',
-          //                       textAlign: TextAlign.center,
-          //                       style: TextStyles.title(context).copyWith(
-          //                         fontWeight: FontWeight.bold,
-          //                         fontSize: 30,
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //         ),
-          //         SizedBox(
-          //           height: 10,
-          //         ),
-          //         Expanded(
-          //           child: Container(
-          //             color: Colors.white,
-          //             width: MediaQuery.of(context).size.width,
-          //             child: ListView(
-          //               shrinkWrap: true,
-          //               children: [
-          //                 Padding(
-          //                   padding: const EdgeInsets.all(20.0),
-          //                   child: Text(
-          //                     widget.faq.question,
-          //                     textAlign: TextAlign.center,
-          //                     style: TextStyles.title(context).copyWith(
-          //                       fontWeight: FontWeight.bold,
-          //                       fontSize: 20,
-          //                     ),
-          //                   ),
-          //                 ),
-          //                 Padding(
-          //                   padding: const EdgeInsets.all(20.0),
-          //                   child: Text(
-          //                     widget.faq.answer,
-          //                     textAlign: TextAlign.center,
-          //                     style: TextStyles.title(context).copyWith(
-          //                       fontWeight: FontWeight.bold,
-          //                       fontSize: 20,
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-
-          ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
