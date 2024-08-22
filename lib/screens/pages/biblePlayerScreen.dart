@@ -20,6 +20,7 @@ class BiblePlayerScreen extends StatefulWidget {
     int, //max chapter
     String,
     BibleBook,
+    List<String>,
   ) data;
 
   @override
@@ -46,7 +47,7 @@ class _BiblePlayerScreenState extends State<BiblePlayerScreen> {
 
 class BiblePlayerScreenItem extends StatefulWidget {
   BiblePlayerScreenItem({Key? key, required this.data}) : super(key: key);
-  final (int, String, BibleBook) data;
+  final (int, String, BibleBook, List<String>) data;
   //max chapter ,// chapter id
   @override
   _BiblePlayerScreenItemState createState() => _BiblePlayerScreenItemState();
@@ -66,7 +67,7 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
       _filterProvider =
           Provider.of<BibleFilterProvider>(context, listen: false);
       _bibleMediaController.initData(int.tryParse(widget.data.$2) ?? 1,
-          _filterProvider, widget.data.$3, widget.data.$1);
+          _filterProvider, widget.data.$3, widget.data.$1, widget.data.$4);
     });
   }
 
@@ -208,7 +209,7 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
                                           final text = bibleTexts[index];
                                           return ListTile(
                                             leading: Text(
-                                              text.verseStart.toString(),
+                                              (index + 1).toString(),
                                               style: TextStyles.title(context)
                                                   .copyWith(
                                                 fontSize: 16,

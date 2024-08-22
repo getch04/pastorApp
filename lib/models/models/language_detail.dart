@@ -107,6 +107,53 @@ class BibleVersion {
     return null;
   }
 
+  List<String> getTextFilesetIds(String size) {
+    List<String> filesetIds = [];
+
+    if (filesets.containsKey('dbp-prod')) {
+      List<Fileset> filteredFilesets = filesets['dbp-prod']
+              ?.where((val) => val.type.toString().startsWith('text'))
+              .where((fileset) {
+            // Exclude 'NT' if the size is 'OT' and vice versa
+            if (size.toUpperCase() == 'OT' &&
+                fileset.size.toUpperCase() == 'NT') {
+              return false;
+            }
+            if (size.toUpperCase() == 'NT' &&
+                fileset.size.toUpperCase() == 'OT') {
+              return false;
+            }
+            // Include all other sizes or matching sizes
+            return true;
+          }).toList() ??
+          [];
+
+      // Prioritize 'text' over other types, followed by 'text_plain', 'text_format', and 'text_json'
+      for (var preferredType in [
+        'text',
+        'text_plain',
+        'text_format',
+        'text_json'
+      ]) {
+        for (var fileset in filteredFilesets) {
+          if (fileset.type == preferredType) {
+            filesetIds.add(fileset.id);
+          }
+        }
+      }
+
+      // If no 'text' fileset is found, add any other fileset that starts with 'text'
+      for (var fileset in filteredFilesets) {
+        if (fileset.type.startsWith('text') &&
+            !filesetIds.contains(fileset.id)) {
+          filesetIds.add(fileset.id);
+        }
+      }
+    }
+
+    return filesetIds;
+  }
+
   // Method to get the first fileset id with type of "audio" and specific size
   String? getAudioFilesetId(String size) {
     if (filesets.containsKey('dbp-prod')) {

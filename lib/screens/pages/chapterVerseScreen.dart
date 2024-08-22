@@ -65,38 +65,46 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
       isLoading = true;
     });
 
-    final url =
-        '$BIBLE_BASE_URL/bibles/filesets/${filterProvider.bibleVersion.getTextFilesetId(filterProvider.selectedType)}/${widget.book.bookId}/$chapter?v=4&key=$BIBLE_API_KEY';
+    List<String> filesetIds = filterProvider.bibleVersion
+        .getTextFilesetIds(filterProvider.selectedType);
 
-    try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body)['data'] as List;
-        final versesList = data.map((json) => Verse.fromJson(json)).toList();
+    for (String filesetId in filesetIds) {
+      final url =
+          '$BIBLE_BASE_URL/bibles/filesets/$filesetId/${widget.book.bookId}/$chapter?v=4&key=$BIBLE_API_KEY';
 
-        setState(() {
-          verses = versesList
-              .where((verse) =>
-                  (verse.chapter ?? verse.chapterStart) == chapter &&
-                  verse.verseText != null)
-              .map((verse) => verse.verseText!)
-              .toList();
-          isLoading = false;
-        });
-      } else {
-        setState(() {
-          verses = [];
-          isLoading = false;
-        });
-        print('Failed to load verses');
-        throw Exception('Failed to load verses');
+      try {
+        final response = await http.get(Uri.parse(url));
+        if (response.statusCode == 200) {
+          final data = json.decode(response.body)['data'] as List;
+          final versesList = data.map((json) => Verse.fromJson(json)).toList();
+
+          setState(() {
+            verses = versesList
+                .where((verse) =>
+                    (verse.chapter ?? verse.chapterStart) == chapter &&
+                    verse.verseText != null)
+                .map((verse) => verse.verseText!)
+                .toList();
+            isLoading = false;
+          });
+
+          return; // Exit the function as the request was successful
+        } else {
+          print('Failed to load verses with filesetId: $filesetId');
+        }
+      } catch (e) {
+        print('Error fetching verses with filesetId: $filesetId');
+        print(e);
       }
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-      print(e);
     }
+
+    // If all attempts fail
+    setState(() {
+      verses = [];
+      isLoading = false;
+    });
+    print('Failed to load verses with all fileset IDs');
+    throw Exception('Failed to load verses');
   }
 
   void onChapterSelected(int chapter) {
@@ -276,6 +284,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
                                               : 0,
                                           selectedChapter.toString(),
                                           widget.book,
+                                          verses,
                                         ),
                                       ),
                                     );

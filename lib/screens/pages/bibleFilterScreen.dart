@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:churchapp_flutter/core/common.dart';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
@@ -153,12 +154,8 @@ class BibleFilterScreenItem extends StatefulWidget {
 }
 
 class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
-  String LANGUAGES_ENDPOINT =
-      'https://4.dbt.io/api/languages?v=4&media="audio,text"';
-
-  late PaginationProvider<Language> languagesProvider;
-  ValueNotifier<Language?> selectedLanguageItem =
-      ValueNotifier<Language?>(null);
+ 
+  ValueNotifier<Language?> selectedLanguageItem = ValueNotifier<Language?>(null);
   final TextEditingController _searchController = TextEditingController();
   String searchQuery = '';
   Timer? _debounce;
@@ -166,19 +163,11 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
   @override
   void initState() {
     super.initState();
-    languagesProvider = PaginationProvider<Language>(
-      endpoint: LANGUAGES_ENDPOINT,
-      fromJson: (json) {
-        return Language.fromJson(json);
-      },
-      apiKey: BIBLE_API_KEY,
-    );
     _searchController.addListener(_onSearchChanged);
   }
 
   @override
   void dispose() {
-    languagesProvider.dispose();
     _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
     _debounce?.cancel();
@@ -188,15 +177,9 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
   void _onSearchChanged() {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
-      if (searchQuery != _searchController.text) {
-        setState(() {
-          searchQuery = _searchController.text;
-          LANGUAGES_ENDPOINT =
-              'https://4.dbt.io/api/languages/search/${searchQuery}?v=4';
-        });
-
-        languagesProvider.pagingController.refresh();
-      }
+      setState(() {
+        searchQuery = _searchController.text;
+      });
     });
   }
 
@@ -250,94 +233,48 @@ class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
   }
 
   Widget _buildLanguagesContent() {
-    return PagedListView<int, Language>(
-      pagingController: languagesProvider.pagingController,
-      builderDelegate: PagedChildBuilderDelegate<Language>(
-        itemBuilder: (context, language, index) {
-          if (searchQuery.isNotEmpty &&
-              !language.name
-                  .toLowerCase()
-                  .contains(searchQuery.toLowerCase())) {
-            return Container();
-          }
-          return ValueListenableBuilder(
-            valueListenable: selectedLanguageItem,
-            builder: (context, value, child) {
-              return ListTile(
-                leading: Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: value == language
-                        ? Theme.of(context).primaryColor
-                        : Colors.grey,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.record_voice_over,
-                      color: Colors.white,
-                      size: 30,
-                    ),
+    final filteredLanguages = languages.where((language) {
+      return language.name.toLowerCase().contains(searchQuery.toLowerCase());
+    }).toList();
+
+    return ListView.builder(
+      itemCount: filteredLanguages.length,
+      itemBuilder: (context, index) {
+        final language = filteredLanguages[index];
+        return ValueListenableBuilder(
+          valueListenable: selectedLanguageItem,
+          builder: (context, value, child) {
+            return ListTile(
+              leading: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: value == language
+                      ? Theme.of(context).primaryColor
+                      : Colors.grey,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.record_voice_over,
+                    color: Colors.white,
+                    size: 30,
                   ),
                 ),
-                title: Text(
-                  language.name,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              title: Text(
+                language.name,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
-                subtitle: Text(
-                    'Bibles: ${language.bibles}, Filesets: ${language.filesets}'),
-                selected: value == language,
-                onTap: () => onLanguageItemSelected(language),
-              );
-            },
-          );
-        },
-      ),
-    );
-  }
-}
-
-class SearchBoxWidget extends StatefulWidget {
-  final Function(String) onSearch;
-
-  const SearchBoxWidget({Key? key, required this.onSearch}) : super(key: key);
-
-  @override
-  _SearchBoxWidgetState createState() => _SearchBoxWidgetState();
-}
-
-class _SearchBoxWidgetState extends State<SearchBoxWidget> {
-  final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _focusNode.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      key: Key('searchBox'),
-      controller: _controller,
-      focusNode: _focusNode,
-      decoration: InputDecoration(
-        hintText: t.searchLanguages,
-        fillColor: Colors.white,
-        filled: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        prefixIcon: Icon(Icons.search),
-      ),
-      textInputAction: TextInputAction.search,
-      onChanged: widget.onSearch,
+              ),
+              selected: value == language,
+              onTap: () => onLanguageItemSelected(language),
+            );
+          },
+        );
+      },
     );
   }
 }

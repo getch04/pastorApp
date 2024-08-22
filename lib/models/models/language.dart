@@ -4,8 +4,6 @@ class Language {
   final String iso;
   final String name;
   final String? autonym;
-  final int bibles;
-  final int? filesets;
   final String? rolvCode;
   final String? deletedAt;
 
@@ -15,8 +13,6 @@ class Language {
     required this.iso,
     required this.name,
     required this.autonym,
-    required this.bibles,
-    this.filesets = 0,
     this.rolvCode,
     this.deletedAt,
   });
@@ -28,8 +24,6 @@ class Language {
       iso: json['iso'],
       name: json['name'],
       autonym: json['autonym'],
-      bibles: json['bibles'],
-      filesets: json['filesets'],
       rolvCode: json['rolv_code'],
       deletedAt: json['deleted_at'],
     );
@@ -42,10 +36,123 @@ class Language {
       'iso': iso,
       'name': name,
       'autonym': autonym,
-      'bibles': bibles,
-      'filesets': filesets,
       'rolv_code': rolvCode,
       'deleted_at': deletedAt,
     };
   }
 }
+
+final List<Language> languages = [
+  Language(
+    id: 748,
+    glottoId: null,
+    iso: "ben",
+    name: "Bengali",
+    autonym: "বাংলা",
+  ),
+  Language(
+    id: 33689,
+    glottoId: null,
+    iso: "dzo",
+    name: "Dzongkha",
+    autonym: "རྫོང་ཁ",
+  ),
+  Language(
+    id: 6414,
+    glottoId: null,
+    iso: "eng",
+    name: "English (USA)",
+    autonym: "English",
+  ),
+  Language(
+    id: 6413,
+    glottoId: null,
+    iso: "fra",
+    name: "French",
+    autonym: "Français",
+  ),
+  Language(
+    id: 2355,
+    glottoId: null,
+    iso: "hin",
+    name: "Hindi",
+    autonym: "हिन्दी",
+  ),
+  Language(
+    id: 2534,
+    glottoId: null,
+    iso: "ind",
+    name: "Indonesian",
+    autonym: "Bahasa Indonesia",
+  ),
+  Language(
+    id: 5049,
+    glottoId: null,
+    iso: "kan",
+    name: "Kannada",
+    autonym: "ಕನ್ನಡ",
+  ),
+  Language(
+    id: 4100,
+    glottoId: null,
+    iso: "mar",
+    name: "Marathi",
+    autonym: "मराठी",
+  ),
+  Language(
+    id: 4756,
+    glottoId: null,
+    iso: "npi",
+    name: "Nepali",
+    autonym: "नेपाली",
+  ),
+  Language(
+    id: 8567,
+    glottoId: null,
+    iso: "ory",
+    name: "Oriya",
+    autonym: "ଓଡ଼ିଆ",
+  ),
+  Language(
+    id: 8247,
+    glottoId: null,
+    iso: "pan",
+    name: "Punjabi",
+    autonym: "ਪੰਜਾਬੀ",
+  ),
+  Language(
+    id: 5598,
+    glottoId: null,
+    iso: "por",
+    name: "Portuguese",
+    autonym: "Português",
+  ),
+  Language(
+    id: 6411,
+    glottoId: null,
+    iso: "spa",
+    name: "Spanish (Mexico)",
+    autonym: "Español",
+  ),
+  Language(
+    id: 6589,
+    glottoId: null,
+    iso: "tam",
+    name: "Tamil",
+    autonym: "தமிழ்",
+  ),
+  Language(
+    id: 6696,
+    glottoId: null,
+    iso: "tel",
+    name: "Telugu",
+    autonym: "తెలుగు",
+  ),
+  Language(
+    id: 7147,
+    glottoId: null,
+    iso: "urd",
+    name: "Urdu",
+    autonym: "اردو",
+  ),
+];

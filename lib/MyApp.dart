@@ -921,11 +921,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return BiblePlayerScreen(
-                  data: args!.items as (
-                    int,
-                    String,
-                    BibleBook,
-                  ),
+                  data: args!.items as (int, String, BibleBook, List<String>),
                 );
               },
             );

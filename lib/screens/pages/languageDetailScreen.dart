@@ -5,7 +5,6 @@ import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
-import 'package:churchapp_flutter/utils/title_case.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +29,28 @@ class _LanguageDetailScreenState extends State<LanguageDetailScreen> {
       var response = await dio.get(
           '$BIBLE_BASE_URL/bibles?language_code=${widget.languageId}&v=4&key=$BIBLE_API_KEY');
       final res = response.data['data'] as List;
+
+      // Convert the response into a list of BibleVersion objects
       final List<BibleVersion> resa =
           res.map((e) => BibleVersion.fromJson(e)).toList();
 
+      // Filter the list to remove BibleVersions without "dbp-prod" or without any "text" filesets
+      final List<BibleVersion> filteredVersions = resa.where((bibleVersion) {
+        // Check if "dbp-prod" exists in the filesets map
+        if (!bibleVersion.filesets.containsKey('dbp-prod')) {
+          return false;
+        }
+
+        // Check if there are any filesets in "dbp-prod" with a type that starts with "text"
+        bool hasTextFileset = bibleVersion.filesets['dbp-prod']!.any((fileset) {
+          return fileset.type.startsWith('text');
+        });
+
+        return hasTextFileset;
+      }).toList();
+
       setState(() {
-        result = resa;
+        result = filteredVersions;
         isLoading = false;
       });
     } catch (e) {
@@ -115,7 +131,7 @@ class _LanguageDetailScreenState extends State<LanguageDetailScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 15.0),
                             child: Text(
-                              '${result.first.language}' + t.biblebooks,
+                              '${result.first.language} ' + t.biblebooks,
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 20,
