@@ -200,7 +200,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
-                                          verseText + '.',
+                                          verseText,
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
