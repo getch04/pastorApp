@@ -154,8 +154,8 @@ class BibleFilterScreenItem extends StatefulWidget {
 }
 
 class _BibleFilterScreenItemState extends State<BibleFilterScreenItem> {
- 
-  ValueNotifier<Language?> selectedLanguageItem = ValueNotifier<Language?>(null);
+  ValueNotifier<Language?> selectedLanguageItem =
+      ValueNotifier<Language?>(null);
   final TextEditingController _searchController = TextEditingController();
   String searchQuery = '';
   Timer? _debounce;
