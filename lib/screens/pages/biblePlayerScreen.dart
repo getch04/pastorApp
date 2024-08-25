@@ -2,6 +2,7 @@ import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/models/models/bible_text_response.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
 import 'package:churchapp_flutter/screens/provider/bible_media_controller.dart';
@@ -57,17 +58,19 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
   final ScrollController _scrollController = ScrollController();
   late BibleMediaController _bibleMediaController;
   late BibleFilterProvider _filterProvider;
+  late AppStateManager appStateManager;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      appStateManager = Provider.of<AppStateManager>(context, listen: false);
       _bibleMediaController =
           Provider.of<BibleMediaController>(context, listen: false);
       _filterProvider =
           Provider.of<BibleFilterProvider>(context, listen: false);
       _bibleMediaController.initData(int.tryParse(widget.data.$2) ?? 1,
-          _filterProvider, widget.data.$3, widget.data.$1, widget.data.$4);
+          _filterProvider,appStateManager.selectedBibleVersion!, widget.data.$3, widget.data.$1, widget.data.$4);
     });
   }
 

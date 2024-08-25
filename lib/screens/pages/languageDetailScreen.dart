@@ -1,6 +1,7 @@
 import 'package:churchapp_flutter/core/common.dart';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/models/language_detail.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
@@ -13,7 +14,7 @@ import 'package:provider/provider.dart';
 class LanguageDetailScreen extends StatefulWidget {
   LanguageDetailScreen({Key? key, required this.languageId}) : super(key: key);
   static const routeName = "/LanguageDetailScreen";
-  final int languageId;
+  final dynamic languageId;
 
   @override
   _LanguageDetailScreenState createState() => _LanguageDetailScreenState();
@@ -23,6 +24,7 @@ class _LanguageDetailScreenState extends State<LanguageDetailScreen> {
   bool isLoading = true;
   List<BibleVersion> result = [];
   Dio dio = Dio();
+  late AppStateManager appManager;
 
   Future<void> getDetail() async {
     try {
@@ -64,6 +66,7 @@ class _LanguageDetailScreenState extends State<LanguageDetailScreen> {
   @override
   void initState() {
     super.initState();
+    appManager = Provider.of<AppStateManager>(context, listen: false);
     getDetail();
   }
 
@@ -175,7 +178,8 @@ class _LanguageDetailScreenState extends State<LanguageDetailScreen> {
                                       ),
                                     ),
                                     onTap: () {
-                                      filterProvider.setTranslation(trans);
+                                      appManager.selectedBibleVersion = trans;
+                                      // filterProvider.setTranslation(trans);
                                       Navigator.pushNamed(
                                         context,
                                         BibleScreenNew.routeName,

@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 class BibleFilterProvider with ChangeNotifier {
   Language? _selectedLanguage;
 
-  BibleVersion _bibleVersion = defaultBibleVersion;
+  // BibleVersion _bibleVersion = defaultBibleVersion;
 
   String _selectedType = 'OT';
 
   Language? get selectedLanguage => _selectedLanguage;
-  BibleVersion get bibleVersion => _bibleVersion;
+  // BibleVersion get bibleVersion => _bibleVersion;
   String get selectedType => _selectedType;
 
   void setSelectedLanguage(Language language) {
@@ -18,10 +18,10 @@ class BibleFilterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setTranslation(BibleVersion v) {
-    _bibleVersion = v;
-    notifyListeners();
-  }
+  // void setTranslation(BibleVersion v) {
+  //   _bibleVersion = v;
+  //   notifyListeners();
+  // }
 
   void setSelectedType(String type) {
     _selectedType = type;

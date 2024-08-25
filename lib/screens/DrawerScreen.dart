@@ -271,21 +271,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ),
                 SizedBox(height: 10),
                 CommonItemCard(
-                  title: t.profile,
-                  height: 65,
-                  borderSize: 2,
-                  icon: Icon(
-                    Icons.account_circle_outlined,
-                    size: 40,
-                    color: Colors.black54,
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(context, UserProfileScreen.routeName);
-                  },
-                ),
-                SizedBox(height: 10),
-
-                CommonItemCard(
                   title: t.howTo,
                   height: 65,
                   borderSize: 2,
@@ -296,6 +281,21 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   ),
                   onTap: () {
                     Navigator.pushNamed(context, HowToScreen.routeName);
+                  },
+                ),
+                SizedBox(height: 10),
+
+                CommonItemCard(
+                  title: t.profile,
+                  height: 65,
+                  borderSize: 2,
+                  icon: Icon(
+                    Icons.account_circle_outlined,
+                    size: 40,
+                    color: Colors.black54,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, UserProfileScreen.routeName);
                   },
                 ),
 

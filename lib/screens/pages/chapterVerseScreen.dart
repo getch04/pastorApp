@@ -5,6 +5,7 @@ import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/models/models/verse.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/screens/pages/biblePlayerScreen.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
@@ -43,10 +44,13 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
   bool isLoading = false;
 
   late BibleFilterProvider filterProvider;
+  late AppStateManager appManager;
 
   @override
   void initState() {
     super.initState();
+    appManager = Provider.of<AppStateManager>(context, listen: false);
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       filterProvider = Provider.of<BibleFilterProvider>(context, listen: false);
       fetchChapters();
@@ -65,7 +69,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
       isLoading = true;
     });
 
-    List<String> filesetIds = filterProvider.bibleVersion
+    List<String> filesetIds = appManager.selectedBibleVersion!
         .getTextFilesetIds(filterProvider.selectedType);
 
     for (String filesetId in filesetIds) {

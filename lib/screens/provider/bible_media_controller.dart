@@ -25,10 +25,10 @@ class BibleMediaController extends ChangeNotifier {
   late AudioController audioController;
 
   //set current chapter
-  void initData(int chapter, BibleFilterProvider prov, BibleBook book, int max,
+  void initData(int chapter, BibleFilterProvider prov, BibleVersion version, BibleBook book, int max,
       List<String> verses) {
     currentChapter = chapter;
-    bibleVersion = prov.bibleVersion;
+    bibleVersion = version;
     bibleBook = book;
     maxChapter = max;
     audiofileSetId = bibleVersion?.getAudioFilesetId(prov.selectedType) ?? '';

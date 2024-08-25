@@ -1,6 +1,7 @@
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/models/language_detail.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/bibleFilterScreen.dart';
 import 'package:churchapp_flutter/screens/pages/chapterVerseScreen.dart';
@@ -40,6 +41,8 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
   late BibleBooksProvider bibleBooksProvider;
   BibleVersion? bibleVersion;
 
+  late AppStateManager appManager;
+
   @override
   void initState() {
     super.initState();
@@ -49,14 +52,15 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
       filterProvider = Provider.of<BibleFilterProvider>(context, listen: false);
       bibleBooksProvider =
           Provider.of<BibleBooksProvider>(context, listen: false);
+      appManager = Provider.of<AppStateManager>(context, listen: false);
+      bibleVersion = appManager.selectedBibleVersion;
 
       filterProvider.addListener(() {
-        bibleBooksProvider.fetchBooks(filterProvider.bibleVersion);
+        bibleBooksProvider.fetchBooks(bibleVersion);
       });
 
-      bibleBooksProvider.fetchBooks(filterProvider.bibleVersion);
+      bibleBooksProvider.fetchBooks(bibleVersion);
 
-      bibleVersion = filterProvider.bibleVersion;
       setState(() {});
     });
   }

@@ -1,5 +1,5 @@
 class Language {
-  final int id;
+  final dynamic id;
   final String? glottoId;
   final String iso;
   final String name;
@@ -58,19 +58,13 @@ final List<Language> languages = [
     autonym: "རྫོང་ཁ",
   ),
   Language(
-    id: 6414,
+    id: 'ENG',
     glottoId: null,
     iso: "eng",
     name: "English (USA)",
     autonym: "English",
   ),
-  Language(
-    id: 6413,
-    glottoId: null,
-    iso: "fra",
-    name: "French",
-    autonym: "Français",
-  ),
+
   Language(
     id: 2355,
     glottoId: null,
@@ -119,13 +113,6 @@ final List<Language> languages = [
     iso: "pan",
     name: "Punjabi",
     autonym: "ਪੰਜਾਬੀ",
-  ),
-  Language(
-    id: 5598,
-    glottoId: null,
-    iso: "por",
-    name: "Portuguese",
-    autonym: "Português",
   ),
   Language(
     id: 6411,

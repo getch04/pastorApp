@@ -1002,7 +1002,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return LanguageDetailScreen(
-                  languageId: args!.items as int,
+                  languageId: args!.items as dynamic,
                 );
               },
             );
