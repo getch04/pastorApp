@@ -3,16 +3,19 @@ import 'dart:math';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/providers/CategoriesModel.dart';
 import 'package:churchapp_flutter/screens/NoitemScreen.dart';
 import 'package:churchapp_flutter/screens/pages/sermonPlayerScreen.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
+import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_arc_text/flutter_arc_text.dart';
 import 'package:provider/provider.dart';
+import 'package:translator/translator.dart';
 
 class SermonScreen extends StatefulWidget {
   SermonScreen({Key? key}) : super(key: key);
@@ -41,13 +44,24 @@ class SermonScreenItem extends StatefulWidget {
 class _SermonScreenItemState extends State<SermonScreenItem> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final translator = GoogleTranslator();
+  late AppStateManager appManager;
+
+  // Dynamic translation function
+  Future<String> translateText(String text) async {
+    final translatedText = await translator.translate(text, to: getLang);
+    return translatedText.text;
+  }
+
+  String get getLang {
+    appManager = Provider.of<AppStateManager>(context, listen: false);
+
+    return appLanguageData[AppLanguage.values[appManager.preferredLanguage]]![
+        'value']!;
+  }
+
   @override
   Widget build(BuildContext context) {
-    var statusBarHeight = MediaQuery.of(context).padding.top;
-    var appBarHeight = kToolbarHeight;
-
-    final style = TextStyles.title(context)
-        .copyWith(fontWeight: FontWeight.bold, fontSize: 20);
     return WillPopScope(
       onWillPop: () async {
         if (Provider.of<AudioPlayerModel>(context, listen: false)
@@ -105,18 +119,30 @@ class _SermonScreenItemState extends State<SermonScreenItem> {
           height: MediaQuery.of(context).size.height * 0.83,
           width: MediaQuery.of(context).size.width,
           child: ChangeNotifierProvider(
-            create: (context) => CategoriesModel(),
+            create: (context) => CategoriesModel(
+                Provider.of<AppStateManager>(context, listen: false)),
             child: Column(
               // shrinkWrap: true,
               children: [
                 SizedBox(
                   height: 10.0,
                 ),
-                Text(
-                  "1 Year of Sermons",
-                  style: TextStyles.title(context)
-                      .copyWith(fontSize: 30, fontWeight: FontWeight.bold),
-                ),
+                FutureBuilder<String>(
+                    future: translateText('1 Year of Sermons'),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Language Not Supported');
+                      }
+                      if (snapshot.hasData) {
+                        return Text(
+                          snapshot.data ?? '',
+                          style: TextStyles.title(context).copyWith(
+                              fontSize: 30, fontWeight: FontWeight.bold),
+                        );
+                      } else {
+                        return SizedBox();
+                      }
+                    }),
                 SermonBody()
               ],
             ),
@@ -181,11 +207,30 @@ class SermonBody extends StatelessWidget {
   }
 }
 
-class SermonButton extends StatelessWidget {
+class SermonButton extends StatefulWidget {
   final int week;
   final Categories? category;
 
   SermonButton({required this.week, required this.category});
+
+  @override
+  _SermonButtonState createState() => _SermonButtonState();
+}
+
+class _SermonButtonState extends State<SermonButton> {
+  final translator = GoogleTranslator();
+
+  // Dynamic translation function for "week"
+  Future<String> translateText(String text) async {
+    final translatedText = await translator.translate(text, to: getLang);
+    return translatedText.text;
+  }
+
+  String get getLang {
+    final appManager = Provider.of<AppStateManager>(context, listen: false);
+    return appLanguageData[AppLanguage.values[appManager.preferredLanguage]]![
+        'value']!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -227,25 +272,46 @@ class SermonButton extends StatelessWidget {
                   width: 80,
                   child: Stack(
                     children: [
-                      Positioned(
-                        top: 62,
-                        left: 30,
-                        child: ArcText(
-                          radius: 55,
-                          text: 'WEEK',
-                          textStyle: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                          startAngle: -pi / 45,
-                          startAngleAlignment: StartAngleAlignment.center,
-                          placement: Placement.inside,
-                          direction: Direction.clockwise,
-                        ),
+                      // Using FutureBuilder to translate "WEEK"
+                      FutureBuilder<String>(
+                        future: translateText('WEEK'),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Text('Language Not Supported');
+                          }
+                          if (snapshot.hasData) {
+                            return Positioned(
+                              top: 62,
+                              left: 30,
+                              child: ArcText(
+                                radius: 55,
+                                text: snapshot.data ?? 'WEEK',
+                                textStyle: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                startAngle: -pi / 45,
+                                startAngleAlignment: StartAngleAlignment.center,
+                                placement: Placement.inside,
+                                direction: Direction.clockwise,
+                              ),
+                            );
+                          } else {
+                            return Positioned(
+                              top: 62,
+                              left: 30,
+                              child: CupertinoActivityIndicator(
+                                radius: 8,
+                              ),
+                            );
+                          }
+                        },
                       ),
                       Positioned(
                         top: 30,
                         left: 20,
                         child: Text(
-                          '$week',
+                          '${widget.week}',
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -258,7 +324,7 @@ class SermonButton extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    category?.title ?? 'UNKNOWN',
+                    widget.category?.title ?? 'UNKNOWN',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

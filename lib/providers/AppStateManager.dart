@@ -98,8 +98,8 @@ class AppStateManager with ChangeNotifier {
         case "es":
           LocaleSettings.setLocale(AppLocale.es);
           break;
-        case "pt":
-          LocaleSettings.setLocale(AppLocale.pt);
+        case "pa":
+          LocaleSettings.setLocale(AppLocale.pa);
           break;
 
         case "hi":
@@ -223,9 +223,9 @@ final appLanguageData = {
       case "es":
         selectedLocale = AppLocale.es;
         break;
-      case "pt":
-        selectedLocale = AppLocale.pt;
-        break;
+      // case "pt":
+      //   selectedLocale = AppLocale.pt;
+      //   break;
       case "hi":
         selectedLocale = AppLocale.hi;
         break;
@@ -250,9 +250,9 @@ final appLanguageData = {
       case "or":
         selectedLocale = AppLocale.or;
         break;
-      // case "pa":
-      //   selectedLocale = AppLocale.pa;
-      //   break;
+      case "pa":
+        selectedLocale = AppLocale.pa;
+        break;
       case "ta":
         selectedLocale = AppLocale.ta;
         break;
@@ -301,7 +301,8 @@ final appLanguageData = {
     switch (locale) {
       case AppLocale.en:
         return 6414;
-
+      case AppLocale.pa:
+        return 8247;
       case AppLocale.es:
         return 6411;
       case AppLocale.pt:

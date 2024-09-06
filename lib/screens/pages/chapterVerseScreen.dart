@@ -168,6 +168,7 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
                                 chapters.isNotEmpty ? chapters.last : 0,
                                 selectedChapter.toString(),
                                 widget.book,
+                                verses
                               ),
                             ),
                           );

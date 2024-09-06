@@ -73,10 +73,10 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
       final verseText = data['verse']['details']['text'];
       final verseReference = data['verse']['details']['reference'];
 
-      final translatedVerseText =
-          await translator.translate(verseText, to: getLang);
-      final translatedVerseReference =
-          await translator.translate(verseReference, to: getLang);
+      final translatedVerseText = await translator.translate(verseText,
+          to: getLang == "dz" ? 'ne' : getLang);
+      final translatedVerseReference = await translator
+          .translate(verseReference, to: getLang == "dz" ? 'ne' : getLang);
 
       return {
         'verseText': translatedVerseText.text,
@@ -86,6 +86,9 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
       throw Exception('Failed to load verse');
     }
   }
+
+
+
 
   Future<bool> _onWillPop() async {
     final audioPlayerModel =
@@ -188,7 +191,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                 future: fetchAndTranslateVerse(),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasError) {
-                                    return Text('Error: ${snapshot.error}');
+                                    return Text('Language Not Supported');
                                   }
                                   if (snapshot.hasData) {
                                     final verseText =

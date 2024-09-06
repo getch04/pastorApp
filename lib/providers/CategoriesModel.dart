@@ -1,17 +1,22 @@
-import 'package:flutter/foundation.dart';
 import 'dart:async';
 import 'dart:convert';
+
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
+import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:dio/dio.dart';
-import '../utils/ApiUrl.dart';
+import 'package:flutter/foundation.dart';
+
 import '../models/Categories.dart';
+import '../utils/ApiUrl.dart';
 
 class CategoriesModel with ChangeNotifier {
   //List<Comments> _items = [];
   bool isError = false;
   bool isLoading = false;
   List<Categories>? categories;
+  AppStateManager appManager;
 
-  CategoriesModel() {
+  CategoriesModel(this.appManager) {
     loadItems();
   }
 
@@ -22,11 +27,15 @@ class CategoriesModel with ChangeNotifier {
   }
 
   Future<void> fetchItems() async {
+    String language =
+        appLanguageData[AppLanguage.values[appManager.preferredLanguage]]
+                ?['value'] ??
+            'en';
     try {
       final dio = Dio();
 
       final response = await dio.get(
-        ApiUrl.CATEGORIES,
+        ApiUrl.CATEGORIES + "?lang=$language",
       );
 
       if (response.statusCode == 200) {

@@ -2,10 +2,10 @@
 /*
  * Generated file. Do not edit.
  *
- * Locales: 14
- * Strings: 4172 (298.0 per locale)
+ * Locales: 15
+ * Strings: 4470 (298.0 per locale)
  *
- * Built on 2024-08-25 at 17:50 UTC
+ * Built on 2024-09-04 at 11:29 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -30,6 +30,7 @@ enum AppLocale {
 	mr, // 'mr'
 	ne, // 'ne'
 	or, // 'or'
+	pa, // 'pa'
 	pt, // 'pt'
 	ta, // 'ta'
 	te, // 'te'
@@ -169,6 +170,7 @@ late _StringsKn _translationsKn = _StringsKn.build();
 late _StringsMr _translationsMr = _StringsMr.build();
 late _StringsNe _translationsNe = _StringsNe.build();
 late _StringsOr _translationsOr = _StringsOr.build();
+late _StringsPa _translationsPa = _StringsPa.build();
 late _StringsPt _translationsPt = _StringsPt.build();
 late _StringsTa _translationsTa = _StringsTa.build();
 late _StringsTe _translationsTe = _StringsTe.build();
@@ -193,6 +195,7 @@ extension AppLocaleExtensions on AppLocale {
 			case AppLocale.mr: return _translationsMr;
 			case AppLocale.ne: return _translationsNe;
 			case AppLocale.or: return _translationsOr;
+			case AppLocale.pa: return _translationsPa;
 			case AppLocale.pt: return _translationsPt;
 			case AppLocale.ta: return _translationsTa;
 			case AppLocale.te: return _translationsTe;
@@ -219,6 +222,7 @@ extension AppLocaleExtensions on AppLocale {
 			case AppLocale.mr: return _StringsMr.build();
 			case AppLocale.ne: return _StringsNe.build();
 			case AppLocale.or: return _StringsOr.build();
+			case AppLocale.pa: return _StringsPa.build();
 			case AppLocale.pt: return _StringsPt.build();
 			case AppLocale.ta: return _StringsTa.build();
 			case AppLocale.te: return _StringsTe.build();
@@ -238,6 +242,7 @@ extension AppLocaleExtensions on AppLocale {
 			case AppLocale.mr: return 'mr';
 			case AppLocale.ne: return 'ne';
 			case AppLocale.or: return 'or';
+			case AppLocale.pa: return 'pa';
 			case AppLocale.pt: return 'pt';
 			case AppLocale.ta: return 'ta';
 			case AppLocale.te: return 'te';
@@ -257,6 +262,7 @@ extension AppLocaleExtensions on AppLocale {
 			case AppLocale.mr: return const Locale.fromSubtags(languageCode: 'mr');
 			case AppLocale.ne: return const Locale.fromSubtags(languageCode: 'ne');
 			case AppLocale.or: return const Locale.fromSubtags(languageCode: 'or');
+			case AppLocale.pa: return const Locale.fromSubtags(languageCode: 'pa');
 			case AppLocale.pt: return const Locale.fromSubtags(languageCode: 'pt');
 			case AppLocale.ta: return const Locale.fromSubtags(languageCode: 'ta');
 			case AppLocale.te: return const Locale.fromSubtags(languageCode: 'te');
@@ -278,6 +284,7 @@ extension StringAppLocaleExtensions on String {
 			case 'mr': return AppLocale.mr;
 			case 'ne': return AppLocale.ne;
 			case 'or': return AppLocale.or;
+			case 'pa': return AppLocale.pa;
 			case 'pt': return AppLocale.pt;
 			case 'ta': return AppLocale.ta;
 			case 'te': return AppLocale.te;
@@ -3594,6 +3601,328 @@ class _StringsOr implements _StringsEn {
 	@override String get play => 'ଖେଳିବା';
 	@override String get no_verse_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଶ୍ଲୋକ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
 	@override String get no_audio_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
+}
+
+// Path: <root>
+class _StringsPa implements _StringsEn {
+
+	/// You can call this constructor and build your own translation instance of this locale.
+	/// Constructing via the enum [AppLocale.build] is preferred.
+	_StringsPa.build();
+
+	/// Access flat map
+	@override dynamic operator[](String key) => _flatMap[key];
+
+	// Internal flat map initialized lazily
+	@override late final Map<String, dynamic> _flatMap = _buildFlatMap();
+
+	@override late final _StringsPa _root = this; // ignore: unused_field
+
+	// Translations
+	@override String get appname => 'MyVirtualPastor';
+	@override String get selectlanguage => 'ਭਾਸ਼ਾ ਚੁਣੋ';
+	@override String get deletemyaccount => 'ਮੇਰਾ ਖਾਤਾ ਮਿਟਾਓ';
+	@override String get deleteaccount => 'ਖਾਤਾ ਮਿਟਾਓ';
+	@override String get deleteaccounthint => 'ਇਹ ਕਿਰਿਆ ਤੁਹਾਡਾ ਖਾਤਾ ਮਿਟਾ ਦੇਵੇਗੀ ਅਤੇ ਤੁਹਾਡੇ ਸਾਰੇ ਡਾਟਾ ਨੂੰ ਮਿਟਾ ਦੇਵੇਗੀ, ਇੱਕ ਵਾਰ ਡਾਟਾ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਤਾਂ ਇਹ ਦੁਬਾਰਾ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋ ਸਕਦਾ।';
+	@override String get deleteaccountsuccess => 'ਖਾਤਾ ਮਿਟਾਉਣਾ ਸਫਲ ਰਿਹਾ';
+	@override String get chooseapplanguage => 'ਐਪ ਭਾਸ਼ਾ ਚੁਣੋ';
+	@override String get nightmode => 'ਰਾਤੀ ਮੋਡ';
+	@override String get initializingapp => 'ਸ਼ੁਰੂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...';
+	@override String get home => 'ਹੋਮ';
+	@override String get branches => 'ਸ਼ਾਖਾਵਾਂ';
+	@override String get inbox => 'ਇਨਬਾਕਸ';
+	@override String get downloads => 'ਡਾਊਨਲੋਡਸ';
+	@override String get settings => 'ਸੈਟਿੰਗਸ';
+	@override String get events => 'ਘਟਨਾਵਾਂ';
+	@override String get myplaylists => 'ਮੇਰੀ ਪਲੇਲਿਸਟ';
+	@override String get website => 'ਵੈਬਸਾਈਟ';
+	@override String get hymns => 'ਭਜਨ';
+	@override String get articles => 'ਲੇਖ';
+	@override String get notes => 'ਨੋਟਸ';
+	@override String get donate => 'ਦਾਨ ਕਰੋ';
+	@override String get offering => 'ਭੇਟ';
+	@override String get savenotetitle => 'ਨੋਟਸ ਸਿਰਲੇਖ';
+	@override String get nonotesfound => 'ਕੋਈ ਨੋਟਸ ਨਹੀਂ ਮਿਲੇ';
+	@override String get newnote => 'ਨਵਾਂ';
+	@override String get deletenote => 'ਨੋਟਸ ਮਿਟਾਓ';
+	@override String get deletenotehint => 'ਕੀ ਤੁਸੀਂ ਇਹ ਨੋਟਸ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਕਿਰਿਆ ਦੁਬਾਰਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।';
+	@override String get bookmarks => 'ਬੁਕਮਾਰਕਸ';
+	@override String get socialplatforms => 'ਸੋਸ਼ਲ ਪਲੇਟਫਾਰਮ';
+	@override List<String> get onboardingpagetitles => [
+		'ਮੇਰੇ ਚਰਚ ਵਿੱਚ ਸਵਾਗਤ ਹੈ',
+		'ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨਾਲ ਭਰਪੂਰ',
+		'ਆਡੀਓ, ਵੀਡੀਓ \n ਅਤੇ ਲਾਈਵ ਸਟਰੀਮਿੰਗ',
+		'ਖਾਤਾ ਬਣਾਓ',
+	];
+	@override List<String> get onboardingpagehints => [
+		'ਐਤਵਾਰ ਸਵੇਰਾਂ ਅਤੇ ਤੁਹਾਡੇ ਚਰਚ ਦੀਆਂ ਚਾਰ ਦੀਵਾਰਾਂ ਤੋਂ ਪਰੇ ਵਧੋ। ਤੁਹਾਨੂੰ ਇਕ ਮੋਬਾਈਲ-ਕੇਂਦਰੀਤ ਦੁਨੀਆ ਨਾਲ ਸੰਚਾਰ ਅਤੇ ਭਾਗੀਦਾਰੀ ਕਰਨ ਲਈ ਜੋ ਕੁਝ ਵੀ ਚਾਹੀਦਾ ਹੈ।',
+		'ਅਸੀਂ ਤੁਹਾਡੇ ਚਰਚ ਐਪ ਦੇ ਸਾਰੇ ਮੁੱਖ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਇਕੱਠਾ ਕੀਤਾ ਹੈ। ਘਟਨਾਵਾਂ, ਭਜਨ, ਨੋਟੀਫਿਕੇਸ਼ਨ, ਨੋਟਸ ਅਤੇ ਬਹੁ-ਸੰਸਕਰਣ ਬਾਈਬਲ।',
+		'ਦੁਨੀਆ ਭਰ ਦੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਤੁਹਾਡੇ ਚਰਚ ਦੀਆਂ ਸੇਵਾਵਾਂ ਦੀਆਂ ਲਾਈਵ ਸਟਰੀਮਿੰਗ ਦੇਖਣ, ਆਡੀਓ ਸੰਦੇਸ਼ ਸੁਣਨ ਅਤੇ ਵੀਡੀਓ ਦੇਖਣ ਦੀ ਆਗਿਆ ਦਿਓ।',
+		'ਇੱਕ ਨਿਰੰਤਰ ਪੂਜਾ ਦੇ ਤਜਰਬੇ ਤੱਕ ਆਪਣੀ ਯਾਤਰਾ ਸ਼ੁਰੂ ਕਰੋ।',
+	];
+	@override String get next => 'ਅਗਲਾ';
+	@override String get done => 'ਸ਼ੁਰੂ ਕਰੋ';
+	@override String get quitapp => 'ਐਪ ਬੰਦ ਕਰੋ!';
+	@override String get quitappwarning => 'ਕੀ ਤੁਸੀਂ ਐਪ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?';
+	@override String get quitappaudiowarning => 'ਤੁਸੀਂ ਵਰਤਮਾਨ ਵਿੱਚ ਇਕ ਆਡੀਓ ਚਲਾ ਰਹੇ ਹੋ, ਐਪ ਬੰਦ ਕਰਨ ਨਾਲ ਆਡੀਓ ਪਲੇਬੈਕ ਰੁਕ ਜਾਏਗਾ। ਜੇ ਤੁਸੀਂ ਪਲੇਬੈਕ ਰੁਕਵਾਉਣਾ ਨਹੀਂ ਚਾਹੁੰਦੇ, ਤਾਂ ਕੇਂਦਰ ਬਟਨ ਨਾਲ ਐਪ ਨੂੰ ਘੱਟ ਕਰੋ ਜਾਂ ਹੁਣੇ ਐਪ ਬੰਦ ਕਰਨ ਲਈ ਓਕੇ ਬਟਨ \'ਤੇ ਕਲਿੱਕ ਕਰੋ।';
+	@override String get ok => 'ਠੀਕ ਹੈ';
+	@override String get retry => 'ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ';
+	@override String get oops => 'ਓਹ!';
+	@override String get save => 'ਸੰਭਾਲੋ';
+	@override String get cancel => 'ਰੱਦ ਕਰੋ';
+	@override String get error => 'ਗਲਤੀ';
+	@override String get success => 'ਸਫਲਤਾ';
+	@override String get skip => 'ਛੱਡੋ';
+	@override String get skiplogin => 'ਲਾਗਿਨ ਛੱਡੋ';
+	@override String get skipregister => 'ਰਜਿਸਟਰੇਸ਼ਨ ਛੱਡੋ';
+	@override String get dataloaderror => 'ਵਰਤਮਾਨ ਸਮੇਂ ਅਨੁਰੋਧ ਕੀਤੇ ਡਾਟਾ ਨੂੰ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ, ਆਪਣੇ ਡਾਟਾ ਕਨੈਕਸ਼ਨ ਨੂੰ ਜਾਂਚੋ ਅਤੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ।';
+	@override String get suggestedforyou => 'ਤੁਹਾਡੇ ਲਈ ਸੁਝਾਏ ਗਏ';
+	@override String get videomessages => 'ਵੀਡੀਓ ਸੰਦੇਸ਼';
+	@override String get audiomessages => 'ਆਡੀਓ ਸੰਦੇਸ਼';
+	@override String get devotionals => 'ਭਗਤੀਗੀਤ';
+	@override String get categories => 'ਸ਼੍ਰੇਣੀਆਂ';
+	@override String get category => 'ਸ਼੍ਰੇਣੀ';
+	@override String get videos => 'ਵੀਡੀਓਜ਼';
+	@override String get audios => 'ਆਡੀਓਜ਼';
+	@override String get biblebooks => 'ਬਾਈਬਲ';
+	@override String get sermons => 'ਪ੍ਰਵਚਨ';
+	@override String get tools => 'ਉਪਕਰਣ';
+	@override String get profile => 'ਪਰੋਫਾਈਲ';
+	@override String get audiobible => 'ਆਡੀਓ ਬਾਈਬਲ';
+	@override String get homesentence => 'ਤੁਹਾਨੂੰ ਇੱਕ ਵਿਅਕਤੀ ਬਣਨ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਪਾਸਟਰ ਵਾਂਗ ਸਾਲ ਲਈ, ਜਿਸ ਨੂੰ ਭਗਵਾਨ ਨੇ ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤਾ ਹੈ।';
+	@override String get livestreams => 'ਲਾਈਵ ਸਟਰੀਮਿੰਗ';
+	@override String get radio => 'ਰੇਡੀਓ';
+	@override String get allitems => 'ਸਾਰੇ ਆਈਟਮ';
+	@override String get emptyplaylist => 'ਕੋਈ ਪਲੇਲਿਸਟ ਨਹੀਂ';
+	@override String get notsupported => 'ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ';
+	@override String get cleanupresources => 'ਸਰੋਤਾਂ ਨੂੰ ਸਾਫ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ';
+	@override String get grantstoragepermission => 'ਅੱਗੇ ਵਧਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਸਟੋਰੇਜ ਪ੍ਰਵਾਨਗੀ ਦਿਓ';
+	@override String get sharefiletitle => 'ਵੇਖੋ ਜਾਂ ਸੁਣੋ ';
+	@override String get sharefilebody => 'MyVirtualPastor ਐਪ ਦੇ ਰਾਹੀਂ, ਹੁਣੇ ਡਾਊਨਲੋਡ ਕਰੋ ';
+	@override String get sharetext => 'ਅਸਮੀਤ ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਸਟਰੀਮਿੰਗ ਦਾ ਅਨੰਦ ਮਾਣੋ';
+	@override String get sharetexthint => 'ਅਸੀਂ ਤੁਹਾਡੇ ਲਈ ਇੱਕ ਵਿਡੀਓ ਅਤੇ ਆਡੀਓ ਸਟਰੀਮਿੰਗ ਪਲੇਟਫਾਰਮ ਪ੍ਰਦਾਨ ਕਰਦੇ ਹਾਂ ਜਿਸ ਨਾਲ ਤੁਸੀਂ ਦੁਨੀਆ ਭਰ ਤੋਂ ਮਿਲੀਅਨ ਫਾਈਲਾਂ ਦੇਖ ਅਤੇ ਸੁਣ ਸਕਦੇ ਹੋ। ਹੁਣੇ ਡਾਊਨਲੋਡ ਕਰੋ ';
+	@override String get download => 'ਡਾਊਨਲੋਡ ਕਰੋ';
+	@override String get addplaylist => 'ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ';
+	@override String get bookmark => 'ਬੁਕਮਾਰਕ';
+	@override String get unbookmark => 'ਬੁਕਮਾਰਕ ਹਟਾਓ';
+	@override String get share => 'ਸਾਂਝਾ ਕਰੋ';
+	@override String get deletemedia => 'ਫਾਇਲ ਮਿਟਾਓ';
+	@override String get deletemediahint => 'ਕੀ ਤੁਸੀਂ ਇਸ ਡਾਊਨਲੋਡ ਕੀਤੀ ਗਈ ਫਾਇਲ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਕਿਰਿਆ ਦੁਬਾਰਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।';
+	@override String get searchhint => 'ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਸੰਦੇਸ਼ਾਂ ਦੀ ਭਾਲ ਕਰੋ';
+	@override String get performingsearch => 'ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਭਾਲ ਕਰ ਰਿਹਾ ਹੈ';
+	@override String get nosearchresult => 'ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ';
+	@override String get nosearchresulthint => 'ਵਧੇਰੇ ਆਮ ਕੁੰਜੀਸ਼ਬਦ ਪ੍ਰਵਿਸ਼ਟ ਕਰੋ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ';
+	@override String get addtoplaylist => 'ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ';
+	@override String get newplaylist => 'ਨਵੀਂ ਪਲੇਲਿਸਟ';
+	@override String get playlistitm => 'ਪਲੇਲਿਸਟ';
+	@override String get mediaaddedtoplaylist => 'ਮੀਡੀਆ ਨੂੰ ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ ਹੈ।';
+	@override String get mediaremovedfromplaylist => 'ਮੀਡੀਆ ਨੂੰ ਪਲੇਲਿਸਟ ਵਿੱਚੋਂ ਹਟਾਇਆ ਗਿਆ ਹੈ';
+	@override String get clearplaylistmedias => 'ਸਾਰੇ ਮੀਡੀਆ ਨੂੰ ਸਾਫ ਕਰੋ';
+	@override String get deletePlayList => 'ਪਲੇਲਿਸਟ ਮਿਟਾਓ';
+	@override String get clearplaylistmediashint => 'ਕੀ ਤੁਸੀਂ ਇਸ ਪਲੇਲਿਸਟ ਤੋਂ ਸਾਰੇ ਮੀਡੀਆ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?';
+	@override String get deletePlayListhint => 'ਕੀ ਤੁਸੀਂ ਇਸ ਪਲੇਲਿਸਟ ਨੂੰ ਮਿਟਾਉਣਾ ਅਤੇ ਸਾਰੇ ਮੀਡੀਆ ਨੂੰ ਸਾਫ਼ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?';
+	@override String get comments => 'ਟਿੱਪਣੀਆਂ';
+	@override String get replies => 'ਜਵਾਬ';
+	@override String get reply => 'ਜਵਾਬ';
+	@override String get logintoaddcomment => 'ਟਿੱਪਣੀ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਲਾਗਿਨ ਕਰੋ';
+	@override String get logintoreply => 'ਜਵਾਬ ਦੇਣ ਲਈ ਲਾਗਿਨ ਕਰੋ';
+	@override String get writeamessage => 'ਇੱਕ ਸੁਨੇਹਾ ਲਿਖੋ...';
+	@override String get nocomments => 'ਕੋਈ ਟਿੱਪਣੀਆਂ ਨਹੀਂ ਮਿਲੀਆਂ \nਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ';
+	@override String get errormakingcomments => 'ਇਸ ਸਮੇਂ ਟਿੱਪਣੀ ਪ੍ਰਕਿਰਿਆ ਕਰਨਾ ਸਮਭਵ ਨਹੀਂ ਹੈ..';
+	@override String get errordeletingcomments => 'ਇਸ ਸਮੇਂ ਇਸ ਟਿੱਪਣੀ ਨੂੰ ਮਿਟਾਉਣਾ ਸਮਭਵ ਨਹੀਂ ਹੈ..';
+	@override String get erroreditingcomments => 'ਇਸ ਸਮੇਂ ਇਸ ਟਿੱਪਣੀ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨਾ ਸਮਭਵ ਨਹੀਂ ਹੈ..';
+	@override String get errorloadingmorecomments => 'ਇਸ ਸਮੇਂ ਹੋਰ ਟਿੱਪਣੀਆਂ ਲੋਡ ਕਰਨਾ ਸਮਭਵ ਨਹੀਂ ਹੈ..';
+	@override String get deletingcomment => 'ਟਿੱਪਣੀ ਮਿਟਾਈ ਜਾ ਰਹੀ ਹੈ';
+	@override String get editingcomment => 'ਟਿੱਪਣੀ ਸੰਪਾਦਿਤ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ';
+	@override String get deletecommentalert => 'ਟਿੱਪਣੀ ਮਿਟਾਓ';
+	@override String get editcommentalert => 'ਟਿੱਪਣੀ ਸੰਪਾਦਿਤ ਕਰੋ';
+	@override String get deletecommentalerttext => 'ਕੀ ਤੁਸੀਂ ਇਸ ਟਿੱਪਣੀ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਕਿਰਿਆ ਦੁਬਾਰਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ';
+	@override String get loadmore => 'ਹੋਰ ਲੋਡ ਕਰੋ';
+	@override String get messages => 'ਸੁਨੇਹੇ';
+	@override String get guestuser => 'ਮਹਿਮਾਨ ਉਪਭੋਗਤਾ';
+	@override String get fullname => 'ਪੂਰਾ ਨਾਮ';
+	@override String get emailaddress => 'ਈਮੇਲ ਪਤਾ';
+	@override String get password => 'ਪਾਸਵਰਡ';
+	@override String get repeatpassword => 'ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਲਿਖੋ';
+	@override String get register => 'ਰਜਿਸਟਰ ਕਰੋ';
+	@override String get login => 'ਲਾਗਿਨ ਕਰੋ';
+	@override String get logout => 'ਲਾਗਆਉਟ ਕਰੋ';
+	@override String get logoutfromapp => 'ਐਪ ਤੋਂ ਲਾਗਆਉਟ?';
+	@override String get logoutfromapphint => 'ਜੇ ਤੁਸੀਂ ਲਾਗਿਨ ਨਹੀਂ ਹੋਏ ਹੋ ਤਾਂ ਤੁਸੀਂ ਲੇਖਾਂ ਅਤੇ ਵੀਡੀਓਜ਼ \'ਤੇ ਟਿੱਪਣੀ ਕਰਨ ਜਾਂ ਪਸੰਦ ਕਰਨ ਸਮਰਥ ਨਹੀਂ ਹੋਵੋਗੇ।';
+	@override String get gotologin => 'ਲਾਗਿਨ ਕਰਨ ਲਈ ਜਾਓ';
+	@override String get resetpassword => 'ਪਾਸਵਰਡ ਰੀਸੈਟ ਕਰੋ';
+	@override String get logintoaccount => 'ਪਹਿਲਾਂ ਹੀ ਖਾਤਾ ਹੈ? ਲਾਗਿਨ ਕਰੋ';
+	@override String get emptyfielderrorhint => 'ਤੁਹਾਨੂੰ ਸਾਰੇ ਖੇਤਰ ਭਰਣੇ ਚਾਹੀਦੇ ਹਨ';
+	@override String get invalidemailerrorhint => 'ਤੁਹਾਨੂੰ ਇੱਕ ਮਾਨਯ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ';
+	@override String get passwordsdontmatch => 'ਪਾਸਵਰਡ ਮਿਲਦੇ ਨਹੀਂ ਹਨ';
+	@override String get processingpleasewait => 'ਪ੍ਰਕਿਰਿਆ ਹੋ ਰਹੀ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ...';
+	@override String get createaccount => 'ਖਾਤਾ ਬਣਾਓ';
+	@override String get forgotpassword => 'ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?';
+	@override String get orloginwith => 'ਜਾਂ ਨਾਲ ਲਾਗਿਨ ਕਰੋ';
+	@override String get facebook => 'ਫੇਸਬੁਕ';
+	@override String get google => 'ਗੂਗਲ';
+	@override String get moreoptions => 'ਹੋਰ ਵਿਕਲਪ';
+	@override String get about => 'ਸਾਡੇ ਬਾਰੇ';
+	@override String get privacy => 'ਪਰਾਈਵੇਟ ਨੀਤੀ';
+	@override String get terms => 'ਐਪ ਸ਼ਰਤਾਂ';
+	@override String get rate => 'ਐਪ ਰੇਟ ਕਰੋ';
+	@override String get version => 'ਵਰਜਨ';
+	@override String get pulluploadmore => 'ਉਪਰ ਖਿੱਚੋ';
+	@override String get loadfailedretry => 'ਲੋਡ ਫੇਲ੍ਹ! ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ!';
+	@override String get releaseloadmore => 'ਹੋਰ ਲੋਡ ਕਰਨ ਲਈ ਛੱਡੋ';
+	@override String get nomoredata => 'ਹੋਰ ਡਾਟਾ ਨਹੀਂ';
+	@override String get errorReportingComment => 'ਟਿੱਪਣੀ ਰਿਪੋਰਟ ਕਰਦੇ ਸਮੇਂ ਗਲਤੀ';
+	@override String get reportingComment => 'ਟਿੱਪਣੀ ਰਿਪੋਰਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ';
+	@override String get reportcomment => 'ਰਿਪੋਰਟ ਵਿਕਲਪ';
+	@override List<String> get reportCommentsList => [
+		'ਗੈਰ-ਚਾਹੁਣ ਵਾਲੀ ਵਪਾਰਕ ਸਮੱਗਰੀ ਜਾਂ ਸਪੈਮ',
+		'ਅਸ਼ਲੀਲ ਜਾਂ ਯੌਨ ਸਪਸ਼ਟ ਸਮੱਗਰੀ',
+		'ਘ੍ਰਿਣਾ ਭਾਸ਼ਣ ਜਾਂ ਗ੍ਰਾਫਿਕ ਹਿੰਸਾ',
+		'ਉਤਪੀੜਨ ਜਾਂ ਧੱਕੇਸ਼ਾਹੀ',
+	];
+	@override String get bookmarksMedia => 'ਮੇਰੇ ਬੁਕਮਾਰਕਸ';
+	@override String get noitemstodisplay => 'ਕੋਈ ਆਈਟਮ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਨਹੀਂ';
+	@override String get loginrequired => 'ਲਾਗਿਨ ਜ਼ਰੂਰੀ ਹੈ';
+	@override String get loginrequiredhint => 'ਇਸ ਪਲੇਟਫਾਰਮ \'ਤੇ ਗਾਹਕ ਬਣਨ ਲਈ, ਤੁਹਾਨੂੰ ਲਾਗਿਨ ਕਰਨਾ ਪਵੇਗਾ। ਹੁਣੇ ਮੁਫ਼ਤ ਖਾਤਾ ਬਣਾਓ ਜਾਂ ਮੌਜੂਦਾ ਖਾਤੇ ਵਿੱਚ ਲਾਗਿਨ ਕਰੋ।';
+	@override String get subscriptions => 'ਐਪ ਗਾਹਕੀ';
+	@override String get subscribe => 'ਗਾਹਕੀ';
+	@override String get subscribehint => 'ਗਾਹਕੀ ਜ਼ਰੂਰੀ ਹੈ';
+	@override String get playsubscriptionrequiredhint => 'ਇਸ ਮੀਡੀਆ ਨੂੰ ਸੁਣਨ ਜਾਂ ਦੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਗਾਹਕੀ ਦੀ ਲੋੜ ਹੈ।';
+	@override String get previewsubscriptionrequiredhint => 'ਤੁਸੀਂ ਇਸ ਮੀਡੀਆ ਲਈ ਅਨੁਮਤ ਮੁਕਤ ਅਵਧੀ ਪਹੁੰਚ ਹਾਸਲ ਕਰ ਲਈ ਹੈ। ਸੁਣਨ ਜਾਂ ਦੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਗਾਹਕੀ ਦੀ ਲੋੜ ਹੈ।';
+	@override String get copiedtoclipboard => 'ਕਲਿੱਪਬੋਰਡ \'ਤੇ ਨਕਲ ਕੀਤਾ ਗਿਆ';
+	@override String get downloadbible => 'ਬਾਈਬਲ ਡਾਊਨਲੋਡ ਕਰੋ';
+	@override String get downloadversion => 'ਡਾਊਨਲੋਡ ਕਰੋ';
+	@override String get downloading => 'ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ';
+	@override String get failedtodownload => 'ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ';
+	@override String get pleaseclicktoretry => 'ਕਿਰਪਾ ਕਰਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ।';
+	@override String get of => 'ਦੀ';
+	@override String get nobibleversionshint => 'ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਡਾਟਾ ਨਹੀਂ ਹੈ, ਘੱਟੋ-ਘੱਟ ਇੱਕ ਬਾਈਬਲ ਵਰਜਨ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਬਟਨ \'ਤੇ ਕਲਿੱਕ ਕਰੋ।';
+	@override String get downloaded => 'ਡਾਊਨਲੋਡ ਕੀਤਾ ਗਿਆ';
+	@override String get enteremailaddresstoresetpassword => 'ਆਪਣਾ ਪਾਸਵਰਡ ਰੀਸੈਟ ਕਰਨ ਲਈ ਆਪਣਾ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ';
+	@override String get backtologin => 'ਲਾਗਿਨ \'ਤੇ ਵਾਪਸ';
+	@override String get signintocontinue => 'ਜਾਰੀ ਰੱਖਣ ਲਈ ਸਾਇਨ ਇਨ ਕਰੋ';
+	@override String get signin => 'ਸਾਇਨ ਇਨ';
+	@override String get signinforanaccount => 'ਇਕ ਖਾਤੇ ਲਈ ਸਾਇਨ ਅਪ ਕਰੋ?';
+	@override String get alreadyhaveanaccount => 'ਪਹਿਲਾਂ ਹੀ ਇੱਕ ਖਾਤਾ ਹੈ?';
+	@override String get updateprofile => 'ਪਰੋਫਾਈਲ ਅੱਪਡੇਟ ਕਰੋ';
+	@override String get updateprofilehint => 'ਸ਼ੁਰੂ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਪਰੋਫਾਈਲ ਪੰਨਾ ਅੱਪਡੇਟ ਕਰੋ, ਇਹ ਸਾਨੂੰ ਹੋਰ ਲੋਕਾਂ ਨਾਲ ਜੋੜਨ ਵਿੱਚ ਮਦਦ ਕਰੇਗਾ';
+	@override String get autoplayvideos => 'ਆਟੋਪਲੇ ਵੀਡੀਓਜ਼';
+	@override String get gosocial => 'ਸੋਸ਼ਲ ਤੇ ਜਾਓ';
+	@override String get searchbible => 'ਬਾਈਬਲ ਭਾਲ ਕਰੋ';
+	@override String get filtersearchoptions => 'ਭਾਲ ਵਿਕਲਪਾਂ ਨੂੰ ਫਿਲਟਰ ਕਰੋ';
+	@override String get narrowdownsearch => 'ਇੱਕ ਹੋਰ ਸਹੀ ਨਤੀਜੇ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਫਿਲਟਰ ਬਟਨ ਦਾ ਪ੍ਰਯੋਗ ਕਰੋ।';
+	@override String get searchbibleversion => 'ਬਾਈਬਲ ਵਰਜਨ ਭਾਲੋ';
+	@override String get searchbiblebook => 'ਬਾਈਬਲ ਪੁਸਤਕ ਭਾਲੋ';
+	@override String get search => 'ਭਾਲੋ';
+	@override String get setBibleBook => 'ਬਾਈਬਲ ਪੁਸਤਕ ਸੈੱਟ ਕਰੋ';
+	@override String get oldtestament => 'ਪੁਰਾਣਾ ਨਿਯਮ';
+	@override String get newtestament => 'ਨਵਾਂ ਨਿਯਮ';
+	@override String get limitresults => 'ਨਤੀਜੇ ਸੀਮਿਤ ਕਰੋ';
+	@override String get setfilters => 'ਫਿਲਟਰ ਸੈੱਟ ਕਰੋ';
+	@override String get bibletranslator => 'ਬਾਈਬਲ ਅਨੁਵਾਦਕ';
+	@override String get chapter => ' ਅਧਿਆਇ ';
+	@override String get verse => ' ਆਇਤ ';
+	@override String get translate => 'ਅਨੁਵਾਦ ਕਰੋ';
+	@override String get bibledownloadinfo => 'ਬਾਈਬਲ ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਹੋ ਗਿਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਡਾਊਨਲੋਡ ਮੁਕੰਮਲ ਹੋਣ ਤੱਕ ਇਸ ਪੇਜ਼ ਨੂੰ ਬੰਦ ਨਾ ਕਰੋ।';
+	@override String get received => 'ਮਿਲਿਆ';
+	@override String get outoftotal => 'ਕੁੱਲ ਵਿੱਚੋਂ';
+	@override String get set => 'ਸੈੱਟ ਕਰੋ';
+	@override String get selectColor => 'ਰੰਗ ਚੁਣੋ';
+	@override String get switchbibleversion => 'ਬਾਈਬਲ ਵਰਜਨ ਬਦਲੋ';
+	@override String get switchbiblebook => 'ਬਾਈਬਲ ਕਿਤਾਬ ਬਦਲੋ';
+	@override String get gotosearch => 'ਅਧਿਆਇ ਤੇ ਜਾਓ';
+	@override String get changefontsize => 'ਫੌਂਟ ਸਾਈਜ਼ ਬਦਲੋ';
+	@override String get font => 'ਫੌਂਟ';
+	@override String get readchapter => 'ਅਧਿਆਇ ਪੜ੍ਹੋ';
+	@override String get showhighlightedverse => 'ਹਾਈਲਾਈਟ ਕੀਤੀ ਗਈ ਆਇਤ ਵਿਖਾਓ';
+	@override String get downloadmoreversions => 'ਹੋਰ ਵਰਜਨ ਡਾਊਨਲੋਡ ਕਰੋ';
+	@override String get suggestedusers => 'ਸਿਫਾਰਸ਼ ਕੀਤੇ ਯੂਜ਼ਰ';
+	@override String get unfollow => 'ਅਨਫੌਲੋ ਕਰੋ';
+	@override String get follow => 'ਫੌਲੋ ਕਰੋ';
+	@override String get searchforpeople => 'ਲੋਕਾਂ ਦੀ ਖੋਜ ਕਰੋ';
+	@override String get viewpost => 'ਪੋਸਟ ਵੇਖੋ';
+	@override String get viewprofile => 'ਪ੍ਰੋਫਾਈਲ ਵੇਖੋ';
+	@override String get mypins => 'ਮੇਰੇ ਪਿਨ';
+	@override String get viewpinnedposts => 'ਪਿੰਨ ਕੀਤੀਆਂ ਪੋਸਟਾਂ ਵੇਖੋ';
+	@override String get personal => 'ਨਿੱਜੀ';
+	@override String get update => 'ਅੱਪਡੇਟ';
+	@override String get phonenumber => 'ਫ਼ੋਨ ਨੰਬਰ';
+	@override String get showmyphonenumber => 'ਮੇਰਾ ਫ਼ੋਨ ਨੰਬਰ ਯੂਜ਼ਰਾਂ ਨੂੰ ਵਿਖਾਓ';
+	@override String get dateofbirth => 'ਜਨਮ ਮਿਤੀ';
+	@override String get showmyfulldateofbirth => 'ਮੇਰੀ ਪੂਰੀ ਜਨਮ ਮਿਤੀ ਨੂੰ ਲੋਕਾਂ ਨੂੰ ਵਿਖਾਓ';
+	@override String get notifications => 'ਨੋਟਿਸਾਂ';
+	@override String get notifywhenuserfollowsme => 'ਜਦੋਂ ਕੋਈ ਯੂਜ਼ਰ ਮੈਨੂੰ ਫੌਲੋ ਕਰੇ ਤਾਂ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ';
+	@override String get notifymewhenusercommentsonmypost => 'ਜਦੋਂ ਯੂਜ਼ਰ ਮੇਰੀ ਪੋਸਟ ਤੇ ਟਿੱਪਣੀ ਕਰੇ ਤਾਂ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ';
+	@override String get notifymewhenuserlikesmypost => 'ਜਦੋਂ ਯੂਜ਼ਰ ਮੇਰੀ ਪੋਸਟ ਨੂੰ ਲਾਇਕ ਕਰੇ ਤਾਂ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ';
+	@override String get churchsocial => 'ਚਰਚ ਸੋਸ਼ਲ';
+	@override String get shareyourthoughts => 'ਆਪਣੇ ਵਿਚਾਰ ਸਾਂਝੇ ਕਰੋ';
+	@override String get readmore => '...ਹੋਰ ਪੜ੍ਹੋ';
+	@override String get less => ' ਘੱਟ';
+	@override String get couldnotprocess => 'ਬੇਨਤੀ ਕੀਤੀ ਕਾਰਵਾਈ ਨੂੰ ਪ੍ਰਕਿਰਿਆ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।';
+	@override String get pleaseselectprofilephoto => 'ਕਿਰਪਾ ਕਰਕੇ ਅਪਲੋਡ ਕਰਨ ਲਈ ਇੱਕ ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਚੁਣੋ';
+	@override String get pleaseselectprofilecover => 'ਕਿਰਪਾ ਕਰਕੇ ਅਪਲੋਡ ਕਰਨ ਲਈ ਇੱਕ ਕਵਰ ਫੋਟੋ ਚੁਣੋ';
+	@override String get updateprofileerrorhint => 'ਅੱਗੇ ਵਧਣ ਲਈ ਤੁਹਾਨੂੰ ਆਪਣਾ ਨਾਮ, ਜਨਮ ਮਿਤੀ, ਲਿੰਗ, ਫੋਨ ਅਤੇ ਸਥਾਨ ਭਰਨਾ ਹੋਵੇਗਾ।';
+	@override String get gender => 'ਲਿੰਗ';
+	@override String get male => 'ਮਰਦ';
+	@override String get female => 'ਔਰਤ';
+	@override String get dob => 'ਜਨਮ ਮਿਤੀ';
+	@override String get location => 'ਮੌਜੂਦਾ ਸਥਾਨ';
+	@override String get qualification => 'ਯੋਗਤਾ';
+	@override String get aboutme => 'ਮੇਰੇ ਬਾਰੇ';
+	@override String get facebookprofilelink => 'ਫੇਸਬੁੱਕ ਪ੍ਰੋਫਾਈਲ ਲਿੰਕ';
+	@override String get twitterprofilelink => 'ਟਵਿੱਟਰ ਪ੍ਰੋਫਾਈਲ ਲਿੰਕ';
+	@override String get linkdln => 'ਲਿੰਕਡਿਨ ਪ੍ਰੋਫਾਈਲ ਲਿੰਕ';
+	@override String get likes => 'ਪਸੰਦ';
+	@override String get likess => 'ਪਸੰਦਾਂ';
+	@override String get pinnedposts => 'ਮੇਰੀਆਂ ਪਿੰਨ ਕੀਤੀਆਂ ਪੋਸਟਾਂ';
+	@override String get unpinpost => 'ਪੋਸਟ ਨੂੰ ਅਨਪਿਨ ਕਰੋ';
+	@override String get unpinposthint => 'ਕੀ ਤੁਸੀਂ ਇਸ ਪੋਸਟ ਨੂੰ ਆਪਣੇ ਪਿੰਨ ਕੀਤੇ ਪੋਸਟਾਂ ਤੋਂ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?';
+	@override String get postdetails => 'ਪੋਸਟ ਵੇਰਵੇ';
+	@override String get posts => 'ਪੋਸਟਾਂ';
+	@override String get followers => 'ਫੌਲੋਅਰਸ';
+	@override String get followings => 'ਫੌਲੋਵਿੰਗ';
+	@override String get my => 'ਮੇਰਾ';
+	@override String get edit => 'ਸੋਧ';
+	@override String get delete => 'ਮਿਟਾਓ';
+	@override String get deletepost => 'ਪੋਸਟ ਮਿਟਾਓ';
+	@override String get deleteposthint => 'ਕੀ ਤੁਸੀਂ ਇਸ ਪੋਸਟ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਪੋਸਟਾਂ ਅਜੇ ਵੀ ਕੁਝ ਯੂਜ਼ਰਾਂ ਦੇ ਫੀਡ ਵਿੱਚ ਦਰਸਾਈਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।';
+	@override String get maximumallowedsizehint => 'ਅਨੁਮਤ ਅਪਲੋਡ ਫਾਈਲ ਆਕਾਰ ਸੀਮਾ ਪਹੁੰਚ ਗਈ ਹੈ';
+	@override String get maximumuploadsizehint => 'ਚੁਣੀ ਗਈ ਫਾਈਲ ਅਨੁਮਤ ਅਪਲੋਡ ਫਾਈਲ ਆਕਾਰ ਸੀਮਾ ਨੂੰ ਪਾਰ ਕਰਦੀ ਹੈ।';
+	@override String get makeposterror => 'ਇਸ ਸਮੇਂ ਪੋਸਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿਕ ਕਰੋ।';
+	@override String get makepost => 'ਪੋਸਟ ਕਰੋ';
+	@override String get selectfile => 'ਫਾਈਲ ਚੁਣੋ';
+	@override String get images => 'ਤਸਵੀਰਾਂ';
+	@override String get shareYourThoughtsNow => 'ਹੁਣ ਆਪਣੇ ਵਿਚਾਰ ਸਾਂਝੇ ਕਰੋ...';
+	@override String get photoviewer => 'ਫੋਟੋ ਵੇਖਣ ਵਾਲਾ';
+	@override String get nochatsavailable => 'ਕੋਈ ਵੀ ਗੱਲਬਾਤ ਉਪਲਬਧ ਨਹੀਂ ਹੈ \n ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦੇ ਆਈਕਨ \'ਤੇ ਕਲਿਕ ਕਰੋ \n ਯੂਜ਼ਰਾਂ ਨੂੰ ਚੁਣਨ ਲਈ';
+	@override String get typing => 'ਟਾਈਪ ਕਰ ਰਿਹਾ ਹੈ...';
+	@override String get photo => 'ਫੋਟੋ';
+	@override String get online => 'ਆਨਲਾਈਨ';
+	@override String get offline => 'ਆਫਲਾਈਨ';
+	@override String get lastseen => 'ਆਖਰੀ ਵਾਰ ਵੇਖਿਆ ਗਿਆ';
+	@override String get deleteselectedhint => 'ਇਹ ਕਾਰਵਾਈ ਚੁਣੇ ਗਏ ਸੁਨੇਹੇ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ,\n ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਡਿਵਾਈਸ ਤੇ ਵੇਖੇ ਜਾਣਗੇ।';
+	@override String get deleteselected => 'ਚੁਣੇ ਹੋਏ ਨੂੰ ਮਿਟਾਓ';
+	@override String get unabletofetchconversation => 'ਤੁਹਾਡੀ ਗੱਲਬਾਤ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ \n';
+	@override String get loadmoreconversation => 'ਹੋਰ ਗੱਲਬਾਤਾਂ ਨੂੰ ਲੋਡ ਕਰੋ';
+	@override String get sendyourfirstmessage => 'ਤੁਹਾਡਾ ਪਹਿਲਾ ਸੁਨੇਹਾ ਭੇਜੋ \n';
+	@override String get unblock => 'ਅਨਬਲੌਕ ਕਰੋ ';
+	@override String get block => 'ਬਲੌਕ ਕਰੋ';
+	@override String get writeyourmessage => 'ਤੁਹਾਡਾ ਸੁਨੇਹਾ ਲਿਖੋ...';
+	@override String get clearconversation => 'ਗੱਲਬਾਤ ਸਾਫ਼ ਕਰੋ';
+	@override String get clearconversationhintone => 'ਇਹ ਕਾਰਵਾਈ ਤੁਹਾਡੇ ਸਾਰੇ ਗੱਲਬਾਤ ਨੂੰ ਸਾਫ਼ ਕਰੇਗੀ ';
+	@override String get clearconversationhinttwo => '.\n ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ, ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਚੈਟ \'ਤੇ ਵੇਖੇ ਜਾਣਗੇ।';
+	@override String get facebookloginerror => 'ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ';
+	@override String get selectLanguage => 'ਭਾਸ਼ਾ ਚੁਣੋ';
+	@override String get howTo => 'ਕਿਵੇਂ ਕਰਨਾ ਹੈ';
+	@override String get noBibleTextsAvailable => 'ਕੋਈ ਬਾਈਬਲ ਲਿਖਤ ਉਪਲਬਧ ਨਹੀਂ';
+	@override String get languages => 'ਭਾਸ਼ਾਵਾਂ';
+	@override String get searchLanguages => 'ਭਾਸ਼ਾਵਾਂ ਖੋਜੋ...';
+	@override String get biblesFilesets => 'ਬਾਈਬਲ: {bibles}, ਫਾਈਲਸੈਟ: {filesets}';
+	@override String get oldTestament => 'ਪੁਰਾਣਾ ਨਿਯਮ';
+	@override String get newTestament => 'ਨਵਾਂ ਨਿਯਮ';
+	@override String get play => 'ਖੇਡੋ';
+	@override String get no_verse_content => 'ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅਯਤ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
+	@override String get no_audio_content => 'ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 }
 
 // Path: <root>
@@ -7933,6 +8262,311 @@ extension on _StringsOr {
 			'play': 'ଖେଳିବା',
 			'no_verse_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଶ୍ଲୋକ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
 			'no_audio_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
+		};
+	}
+}
+
+extension on _StringsPa {
+	Map<String, dynamic> _buildFlatMap() {
+		return <String, dynamic>{
+			'appname': 'MyVirtualPastor',
+			'selectlanguage': 'ਭਾਸ਼ਾ ਚੁਣੋ',
+			'deletemyaccount': 'ਮੇਰਾ ਖਾਤਾ ਮਿਟਾਓ',
+			'deleteaccount': 'ਖਾਤਾ ਮਿਟਾਓ',
+			'deleteaccounthint': 'ਇਹ ਕਿਰਿਆ ਤੁਹਾਡਾ ਖਾਤਾ ਮਿਟਾ ਦੇਵੇਗੀ ਅਤੇ ਤੁਹਾਡੇ ਸਾਰੇ ਡਾਟਾ ਨੂੰ ਮਿਟਾ ਦੇਵੇਗੀ, ਇੱਕ ਵਾਰ ਡਾਟਾ ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਤਾਂ ਇਹ ਦੁਬਾਰਾ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋ ਸਕਦਾ।',
+			'deleteaccountsuccess': 'ਖਾਤਾ ਮਿਟਾਉਣਾ ਸਫਲ ਰਿਹਾ',
+			'chooseapplanguage': 'ਐਪ ਭਾਸ਼ਾ ਚੁਣੋ',
+			'nightmode': 'ਰਾਤੀ ਮੋਡ',
+			'initializingapp': 'ਸ਼ੁਰੂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...',
+			'home': 'ਹੋਮ',
+			'branches': 'ਸ਼ਾਖਾਵਾਂ',
+			'inbox': 'ਇਨਬਾਕਸ',
+			'downloads': 'ਡਾਊਨਲੋਡਸ',
+			'settings': 'ਸੈਟਿੰਗਸ',
+			'events': 'ਘਟਨਾਵਾਂ',
+			'myplaylists': 'ਮੇਰੀ ਪਲੇਲਿਸਟ',
+			'website': 'ਵੈਬਸਾਈਟ',
+			'hymns': 'ਭਜਨ',
+			'articles': 'ਲੇਖ',
+			'notes': 'ਨੋਟਸ',
+			'donate': 'ਦਾਨ ਕਰੋ',
+			'offering': 'ਭੇਟ',
+			'savenotetitle': 'ਨੋਟਸ ਸਿਰਲੇਖ',
+			'nonotesfound': 'ਕੋਈ ਨੋਟਸ ਨਹੀਂ ਮਿਲੇ',
+			'newnote': 'ਨਵਾਂ',
+			'deletenote': 'ਨੋਟਸ ਮਿਟਾਓ',
+			'deletenotehint': 'ਕੀ ਤੁਸੀਂ ਇਹ ਨੋਟਸ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਕਿਰਿਆ ਦੁਬਾਰਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।',
+			'bookmarks': 'ਬੁਕਮਾਰਕਸ',
+			'socialplatforms': 'ਸੋਸ਼ਲ ਪਲੇਟਫਾਰਮ',
+			'onboardingpagetitles.0': 'ਮੇਰੇ ਚਰਚ ਵਿੱਚ ਸਵਾਗਤ ਹੈ',
+			'onboardingpagetitles.1': 'ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨਾਲ ਭਰਪੂਰ',
+			'onboardingpagetitles.2': 'ਆਡੀਓ, ਵੀਡੀਓ \n ਅਤੇ ਲਾਈਵ ਸਟਰੀਮਿੰਗ',
+			'onboardingpagetitles.3': 'ਖਾਤਾ ਬਣਾਓ',
+			'onboardingpagehints.0': 'ਐਤਵਾਰ ਸਵੇਰਾਂ ਅਤੇ ਤੁਹਾਡੇ ਚਰਚ ਦੀਆਂ ਚਾਰ ਦੀਵਾਰਾਂ ਤੋਂ ਪਰੇ ਵਧੋ। ਤੁਹਾਨੂੰ ਇਕ ਮੋਬਾਈਲ-ਕੇਂਦਰੀਤ ਦੁਨੀਆ ਨਾਲ ਸੰਚਾਰ ਅਤੇ ਭਾਗੀਦਾਰੀ ਕਰਨ ਲਈ ਜੋ ਕੁਝ ਵੀ ਚਾਹੀਦਾ ਹੈ।',
+			'onboardingpagehints.1': 'ਅਸੀਂ ਤੁਹਾਡੇ ਚਰਚ ਐਪ ਦੇ ਸਾਰੇ ਮੁੱਖ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਇਕੱਠਾ ਕੀਤਾ ਹੈ। ਘਟਨਾਵਾਂ, ਭਜਨ, ਨੋਟੀਫਿਕੇਸ਼ਨ, ਨੋਟਸ ਅਤੇ ਬਹੁ-ਸੰਸਕਰਣ ਬਾਈਬਲ।',
+			'onboardingpagehints.2': 'ਦੁਨੀਆ ਭਰ ਦੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਤੁਹਾਡੇ ਚਰਚ ਦੀਆਂ ਸੇਵਾਵਾਂ ਦੀਆਂ ਲਾਈਵ ਸਟਰੀਮਿੰਗ ਦੇਖਣ, ਆਡੀਓ ਸੰਦੇਸ਼ ਸੁਣਨ ਅਤੇ ਵੀਡੀਓ ਦੇਖਣ ਦੀ ਆਗਿਆ ਦਿਓ।',
+			'onboardingpagehints.3': 'ਇੱਕ ਨਿਰੰਤਰ ਪੂਜਾ ਦੇ ਤਜਰਬੇ ਤੱਕ ਆਪਣੀ ਯਾਤਰਾ ਸ਼ੁਰੂ ਕਰੋ।',
+			'next': 'ਅਗਲਾ',
+			'done': 'ਸ਼ੁਰੂ ਕਰੋ',
+			'quitapp': 'ਐਪ ਬੰਦ ਕਰੋ!',
+			'quitappwarning': 'ਕੀ ਤੁਸੀਂ ਐਪ ਬੰਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?',
+			'quitappaudiowarning': 'ਤੁਸੀਂ ਵਰਤਮਾਨ ਵਿੱਚ ਇਕ ਆਡੀਓ ਚਲਾ ਰਹੇ ਹੋ, ਐਪ ਬੰਦ ਕਰਨ ਨਾਲ ਆਡੀਓ ਪਲੇਬੈਕ ਰੁਕ ਜਾਏਗਾ। ਜੇ ਤੁਸੀਂ ਪਲੇਬੈਕ ਰੁਕਵਾਉਣਾ ਨਹੀਂ ਚਾਹੁੰਦੇ, ਤਾਂ ਕੇਂਦਰ ਬਟਨ ਨਾਲ ਐਪ ਨੂੰ ਘੱਟ ਕਰੋ ਜਾਂ ਹੁਣੇ ਐਪ ਬੰਦ ਕਰਨ ਲਈ ਓਕੇ ਬਟਨ \'ਤੇ ਕਲਿੱਕ ਕਰੋ।',
+			'ok': 'ਠੀਕ ਹੈ',
+			'retry': 'ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ',
+			'oops': 'ਓਹ!',
+			'save': 'ਸੰਭਾਲੋ',
+			'cancel': 'ਰੱਦ ਕਰੋ',
+			'error': 'ਗਲਤੀ',
+			'success': 'ਸਫਲਤਾ',
+			'skip': 'ਛੱਡੋ',
+			'skiplogin': 'ਲਾਗਿਨ ਛੱਡੋ',
+			'skipregister': 'ਰਜਿਸਟਰੇਸ਼ਨ ਛੱਡੋ',
+			'dataloaderror': 'ਵਰਤਮਾਨ ਸਮੇਂ ਅਨੁਰੋਧ ਕੀਤੇ ਡਾਟਾ ਨੂੰ ਲੋਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ, ਆਪਣੇ ਡਾਟਾ ਕਨੈਕਸ਼ਨ ਨੂੰ ਜਾਂਚੋ ਅਤੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ।',
+			'suggestedforyou': 'ਤੁਹਾਡੇ ਲਈ ਸੁਝਾਏ ਗਏ',
+			'videomessages': 'ਵੀਡੀਓ ਸੰਦੇਸ਼',
+			'audiomessages': 'ਆਡੀਓ ਸੰਦੇਸ਼',
+			'devotionals': 'ਭਗਤੀਗੀਤ',
+			'categories': 'ਸ਼੍ਰੇਣੀਆਂ',
+			'category': 'ਸ਼੍ਰੇਣੀ',
+			'videos': 'ਵੀਡੀਓਜ਼',
+			'audios': 'ਆਡੀਓਜ਼',
+			'biblebooks': 'ਬਾਈਬਲ',
+			'sermons': 'ਪ੍ਰਵਚਨ',
+			'tools': 'ਉਪਕਰਣ',
+			'profile': 'ਪਰੋਫਾਈਲ',
+			'audiobible': 'ਆਡੀਓ ਬਾਈਬਲ',
+			'homesentence': 'ਤੁਹਾਨੂੰ ਇੱਕ ਵਿਅਕਤੀ ਬਣਨ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਪਾਸਟਰ ਵਾਂਗ ਸਾਲ ਲਈ, ਜਿਸ ਨੂੰ ਭਗਵਾਨ ਨੇ ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤਾ ਹੈ।',
+			'livestreams': 'ਲਾਈਵ ਸਟਰੀਮਿੰਗ',
+			'radio': 'ਰੇਡੀਓ',
+			'allitems': 'ਸਾਰੇ ਆਈਟਮ',
+			'emptyplaylist': 'ਕੋਈ ਪਲੇਲਿਸਟ ਨਹੀਂ',
+			'notsupported': 'ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ',
+			'cleanupresources': 'ਸਰੋਤਾਂ ਨੂੰ ਸਾਫ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ',
+			'grantstoragepermission': 'ਅੱਗੇ ਵਧਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਸਟੋਰੇਜ ਪ੍ਰਵਾਨਗੀ ਦਿਓ',
+			'sharefiletitle': 'ਵੇਖੋ ਜਾਂ ਸੁਣੋ ',
+			'sharefilebody': 'MyVirtualPastor ਐਪ ਦੇ ਰਾਹੀਂ, ਹੁਣੇ ਡਾਊਨਲੋਡ ਕਰੋ ',
+			'sharetext': 'ਅਸਮੀਤ ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਸਟਰੀਮਿੰਗ ਦਾ ਅਨੰਦ ਮਾਣੋ',
+			'sharetexthint': 'ਅਸੀਂ ਤੁਹਾਡੇ ਲਈ ਇੱਕ ਵਿਡੀਓ ਅਤੇ ਆਡੀਓ ਸਟਰੀਮਿੰਗ ਪਲੇਟਫਾਰਮ ਪ੍ਰਦਾਨ ਕਰਦੇ ਹਾਂ ਜਿਸ ਨਾਲ ਤੁਸੀਂ ਦੁਨੀਆ ਭਰ ਤੋਂ ਮਿਲੀਅਨ ਫਾਈਲਾਂ ਦੇਖ ਅਤੇ ਸੁਣ ਸਕਦੇ ਹੋ। ਹੁਣੇ ਡਾਊਨਲੋਡ ਕਰੋ ',
+			'download': 'ਡਾਊਨਲੋਡ ਕਰੋ',
+			'addplaylist': 'ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ',
+			'bookmark': 'ਬੁਕਮਾਰਕ',
+			'unbookmark': 'ਬੁਕਮਾਰਕ ਹਟਾਓ',
+			'share': 'ਸਾਂਝਾ ਕਰੋ',
+			'deletemedia': 'ਫਾਇਲ ਮਿਟਾਓ',
+			'deletemediahint': 'ਕੀ ਤੁਸੀਂ ਇਸ ਡਾਊਨਲੋਡ ਕੀਤੀ ਗਈ ਫਾਇਲ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਕਿਰਿਆ ਦੁਬਾਰਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।',
+			'searchhint': 'ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਸੰਦੇਸ਼ਾਂ ਦੀ ਭਾਲ ਕਰੋ',
+			'performingsearch': 'ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਭਾਲ ਕਰ ਰਿਹਾ ਹੈ',
+			'nosearchresult': 'ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਮਿਲੇ',
+			'nosearchresulthint': 'ਵਧੇਰੇ ਆਮ ਕੁੰਜੀਸ਼ਬਦ ਪ੍ਰਵਿਸ਼ਟ ਕਰੋ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ',
+			'addtoplaylist': 'ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ',
+			'newplaylist': 'ਨਵੀਂ ਪਲੇਲਿਸਟ',
+			'playlistitm': 'ਪਲੇਲਿਸਟ',
+			'mediaaddedtoplaylist': 'ਮੀਡੀਆ ਨੂੰ ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ ਹੈ।',
+			'mediaremovedfromplaylist': 'ਮੀਡੀਆ ਨੂੰ ਪਲੇਲਿਸਟ ਵਿੱਚੋਂ ਹਟਾਇਆ ਗਿਆ ਹੈ',
+			'clearplaylistmedias': 'ਸਾਰੇ ਮੀਡੀਆ ਨੂੰ ਸਾਫ ਕਰੋ',
+			'deletePlayList': 'ਪਲੇਲਿਸਟ ਮਿਟਾਓ',
+			'clearplaylistmediashint': 'ਕੀ ਤੁਸੀਂ ਇਸ ਪਲੇਲਿਸਟ ਤੋਂ ਸਾਰੇ ਮੀਡੀਆ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?',
+			'deletePlayListhint': 'ਕੀ ਤੁਸੀਂ ਇਸ ਪਲੇਲਿਸਟ ਨੂੰ ਮਿਟਾਉਣਾ ਅਤੇ ਸਾਰੇ ਮੀਡੀਆ ਨੂੰ ਸਾਫ਼ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?',
+			'comments': 'ਟਿੱਪਣੀਆਂ',
+			'replies': 'ਜਵਾਬ',
+			'reply': 'ਜਵਾਬ',
+			'logintoaddcomment': 'ਟਿੱਪਣੀ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਲਾਗਿਨ ਕਰੋ',
+			'logintoreply': 'ਜਵਾਬ ਦੇਣ ਲਈ ਲਾਗਿਨ ਕਰੋ',
+			'writeamessage': 'ਇੱਕ ਸੁਨੇਹਾ ਲਿਖੋ...',
+			'nocomments': 'ਕੋਈ ਟਿੱਪਣੀਆਂ ਨਹੀਂ ਮਿਲੀਆਂ \nਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ',
+			'errormakingcomments': 'ਇਸ ਸਮੇਂ ਟਿੱਪਣੀ ਪ੍ਰਕਿਰਿਆ ਕਰਨਾ ਸਮਭਵ ਨਹੀਂ ਹੈ..',
+			'errordeletingcomments': 'ਇਸ ਸਮੇਂ ਇਸ ਟਿੱਪਣੀ ਨੂੰ ਮਿਟਾਉਣਾ ਸਮਭਵ ਨਹੀਂ ਹੈ..',
+			'erroreditingcomments': 'ਇਸ ਸਮੇਂ ਇਸ ਟਿੱਪਣੀ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨਾ ਸਮਭਵ ਨਹੀਂ ਹੈ..',
+			'errorloadingmorecomments': 'ਇਸ ਸਮੇਂ ਹੋਰ ਟਿੱਪਣੀਆਂ ਲੋਡ ਕਰਨਾ ਸਮਭਵ ਨਹੀਂ ਹੈ..',
+			'deletingcomment': 'ਟਿੱਪਣੀ ਮਿਟਾਈ ਜਾ ਰਹੀ ਹੈ',
+			'editingcomment': 'ਟਿੱਪਣੀ ਸੰਪਾਦਿਤ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ',
+			'deletecommentalert': 'ਟਿੱਪਣੀ ਮਿਟਾਓ',
+			'editcommentalert': 'ਟਿੱਪਣੀ ਸੰਪਾਦਿਤ ਕਰੋ',
+			'deletecommentalerttext': 'ਕੀ ਤੁਸੀਂ ਇਸ ਟਿੱਪਣੀ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਕਿਰਿਆ ਦੁਬਾਰਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ',
+			'loadmore': 'ਹੋਰ ਲੋਡ ਕਰੋ',
+			'messages': 'ਸੁਨੇਹੇ',
+			'guestuser': 'ਮਹਿਮਾਨ ਉਪਭੋਗਤਾ',
+			'fullname': 'ਪੂਰਾ ਨਾਮ',
+			'emailaddress': 'ਈਮੇਲ ਪਤਾ',
+			'password': 'ਪਾਸਵਰਡ',
+			'repeatpassword': 'ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਲਿਖੋ',
+			'register': 'ਰਜਿਸਟਰ ਕਰੋ',
+			'login': 'ਲਾਗਿਨ ਕਰੋ',
+			'logout': 'ਲਾਗਆਉਟ ਕਰੋ',
+			'logoutfromapp': 'ਐਪ ਤੋਂ ਲਾਗਆਉਟ?',
+			'logoutfromapphint': 'ਜੇ ਤੁਸੀਂ ਲਾਗਿਨ ਨਹੀਂ ਹੋਏ ਹੋ ਤਾਂ ਤੁਸੀਂ ਲੇਖਾਂ ਅਤੇ ਵੀਡੀਓਜ਼ \'ਤੇ ਟਿੱਪਣੀ ਕਰਨ ਜਾਂ ਪਸੰਦ ਕਰਨ ਸਮਰਥ ਨਹੀਂ ਹੋਵੋਗੇ।',
+			'gotologin': 'ਲਾਗਿਨ ਕਰਨ ਲਈ ਜਾਓ',
+			'resetpassword': 'ਪਾਸਵਰਡ ਰੀਸੈਟ ਕਰੋ',
+			'logintoaccount': 'ਪਹਿਲਾਂ ਹੀ ਖਾਤਾ ਹੈ? ਲਾਗਿਨ ਕਰੋ',
+			'emptyfielderrorhint': 'ਤੁਹਾਨੂੰ ਸਾਰੇ ਖੇਤਰ ਭਰਣੇ ਚਾਹੀਦੇ ਹਨ',
+			'invalidemailerrorhint': 'ਤੁਹਾਨੂੰ ਇੱਕ ਮਾਨਯ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ',
+			'passwordsdontmatch': 'ਪਾਸਵਰਡ ਮਿਲਦੇ ਨਹੀਂ ਹਨ',
+			'processingpleasewait': 'ਪ੍ਰਕਿਰਿਆ ਹੋ ਰਹੀ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ...',
+			'createaccount': 'ਖਾਤਾ ਬਣਾਓ',
+			'forgotpassword': 'ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?',
+			'orloginwith': 'ਜਾਂ ਨਾਲ ਲਾਗਿਨ ਕਰੋ',
+			'facebook': 'ਫੇਸਬੁਕ',
+			'google': 'ਗੂਗਲ',
+			'moreoptions': 'ਹੋਰ ਵਿਕਲਪ',
+			'about': 'ਸਾਡੇ ਬਾਰੇ',
+			'privacy': 'ਪਰਾਈਵੇਟ ਨੀਤੀ',
+			'terms': 'ਐਪ ਸ਼ਰਤਾਂ',
+			'rate': 'ਐਪ ਰੇਟ ਕਰੋ',
+			'version': 'ਵਰਜਨ',
+			'pulluploadmore': 'ਉਪਰ ਖਿੱਚੋ',
+			'loadfailedretry': 'ਲੋਡ ਫੇਲ੍ਹ! ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ!',
+			'releaseloadmore': 'ਹੋਰ ਲੋਡ ਕਰਨ ਲਈ ਛੱਡੋ',
+			'nomoredata': 'ਹੋਰ ਡਾਟਾ ਨਹੀਂ',
+			'errorReportingComment': 'ਟਿੱਪਣੀ ਰਿਪੋਰਟ ਕਰਦੇ ਸਮੇਂ ਗਲਤੀ',
+			'reportingComment': 'ਟਿੱਪਣੀ ਰਿਪੋਰਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ',
+			'reportcomment': 'ਰਿਪੋਰਟ ਵਿਕਲਪ',
+			'reportCommentsList.0': 'ਗੈਰ-ਚਾਹੁਣ ਵਾਲੀ ਵਪਾਰਕ ਸਮੱਗਰੀ ਜਾਂ ਸਪੈਮ',
+			'reportCommentsList.1': 'ਅਸ਼ਲੀਲ ਜਾਂ ਯੌਨ ਸਪਸ਼ਟ ਸਮੱਗਰੀ',
+			'reportCommentsList.2': 'ਘ੍ਰਿਣਾ ਭਾਸ਼ਣ ਜਾਂ ਗ੍ਰਾਫਿਕ ਹਿੰਸਾ',
+			'reportCommentsList.3': 'ਉਤਪੀੜਨ ਜਾਂ ਧੱਕੇਸ਼ਾਹੀ',
+			'bookmarksMedia': 'ਮੇਰੇ ਬੁਕਮਾਰਕਸ',
+			'noitemstodisplay': 'ਕੋਈ ਆਈਟਮ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਨਹੀਂ',
+			'loginrequired': 'ਲਾਗਿਨ ਜ਼ਰੂਰੀ ਹੈ',
+			'loginrequiredhint': 'ਇਸ ਪਲੇਟਫਾਰਮ \'ਤੇ ਗਾਹਕ ਬਣਨ ਲਈ, ਤੁਹਾਨੂੰ ਲਾਗਿਨ ਕਰਨਾ ਪਵੇਗਾ। ਹੁਣੇ ਮੁਫ਼ਤ ਖਾਤਾ ਬਣਾਓ ਜਾਂ ਮੌਜੂਦਾ ਖਾਤੇ ਵਿੱਚ ਲਾਗਿਨ ਕਰੋ।',
+			'subscriptions': 'ਐਪ ਗਾਹਕੀ',
+			'subscribe': 'ਗਾਹਕੀ',
+			'subscribehint': 'ਗਾਹਕੀ ਜ਼ਰੂਰੀ ਹੈ',
+			'playsubscriptionrequiredhint': 'ਇਸ ਮੀਡੀਆ ਨੂੰ ਸੁਣਨ ਜਾਂ ਦੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਗਾਹਕੀ ਦੀ ਲੋੜ ਹੈ।',
+			'previewsubscriptionrequiredhint': 'ਤੁਸੀਂ ਇਸ ਮੀਡੀਆ ਲਈ ਅਨੁਮਤ ਮੁਕਤ ਅਵਧੀ ਪਹੁੰਚ ਹਾਸਲ ਕਰ ਲਈ ਹੈ। ਸੁਣਨ ਜਾਂ ਦੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਗਾਹਕੀ ਦੀ ਲੋੜ ਹੈ।',
+			'copiedtoclipboard': 'ਕਲਿੱਪਬੋਰਡ \'ਤੇ ਨਕਲ ਕੀਤਾ ਗਿਆ',
+			'downloadbible': 'ਬਾਈਬਲ ਡਾਊਨਲੋਡ ਕਰੋ',
+			'downloadversion': 'ਡਾਊਨਲੋਡ ਕਰੋ',
+			'downloading': 'ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ ਹੈ',
+			'failedtodownload': 'ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ',
+			'pleaseclicktoretry': 'ਕਿਰਪਾ ਕਰਕੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ।',
+			'of': 'ਦੀ',
+			'nobibleversionshint': 'ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਡਾਟਾ ਨਹੀਂ ਹੈ, ਘੱਟੋ-ਘੱਟ ਇੱਕ ਬਾਈਬਲ ਵਰਜਨ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਬਟਨ \'ਤੇ ਕਲਿੱਕ ਕਰੋ।',
+			'downloaded': 'ਡਾਊਨਲੋਡ ਕੀਤਾ ਗਿਆ',
+			'enteremailaddresstoresetpassword': 'ਆਪਣਾ ਪਾਸਵਰਡ ਰੀਸੈਟ ਕਰਨ ਲਈ ਆਪਣਾ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ',
+			'backtologin': 'ਲਾਗਿਨ \'ਤੇ ਵਾਪਸ',
+			'signintocontinue': 'ਜਾਰੀ ਰੱਖਣ ਲਈ ਸਾਇਨ ਇਨ ਕਰੋ',
+			'signin': 'ਸਾਇਨ ਇਨ',
+			'signinforanaccount': 'ਇਕ ਖਾਤੇ ਲਈ ਸਾਇਨ ਅਪ ਕਰੋ?',
+			'alreadyhaveanaccount': 'ਪਹਿਲਾਂ ਹੀ ਇੱਕ ਖਾਤਾ ਹੈ?',
+			'updateprofile': 'ਪਰੋਫਾਈਲ ਅੱਪਡੇਟ ਕਰੋ',
+			'updateprofilehint': 'ਸ਼ੁਰੂ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਪਰੋਫਾਈਲ ਪੰਨਾ ਅੱਪਡੇਟ ਕਰੋ, ਇਹ ਸਾਨੂੰ ਹੋਰ ਲੋਕਾਂ ਨਾਲ ਜੋੜਨ ਵਿੱਚ ਮਦਦ ਕਰੇਗਾ',
+			'autoplayvideos': 'ਆਟੋਪਲੇ ਵੀਡੀਓਜ਼',
+			'gosocial': 'ਸੋਸ਼ਲ ਤੇ ਜਾਓ',
+			'searchbible': 'ਬਾਈਬਲ ਭਾਲ ਕਰੋ',
+			'filtersearchoptions': 'ਭਾਲ ਵਿਕਲਪਾਂ ਨੂੰ ਫਿਲਟਰ ਕਰੋ',
+			'narrowdownsearch': 'ਇੱਕ ਹੋਰ ਸਹੀ ਨਤੀਜੇ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਫਿਲਟਰ ਬਟਨ ਦਾ ਪ੍ਰਯੋਗ ਕਰੋ।',
+			'searchbibleversion': 'ਬਾਈਬਲ ਵਰਜਨ ਭਾਲੋ',
+			'searchbiblebook': 'ਬਾਈਬਲ ਪੁਸਤਕ ਭਾਲੋ',
+			'search': 'ਭਾਲੋ',
+			'setBibleBook': 'ਬਾਈਬਲ ਪੁਸਤਕ ਸੈੱਟ ਕਰੋ',
+			'oldtestament': 'ਪੁਰਾਣਾ ਨਿਯਮ',
+			'newtestament': 'ਨਵਾਂ ਨਿਯਮ',
+			'limitresults': 'ਨਤੀਜੇ ਸੀਮਿਤ ਕਰੋ',
+			'setfilters': 'ਫਿਲਟਰ ਸੈੱਟ ਕਰੋ',
+			'bibletranslator': 'ਬਾਈਬਲ ਅਨੁਵਾਦਕ',
+			'chapter': ' ਅਧਿਆਇ ',
+			'verse': ' ਆਇਤ ',
+			'translate': 'ਅਨੁਵਾਦ ਕਰੋ',
+			'bibledownloadinfo': 'ਬਾਈਬਲ ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਹੋ ਗਿਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਡਾਊਨਲੋਡ ਮੁਕੰਮਲ ਹੋਣ ਤੱਕ ਇਸ ਪੇਜ਼ ਨੂੰ ਬੰਦ ਨਾ ਕਰੋ।',
+			'received': 'ਮਿਲਿਆ',
+			'outoftotal': 'ਕੁੱਲ ਵਿੱਚੋਂ',
+			'set': 'ਸੈੱਟ ਕਰੋ',
+			'selectColor': 'ਰੰਗ ਚੁਣੋ',
+			'switchbibleversion': 'ਬਾਈਬਲ ਵਰਜਨ ਬਦਲੋ',
+			'switchbiblebook': 'ਬਾਈਬਲ ਕਿਤਾਬ ਬਦਲੋ',
+			'gotosearch': 'ਅਧਿਆਇ ਤੇ ਜਾਓ',
+			'changefontsize': 'ਫੌਂਟ ਸਾਈਜ਼ ਬਦਲੋ',
+			'font': 'ਫੌਂਟ',
+			'readchapter': 'ਅਧਿਆਇ ਪੜ੍ਹੋ',
+			'showhighlightedverse': 'ਹਾਈਲਾਈਟ ਕੀਤੀ ਗਈ ਆਇਤ ਵਿਖਾਓ',
+			'downloadmoreversions': 'ਹੋਰ ਵਰਜਨ ਡਾਊਨਲੋਡ ਕਰੋ',
+			'suggestedusers': 'ਸਿਫਾਰਸ਼ ਕੀਤੇ ਯੂਜ਼ਰ',
+			'unfollow': 'ਅਨਫੌਲੋ ਕਰੋ',
+			'follow': 'ਫੌਲੋ ਕਰੋ',
+			'searchforpeople': 'ਲੋਕਾਂ ਦੀ ਖੋਜ ਕਰੋ',
+			'viewpost': 'ਪੋਸਟ ਵੇਖੋ',
+			'viewprofile': 'ਪ੍ਰੋਫਾਈਲ ਵੇਖੋ',
+			'mypins': 'ਮੇਰੇ ਪਿਨ',
+			'viewpinnedposts': 'ਪਿੰਨ ਕੀਤੀਆਂ ਪੋਸਟਾਂ ਵੇਖੋ',
+			'personal': 'ਨਿੱਜੀ',
+			'update': 'ਅੱਪਡੇਟ',
+			'phonenumber': 'ਫ਼ੋਨ ਨੰਬਰ',
+			'showmyphonenumber': 'ਮੇਰਾ ਫ਼ੋਨ ਨੰਬਰ ਯੂਜ਼ਰਾਂ ਨੂੰ ਵਿਖਾਓ',
+			'dateofbirth': 'ਜਨਮ ਮਿਤੀ',
+			'showmyfulldateofbirth': 'ਮੇਰੀ ਪੂਰੀ ਜਨਮ ਮਿਤੀ ਨੂੰ ਲੋਕਾਂ ਨੂੰ ਵਿਖਾਓ',
+			'notifications': 'ਨੋਟਿਸਾਂ',
+			'notifywhenuserfollowsme': 'ਜਦੋਂ ਕੋਈ ਯੂਜ਼ਰ ਮੈਨੂੰ ਫੌਲੋ ਕਰੇ ਤਾਂ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ',
+			'notifymewhenusercommentsonmypost': 'ਜਦੋਂ ਯੂਜ਼ਰ ਮੇਰੀ ਪੋਸਟ ਤੇ ਟਿੱਪਣੀ ਕਰੇ ਤਾਂ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ',
+			'notifymewhenuserlikesmypost': 'ਜਦੋਂ ਯੂਜ਼ਰ ਮੇਰੀ ਪੋਸਟ ਨੂੰ ਲਾਇਕ ਕਰੇ ਤਾਂ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ',
+			'churchsocial': 'ਚਰਚ ਸੋਸ਼ਲ',
+			'shareyourthoughts': 'ਆਪਣੇ ਵਿਚਾਰ ਸਾਂਝੇ ਕਰੋ',
+			'readmore': '...ਹੋਰ ਪੜ੍ਹੋ',
+			'less': ' ਘੱਟ',
+			'couldnotprocess': 'ਬੇਨਤੀ ਕੀਤੀ ਕਾਰਵਾਈ ਨੂੰ ਪ੍ਰਕਿਰਿਆ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।',
+			'pleaseselectprofilephoto': 'ਕਿਰਪਾ ਕਰਕੇ ਅਪਲੋਡ ਕਰਨ ਲਈ ਇੱਕ ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਚੁਣੋ',
+			'pleaseselectprofilecover': 'ਕਿਰਪਾ ਕਰਕੇ ਅਪਲੋਡ ਕਰਨ ਲਈ ਇੱਕ ਕਵਰ ਫੋਟੋ ਚੁਣੋ',
+			'updateprofileerrorhint': 'ਅੱਗੇ ਵਧਣ ਲਈ ਤੁਹਾਨੂੰ ਆਪਣਾ ਨਾਮ, ਜਨਮ ਮਿਤੀ, ਲਿੰਗ, ਫੋਨ ਅਤੇ ਸਥਾਨ ਭਰਨਾ ਹੋਵੇਗਾ।',
+			'gender': 'ਲਿੰਗ',
+			'male': 'ਮਰਦ',
+			'female': 'ਔਰਤ',
+			'dob': 'ਜਨਮ ਮਿਤੀ',
+			'location': 'ਮੌਜੂਦਾ ਸਥਾਨ',
+			'qualification': 'ਯੋਗਤਾ',
+			'aboutme': 'ਮੇਰੇ ਬਾਰੇ',
+			'facebookprofilelink': 'ਫੇਸਬੁੱਕ ਪ੍ਰੋਫਾਈਲ ਲਿੰਕ',
+			'twitterprofilelink': 'ਟਵਿੱਟਰ ਪ੍ਰੋਫਾਈਲ ਲਿੰਕ',
+			'linkdln': 'ਲਿੰਕਡਿਨ ਪ੍ਰੋਫਾਈਲ ਲਿੰਕ',
+			'likes': 'ਪਸੰਦ',
+			'likess': 'ਪਸੰਦਾਂ',
+			'pinnedposts': 'ਮੇਰੀਆਂ ਪਿੰਨ ਕੀਤੀਆਂ ਪੋਸਟਾਂ',
+			'unpinpost': 'ਪੋਸਟ ਨੂੰ ਅਨਪਿਨ ਕਰੋ',
+			'unpinposthint': 'ਕੀ ਤੁਸੀਂ ਇਸ ਪੋਸਟ ਨੂੰ ਆਪਣੇ ਪਿੰਨ ਕੀਤੇ ਪੋਸਟਾਂ ਤੋਂ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?',
+			'postdetails': 'ਪੋਸਟ ਵੇਰਵੇ',
+			'posts': 'ਪੋਸਟਾਂ',
+			'followers': 'ਫੌਲੋਅਰਸ',
+			'followings': 'ਫੌਲੋਵਿੰਗ',
+			'my': 'ਮੇਰਾ',
+			'edit': 'ਸੋਧ',
+			'delete': 'ਮਿਟਾਓ',
+			'deletepost': 'ਪੋਸਟ ਮਿਟਾਓ',
+			'deleteposthint': 'ਕੀ ਤੁਸੀਂ ਇਸ ਪੋਸਟ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਪੋਸਟਾਂ ਅਜੇ ਵੀ ਕੁਝ ਯੂਜ਼ਰਾਂ ਦੇ ਫੀਡ ਵਿੱਚ ਦਰਸਾਈਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।',
+			'maximumallowedsizehint': 'ਅਨੁਮਤ ਅਪਲੋਡ ਫਾਈਲ ਆਕਾਰ ਸੀਮਾ ਪਹੁੰਚ ਗਈ ਹੈ',
+			'maximumuploadsizehint': 'ਚੁਣੀ ਗਈ ਫਾਈਲ ਅਨੁਮਤ ਅਪਲੋਡ ਫਾਈਲ ਆਕਾਰ ਸੀਮਾ ਨੂੰ ਪਾਰ ਕਰਦੀ ਹੈ।',
+			'makeposterror': 'ਇਸ ਸਮੇਂ ਪੋਸਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿਕ ਕਰੋ।',
+			'makepost': 'ਪੋਸਟ ਕਰੋ',
+			'selectfile': 'ਫਾਈਲ ਚੁਣੋ',
+			'images': 'ਤਸਵੀਰਾਂ',
+			'shareYourThoughtsNow': 'ਹੁਣ ਆਪਣੇ ਵਿਚਾਰ ਸਾਂਝੇ ਕਰੋ...',
+			'photoviewer': 'ਫੋਟੋ ਵੇਖਣ ਵਾਲਾ',
+			'nochatsavailable': 'ਕੋਈ ਵੀ ਗੱਲਬਾਤ ਉਪਲਬਧ ਨਹੀਂ ਹੈ \n ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦੇ ਆਈਕਨ \'ਤੇ ਕਲਿਕ ਕਰੋ \n ਯੂਜ਼ਰਾਂ ਨੂੰ ਚੁਣਨ ਲਈ',
+			'typing': 'ਟਾਈਪ ਕਰ ਰਿਹਾ ਹੈ...',
+			'photo': 'ਫੋਟੋ',
+			'online': 'ਆਨਲਾਈਨ',
+			'offline': 'ਆਫਲਾਈਨ',
+			'lastseen': 'ਆਖਰੀ ਵਾਰ ਵੇਖਿਆ ਗਿਆ',
+			'deleteselectedhint': 'ਇਹ ਕਾਰਵਾਈ ਚੁਣੇ ਗਏ ਸੁਨੇਹੇ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ,\n ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਡਿਵਾਈਸ ਤੇ ਵੇਖੇ ਜਾਣਗੇ।',
+			'deleteselected': 'ਚੁਣੇ ਹੋਏ ਨੂੰ ਮਿਟਾਓ',
+			'unabletofetchconversation': 'ਤੁਹਾਡੀ ਗੱਲਬਾਤ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ \n',
+			'loadmoreconversation': 'ਹੋਰ ਗੱਲਬਾਤਾਂ ਨੂੰ ਲੋਡ ਕਰੋ',
+			'sendyourfirstmessage': 'ਤੁਹਾਡਾ ਪਹਿਲਾ ਸੁਨੇਹਾ ਭੇਜੋ \n',
+			'unblock': 'ਅਨਬਲੌਕ ਕਰੋ ',
+			'block': 'ਬਲੌਕ ਕਰੋ',
+			'writeyourmessage': 'ਤੁਹਾਡਾ ਸੁਨੇਹਾ ਲਿਖੋ...',
+			'clearconversation': 'ਗੱਲਬਾਤ ਸਾਫ਼ ਕਰੋ',
+			'clearconversationhintone': 'ਇਹ ਕਾਰਵਾਈ ਤੁਹਾਡੇ ਸਾਰੇ ਗੱਲਬਾਤ ਨੂੰ ਸਾਫ਼ ਕਰੇਗੀ ',
+			'clearconversationhinttwo': '.\n ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ, ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਚੈਟ \'ਤੇ ਵੇਖੇ ਜਾਣਗੇ।',
+			'facebookloginerror': 'ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ',
+			'selectLanguage': 'ਭਾਸ਼ਾ ਚੁਣੋ',
+			'howTo': 'ਕਿਵੇਂ ਕਰਨਾ ਹੈ',
+			'noBibleTextsAvailable': 'ਕੋਈ ਬਾਈਬਲ ਲਿਖਤ ਉਪਲਬਧ ਨਹੀਂ',
+			'languages': 'ਭਾਸ਼ਾਵਾਂ',
+			'searchLanguages': 'ਭਾਸ਼ਾਵਾਂ ਖੋਜੋ...',
+			'biblesFilesets': 'ਬਾਈਬਲ: {bibles}, ਫਾਈਲਸੈਟ: {filesets}',
+			'oldTestament': 'ਪੁਰਾਣਾ ਨਿਯਮ',
+			'newTestament': 'ਨਵਾਂ ਨਿਯਮ',
+			'play': 'ਖੇਡੋ',
+			'no_verse_content': 'ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅਯਤ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
+			'no_audio_content': 'ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
 		};
 	}
 }

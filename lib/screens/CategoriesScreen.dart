@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,8 @@ class CategoriesScreenRouteState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => CategoriesModel(),
+      create: (context) =>
+          CategoriesModel(Provider.of<AppStateManager>(context, listen: false)),
       child: Scaffold(
         appBar: AppBar(
           title: Text(t.categories),

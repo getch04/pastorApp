@@ -116,16 +116,18 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                   physics: NeverScrollableScrollPhysics(),
                   children: [
                     SizedBox(height: 10.0),
-                    if (title != null)
-                      Center(
-                        child: Text(
-                          title ?? '',
-                          style: TextStyles.title(context).copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
+                    // if (title != null)
+                    Center(
+                      child: Text(
+                        title ??
+                            'There is no description avaliable for this Sermon',
+                        textAlign: TextAlign.center,
+                        style: TextStyles.title(context).copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
                         ),
                       ),
+                    ),
                     if (!isLoading && worshipUrl != null) ...[
                       SizedBox(height: 10),
                       Center(
