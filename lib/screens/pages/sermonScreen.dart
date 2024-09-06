@@ -56,8 +56,9 @@ class _SermonScreenItemState extends State<SermonScreenItem> {
   String get getLang {
     appManager = Provider.of<AppStateManager>(context, listen: false);
 
-    return appLanguageData[AppLanguage.values[appManager.preferredLanguage]]![
-        'value']!;
+    final lang = appLanguageData[
+        AppLanguage.values[appManager.preferredLanguage]]!['value']!;
+    return lang == "dz" ? 'ne' : lang;
   }
 
   @override
@@ -228,8 +229,10 @@ class _SermonButtonState extends State<SermonButton> {
 
   String get getLang {
     final appManager = Provider.of<AppStateManager>(context, listen: false);
-    return appLanguageData[AppLanguage.values[appManager.preferredLanguage]]![
-        'value']!;
+
+    final lang = appLanguageData[
+        AppLanguage.values[appManager.preferredLanguage]]!['value']!;
+    return lang == "dz" ? 'ne' : lang;
   }
 
   @override
