@@ -2,6 +2,7 @@ import 'package:churchapp_flutter/models/faqResult.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
 import 'package:youtube_player_flutter_quill/youtube_player_flutter_quill.dart';
 
 class QAAnswerScreen extends StatefulWidget {
@@ -14,17 +15,24 @@ class QAAnswerScreen extends StatefulWidget {
   _QAAnswerScreenState createState() => _QAAnswerScreenState();
 }
 
-class _QAAnswerScreenState extends State<QAAnswerScreen> with WidgetsBindingObserver {
+class _QAAnswerScreenState extends State<QAAnswerScreen>
+    with WidgetsBindingObserver {
   YoutubePlayerController? _controller;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    String videoId = extractYoutubeVideoId(widget.faq.embed_code??'');
+    final content = widget.faq.embed_code ?? '';
+
+    // Check if content is an iframe or a direct URL
+    final srcUrl =
+        content.contains('<iframe') ? extractSrcFromIframe(content) : content;
+    final videoId = YoutubePlayer.convertUrlToId(srcUrl ?? '');
+
     print("play youtube video = $videoId");
     _controller = YoutubePlayerController(
-      initialVideoId: videoId,
+      initialVideoId: videoId ?? '',
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -37,16 +45,17 @@ class _QAAnswerScreenState extends State<QAAnswerScreen> with WidgetsBindingObse
     );
   }
 
-  String extractYoutubeVideoId(String embedCode) {
-    RegExp regExp = RegExp(r'src="https://www.youtube.com/embed/([^"]+)"');
-    Match? match = regExp.firstMatch(embedCode);
-    return match?.group(1) ?? '';
-  }
-
   @override
   void deactivate() {
     _controller?.pause();
     super.deactivate();
+  }
+
+  // Helper function to extract the src attribute from the iframe
+  String? extractSrcFromIframe(String iframeHtml) {
+    final document = parse(iframeHtml);
+    final iframeElement = document.getElementsByTagName('iframe').first;
+    return iframeElement.attributes['src'];
   }
 
   @override

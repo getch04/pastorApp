@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
+import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
+import 'package:churchapp_flutter/screens/EmptyListScreen.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller2.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
@@ -117,17 +119,7 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                   children: [
                     SizedBox(height: 10.0),
                     // if (title != null)
-                    Center(
-                      child: Text(
-                        title ??
-                            'There is no description avaliable for this Sermon',
-                        textAlign: TextAlign.center,
-                        style: TextStyles.title(context).copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
+                    EmptyListScreen(message: 'No data'),
                     if (!isLoading && worshipUrl != null) ...[
                       SizedBox(height: 10),
                       Center(

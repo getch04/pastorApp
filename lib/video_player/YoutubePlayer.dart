@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter_quill/youtube_player_flutter_quill.dart';
-//import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import '../utils/TimUtil.dart';
+
 import '../models/Media.dart';
-import 'package:provider/provider.dart';
-import '../providers/SubscriptionModel.dart';
-import '../utils/Utility.dart';
-import '../utils/Alerts.dart';
 
 class YoutubeVideoPlayer extends StatefulWidget {
   final Media media;
@@ -19,15 +14,17 @@ class YoutubeVideoPlayer extends StatefulWidget {
 class _PlayerState extends State<YoutubeVideoPlayer>
     with WidgetsBindingObserver {
   YoutubePlayerController? _controller;
-  bool isUserSubscribed = false;
 
   @override
   void initState() {
     super.initState();
-    print("play youtube video = " + widget.media.streamUrl!);
+    final vv = widget.media.streamUrl ?? widget.media.source ?? '';
+
+    final videoId = YoutubePlayer.convertUrlToId(vv);
+
     WidgetsBinding.instance.addObserver(this);
     _controller = YoutubePlayerController(
-      initialVideoId: widget.media.streamUrl!,
+      initialVideoId: videoId ?? '',
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -36,6 +33,7 @@ class _PlayerState extends State<YoutubeVideoPlayer>
         isLive: false,
         forceHD: false,
         enableCaption: true,
+        hideThumbnail: true,
       ),
     );
   }
@@ -63,11 +61,10 @@ class _PlayerState extends State<YoutubeVideoPlayer>
 
   @override
   Widget build(BuildContext context) {
-    // isUserSubscribed = Provider.of<SubscriptionModel>(context).isSubscribed;
     return YoutubePlayer(
       controller: _controller!,
       onReady: () {
-        // _controller!.addListener(listener);
+        print('Player is ready.');
       },
       showVideoProgressIndicator: true,
       bottomActions: <Widget>[
@@ -80,15 +77,4 @@ class _PlayerState extends State<YoutubeVideoPlayer>
       ],
     );
   }
-
-  // void listener() {
-  //   if (!mounted) return;
-  //   if (Utility.isPreviewDuration(
-  //       widget.media,
-  //       TimUtil.parseDuration(_controller!.value.position.toString()),
-  //       isUserSubscribed)) {
-  //     _controller?.pause();
-  //     // Alerts.showPreviewSubscribeAlertDialog(context);
-  //   }
-  // }
 }

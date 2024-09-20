@@ -14,7 +14,7 @@ import '../utils/ApiUrl.dart';
 import '../models/Userdata.dart';
 import '../models/Media.dart';
 
-class CategoryMediaScreensModel with ChangeNotifier {
+class ToolMediaModel with ChangeNotifier {
   //List<Comments> _items = [];
   bool isError = false;
   Userdata? userdata;
@@ -29,7 +29,7 @@ class CategoryMediaScreensModel with ChangeNotifier {
   late AppStateManager appState;
   String? language;
 
-  CategoryMediaScreensModel() {
+  ToolMediaModel() {
     this.mediaList = [];
     getUserData();
   }
@@ -69,11 +69,6 @@ class CategoryMediaScreensModel with ChangeNotifier {
     notifyListeners();
   }
 
-  bool isSubcategorySelected(int index) {
-    Categories categories = subCategoriesList[index];
-    return categories.id == selectedSubCategory;
-  }
-
   refreshPageOnCategorySelected(int id, BuildContext ctx) {
     if (id != selectedSubCategory) {
       selectedSubCategory = id;
@@ -92,9 +87,9 @@ class CategoryMediaScreensModel with ChangeNotifier {
         "page": page.toString()
       };
 
-      final response = await http.post(
-          Uri.parse(ApiUrl.FETCH_CATEGORIES_MEDIA + "?lang=$language"),
-          body: jsonEncode({"data": data}));
+      final response = await http.get(
+        Uri.parse(ApiUrl.GET_TOOLS + "?lang=$language"),
+      );
 
       if (response.statusCode == 200) {
         final responseBody = response.body;
@@ -103,10 +98,6 @@ class CategoryMediaScreensModel with ChangeNotifier {
         List<Media> mediaList = parseSliderMedia(responseBody);
 
         if (page == 0) {
-          if (subCategoriesList.isEmpty) {
-            subCategoriesList = parseCategories(responseBody);
-            addTopItem();
-          }
           setItems(mediaList);
         } else {
           setMoreItems(mediaList);
@@ -146,21 +137,13 @@ class CategoryMediaScreensModel with ChangeNotifier {
         previewDuration: int.tryParse(json['preview_duration'].toString()),
         streamUrl: json['stream'] as String?,
         viewsCount: int.tryParse(json['views_count'].toString()),
+        source: json['source'] as String?,
+        extraSource: json['extra_source'] as String?,
       );
     }).toList();
   }
 
-  addTopItem() {
-    Categories cats = new Categories(
-        id: 0, title: t.allitems, mediaCount: 0, thumbnailUrl: "");
-    subCategoriesList.insert(0, cats);
-  }
 
-  // static List<Media> parseSliderMedia(String responseBody) {
-  //   final res = jsonDecode(responseBody);
-  //   final parsed = res["media"].cast<Map<String, dynamic>>();
-  //   return parsed.map<Media>((json) => Media.fromJson(json)).toList();
-  // }
 
   static List<Categories> parseCategories(String responseBody) {
     final res = jsonDecode(responseBody);

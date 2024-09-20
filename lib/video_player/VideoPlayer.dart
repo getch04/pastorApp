@@ -63,7 +63,8 @@ class _VideoPlayerState extends State<VideoPlayer>
     playlist =
         Utility.removeCurrentMediaFromList(widget.mediaList!, widget.media);
     currentMedia = widget.media;
-    print("streamUrl = " + currentMedia!.streamUrl!);
+    final vv = currentMedia?.streamUrl ?? currentMedia?.source ?? '';
+    print("streamUrl = " + vv);
     reloadController = playVideoStream();
     super.initState();
   }
@@ -86,8 +87,9 @@ class _VideoPlayerState extends State<VideoPlayer>
   }
 
   Future<BetterPlayerController?> playVideoStream() async {
+     final vv = currentMedia?.streamUrl ?? currentMedia?.source ?? '';
     BetterPlayerDataSource betterPlayerDataSource = BetterPlayerDataSource(
-        BetterPlayerDataSourceType.network, currentMedia!.streamUrl!);
+        BetterPlayerDataSourceType.network, vv);
     _betterPlayerController = new BetterPlayerController(
         BetterPlayerConfiguration(
           aspectRatio: 3 / 2,

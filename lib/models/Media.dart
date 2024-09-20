@@ -1,31 +1,40 @@
 class Media {
   final int? id;
   int? commentsCount, likesCount, previewDuration, duration, viewsCount;
-  final String? category, title, coverPhoto, mediaType, videoType;
+  final String? category,
+      title,
+      coverPhoto,
+      mediaType,
+      videoType,
+      source,
+      extraSource;
   final String? description, downloadUrl, streamUrl;
   final bool? canPreview, canDownload, isFree, http;
   bool? userLiked;
 
-  Media(
-      {this.id,
-      this.category,
-      this.title,
-      this.coverPhoto,
-      this.mediaType,
-      this.videoType,
-      this.description,
-      this.downloadUrl,
-      this.canPreview,
-      this.canDownload,
-      this.isFree,
-      this.userLiked,
-      this.http,
-      this.duration,
-      this.commentsCount,
-      this.likesCount,
-      this.previewDuration,
-      this.streamUrl,
-      this.viewsCount});
+  Media({
+    this.id,
+    this.category,
+    this.title,
+    this.coverPhoto,
+    this.mediaType,
+    this.videoType,
+    this.description,
+    this.downloadUrl,
+    this.canPreview,
+    this.canDownload,
+    this.isFree,
+    this.userLiked,
+    this.http,
+    this.duration,
+    this.commentsCount,
+    this.likesCount,
+    this.previewDuration,
+    this.streamUrl,
+    this.viewsCount,
+    this.source,
+    this.extraSource,
+  });
 
   static const String BOOKMARKS_TABLE = "bookmarks";
   static const String PLAYLISTS_TABLE = "media_playlists";
@@ -96,7 +105,9 @@ class Media {
         likesCount: int.parse(json['likes_count'].toString()),
         previewDuration: int.parse(json['preview_duration'].toString()),
         streamUrl: json['stream'] as String?,
-        viewsCount: int.parse(json['views_count'].toString()));
+        viewsCount: int.parse(json['views_count'].toString()),
+        source: json['source'] as String?,
+        extraSource: json['extra_source'] as String?);
   }
 
   factory Media.fromMap(Map<String, dynamic> data) {
@@ -119,7 +130,9 @@ class Media {
         likesCount: data['likesCount'],
         previewDuration: data['previewDuration'],
         streamUrl: data['streamUrl'],
-        viewsCount: data['viewsCount']);
+        viewsCount: data['viewsCount'],
+        source: data['source'],
+        extraSource: data['extraSource']);
   }
 
   Map<String, dynamic> toMap() => {
@@ -141,6 +154,8 @@ class Media {
         "likesCount": likesCount,
         "previewDuration": previewDuration,
         "streamUrl": streamUrl,
-        "viewsCount": viewsCount
+        "viewsCount": viewsCount,
+        "source": source,
+        "extraSource": extraSource
       };
 }

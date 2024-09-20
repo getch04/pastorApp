@@ -1,16 +1,20 @@
+import 'dart:convert';
+
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/Media.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
-import 'package:churchapp_flutter/providers/CategoryMediaScreensModel.dart';
+import 'package:churchapp_flutter/providers/ToolMediaModel.dart';
 import 'package:churchapp_flutter/screens/NoitemScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsDetailScreen.dart';
+import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/MediaItemTile.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:churchapp_flutter/utils/langs.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +32,36 @@ class ToolsScreen extends StatefulWidget {
 
 class _ToolsScreenState extends State<ToolsScreen> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool isLoading = true;
+  Dio dio = Dio();
+  late AppStateManager appManager;
+
+  Future<void> getTools() async {
+    String language =
+        appLanguageData[AppLanguage.values[appManager.preferredLanguage]]
+                ?['value'] ??
+            'en';
+    try {
+      var response = await dio.get(ApiUrl.GET_TOOLS + "?lang=$language");
+      final faq = jsonDecode(response.data);
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    appManager = Provider.of<AppStateManager>(context, listen: false);
+    // getTools();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +101,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
         return true;
       },
       child: ChangeNotifierProvider(
-        create: (context) => CategoryMediaScreensModel(),
+        create: (context) => ToolMediaModel(),
         child: GlobalScaffold(
           body: Container(
             height: MediaQuery.of(context).size.height,
@@ -191,7 +225,7 @@ class MediaScreen extends StatefulWidget {
 }
 
 class _CategoriesMediaScreenNewState extends State<MediaScreen> {
-  late CategoryMediaScreensModel mediaScreensModel;
+  late ToolMediaModel mediaScreensModel;
   late List<Media> items;
 
   void _onRefresh() async {
@@ -207,14 +241,14 @@ class _CategoriesMediaScreenNewState extends State<MediaScreen> {
     super.initState();
 
     Future.delayed(const Duration(milliseconds: 0), () {
-      Provider.of<CategoryMediaScreensModel>(context, listen: false)
+      Provider.of<ToolMediaModel>(context, listen: false)
           .loadItems(widget.categories!.id, context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    mediaScreensModel = Provider.of<CategoryMediaScreensModel>(context);
+    mediaScreensModel = Provider.of<ToolMediaModel>(context);
     items = mediaScreensModel.mediaList;
 
     return SmartRefresher(
@@ -261,8 +295,7 @@ class _CategoriesMediaScreenNewState extends State<MediaScreen> {
                         arguments: ScreenArguements(
                           position: 0,
                           items: items[index],
-                          // itemsList: Utility.extractMediaByType(
-                          //     widget.mediaList, widget.object.mediaType),
+                       
                         ));
                   },
                   child: Container(
