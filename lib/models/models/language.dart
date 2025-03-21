@@ -58,13 +58,12 @@ final List<Language> languages = [
     autonym: "རྫོང་ཁ",
   ),
   Language(
-    id: 'ENG',
+    id: 17045,
     glottoId: null,
     iso: "eng",
     name: "English (USA)",
     autonym: "English",
   ),
-
   Language(
     id: 2355,
     glottoId: null,

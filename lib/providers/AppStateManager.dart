@@ -32,10 +32,10 @@ class AppStateManager with ChangeNotifier {
   BibleVersion? get selectedBibleVersion => _selectedBibleVersion;
 
   AppStateManager() {
-    _selectedBibleVersion = _selectedBibleVersion ?? defaultBibleVersion;
     _loadAppSettings();
     getUserData();
     loadSelectedBibleVersion();
+    _selectedBibleVersion = selectedBibleVersion ?? defaultBibleVersion;
   }
   // Method to load the selected Bible version from SharedPreferences
   Future<void> loadSelectedBibleVersion() async {
@@ -131,6 +131,9 @@ class AppStateManager with ChangeNotifier {
           break;
         case "ur":
           LocaleSettings.setLocale(AppLocale.ur);
+          break;
+        case "id":
+          LocaleSettings.setLocale(AppLocale.id);
           break;
         default:
           LocaleSettings.setLocale(AppLocale.en);
@@ -275,7 +278,7 @@ final appLanguageData = {
     if (languageId != null) {
       // Fetch Bible versions for the selected language
       List<BibleVersion> bibleVersions =
-          await fetchBibleVersionsForLocale(languageId!);
+          await fetchBibleVersionsForLocale(languageId);
 
       // Select the first Bible version, if available
       if (bibleVersions.isNotEmpty) {
@@ -327,6 +330,8 @@ final appLanguageData = {
         return 6696;
       case AppLocale.ur:
         return 7147;
+      case AppLocale.id:
+        return 1234;
       default:
         return null;
     }

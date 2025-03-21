@@ -321,7 +321,9 @@
 ,
 "play": "Putar",
 "no_verse_content": "Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.",
-"no_audio_content": "Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan."
+"no_audio_content": "Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.",
+"WorshipAudio": "Audio Penyembahan",
+"SermonAudio": "Audio Khotbah"
 
 
 }

@@ -1,16 +1,14 @@
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller2.dart';
-import 'package:churchapp_flutter/screens/provider/bible_media_controller.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
-import 'package:churchapp_flutter/screens/provider/search_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:isolated_download_manager/isolated_download_manager.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import './providers/AudioPlayerModel.dart';
 import './providers/BibleModel.dart';

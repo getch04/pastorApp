@@ -3,9 +3,9 @@
  * Generated file. Do not edit.
  *
  * Locales: 15
- * Strings: 4470 (298.0 per locale)
+ * Strings: 4500 (300.0 per locale)
  *
- * Built on 2024-09-04 at 11:29 UTC
+ * Built on 2024-09-21 at 11:40 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -703,6 +703,8 @@ class _StringsEn {
 	String get play => 'play';
 	String get no_verse_content => 'No Bible verse content available to display.';
 	String get no_audio_content => 'No Bible Audio content available to display.';
+	String get WorshipAudio => 'Worship Audio';
+	String get SermonAudio => 'Sermon Audio';
 }
 
 // Path: <root>
@@ -1025,6 +1027,8 @@ class _StringsBn implements _StringsEn {
 	@override String get play => 'বাজান';
 	@override String get no_verse_content => 'প্রদর্শনের জন্য কোনও বাইবেলের আয়াতের সামগ্রী নেই।';
 	@override String get no_audio_content => 'প্রদর্শনের জন্য কোনও বাইবেলের অডিও সামগ্রী নেই।';
+	@override String get WorshipAudio => 'পূজা অডিও';
+	@override String get SermonAudio => 'উপদেশ অডিও';
 }
 
 // Path: <root>
@@ -1347,6 +1351,8 @@ class _StringsDz implements _StringsEn {
 	@override String get play => 'གཏོང་';
 	@override String get no_verse_content => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
 	@override String get no_audio_content => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
+	@override String get WorshipAudio => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
+	@override String get SermonAudio => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
 }
 
 // Path: <root>
@@ -1669,6 +1675,8 @@ class _StringsEs implements _StringsEn {
 	@override String get play => 'Reproducir';
 	@override String get no_verse_content => 'No hay contenido de versículos bíblicos disponible para mostrar.';
 	@override String get no_audio_content => 'No hay contenido de audio de la Biblia disponible para mostrar.';
+	@override String get WorshipAudio => 'Audio de adoración';
+	@override String get SermonAudio => 'Audio del sermón';
 }
 
 // Path: <root>
@@ -1991,6 +1999,8 @@ class _StringsHi implements _StringsEn {
 	@override String get play => 'चलाएं';
 	@override String get no_verse_content => 'प्रदर्शित करने के लिए कोई बाइबिल पद्य सामग्री उपलब्ध नहीं है।';
 	@override String get no_audio_content => 'प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।';
+	@override String get WorshipAudio => 'आराधना ऑडियो';
+	@override String get SermonAudio => 'प्रवचन ऑडियो';
 }
 
 // Path: <root>
@@ -2313,6 +2323,8 @@ class _StringsId implements _StringsEn {
 	@override String get play => 'Putar';
 	@override String get no_verse_content => 'Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.';
 	@override String get no_audio_content => 'Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.';
+	@override String get WorshipAudio => 'Audio Penyembahan';
+	@override String get SermonAudio => 'Audio Khotbah';
 }
 
 // Path: <root>
@@ -2635,6 +2647,8 @@ class _StringsKn implements _StringsEn {
 	@override String get play => 'ಆಡಲು';
 	@override String get no_verse_content => 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಪದ್ಯದ ವಿಷಯವಿಲ್ಲ.';
 	@override String get no_audio_content => 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಆಡಿಯೋ ವಿಷಯವಿಲ್ಲ.';
+	@override String get WorshipAudio => 'ಆಡಿಯೋ ಪೂಜೆ';
+	@override String get SermonAudio => 'ಆಡಿಯೋ ಉಪದೇಶ';
 }
 
 // Path: <root>
@@ -2957,6 +2971,8 @@ class _StringsMr implements _StringsEn {
 	@override String get play => 'वाजवा';
 	@override String get no_verse_content => 'प्रदर्शित करण्यासाठी कोणतीही बायबल श्लोक सामग्री उपलब्ध नाही.';
 	@override String get no_audio_content => 'प्रदर्शित करण्यासाठी कोणतीही बायबल ऑडिओ सामग्री उपलब्ध नाही.';
+	@override String get WorshipAudio => 'पूजा ऑडिओ';
+	@override String get SermonAudio => 'उपदेश ऑडिओ';
 }
 
 // Path: <root>
@@ -3279,6 +3295,8 @@ class _StringsNe implements _StringsEn {
 	@override String get play => 'बजाउनुहोस्';
 	@override String get no_verse_content => 'प्रदर्शन गर्न कुनै बाइबल पद्य सामग्री उपलब्ध छैन।';
 	@override String get no_audio_content => 'प्रदर्शन गर्न कुनै बाइबल अडियो सामग्री उपलब्ध छैन।';
+	@override String get WorshipAudio => 'आराधना अडियो';
+	@override String get SermonAudio => 'प्रवचन अडियो';
 }
 
 // Path: <root>
@@ -3601,6 +3619,8 @@ class _StringsOr implements _StringsEn {
 	@override String get play => 'ଖେଳିବା';
 	@override String get no_verse_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଶ୍ଲୋକ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
 	@override String get no_audio_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
+	@override String get WorshipAudio => 'ପୂଜା ଅଡିଓ';
+	@override String get SermonAudio => 'ପ୍ରବଚନ ଅଡିଓ';
 }
 
 // Path: <root>
@@ -3923,6 +3943,8 @@ class _StringsPa implements _StringsEn {
 	@override String get play => 'ਖੇਡੋ';
 	@override String get no_verse_content => 'ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅਯਤ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 	@override String get no_audio_content => 'ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
+	@override String get WorshipAudio => 'ਪੂਜਾ ਆਡੀਓ';
+	@override String get SermonAudio => 'ਉਪਦੇਸ਼ ਆਡੀਓ';
 }
 
 // Path: <root>
@@ -4245,6 +4267,8 @@ class _StringsPt implements _StringsEn {
 	@override String get play => 'Tocar';
 	@override String get no_verse_content => 'Nenhum conteúdo de versículo da Bíblia disponível para exibição.';
 	@override String get no_audio_content => 'Nenhum conteúdo de áudio da Bíblia disponível para exibição.';
+	@override String get WorshipAudio => 'Áudio de Adoração';
+	@override String get SermonAudio => 'Áudio do Sermão';
 }
 
 // Path: <root>
@@ -4567,6 +4591,8 @@ class _StringsTa implements _StringsEn {
 	@override String get play => 'விளையாடு';
 	@override String get no_verse_content => 'காட்ட Bible வசன உள்ளடக்கம் கிடைக்கவில்லை.';
 	@override String get no_audio_content => 'காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை.';
+	@override String get WorshipAudio => 'ஆடியோ வரிகள்';
+	@override String get SermonAudio => 'ஆடியோ செர்மன்கள்';
 }
 
 // Path: <root>
@@ -4889,6 +4915,8 @@ class _StringsTe implements _StringsEn {
 	@override String get play => 'ఆడించు';
 	@override String get no_verse_content => 'ప్రదర్శించడానికి బైబిల్ వాక్య కంటెంట్ అందుబాటులో లేదు.';
 	@override String get no_audio_content => 'ప్రదర్శించడానికి బైబిల్ ఆడియో కంటెంట్ అందుబాటులో లేదు.';
+	@override String get WorshipAudio => 'ఆడియో పూజ';
+	@override String get SermonAudio => 'ఆడియో ప్రవచనం';
 }
 
 // Path: <root>
@@ -5211,6 +5239,8 @@ class _StringsUr implements _StringsEn {
 	@override String get play => 'چلائیں';
 	@override String get no_verse_content => 'دکھانے کے لئے کوئی بائبل کی آیت کا مواد دستیاب نہیں ہے۔';
 	@override String get no_audio_content => 'دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔';
+	@override String get WorshipAudio => 'عبادت آڈیو';
+	@override String get SermonAudio => 'خطبات آڈیو';
 }
 
 /// Flat map(s) containing all translations.
@@ -5517,6 +5547,8 @@ extension on _StringsEn {
 			'play': 'play',
 			'no_verse_content': 'No Bible verse content available to display.',
 			'no_audio_content': 'No Bible Audio content available to display.',
+			'WorshipAudio': 'Worship Audio',
+			'SermonAudio': 'Sermon Audio',
 		};
 	}
 }
@@ -5822,6 +5854,8 @@ extension on _StringsBn {
 			'play': 'বাজান',
 			'no_verse_content': 'প্রদর্শনের জন্য কোনও বাইবেলের আয়াতের সামগ্রী নেই।',
 			'no_audio_content': 'প্রদর্শনের জন্য কোনও বাইবেলের অডিও সামগ্রী নেই।',
+			'WorshipAudio': 'পূজা অডিও',
+			'SermonAudio': 'উপদেশ অডিও',
 		};
 	}
 }
@@ -6127,6 +6161,8 @@ extension on _StringsDz {
 			'play': 'གཏོང་',
 			'no_verse_content': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
 			'no_audio_content': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
+			'WorshipAudio': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
+			'SermonAudio': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
 		};
 	}
 }
@@ -6432,6 +6468,8 @@ extension on _StringsEs {
 			'play': 'Reproducir',
 			'no_verse_content': 'No hay contenido de versículos bíblicos disponible para mostrar.',
 			'no_audio_content': 'No hay contenido de audio de la Biblia disponible para mostrar.',
+			'WorshipAudio': 'Audio de adoración',
+			'SermonAudio': 'Audio del sermón',
 		};
 	}
 }
@@ -6737,6 +6775,8 @@ extension on _StringsHi {
 			'play': 'चलाएं',
 			'no_verse_content': 'प्रदर्शित करने के लिए कोई बाइबिल पद्य सामग्री उपलब्ध नहीं है।',
 			'no_audio_content': 'प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।',
+			'WorshipAudio': 'आराधना ऑडियो',
+			'SermonAudio': 'प्रवचन ऑडियो',
 		};
 	}
 }
@@ -7042,6 +7082,8 @@ extension on _StringsId {
 			'play': 'Putar',
 			'no_verse_content': 'Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.',
 			'no_audio_content': 'Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.',
+			'WorshipAudio': 'Audio Penyembahan',
+			'SermonAudio': 'Audio Khotbah',
 		};
 	}
 }
@@ -7347,6 +7389,8 @@ extension on _StringsKn {
 			'play': 'ಆಡಲು',
 			'no_verse_content': 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಪದ್ಯದ ವಿಷಯವಿಲ್ಲ.',
 			'no_audio_content': 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಆಡಿಯೋ ವಿಷಯವಿಲ್ಲ.',
+			'WorshipAudio': 'ಆಡಿಯೋ ಪೂಜೆ',
+			'SermonAudio': 'ಆಡಿಯೋ ಉಪದೇಶ',
 		};
 	}
 }
@@ -7652,6 +7696,8 @@ extension on _StringsMr {
 			'play': 'वाजवा',
 			'no_verse_content': 'प्रदर्शित करण्यासाठी कोणतीही बायबल श्लोक सामग्री उपलब्ध नाही.',
 			'no_audio_content': 'प्रदर्शित करण्यासाठी कोणतीही बायबल ऑडिओ सामग्री उपलब्ध नाही.',
+			'WorshipAudio': 'पूजा ऑडिओ',
+			'SermonAudio': 'उपदेश ऑडिओ',
 		};
 	}
 }
@@ -7957,6 +8003,8 @@ extension on _StringsNe {
 			'play': 'बजाउनुहोस्',
 			'no_verse_content': 'प्रदर्शन गर्न कुनै बाइबल पद्य सामग्री उपलब्ध छैन।',
 			'no_audio_content': 'प्रदर्शन गर्न कुनै बाइबल अडियो सामग्री उपलब्ध छैन।',
+			'WorshipAudio': 'आराधना अडियो',
+			'SermonAudio': 'प्रवचन अडियो',
 		};
 	}
 }
@@ -8262,6 +8310,8 @@ extension on _StringsOr {
 			'play': 'ଖେଳିବା',
 			'no_verse_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଶ୍ଲୋକ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
 			'no_audio_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
+			'WorshipAudio': 'ପୂଜା ଅଡିଓ',
+			'SermonAudio': 'ପ୍ରବଚନ ଅଡିଓ',
 		};
 	}
 }
@@ -8567,6 +8617,8 @@ extension on _StringsPa {
 			'play': 'ਖੇਡੋ',
 			'no_verse_content': 'ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅਯਤ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
 			'no_audio_content': 'ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
+			'WorshipAudio': 'ਪੂਜਾ ਆਡੀਓ',
+			'SermonAudio': 'ਉਪਦੇਸ਼ ਆਡੀਓ',
 		};
 	}
 }
@@ -8872,6 +8924,8 @@ extension on _StringsPt {
 			'play': 'Tocar',
 			'no_verse_content': 'Nenhum conteúdo de versículo da Bíblia disponível para exibição.',
 			'no_audio_content': 'Nenhum conteúdo de áudio da Bíblia disponível para exibição.',
+			'WorshipAudio': 'Áudio de Adoração',
+			'SermonAudio': 'Áudio do Sermão',
 		};
 	}
 }
@@ -9177,6 +9231,8 @@ extension on _StringsTa {
 			'play': 'விளையாடு',
 			'no_verse_content': 'காட்ட Bible வசன உள்ளடக்கம் கிடைக்கவில்லை.',
 			'no_audio_content': 'காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை.',
+			'WorshipAudio': 'ஆடியோ வரிகள்',
+			'SermonAudio': 'ஆடியோ செர்மன்கள்',
 		};
 	}
 }
@@ -9482,6 +9538,8 @@ extension on _StringsTe {
 			'play': 'ఆడించు',
 			'no_verse_content': 'ప్రదర్శించడానికి బైబిల్ వాక్య కంటెంట్ అందుబాటులో లేదు.',
 			'no_audio_content': 'ప్రదర్శించడానికి బైబిల్ ఆడియో కంటెంట్ అందుబాటులో లేదు.',
+			'WorshipAudio': 'ఆడియో పూజ',
+			'SermonAudio': 'ఆడియో ప్రవచనం',
 		};
 	}
 }
@@ -9787,6 +9845,8 @@ extension on _StringsUr {
 			'play': 'چلائیں',
 			'no_verse_content': 'دکھانے کے لئے کوئی بائبل کی آیت کا مواد دستیاب نہیں ہے۔',
 			'no_audio_content': 'دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔',
+			'WorshipAudio': 'عبادت آڈیو',
+			'SermonAudio': 'خطبات آڈیو',
 		};
 	}
 }

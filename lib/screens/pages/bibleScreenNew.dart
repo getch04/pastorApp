@@ -54,6 +54,14 @@ class _BibleScreenNewItemState extends State<BibleScreenNewItem>
           Provider.of<BibleBooksProvider>(context, listen: false);
       appManager = Provider.of<AppStateManager>(context, listen: false);
       bibleVersion = appManager.selectedBibleVersion;
+      if (bibleVersion!.name.startsWith('New Life Version')) {
+        bibleVersion = bibleVersion!.copyWith(
+          name: 'English Standard Version',
+          language: 'English: USA',
+          languageId: 17045,
+          abbr: "ENGESV",
+        );
+      }
 
       filterProvider.addListener(() {
         bibleBooksProvider.fetchBooks(bibleVersion);

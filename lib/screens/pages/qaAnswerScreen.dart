@@ -74,6 +74,11 @@ class _QAAnswerScreenState extends State<QAAnswerScreen>
 
   @override
   Widget build(BuildContext context) {
+    // Check if content is an iframe or a direct URL
+    final srcUrl = widget.faq.embed_code!.contains('<iframe')
+        ? extractSrcFromIframe(widget.faq.embed_code ?? '')
+        : widget.faq.embed_code;
+    final videoId = YoutubePlayer.convertUrlToId(srcUrl ?? '');
     return GlobalScaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -146,22 +151,21 @@ class _QAAnswerScreenState extends State<QAAnswerScreen>
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: _controller != null
-                        ? YoutubePlayer(
-                            controller: _controller!,
-                            showVideoProgressIndicator: true,
-                            progressIndicatorColor: Colors.blueAccent,
-                            progressColors: ProgressBarColors(
-                              playedColor: Colors.blue,
-                              handleColor: Colors.blueAccent,
-                            ),
-                            onReady: () {
-                              print("Player is ready.");
-                            },
-                          )
-                        : CircularProgressIndicator(),
-                  ),
+                      padding: const EdgeInsets.all(16.0),
+                      child: _controller != null && videoId != null
+                          ? YoutubePlayer(
+                              controller: _controller!,
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.blueAccent,
+                              progressColors: ProgressBarColors(
+                                playedColor: Colors.blue,
+                                handleColor: Colors.blueAccent,
+                              ),
+                              onReady: () {
+                                print("Player is ready.");
+                              },
+                            )
+                          : SizedBox()),
                 ],
               ),
             ),

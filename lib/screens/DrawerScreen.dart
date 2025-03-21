@@ -21,6 +21,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../i18n/strings.g.dart';
@@ -372,6 +373,25 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         context, AppTermsAndConditionsScreen.routeName);
                   },
                 ),
+
+                FutureBuilder(
+                    future: PackageInfo.fromPlatform(),
+                    builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
+                      if (snapshot.hasData) {
+                        return Center(
+                          child: Text(
+                            'v' + '${snapshot.data?.version ?? ''}',
+                            style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    }),
               ],
             ),
           ),

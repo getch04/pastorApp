@@ -16,7 +16,8 @@ class BibleBooksProvider with ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    final url = '$BIBLE_BASE_URL/bibles/ENGESV/book?v=4&key=$BIBLE_API_KEY';
+    final url =
+        '$BIBLE_BASE_URL/bibles/ENGESV/book?v=4&language_code=17045&key=$BIBLE_API_KEY';
 
     final urlWithSelected =
         '$BIBLE_BASE_URL/bibles/${v?.abbr}/book?v=4&language_code=${v?.languageId}&key=$BIBLE_API_KEY';

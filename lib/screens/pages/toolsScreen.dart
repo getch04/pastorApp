@@ -295,7 +295,6 @@ class _CategoriesMediaScreenNewState extends State<MediaScreen> {
                         arguments: ScreenArguements(
                           position: 0,
                           items: items[index],
-                       
                         ));
                   },
                   child: Container(
@@ -313,12 +312,6 @@ class _CategoriesMediaScreenNewState extends State<MediaScreen> {
                       ),
                     ),
                   ),
-                );
-
-                ItemTileNew(
-                  mediaList: items,
-                  index: index,
-                  object: items[index],
                 );
               },
             ),

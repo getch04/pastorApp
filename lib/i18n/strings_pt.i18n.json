@@ -319,7 +319,9 @@
 ,
 "play": "Tocar",
 "no_verse_content": "Nenhum conteúdo de versículo da Bíblia disponível para exibição.",
-"no_audio_content": "Nenhum conteúdo de áudio da Bíblia disponível para exibição."
+"no_audio_content": "Nenhum conteúdo de áudio da Bíblia disponível para exibição.",
+"WorshipAudio": "Áudio de Adoração",
+"SermonAudio": "Áudio do Sermão"
 
 
 
