@@ -258,23 +258,51 @@ class _ToolsScreenState extends State<ToolsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: isLoading
-                      ? Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(
-                                valueColor:
-                                    AlwaysStoppedAnimation<Color>(accentColor),
+                      ? Container(
+                          alignment: Alignment.center,
+                          constraints: BoxConstraints(
+                            maxWidth: 200,
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.all(24),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.9),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                color: accentColor.withOpacity(0.3),
+                                width: 1.5,
                               ),
-                              SizedBox(height: 20),
-                              Text(
-                                'Loading tools...',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.05),
+                                  blurRadius: 10,
+                                  offset: Offset(0, 5),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        primaryColor),
+                                    strokeWidth: 3,
+                                  ),
+                                ),
+                                SizedBox(height: 20),
+                                Text(
+                                  'Loading tools...',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: primaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         )
                       : hasError
