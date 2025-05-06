@@ -208,6 +208,20 @@ class SermonBody extends StatelessWidget {
   }
 }
 
+// Global cache for translated strings to avoid retranslating
+class _TranslationCache {
+  static final Map<String, Map<String, String>> _cache = {};
+
+  static String? get(String text, String langCode) {
+    return _cache[text]?[langCode];
+  }
+
+  static void set(String text, String langCode, String translated) {
+    _cache[text] ??= {};
+    _cache[text]![langCode] = translated;
+  }
+}
+
 class SermonButton extends StatefulWidget {
   final int week;
   final Categories? category;
@@ -220,11 +234,14 @@ class SermonButton extends StatefulWidget {
 
 class _SermonButtonState extends State<SermonButton> {
   final translator = GoogleTranslator();
+  String? _translatedWeek;
+  bool _isLoading = true;
+  bool _hasError = false;
 
-  // Dynamic translation function for "week"
-  Future<String> translateText(String text) async {
-    final translatedText = await translator.translate(text, to: getLang);
-    return translatedText.text;
+  @override
+  void initState() {
+    super.initState();
+    _getTranslatedWeek();
   }
 
   String get getLang {
@@ -233,6 +250,42 @@ class _SermonButtonState extends State<SermonButton> {
     final lang = appLanguageData[
         AppLanguage.values[appManager.preferredLanguage]]!['value']!;
     return lang == "dz" ? 'ne' : lang;
+  }
+
+  // Get the translation, either from cache or from API
+  void _getTranslatedWeek() async {
+    final langCode = getLang;
+    // Check cache first
+    final cachedValue = _TranslationCache.get('WEEK', langCode);
+
+    if (cachedValue != null) {
+      setState(() {
+        _translatedWeek = cachedValue;
+        _isLoading = false;
+      });
+      return;
+    }
+
+    // If not in cache, translate
+    try {
+      final translatedText = await translator.translate('WEEK', to: langCode);
+      _TranslationCache.set(
+          'WEEK', langCode, translatedText.text); // Save to cache
+
+      if (mounted) {
+        setState(() {
+          _translatedWeek = translatedText.text;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _hasError = true;
+          _isLoading = false;
+        });
+      }
+    }
   }
 
   @override
@@ -275,41 +328,38 @@ class _SermonButtonState extends State<SermonButton> {
                   width: 80,
                   child: Stack(
                     children: [
-                      // Using FutureBuilder to translate "WEEK"
-                      FutureBuilder<String>(
-                        future: translateText('WEEK'),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasError) {
-                            return Text('Language Not Supported');
-                          }
-                          if (snapshot.hasData) {
-                            return Positioned(
-                              top: 62,
-                              left: 30,
-                              child: ArcText(
-                                radius: 55,
-                                text: snapshot.data ?? 'WEEK',
-                                textStyle: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                startAngle: -pi / 45,
-                                startAngleAlignment: StartAngleAlignment.center,
-                                placement: Placement.inside,
-                                direction: Direction.clockwise,
-                              ),
-                            );
-                          } else {
-                            return Positioned(
-                              top: 62,
-                              left: 30,
-                              child: CupertinoActivityIndicator(
-                                radius: 8,
-                              ),
-                            );
-                          }
-                        },
-                      ),
+                      // Show appropriate widget based on loading state
+                      if (_isLoading)
+                        Positioned(
+                          top: 62,
+                          left: 30,
+                          child: CupertinoActivityIndicator(
+                            radius: 8,
+                          ),
+                        )
+                      else if (_hasError)
+                        Positioned(
+                          top: 62,
+                          left: 30,
+                          child: Text('Language Not Supported'),
+                        )
+                      else
+                        Positioned(
+                          top: 62,
+                          left: 30,
+                          child: ArcText(
+                            radius: 55,
+                            text: _translatedWeek ?? 'WEEK',
+                            textStyle: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            startAngle: -pi / 45,
+                            startAngleAlignment: StartAngleAlignment.center,
+                            placement: Placement.inside,
+                            direction: Direction.clockwise,
+                          ),
+                        ),
                       Positioned(
                         top: 30,
                         left: 20,

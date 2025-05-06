@@ -84,7 +84,7 @@ class Media {
 
   factory Media.fromJson(Map<String, dynamic> json) {
     //print(json);
-    int id = int.parse(json['id'].toString());
+    int? id = json['id'] != null ? int.tryParse(json['id'].toString()) : null;
     return Media(
         id: id,
         category: json['category'] as String?,
@@ -94,18 +94,35 @@ class Media {
         videoType: json['video_type'] as String?,
         description: json['description'] as String?,
         downloadUrl: json['download_url'] as String?,
-        canPreview: int.parse(json['can_preview'].toString()) == 0,
-        canDownload: int.parse(json['can_download'].toString()) == 0,
-        isFree: int.parse(json['is_free'].toString()) == 0,
-        userLiked:
-            bool.fromEnvironment(json['user_liked'].toString().toLowerCase()),
+        canPreview: json['can_preview'] != null
+            ? int.tryParse(json['can_preview'].toString()) == 0
+            : null,
+        canDownload: json['can_download'] != null
+            ? int.tryParse(json['can_download'].toString()) == 0
+            : null,
+        isFree: json['is_free'] != null
+            ? int.tryParse(json['is_free'].toString()) == 0
+            : null,
+        userLiked: json['user_liked'] != null
+            ? bool.fromEnvironment(json['user_liked'].toString().toLowerCase())
+            : null,
         http: true,
-        duration: int.parse(json['duration'].toString()),
-        commentsCount: int.parse(json['comments_count'].toString()),
-        likesCount: int.parse(json['likes_count'].toString()),
-        previewDuration: int.parse(json['preview_duration'].toString()),
+        duration: json['duration'] != null
+            ? int.tryParse(json['duration'].toString())
+            : null,
+        commentsCount: json['comments_count'] != null
+            ? int.tryParse(json['comments_count'].toString())
+            : null,
+        likesCount: json['likes_count'] != null
+            ? int.tryParse(json['likes_count'].toString())
+            : null,
+        previewDuration: json['preview_duration'] != null
+            ? int.tryParse(json['preview_duration'].toString())
+            : null,
         streamUrl: json['stream'] as String?,
-        viewsCount: int.parse(json['views_count'].toString()),
+        viewsCount: json['views_count'] != null
+            ? int.tryParse(json['views_count'].toString())
+            : null,
         source: json['source'] as String?,
         extraSource: json['extra_source'] as String?);
   }

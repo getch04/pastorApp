@@ -10,7 +10,6 @@ import 'package:churchapp_flutter/models/Notes.dart';
 import 'package:churchapp_flutter/models/Playlists.dart';
 import 'package:churchapp_flutter/models/UserPosts.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
-import 'package:churchapp_flutter/models/models/bibleApiResponse.dart';
 import 'package:churchapp_flutter/models/models/bible_book.dart';
 import 'package:churchapp_flutter/models/models/howto_model.dart';
 import 'package:churchapp_flutter/models/models/splash.dart';
@@ -29,7 +28,7 @@ import 'package:churchapp_flutter/screens/pages/languageDetailScreen.dart';
 import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
-import 'package:churchapp_flutter/screens/pages/sermonListScreen.dart';
+// import 'package:churchapp_flutter/screens/pages/sermonListScreen.dart';
 import 'package:churchapp_flutter/screens/pages/sermonPlayerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsDetailScreen.dart';
@@ -894,13 +893,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               },
             );
           }
-          if (settings.name == SermonListScreen.routeName) {
-            return MaterialPageRoute(
-              builder: (context) {
-                return SermonListScreen();
-              },
-            );
-          }
+          // if (settings.name == SermonListScreen.routeName) {
+          //   return MaterialPageRoute(
+          //     builder: (context) {
+          //       return SermonListScreen();
+          //     },
+          //   );
+          // }
           if (settings.name == BibleScreenNew.routeName) {
             return MaterialPageRoute(
               builder: (context) {
@@ -1008,13 +1007,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             );
           }
           if (settings.name == ToolsScreen.routeName) {
-            final ScreenArguements? args =
-                settings.arguments as ScreenArguements?;
             return MaterialPageRoute(
               builder: (context) {
-                return ToolsScreen(
-                  cat: args!.items as Categories?,
-                );
+                return ToolsScreen();
               },
             );
           }

@@ -31,18 +31,20 @@ class _QAAnswerScreenState extends State<QAAnswerScreen>
     final videoId = YoutubePlayer.convertUrlToId(srcUrl ?? '');
 
     print("play youtube video = $videoId");
-    _controller = YoutubePlayerController(
-      initialVideoId: videoId ?? '',
-      flags: YoutubePlayerFlags(
-        mute: false,
-        autoPlay: true,
-        disableDragSeek: false,
-        loop: false,
-        isLive: false,
-        forceHD: false,
-        enableCaption: true,
-      ),
-    );
+    if (videoId != null && videoId.isNotEmpty) {
+      _controller = YoutubePlayerController(
+        initialVideoId: videoId,
+        flags: YoutubePlayerFlags(
+          mute: false,
+          autoPlay: true,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
+          enableCaption: true,
+        ),
+      );
+    }
   }
 
   @override
@@ -75,101 +77,303 @@ class _QAAnswerScreenState extends State<QAAnswerScreen>
   @override
   Widget build(BuildContext context) {
     // Check if content is an iframe or a direct URL
-    final srcUrl = widget.faq.embed_code!.contains('<iframe')
+    final srcUrl = widget.faq.embed_code != null &&
+            widget.faq.embed_code!.contains('<iframe')
         ? extractSrcFromIframe(widget.faq.embed_code ?? '')
         : widget.faq.embed_code;
     final videoId = YoutubePlayer.convertUrlToId(srcUrl ?? '');
+
+    // Get the screen size
+    final size = MediaQuery.of(context).size;
+
+    // Define main theme colors
+    final primaryColor = Colors.indigo.shade700;
+    final accentColor = Colors.lightBlue.shade300;
+    final lightColor = Colors.lightBlue.shade50;
+    final darkColor = Colors.indigo.shade900;
+
     return GlobalScaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: ListView(
-          children: [
-            Text(
-              'Q&A'.toUpperCase(),
-              textAlign: TextAlign.center,
-              style: TextStyles.title(context).copyWith(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                letterSpacing: 10,
-                shadows: [
-                  Shadow(
-                    blurRadius: 10.0,
-                    color: Colors.black,
-                    offset: Offset(2.0, 2.0),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3),
-                ),
-              ]),
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
+      body: SafeArea(
+        bottom: true,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              // Title
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
                 child: Text(
-                  widget.faq.question,
+                  'Q&A'.toUpperCase(),
                   textAlign: TextAlign.center,
                   style: TextStyles.title(context).copyWith(
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    color: Colors.white,
+                    letterSpacing: 10,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 10.0,
+                        color: Colors.black,
+                        offset: Offset(2.0, 2.0),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-            Container(
-              decoration:
-                  BoxDecoration(color: Colors.lightBlue.shade200, boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3),
-                ),
-              ]),
-              width: MediaQuery.of(context).size.width,
-              child: ListView(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      widget.faq.answer,
-                      textAlign: TextAlign.center,
-                      style: TextStyles.title(context).copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+              // Decorative divider
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 10.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        color: Colors.white.withOpacity(0.7),
+                        thickness: 2,
                       ),
                     ),
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: _controller != null && videoId != null
-                          ? YoutubePlayer(
-                              controller: _controller!,
-                              showVideoProgressIndicator: true,
-                              progressIndicatorColor: Colors.blueAccent,
-                              progressColors: ProgressBarColors(
-                                playedColor: Colors.blue,
-                                handleColor: Colors.blueAccent,
-                              ),
-                              onReady: () {
-                                print("Player is ready.");
-                              },
-                            )
-                          : SizedBox()),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Icon(
+                        Icons.question_answer_rounded,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: Colors.white.withOpacity(0.7),
+                        thickness: 2,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              // Content Area
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  padding: EdgeInsets.only(
+                    left: 16.0,
+                    right: 16.0,
+                    // top: 16.0,
+                    bottom: 100.0,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Question Card
+                      Card(
+                        margin: EdgeInsets.symmetric(vertical: 8),
+                        elevation: 4,
+                        shadowColor: primaryColor.withOpacity(0.3),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.9),
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                              color: lightColor.withOpacity(0.5),
+                              width: 1.5,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      height: 28,
+                                      width: 28,
+                                      decoration: BoxDecoration(
+                                        color: lightColor,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.help_outline_rounded,
+                                          color: primaryColor,
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      "QUESTION",
+                                      style: TextStyle(
+                                        color: primaryColor,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 1.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 16),
+                                Text(
+                                  widget.faq.question,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: darkColor,
+                                    height: 1.3,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Answer Card
+                      Card(
+                        margin: EdgeInsets.symmetric(vertical: 8),
+                        elevation: 4,
+                        shadowColor: accentColor.withOpacity(0.5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.9),
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                              color: lightColor.withOpacity(0.5),
+                              width: 1.5,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      height: 28,
+                                      width: 28,
+                                      decoration: BoxDecoration(
+                                        color: lightColor,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.lightbulb_outline_rounded,
+                                          color: primaryColor,
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      "ANSWER",
+                                      style: TextStyle(
+                                        color: primaryColor,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 1.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 16),
+                                Text(
+                                  widget.faq.answer,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black.withOpacity(0.8),
+                                    height: 1.4,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      // YouTube Player Card
+                      if (_controller != null && videoId != null)
+                        Card(
+                          margin: EdgeInsets.symmetric(vertical: 12),
+                          elevation: 4,
+                          shadowColor: primaryColor.withOpacity(0.3),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.9),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                color: lightColor.withOpacity(0.5),
+                                width: 1.5,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 28,
+                                        width: 28,
+                                        decoration: BoxDecoration(
+                                          color: lightColor,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Center(
+                                          child: Icon(
+                                            Icons.play_circle_outline_rounded,
+                                            color: Colors.red,
+                                            size: 18,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        "VIDEO EXPLANATION",
+                                        style: TextStyle(
+                                          color: primaryColor,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1.5,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 16),
+                                  SizedBox(
+                                    width: size.width,
+                                    child: YoutubePlayer(
+                                      controller: _controller!,
+                                      showVideoProgressIndicator: true,
+                                      progressIndicatorColor: accentColor,
+                                      progressColors: ProgressBarColors(
+                                        playedColor: primaryColor,
+                                        handleColor: accentColor,
+                                      ),
+                                      onReady: () {
+                                        print("Player is ready.");
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

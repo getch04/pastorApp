@@ -1,17 +1,14 @@
 import 'dart:convert';
 
-import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/models/faqResult.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
-import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
 import 'package:churchapp_flutter/screens/pages/qaAnswerScreen.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,103 +57,200 @@ class _QAListScreenState extends State<QAListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var statusBarHeight = MediaQuery.of(context).padding.top;
-    var appBarHeight = kToolbarHeight;
+    // Define main theme colors
+    final primaryColor = Colors.indigo.shade700;
+    final accentColor = Colors.lightBlue.shade300;
+    final lightColor = Colors.lightBlue.shade50;
 
-    return WillPopScope(
-      onWillPop: () async {
-        if (Provider.of<AudioPlayerModel>(context, listen: false)
-                .currentMedia !=
-            null) {
-          return (await (showDialog(
-                context: context,
-                builder: (context) => CupertinoAlertDialog(
-                  title: Text(t.quitapp),
-                  content: Text(t.quitappaudiowarning),
-                  actions: <Widget>[
-                    ElevatedButton(
-                      onPressed: () => Navigator.of(context).pop(false),
-                      child: Text(t.cancel),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Provider.of<AudioPlayerModel>(context, listen: false)
-                            .cleanUpResources();
-                        Navigator.of(context).pop(true);
-                      },
-                      child: Text(t.ok),
-                    ),
-                  ],
-                ),
-              ))) ??
-              false;
-        }
-        return true;
-      },
-      child: GlobalScaffold(
-        body: Container(
+    return GlobalScaffold(
+      body: SafeArea(
+        bottom: true,
+        child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: isLoading
-              ? Center(child: CircularProgressIndicator())
-              : ListView(
+              ? Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(accentColor),
+                  ),
+                )
+              : Column(
                   children: [
-                    Text(
-                      'Q&A'.toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: TextStyles.title(context).copyWith(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        letterSpacing: 10,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 10.0,
-                            color: Colors.black,
-                            offset: Offset(2.0, 2.0),
+                    // Keep the original title
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        'Q&A'.toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: TextStyles.title(context).copyWith(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 10,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: Colors.black,
+                              offset: Offset(2.0, 2.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // Decorative divider
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 10.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              color: Colors.white.withOpacity(0.7),
+                              thickness: 2,
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(
+                              Icons.question_answer_rounded,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              color: Colors.white.withOpacity(0.7),
+                              thickness: 2,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                        itemCount: faqResult?.faqs.length ?? 0,
-                        itemBuilder: (context, index) {
-                          final faq = faqResult!.faqs[index];
-                          return InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                QAAnswerScreen.routeName,
-                                arguments: ScreenArguements(items: faq),
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.lightBlue.shade200,
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Colors.white,
-                                      width: 1,
-                                    ),
-                                  )),
-                              width: MediaQuery.of(context).size.width,
-                              child: Padding(
-                                padding: const EdgeInsets.all(20.0),
+                    // FAQ List
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        width: MediaQuery.of(context).size.width,
+                        child: faqResult?.faqs.length == 0
+                            ? Center(
                                 child: Text(
-                                  faq.question,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyles.title(context).copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                  'No FAQs available',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
                                   ),
                                 ),
+                              )
+                            : ListView.builder(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                padding:
+                                    EdgeInsets.only(top: 12.0, bottom: 150.0),
+                                itemCount: faqResult?.faqs.length ?? 0,
+                                itemBuilder: (context, index) {
+                                  final faq = faqResult!.faqs[index];
+                                  return Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 16.0),
+                                    child: Material(
+                                      color: Colors.transparent,
+                                      elevation: 0,
+                                      borderRadius: BorderRadius.circular(16),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                            context,
+                                            QAAnswerScreen.routeName,
+                                            arguments:
+                                                ScreenArguements(items: faq),
+                                          );
+                                        },
+                                        borderRadius: BorderRadius.circular(16),
+                                        splashColor:
+                                            accentColor.withOpacity(0.2),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Colors.white.withOpacity(0.9),
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: primaryColor
+                                                    .withOpacity(0.05),
+                                                blurRadius: 12,
+                                                offset: Offset(0, 4),
+                                              ),
+                                            ],
+                                            border: Border.all(
+                                              color:
+                                                  lightColor.withOpacity(0.5),
+                                              width: 1.5,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(18.0),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  height: 35,
+                                                  width: 35,
+                                                  decoration: BoxDecoration(
+                                                    color: lightColor,
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Center(
+                                                    child: Icon(
+                                                      Icons
+                                                          .help_outline_rounded,
+                                                      color: primaryColor,
+                                                      size: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(width: 15),
+                                                Expanded(
+                                                  child: Text(
+                                                    faq.question,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16,
+                                                      color: Colors.black
+                                                          .withOpacity(0.8),
+                                                      height: 1.4,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(width: 8),
+                                                Container(
+                                                  height: 30,
+                                                  width: 30,
+                                                  decoration: BoxDecoration(
+                                                    color: lightColor
+                                                        .withOpacity(0.4),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Center(
+                                                    child: Icon(
+                                                      Icons
+                                                          .arrow_forward_ios_rounded,
+                                                      color: primaryColor,
+                                                      size: 12,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
                               ),
-                            ),
-                          );
-                        },
                       ),
                     ),
                   ],

@@ -297,15 +297,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                 onTap: () => Navigator.pushNamed(
                                   context,
                                   ToolsScreen.routeName,
-                                  arguments: ScreenArguements(
-                                    position: 0,
-                                    items: Categories(
-                                      id: 28,
-                                      mediaCount: 1,
-                                      thumbnailUrl: '',
-                                      title: 'Tools',
-                                    ),
-                                  ),
+                                
                                 ),
                               ).animate().fadeIn(duration: 1200.ms).slide(
                                     duration: 1200.ms,

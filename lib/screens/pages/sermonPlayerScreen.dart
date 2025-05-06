@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
-import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
@@ -13,8 +12,6 @@ import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:html/dom.dart' as dom;
-import 'package:html/parser.dart' as html_parser;
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -38,23 +35,6 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
   AudioController? _audioController;
   AudioController2? _audioController2;
   late AppStateManager appManager;
-
-  // Function to detect if string contains HTML and extract plain text
-  bool _containsHtml(String htmlString) {
-    final RegExp htmlTagPattern = RegExp(r'<[^>]*>');
-    return htmlTagPattern.hasMatch(htmlString);
-  }
-
-  String _extractTextFromHtml(String htmlString) {
-    if (_containsHtml(htmlString)) {
-      // Parse the HTML string and extract the plain text if it's HTML
-      dom.Document document = html_parser.parse(htmlString);
-      return document.body?.text ?? ''; // Return the plain text
-    } else {
-      // If it's plain text, return it directly
-      return htmlString;
-    }
-  }
 
   Future<void> getCategoryAudio() async {
     try {
@@ -120,118 +100,301 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Define theme colors for the description section
+    final primaryColor = Colors.indigo.shade700;
+    final accentColor = Colors.lightBlue.shade300;
+    final lightColor = Colors.lightBlue.shade50;
+
     return GlobalScaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height * 0.83,
-        width: MediaQuery.of(context).size.width,
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: Colors.transparent,
-              expandedHeight: MediaQuery.of(context).size.height * 0.55,
-              automaticallyImplyLeading: false,
-              flexibleSpace: FlexibleSpaceBar(
-                background: isLoading
-                    ? Center(child: CircularProgressIndicator())
-                    : ListView(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: [
-                          SizedBox(height: 10.0),
-                          if (title != null && !isLoading)
-                            Center(
-                              child: Text(
-                                title ?? '',
-                                style: TextStyles.title(context).copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                          SizedBox(height: 19),
-                          if (!isLoading && worshipUrl != null) ...[
-                            SizedBox(height: 10),
-                            Center(
-                              child: Text(
-                                t.WorshipAudio,
-                                style: TextStyles.title(context).copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ),
-                            Consumer<AudioController2>(
-                              builder: (context, ctr, child) {
-                                return PlayerNew(
-                                  audioUrl: worshipUrl ?? '',
-                                  onNext: () {},
-                                  onPrevious: () {},
-                                  isPlaying: ctr.isPlaying,
-                                  isLoading: ctr.isLoading,
-                                  duration: ctr.duration,
-                                  position: ctr.position,
-                                  onPlay: () {
-                                    _audioController?.pause();
-                                    ctr.play(worshipUrl ?? '');
-                                  },
-                                  onPause: ctr.pause,
-                                  onSeek: ctr.seek,
-                                );
-                              },
-                            ),
-                          ],
-                          if (!isLoading && sermonUrl != null) ...[
-                            Center(
-                              child: Text(
-                                t.SermonAudio,
-                                style: TextStyles.title(context).copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ),
-                            Consumer<AudioController>(
-                              builder: (context, ctr, child) {
-                                return PlayerNew(
-                                  audioUrl: sermonUrl ?? '',
-                                  onNext: () {},
-                                  onPrevious: () {},
-                                  isPlaying: ctr.isPlaying,
-                                  isLoading: ctr.isLoading,
-                                  duration: ctr.duration,
-                                  position: ctr.position,
-                                  onPlay: () {
-                                    _audioController2?.pause();
-                                    ctr.play(sermonUrl ?? '');
-                                  },
-                                  onPause: ctr.pause,
-                                  onSeek: ctr.seek,
-                                );
-                              },
-                            ),
-                          ],
-                        ],
+      body: SafeArea(
+        bottom: true,
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              // Title
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Text(
+                  title != null ? title!.toUpperCase() : 'SERMON',
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: TextStyles.title(context).copyWith(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 10,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 10.0,
+                        color: Colors.black,
+                        offset: Offset(2.0, 2.0),
                       ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-            SliverFillRemaining(
-              hasScrollBody: true,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: description1 != null
-                    ? SingleChildScrollView(
-                        child: DynamicHtmlContent(
-                          htmlData: description1!,
+              // Decorative divider
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 10.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        color: Colors.white.withOpacity(0.7),
+                        thickness: 2,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Icon(
+                        Icons.headphones_rounded,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: Colors.white.withOpacity(0.7),
+                        thickness: 2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Content Area
+              Expanded(
+                child: isLoading
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircularProgressIndicator(
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(accentColor),
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              'Loading audio...',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
                         ),
                       )
-                    : Text(
-                        '',
-                        style: TextStyles.title(context).copyWith(fontSize: 18),
+                    : SingleChildScrollView(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        padding: EdgeInsets.only(
+                          left: 16.0,
+                          right: 16.0,
+                          // top: 8.0,
+                          bottom: 100.0,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            // Worship Audio Section - Simple version
+                            if (worshipUrl != null) ...[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 24),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Padding(
+                                    //   padding:
+                                    //       const EdgeInsets.only(bottom: 8.0),
+                                    //   child: Text(
+                                    //     t.WorshipAudio,
+                                    //     style: TextStyle(
+                                    //       color: Colors.white,
+                                    //       fontSize: 16,
+                                    //       fontWeight: FontWeight.bold,
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    Consumer<AudioController2>(
+                                      builder: (context, ctr, child) {
+                                        return PlayerNew(
+                                          audioUrl: worshipUrl ?? '',
+                                          onNext: () {},
+                                          onPrevious: () {},
+                                          isPlaying: ctr.isPlaying,
+                                          isLoading: ctr.isLoading,
+                                          duration: ctr.duration,
+                                          position: ctr.position,
+                                          onPlay: () {
+                                            _audioController?.pause();
+                                            ctr.play(worshipUrl ?? '');
+                                          },
+                                          onPause: ctr.pause,
+                                          onSeek: ctr.seek,
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+
+                            // Sermon Audio Section - Simple version
+                            if (sermonUrl != null) ...[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 24),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Padding(
+                                    //   padding:
+                                    //       const EdgeInsets.only(bottom: 8.0),
+                                    //   child: Text(
+                                    //     t.SermonAudio,
+                                    //     style: TextStyle(
+                                    //       color: Colors.white,
+                                    //       fontSize: 16,
+                                    //       fontWeight: FontWeight.bold,
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    Consumer<AudioController>(
+                                      builder: (context, ctr, child) {
+                                        return PlayerNew(
+                                          audioUrl: sermonUrl ?? '',
+                                          onNext: () {},
+                                          onPrevious: () {},
+                                          isPlaying: ctr.isPlaying,
+                                          isLoading: ctr.isLoading,
+                                          duration: ctr.duration,
+                                          position: ctr.position,
+                                          onPlay: () {
+                                            _audioController2?.pause();
+                                            ctr.play(sermonUrl ?? '');
+                                          },
+                                          onPause: ctr.pause,
+                                          onSeek: ctr.seek,
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+
+                            // Description Section - Keep decorated
+                            if (description1 != null)
+                              Card(
+                                margin: EdgeInsets.symmetric(vertical: 8),
+                                elevation: 4,
+                                shadowColor: primaryColor.withOpacity(0.3),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.9),
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: lightColor.withOpacity(0.5),
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Container(
+                                              height: 28,
+                                              width: 28,
+                                              decoration: BoxDecoration(
+                                                color: lightColor,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.description_outlined,
+                                                  color: primaryColor,
+                                                  size: 18,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(width: 8),
+                                            Text(
+                                              "DESCRIPTION",
+                                              style: TextStyle(
+                                                color: primaryColor,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                                letterSpacing: 1.5,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 16),
+                                        DynamicHtmlContent(
+                                          htmlData: description1!,
+                                        ),
+                                        SizedBox(height: 16),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                            // No Content Message
+                            if (sermonUrl == null &&
+                                worshipUrl == null &&
+                                description1 == null)
+                              Container(
+                                padding: EdgeInsets.all(24),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.9),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(
+                                    color: accentColor.withOpacity(0.3),
+                                    width: 1.5,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.05),
+                                      blurRadius: 10,
+                                      offset: Offset(0, 5),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.info_outline,
+                                      color: accentColor,
+                                      size: 50,
+                                    ),
+                                    SizedBox(height: 16),
+                                    Text(
+                                      'No audio content available',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: primaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -245,25 +408,26 @@ class DynamicHtmlContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Html(
-        data: htmlData,
-        style: {
-          "span": Style(
-            backgroundColor: Colors.grey.shade200,
-            color: Colors.black87,
-            fontFamily: 'Roboto, Arial, sans-serif',
-          ),
-        },
-        onLinkTap: (url, _, __) async {
-          if (url != null && await canLaunchUrl(Uri.parse(url))) {
-            await launchUrl(Uri.parse(url));
-          } else {
-            throw 'Could not launch $url';
-          }
-        },
-      ),
+    return Html(
+      data: htmlData,
+      style: {
+        "body": Style(
+          fontSize: FontSize(16.0),
+          lineHeight: LineHeight(1.5),
+          color: Colors.black.withOpacity(0.8),
+        ),
+        "a": Style(
+          color: Colors.indigo.shade700,
+          textDecoration: TextDecoration.none,
+        ),
+      },
+      onLinkTap: (url, _, __) async {
+        if (url != null && await canLaunchUrl(Uri.parse(url))) {
+          await launchUrl(Uri.parse(url));
+        } else {
+          throw 'Could not launch $url';
+        }
+      },
     );
   }
 }
