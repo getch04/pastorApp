@@ -3,7 +3,7 @@ import 'package:churchapp_flutter/utils/TextStyles.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
-import 'package:youtube_player_flutter_quill/youtube_player_flutter_quill.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class QAAnswerScreen extends StatefulWidget {
   QAAnswerScreen({Key? key, required this.faq}) : super(key: key);

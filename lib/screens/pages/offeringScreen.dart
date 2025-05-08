@@ -1,17 +1,14 @@
 import 'dart:convert';
+import 'dart:developer';
 
-import 'package:app_links/app_links.dart';
-import 'package:churchapp_flutter/models/Userdata.dart';
-import 'package:churchapp_flutter/providers/AppStateManager.dart';
-import 'package:churchapp_flutter/providers/HomeProvider.dart';
+import 'package:churchapp_flutter/config/payment_config.dart';
 import 'package:churchapp_flutter/screens/DrawerScreen.dart';
 import 'package:churchapp_flutter/screens/pages/thankYouPage.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
 import 'package:churchapp_flutter/utils/img.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_paypal/flutter_paypal.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 
 class OfferingScreen extends StatefulWidget {
   OfferingScreen({Key? key}) : super(key: key);
@@ -42,14 +39,11 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
   final List<double> _presetAmounts = [5, 10, 25, 50, 100];
   bool _showCustomAmount = false;
 
-  // late AppLinks _appLinks;
-
   final TextEditingController _customAmountController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    // _initializeDeepLinks();
     _customAmountController.text = _donationAmount.toStringAsFixed(2);
   }
 
@@ -59,38 +53,16 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
     super.dispose();
   }
 
-  // void _initializeDeepLinks() async {
-  //   _appLinks = AppLinks();
-
-  //   // Handle the deep link when the app is already open
-  //   _appLinks.uriLinkStream.listen((Uri? uri) {
-  //     if (uri != null) {
-  //       _handleDeepLink(uri);
-  //     }
-  //   });
-
-  //   // Check if the app was opened from a deep link when it was closed
-  //   final Uri? initialUri = await _appLinks.getInitialLink();
-  //   if (initialUri != null) {
-  //     _handleDeepLink(initialUri);
-  //   }
-  // }
-
-  // void _handleDeepLink(Uri uri) {
-  //   if (uri.path == '/payment/success') {
-  //   } else if (uri.path == '/payment/cancel') {
-  //     _onPaymentCancel();
-  //   }
-  // }
-
   void _onPaymentSuccess(
     final String name,
     final String email,
+    final String amount,
   ) async {
     // Call the API to save the donation
     bool saved = await _saveDonation(
       name,
       email,
+      amount,
     );
     if (saved) {
       Navigator.of(context).pushReplacement(
@@ -115,6 +87,7 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
   Future<bool> _saveDonation(
     final String name,
     final String email,
+    final String amount,
   ) async {
     try {
       final response = await Dio().post(
@@ -123,12 +96,14 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
           headers: {'Content-Type': 'application/json'},
         ),
         data: json.encode({
-          'amount': _donationAmount,
-          'name': name,
-          "email": email,
-          'reason': 'Donation',
-          'reference': 'PayPal',
-          'method': 'PayPal',
+          'data': {
+            'amount': amount,
+            'name': name,
+            'email': email,
+            'reason': 'Donation',
+            'reference': 'PayPal',
+            'method': 'PayPal',
+          }
         }),
       );
 
@@ -146,210 +121,152 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
 
   @override
   Widget build(BuildContext context) {
-    var statusBarHeight = MediaQuery.of(context).padding.top;
-    var appBarHeight = kToolbarHeight;
-    final size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        key: scaffoldKey,
-        drawerScrimColor: Colors.transparent,
-        drawer: Container(
-          padding: EdgeInsets.only(top: statusBarHeight + appBarHeight - 30),
-          child: Drawer(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: ChangeNotifierProvider(
-              create: (context) => HomeProvider(),
-              child: DrawerScreen(),
-            ),
-          ),
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Color(0xFF1E3F6F)),
+          onPressed: () => scaffoldKey.currentState?.openDrawer(),
         ),
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Stack(
+        title: Image.asset(
+          Img.get('new/Logo.png'),
+          height: 40,
+        ),
+        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: DrawerScreen(),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              SizedBox(height: 40),
+              Text(
+                'Make a Difference',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1E3F6F),
+                ),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Your generosity helps us serve our community better',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey[600],
+                ),
+              ),
+              SizedBox(height: 40),
               Container(
-                width: size.width,
-                height: size.height,
-                child: Image.asset(
-                  Img.get('new/bg_home.png'),
-                  fit: BoxFit.fill,
+                padding: EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Color(0xFFF5F9FF),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blue.withOpacity(0.1),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      '\$${_donationAmount.toStringAsFixed(2)}',
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF1E3F6F),
+                      ),
+                    ),
+                    SizedBox(height: 24),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        ..._presetAmounts
+                            .map((amount) => _buildAmountButton(amount)),
+                        _buildAmountButton(null),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 80,
+              if (_showCustomAmount) ...[
+                SizedBox(height: 24),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.centerRight,
-                      end: Alignment.centerLeft,
-                      colors: [
-                        Color.fromARGB(255, 88, 138, 179),
-                        Color.fromARGB(255, 160, 209, 224),
-                      ],
-                    ),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    border:
+                        Border.all(color: Color(0xFF1E3F6F).withOpacity(0.2)),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 90,
-                          width: 90,
-                          child: Image.asset(
-                            Img.get('new/Logo.png'),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'MY VIRTUAL',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                            Text(
-                              'PASTOR',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                letterSpacing: 6,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(),
-                        GestureDetector(
-                          onTap: () {
-                            scaffoldKey.currentState?.openDrawer();
-                          },
-                          child: Container(
-                            height: 30,
-                            width: 30,
-                            child: Image.asset(
-                              Img.get('new/menu.png'),
-                            ),
-                          ),
-                        ),
-                      ],
+                  child: TextField(
+                    controller: _customAmountController,
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    style: TextStyle(fontSize: 18, color: Color(0xFF1E3F6F)),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Enter amount',
+                      prefixIcon:
+                          Icon(Icons.attach_money, color: Color(0xFF1E3F6F)),
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        _donationAmount = double.tryParse(value) ?? 0.0;
+                      });
+                    },
                   ),
                 ),
-              ),
-              Positioned(
-                top: 100,
-                right: 0,
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.82,
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: [
-                        SizedBox(height: 40),
-                        Text(
-                          'Make a Donation',
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Your generosity makes a difference',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(height: 48),
-                        Text(
-                          '\$${_donationAmount.toStringAsFixed(2)}',
-                          style: TextStyle(
-                            fontSize: 72,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 24),
-                        Wrap(
-                          spacing: 12,
-                          runSpacing: 12,
-                          children: [
-                            ..._presetAmounts.map(
-                              (amount) => _buildAmountButton(amount),
-                            ),
-                            _buildAmountButton(null),
-                          ],
-                        ),
-                        SizedBox(height: 24),
-                        if (_showCustomAmount)
-                          Container(
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 3, 92, 164),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: TextField(
-                              controller: _customAmountController,
-                              keyboardType: TextInputType.numberWithOptions(
-                                decimal: true,
-                              ),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
-                              cursorColor: Colors.white,
-                              decoration: InputDecoration(
-                                labelText: 'Enter custom amount',
-                                labelStyle: TextStyle(color: Colors.white70),
-                                border: InputBorder.none,
-                                prefixIcon: Icon(Icons.attach_money,
-                                    color: Colors.white70),
-                              ),
-                              onChanged: (value) {
-                                setState(() {
-                                  _donationAmount =
-                                      double.tryParse(value) ?? 0.0;
-                                });
-                              },
-                            ),
-                          ),
-                        SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.4),
-                        SizedBox(height: 24),
-                      ],
-                    ),
+              ],
+              SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () => _processPayment(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF1E3F6F),
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
                   ),
+                  elevation: 2,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.paypal, size: 24, color: Colors.white),
+                    SizedBox(width: 12),
+                    Text(
+                      'Donate Securely',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 24),
+              Text(
+                '100% Secure Payment',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 14,
                 ),
               ),
             ],
-          ),
-        ),
-        bottomNavigationBar: Container(
-          width: MediaQuery.of(context).size.width * 0.8,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: ElevatedButton.icon(
-            icon: Icon(Icons.paypal),
-            label: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Text(
-                'Donate with PayPal',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Color.fromARGB(255, 3, 92, 164),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-            onPressed: () => _processPayment(context),
           ),
         ),
       ),
@@ -359,50 +276,61 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
   Widget _buildAmountButton(double? amount) {
     final isSelected =
         amount == _donationAmount || (amount == null && _showCustomAmount);
-    final buttonText =
-        amount != null ? '\$${amount.toStringAsFixed(0)}' : 'Other';
 
-    return ElevatedButton(
-      child: Text(
-        buttonText,
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            if (amount != null) {
+              _donationAmount = amount;
+              _showCustomAmount = false;
+            } else {
+              _showCustomAmount = true;
+            }
+          });
+        },
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          decoration: BoxDecoration(
+            color: isSelected ? Color(0xFF1E3F6F) : Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isSelected
+                  ? Color(0xFF1E3F6F)
+                  : Color(0xFF1E3F6F).withOpacity(0.2),
+            ),
+            boxShadow: isSelected
+                ? [
+                    BoxShadow(
+                      color: Color(0xFF1E3F6F).withOpacity(0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    )
+                  ]
+                : null,
+          ),
+          child: Text(
+            amount != null ? '\$${amount.toStringAsFixed(0)}' : 'Custom',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: isSelected ? Colors.white : Color(0xFF1E3F6F),
+            ),
+          ),
         ),
       ),
-      style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.white,
-        backgroundColor:
-            isSelected ? Color(0xff0ebef4) : Color.fromARGB(255, 3, 92, 164),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      ),
-      onPressed: () {
-        setState(() {
-          if (amount != null) {
-            _donationAmount = amount;
-            _showCustomAmount = false;
-          } else {
-            _showCustomAmount = true;
-          }
-        });
-      },
     );
   }
 
   void _processPayment(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => UsePaypal(
-          sandboxMode: true,
-          clientId:
-              "AVscFoTe1xkQWPAy3w-tENcvPs_ePt-_jTGgXQtOcJJ7ZmS2e5GzvwIXTQTbZ4ovVDdfXHncfVfGqT69",
-          secretKey:
-              "ECCzZekSI-HA21mkcN2IDSY4SJnJ5tJLFCh8xRdGpyNxVuH3YbWCncA2PdQVKMSvsw8_-rRq2kZEQYPP",
-          returnURL: "churchapp://payment/success",
-          cancelURL: "churchapp://payment/cancel",
+        builder: (BuildContext context) => PaypalCheckoutView(
+          sandboxMode: PaymentConfig.sandboxMode,
+          clientId: PaymentConfig.paypalClientId,
+          secretKey: PaymentConfig.paypalSecretKey,
           transactions: [
             {
               "amount": {
@@ -410,27 +338,71 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
                 "currency": "USD",
                 "details": {
                   "subtotal": _donationAmount.toStringAsFixed(2),
+                  "shipping": '0',
+                  "shipping_discount": 0
                 }
               },
-              "description": "Donation to Our Cause",
+              "description": "Church Donation",
+              "item_list": {
+                "items": [
+                  {
+                    "name": "Church Donation",
+                    "quantity": 1,
+                    "price": _donationAmount.toStringAsFixed(2),
+                    "currency": "USD"
+                  }
+                ]
+              }
             }
           ],
           note: "Contact us for any questions on your donation.",
-          onSuccess: (Map paypalData) async {
-            print("onSuccess: $paypalData");
-            // Extract relevant information
-            String name =
-                "${paypalData['data']['payer']['payer_info']['first_name']} ${paypalData['data']['payer']['payer_info']['last_name']}";
-            String email = paypalData['data']['payer']['payer_info']['email'];
+          onSuccess: (Map params) async {
+            log("onSuccess: $params");
+            try {
+              // Extract payer info from the data structure
+              final data = params['data'];
+              final payerInfo = data['payer']['payer_info'];
+              String name =
+                  "${payerInfo['first_name']} ${payerInfo['last_name']}";
+              String email = payerInfo['email'];
 
-            _onPaymentSuccess(name, email);
+              // You might want to store additional information
+              final transactionId = data['id'];
+              final amount = data['transactions'][0]['amount']['total'];
+              final status = data['state'];
+
+              _onPaymentSuccess(name, email, amount);
+            } catch (e) {
+              print('PayPal data processing error: $e');
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                      'Error processing payment data. Please contact support.'),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+            Navigator.pop(context);
           },
           onError: (error) {
-            print("onError: $error");
+            log("onError: $error");
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Payment failed: ${error.toString()}'),
+                backgroundColor: Colors.red,
+              ),
+            );
+            Navigator.pop(context);
           },
-          onCancel: (params) {
-            print('cancelled: $params');
-            //snackbar
+          onCancel: () {
+            print('cancelled:');
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Payment was cancelled'),
+                backgroundColor: Colors.orange,
+              ),
+            );
+            Navigator.pop(context);
           },
         ),
       ),

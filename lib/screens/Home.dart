@@ -35,7 +35,7 @@ import '../utils/ApiUrl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-enum HomeIndex { CATEGORIES, VIDEOS, AUDIOS, BIBLEBOOKS, LIVESTREAMS, RADIO }
+enum HomeIndex { CATEGORIES, VIDEOS, AUDIOS, BIBLEBOOKS,  RADIO }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, this.userdata}) : super(key: key);
@@ -315,15 +315,15 @@ class _HomePageBodyState extends State<HomePageBody> {
                       color: Colors.green[100]!,
                     ),
                   ),
-                  Expanded(
-                    child: ItemTile(
-                      index: HomeIndex.LIVESTREAMS,
-                      homeProvider: widget.homeProvider,
-                      title: t.livestreams,
-                      thumbnail: "assets/images/livestream.jpg",
-                      color: Colors.orange[100]!,
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: ItemTile(
+                  //     index: HomeIndex.LIVESTREAMS,
+                  //     homeProvider: widget.homeProvider,
+                  //     title: t.livestreams,
+                  //     thumbnail: "assets/images/livestream.jpg",
+                  //     color: Colors.orange[100]!,
+                  //   ),
+                  // ),
                   Expanded(
                     child: ItemTile(
                       index: HomeIndex.RADIO,
@@ -598,14 +598,14 @@ class ItemTile extends StatelessWidget {
           case HomeIndex.BIBLEBOOKS:
             Navigator.of(context).pushNamed(BibleScreen.routeName);
             break;
-          case HomeIndex.LIVESTREAMS:
-            Navigator.of(context).pushNamed(LivestreamsPlayer.routeName,
-                arguments: ScreenArguements(
-                  position: 0,
-                  items: homeProvider!.data['livestream'],
-                  itemsList: [],
-                ));
-            break;
+          // case HomeIndex.LIVESTREAMS:
+          //   Navigator.of(context).pushNamed(LivestreamsPlayer.routeName,
+          //       arguments: ScreenArguements(
+          //         position: 0,
+          //         items: homeProvider!.data['livestream'],
+          //         itemsList: [],
+          //       ));
+          //   break;
           case HomeIndex.RADIO:
             Radios radios = homeProvider!.data['radios'] as Radios;
             Media media = new Media(

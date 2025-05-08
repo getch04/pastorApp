@@ -31,7 +31,7 @@ class Firebase {
   late Function navigateMedia;
   late Function navigateSocials;
   late Function navigateInbox;
-  late Function navigateLivestreams;
+  // late Function navigateLivestreams;
   late Function navigateChat;
   late Function navigateEvents;
   static String appState = "idle";
@@ -40,13 +40,13 @@ class Firebase {
     Function navigateMedia,
     Function navigateSocials,
     Function navigateInbox,
-    Function navigateLivestreams,
+    // Function navigateLivestreams,
     Function navigateChat,
     Function navigateEvents,
   ) {
     this.navigateMedia = navigateMedia;
     this.navigateSocials = navigateSocials;
-    this.navigateLivestreams = navigateLivestreams;
+    // this.navigateLivestreams = navigateLivestreams;
     this.navigateInbox = navigateInbox;
     this.navigateChat = navigateChat;
     this.navigateEvents = navigateEvents;
@@ -285,11 +285,11 @@ class Firebase {
       navigateEvents(events);
     }
 
-    if (action == "livestream") {
-      Map<String, dynamic> livestream = json.decode(data['livestream']);
-      LiveStreams liveStreams = LiveStreams.fromJson(livestream);
-      navigateLivestreams(liveStreams);
-    }
+    // if (action == "livestream") {
+    //   Map<String, dynamic> livestream = json.decode(data['livestream']);
+    //   LiveStreams liveStreams = LiveStreams.fromJson(livestream);
+    //   navigateLivestreams(liveStreams);
+    // }
 
     if (action == "chat") {
       Map<String, dynamic> _user = json.decode(data['user']);

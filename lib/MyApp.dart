@@ -143,12 +143,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     }
   }
 
-  navigateLivestreams(LiveStreams liveStreams) {
-    navigatorKey.currentState!.pushNamed(LivestreamsPlayer.routeName,
-        arguments: ScreenArguements(
-          items: liveStreams,
-        ));
-  }
+  // navigateLivestreams(LiveStreams liveStreams) {
+  //   navigatorKey.currentState!.pushNamed(LivestreamsPlayer.routeName,
+  //       arguments: ScreenArguements(
+  //         items: liveStreams,
+  //       ));
+  // }
 
   navigateInbox(Inbox inbox) {
     //navigatorKey.currentState.pushNamed(InboxListScreenState.routeName);
@@ -202,7 +202,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       navigateMedia,
       navigateSocials,
       navigateInbox,
-      navigateLivestreams,
+      // navigateLivestreams,
       navigateChat,
       navigateEvents,
     ).init();
@@ -419,17 +419,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             );
           }
 
-          if (settings.name == LivestreamsPlayer.routeName) {
-            // Cast the arguments to the correct type: ScreenArguments.
-            final ScreenArguements? args =
-                settings.arguments as ScreenArguements?;
-            return MaterialPageRoute(
-              builder: (context) {
-                return LivestreamsPlayer(
-                    liveStreams: args!.items as LiveStreams?);
-              },
-            );
-          }
+          // if (settings.name == LivestreamsPlayer.routeName) {
+          //   // Cast the arguments to the correct type: ScreenArguments.
+          //   final ScreenArguements? args =
+          //       settings.arguments as ScreenArguements?;
+          //   return MaterialPageRoute(
+          //     builder: (context) {
+          //       return LivestreamsPlayer(
+          //           liveStreams: args!.items as LiveStreams?);
+          //     },
+          //   );
+          // }
 
           if (settings.name == CategoriesScreen.routeName) {
             return MaterialPageRoute(
