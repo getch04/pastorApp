@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
@@ -116,15 +117,15 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
               // Title
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: Text(
+                child: AutoSizeText(
                   title != null ? title!.toUpperCase() : 'SERMON',
                   textAlign: TextAlign.center,
-                  maxLines: 2,
+                  // maxLines: 3,
                   style: TextStyles.title(context).copyWith(
-                    fontSize: 30,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                    letterSpacing: 10,
+                    letterSpacing: 4,
                     shadows: [
                       Shadow(
                         blurRadius: 10.0,

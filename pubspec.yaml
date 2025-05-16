@@ -109,6 +109,7 @@ dependencies:
   url_launcher: ^6.3.0
   flutter_paypal_payment: ^1.0.6
   youtube_player_flutter: ^8.1.2
+  auto_size_text: ^3.0.0
   # youtube_player_flutter: ^8.1.2
 
 dev_dependencies:

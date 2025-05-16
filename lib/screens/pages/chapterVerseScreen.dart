@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:churchapp_flutter/core/common.dart';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
@@ -130,8 +131,9 @@ class _ChapterVerseScreenContentState extends State<ChapterVerseScreenContent> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: Text(
+                child: AutoSizeText(
                   '${widget.book.name}'.toUpperCase(),
+                  maxLines: 1,
                   style: TextStyles.title(context).copyWith(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,

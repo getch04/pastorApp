@@ -390,11 +390,14 @@ class _CategoriesMediaScreenNewState extends State<MediaScreen> {
             borderRadius: BorderRadius.circular(16),
             child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, ToolsDetailScreen.routeName,
-                    arguments: ScreenArguements(
-                      position: 0,
-                      items: widget.tools[index],
-                    ));
+                Navigator.pushNamed(
+                  context,
+                  ToolsDetailScreen.routeName,
+                  arguments: ScreenArguements(
+                    position: 0,
+                    items: widget.tools[index],
+                  ),
+                );
               },
               borderRadius: BorderRadius.circular(16),
               splashColor: accentColor.withOpacity(0.2),
