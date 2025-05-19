@@ -196,9 +196,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
     final accentColor = Colors.lightBlue.shade300;
 
     return GlobalScaffold(
-      body: SafeArea(
-        bottom: true,
-        child: Container(
+      body:  Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -353,7 +351,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

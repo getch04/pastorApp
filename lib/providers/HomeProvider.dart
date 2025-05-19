@@ -1,12 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
-import '../utils/ApiUrl.dart';
-import '../models/Userdata.dart';
+import 'package:flutter/foundation.dart';
+
 import '../models/Media.dart';
-import '../models/Radios.dart';
-import '../models/LiveStreams.dart';
+import '../models/Userdata.dart';
+import '../utils/ApiUrl.dart';
 
 class HomeProvider with ChangeNotifier {
   var data = {
@@ -61,8 +61,8 @@ class HomeProvider with ChangeNotifier {
         print(res);
         data['sliders'] = parseSliderMedia(res);
         data['website'] = res['website_url'];
-        data['livestream'] = parseLiveStreams(res);
-        data['radios'] = parseRadio(res);
+        // data['livestream'] = parseLiveStreams(res);
+        // data['radios'] = parseRadio(res);
         data['image1'] = res['image_one'];
         data['image2'] = res['image_one'];
         data['image3'] = res['image_three'];
@@ -87,13 +87,13 @@ class HomeProvider with ChangeNotifier {
     }
   }
 
-  static Radios parseRadio(dynamic res) {
-    return Radios.fromJson(res["radios"]);
-  }
+  // static Radios parseRadio(dynamic res) {
+  //   return Radios.fromJson(res["radios"]);
+  // }
 
-  static LiveStreams parseLiveStreams(dynamic res) {
-    return LiveStreams.fromJson(res["livestream"]);
-  }
+  // static LiveStreams parseLiveStreams(dynamic res) {
+  //   return LiveStreams.fromJson(res["livestream"]);
+  // }
 
   static List<Media> parseSliderMedia(dynamic res) {
     final parsed = res["slider_media"].cast<Map<String, dynamic>>();

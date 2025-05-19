@@ -22,9 +22,7 @@ class ToolsDetailScreen extends StatelessWidget {
     final lightColor = Colors.lightBlue.shade50;
 
     return GlobalScaffold(
-      body: SafeArea(
-        bottom: true,
-        child: Container(
+      body:  Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -350,7 +348,7 @@ class ToolsDetailScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:churchapp_flutter/auth/LoginScreen.dart';
-import 'package:churchapp_flutter/models/Categories.dart';
-import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
 import 'package:churchapp_flutter/screens/pages/howToScreen.dart';
@@ -87,9 +85,6 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
     }
   }
 
-
-
-
   Future<bool> _onWillPop() async {
     final audioPlayerModel =
         Provider.of<AudioPlayerModel>(context, listen: false);
@@ -156,6 +151,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
+                      SizedBox(height: 15),
                       Text(
                         t.homesentence,
                         textAlign: TextAlign.center,
@@ -165,11 +161,12 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                           fontSize: 18,
                         ),
                       ),
+                      SizedBox(height: 15),
                       ClipPath(
                         clipper: BannerClipper(),
                         child: Container(
                             padding: EdgeInsets.symmetric(
-                              vertical: 10,
+                              vertical: 5,
                               horizontal: 20,
                             ),
                             decoration: BoxDecoration(
@@ -230,7 +227,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 20,
+                          // vertical: 10,
                           horizontal: 35,
                         ),
                         child: ListView.separated(
@@ -238,7 +235,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           separatorBuilder: (context, index) =>
-                              const SizedBox(height: 20),
+                              const SizedBox(height: 15),
                           itemBuilder: (context, index) {
                             final List<Widget> commonItemCards = [
                               CommonItemCard(
@@ -297,7 +294,6 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                 onTap: () => Navigator.pushNamed(
                                   context,
                                   ToolsScreen.routeName,
-                                
                                 ),
                               ).animate().fadeIn(duration: 1200.ms).slide(
                                     duration: 1200.ms,

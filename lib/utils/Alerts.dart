@@ -2,7 +2,6 @@ import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../i18n/strings.g.dart';
-import '../screens/SubscriptionScreen.dart';
 import '../auth/LoginScreen.dart';
 
 class Alerts {

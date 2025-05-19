@@ -3,7 +3,6 @@ import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/models/language_detail.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/providers/AudioPlayerModel.dart';
-import 'package:churchapp_flutter/providers/BookmarksModel.dart';
 import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
 import 'package:churchapp_flutter/screens/provider/bilbe_filter_provider.dart';
 import 'package:churchapp_flutter/utils/components/global_scafold.dart';

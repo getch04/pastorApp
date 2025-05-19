@@ -12,11 +12,10 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../i18n/strings.g.dart';
-import '../models/ScreenArguements.dart';
 import '../models/Userdata.dart';
 import '../providers/AppStateManager.dart';
-import '../socials/FollowPeople.dart';
-import '../socials/UserProfileScreen.dart';
+// import '../socials/FollowPeople.dart';
+// import '../socials/UserProfileScreen.dart';
 import '../utils/Alerts.dart';
 import '../utils/ApiUrl.dart';
 import '../utils/Utility.dart';
@@ -258,17 +257,17 @@ class UpdateUserProfileState extends State<UpdateUserProfile> {
       Provider.of<AppStateManager>(context, listen: false)
           .setUserData(userdata);
 
-      if (widget.check!) {
-        Navigator.pushReplacementNamed(context, FollowPeople.routeName,
-            arguments: ScreenArguements(
-              check: true,
-            ));
-      } else {
-        Navigator.pushReplacementNamed(context, UserProfileScreen.routeName,
-            arguments: ScreenArguements(
-              items: userdata,
-            ));
-      }
+      // if (widget.check!) {
+      //   Navigator.pushReplacementNamed(context, FollowPeople.routeName,
+      //       arguments: ScreenArguements(
+      //         check: true,
+      //       ));
+      // } else {
+      //   Navigator.pushReplacementNamed(context, UserProfileScreen.routeName,
+      //       arguments: ScreenArguements(
+      //         items: userdata,
+      //       ));
+      // }
     } on DioException catch (e) {
       Navigator.of(context).pop();
       Alerts.show(context, t.error, e.message);
@@ -312,11 +311,11 @@ class UpdateUserProfileState extends State<UpdateUserProfile> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pushReplacementNamed(
-                  context, UserProfileScreen.routeName,
-                  arguments: ScreenArguements(
-                    items: userdata,
-                  ));
+              // Navigator.pushReplacementNamed(
+              //     context, UserProfileScreen.routeName,
+              //     arguments: ScreenArguements(
+              //       items: userdata,
+              //     ));
             },
           ),
           flexibleSpace: Container(

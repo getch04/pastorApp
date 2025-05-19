@@ -1,18 +1,18 @@
-import 'package:churchapp_flutter/providers/AppStateManager.dart';
-import 'package:churchapp_flutter/utils/langs.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'dart:async';
 import 'dart:convert';
-import '../i18n/strings.g.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../database/SQLiteDbProvider.dart';
+
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
+import 'package:churchapp_flutter/utils/langs.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import '../database/SQLiteDbProvider.dart';
 import '../models/Categories.dart';
-import '../utils/ApiUrl.dart';
-import '../models/Userdata.dart';
 import '../models/Media.dart';
+import '../models/Userdata.dart';
+import '../utils/ApiUrl.dart';
 
 class ToolMediaModel with ChangeNotifier {
   //List<Comments> _items = [];
@@ -142,8 +142,6 @@ class ToolMediaModel with ChangeNotifier {
       );
     }).toList();
   }
-
-
 
   static List<Categories> parseCategories(String responseBody) {
     final res = jsonDecode(responseBody);

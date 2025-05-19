@@ -93,9 +93,7 @@ class _QAAnswerScreenState extends State<QAAnswerScreen>
     final darkColor = Colors.indigo.shade900;
 
     return GlobalScaffold(
-      body: SafeArea(
-        bottom: true,
-        child: Container(
+      body:  Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -375,7 +373,7 @@ class _QAAnswerScreenState extends State<QAAnswerScreen>
             ],
           ),
         ),
-      ),
+      
     );
   }
 }

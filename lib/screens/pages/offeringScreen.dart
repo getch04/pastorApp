@@ -128,9 +128,10 @@ class _OfferingScreenItemState extends State<OfferingScreenItem> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.menu, color: Color(0xFF1E3F6F)),
-          onPressed: () => scaffoldKey.currentState?.openDrawer(),
-        ),
+            icon: Icon(Icons.arrow_back_ios, color: Color(0xFF1E3F6F)),
+            onPressed: () async {
+              await Navigator.of(context).maybePop();
+            }),
         title: Image.asset(
           Img.get('new/Logo.png'),
           height: 40,

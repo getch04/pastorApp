@@ -15,8 +15,8 @@ import '../models/Userdata.dart';
 import '../providers/AppStateManager.dart';
 import '../screens/NoitemScreen.dart';
 import '../socials/UpdateUserProfile.dart';
-import '../socials/UserFollowersScreen.dart';
-import '../socials/UserdataPosts.dart';
+// import '../socials/UserFollowersScreen.dart';
+// import '../socials/UserdataPosts.dart';
 import '../utils/ApiUrl.dart';
 import '../utils/Utility.dart';
 import '../utils/img.dart';
@@ -328,11 +328,11 @@ class UserProfileScreenRouteState extends State<UserProfileScreen> {
                   flex: 1,
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        UserdataPosts.routeName,
-                        arguments: ScreenArguements(items: _user),
-                      );
+                      // Navigator.pushNamed(
+                      //   context,
+                      //   UserdataPosts.routeName,
+                      //   arguments: ScreenArguements(items: _user),
+                      // );
                     },
                     child: Column(
                       children: <Widget>[
@@ -350,10 +350,10 @@ class UserProfileScreenRouteState extends State<UserProfileScreen> {
                   flex: 1,
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(
-                          context, UserFollowersScreen.routeName,
-                          arguments: ScreenArguements(
-                              check: false, items: _user, option: "followers"));
+                      // Navigator.pushNamed(
+                      //     context, UserFollowersScreen.routeName,
+                      //     arguments: ScreenArguements(
+                      //         check: false, items: _user, option: "followers"));
                     },
                     child: Column(
                       children: <Widget>[
@@ -371,10 +371,10 @@ class UserProfileScreenRouteState extends State<UserProfileScreen> {
                   flex: 1,
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(
-                          context, UserFollowersScreen.routeName,
-                          arguments: ScreenArguements(
-                              check: false, items: _user, option: "following"));
+                      // Navigator.pushNamed(
+                      //     context, UserFollowersScreen.routeName,
+                      //     arguments: ScreenArguements(
+                      //         check: false, items: _user, option: "following"));
                     },
                     child: Column(
                       children: <Widget>[
