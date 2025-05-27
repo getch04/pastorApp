@@ -69,8 +69,13 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
           Provider.of<BibleMediaController>(context, listen: false);
       _filterProvider =
           Provider.of<BibleFilterProvider>(context, listen: false);
-      _bibleMediaController.initData(int.tryParse(widget.data.$2) ?? 1,
-          _filterProvider,appStateManager.selectedBibleVersion!, widget.data.$3, widget.data.$1, widget.data.$4);
+      _bibleMediaController.initData(
+          int.tryParse(widget.data.$2) ?? 1,
+          _filterProvider,
+          appStateManager.selectedBibleVersion!,
+          widget.data.$3,
+          widget.data.$1,
+          widget.data.$4);
     });
   }
 
