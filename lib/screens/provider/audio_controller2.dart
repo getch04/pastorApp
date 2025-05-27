@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
@@ -88,6 +89,12 @@ class AudioController2 extends ChangeNotifier {
     await _audioPlayer.stop();
     _isPlaying = false;
     _position = Duration.zero;
+    notifyListeners();
+  }
+
+  Future<void> setPlaybackSpeed(double speed) async {
+    if (_disposed) return;
+    await _audioPlayer.setPlaybackRate(speed);
     notifyListeners();
   }
 

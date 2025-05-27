@@ -29,89 +29,91 @@ class GlobalScaffold extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: Stack(
-          children: [
-            Container(
-              width: size.width,
-              height: size.height,
-              child: Image.asset(
-                Img.get('new/bg_home.png'),
-                fit: BoxFit.fill,
-              ),
+      body: Stack(
+        children: [
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              Img.get('new/bg_home.png'),
+              fit: BoxFit.cover,
             ),
-            Positioned(
-              top: 50,
-              right: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 80,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.centerRight,
-                    end: Alignment.centerLeft,
-                    colors: [
-                      Color.fromARGB(255, 88, 138, 179),
-                      Color.fromARGB(255, 160, 209, 224),
-                    ],
+          ),
+          // Main Content
+          SafeArea(
+            bottom: false,
+            child: Column(
+              children: [
+                // Header
+                Container(
+                  width: size.width,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.centerRight,
+                      end: Alignment.centerLeft,
+                      colors: [
+                        Color.fromARGB(255, 88, 138, 179),
+                        Color.fromARGB(255, 160, 209, 224),
+                      ],
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 90,
-                        width: 90,
-                        child: Image.asset(
-                          Img.get('new/Logo.png'),
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'MY VIRTUAL',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                          Text(
-                            'PASTOR',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              letterSpacing: 6,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(),
-                      GestureDetector(
-                        onTap: () {
-                          scaffoldKey.currentState?.openDrawer();
-                        },
-                        child: Container(
-                          height: 30,
-                          width: 30,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 90,
+                          width: 90,
                           child: Image.asset(
-                            Img.get('new/menu.png'),
+                            Img.get('new/Logo.png'),
                           ),
                         ),
-                      ),
-                    ],
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'MY VIRTUAL',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Text(
+                              'PASTOR',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                letterSpacing: 6,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            scaffoldKey.currentState?.openDrawer();
+                          },
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            child: Image.asset(
+                              Img.get('new/menu.png'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+                // Body Content
+                Expanded(
+                  child: body,
+                ),
+              ],
             ),
-            Positioned(top: 130, right: 0, child: body),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
