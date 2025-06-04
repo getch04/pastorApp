@@ -180,10 +180,10 @@ class SermonBody extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.76,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
-          itemCount: categoriesModel.categories?.length ?? 0,
+          itemCount: items?.length ?? 0,
           scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
-            final cat = categoriesModel.categories?[index];
+            final cat = items?[index];
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 10),
               child: InkWell(
@@ -191,9 +191,7 @@ class SermonBody extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     SermonPlayerScreen.routeName,
-                    arguments: ScreenArguements(
-                      items: cat,
-                    ),
+                    arguments: ScreenArguements(items: (cat, items)),
                   );
                 },
                 child: SermonButton(

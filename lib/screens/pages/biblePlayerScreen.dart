@@ -112,6 +112,7 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final provider = Provider.of<BibleMediaController>(context, listen: false);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80),
@@ -513,16 +514,9 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
                                         borderRadius: BorderRadius.circular(20),
                                         child: AudioPlayerWidget(
                                           audioUrl: audioUrl,
-                                          onNext:
-                                              Provider.of<BibleMediaController>(
-                                            context,
-                                            listen: false,
-                                          ).goToNextChapter,
+                                          onNext: provider.goToNextChapter,
                                           onPrevious:
-                                              Provider.of<BibleMediaController>(
-                                            context,
-                                            listen: false,
-                                          ).goToPreviousChapter,
+                                              provider.goToPreviousChapter,
                                           isMinimized: _isPlayerMinimized,
                                         ),
                                       ),
@@ -569,14 +563,22 @@ class _BiblePlayerScreenItemState extends State<BiblePlayerScreenItem> {
                                           width: 1,
                                         ),
                                       ),
-                                      child: Text(
-                                        'Chapter ${widget.data.$2}',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          letterSpacing: 0.3,
-                                        ),
+                                      child:
+                                          Selector<BibleMediaController, int>(
+                                        selector: (_, controller) =>
+                                            controller.currentChapter,
+                                        builder:
+                                            (context, currentChapter, child) {
+                                          return Text(
+                                            'Chapter $currentChapter',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              letterSpacing: 0.3,
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ),
                                   ),

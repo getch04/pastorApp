@@ -225,6 +225,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                   }
                                 })),
                       ),
+                      SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           // vertical: 10,

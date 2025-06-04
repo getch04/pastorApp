@@ -17,10 +17,13 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SermonPlayerScreen extends StatefulWidget {
-  SermonPlayerScreen({Key? key, required this.categories}) : super(key: key);
+  SermonPlayerScreen({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
   static const routeName = "/SermonPlayerScreen";
 
-  final Categories categories;
+  final (Categories selectedItem, List<Categories> items) data;
 
   @override
   _SermonPlayerScreenState createState() => _SermonPlayerScreenState();
@@ -38,6 +41,32 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
   late AppStateManager appManager;
   double _worshipSpeed = 1.0;
   double _sermonSpeed = 1.0;
+  int _currentIndex = 0;
+  late Categories _currentItem;
+
+  @override
+  void initState() {
+    super.initState();
+    appManager = Provider.of<AppStateManager>(context, listen: false);
+    _currentItem = widget.data.$1;
+    _currentIndex =
+        widget.data.$2.indexWhere((item) => item.id == _currentItem.id);
+    getCategoryAudio();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _audioController = Provider.of<AudioController>(context, listen: false);
+    _audioController2 = Provider.of<AudioController2>(context, listen: false);
+  }
+
+  @override
+  void dispose() {
+    _audioController?.stop();
+    _audioController2?.stop();
+    super.dispose();
+  }
 
   Future<void> getCategoryAudio() async {
     try {
@@ -46,8 +75,8 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                   ?['value'] ??
               'en';
 
-      var response = await dio.get(
-          ApiUrl.CATEGORY_AUDIO + '${widget.categories.id}?lang=$language');
+      var response = await dio
+          .get(ApiUrl.CATEGORY_AUDIO + '${_currentItem.id}?lang=$language');
       final res = jsonDecode(response.data);
 
       if (res['audio'] != null) {
@@ -80,25 +109,33 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    appManager = Provider.of<AppStateManager>(context, listen: false);
-    getCategoryAudio();
-  }
+  Future<void> _navigateToSermon(int index) async {
+    if (index < 0 || index >= widget.data.$2.length) return;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _audioController = Provider.of<AudioController>(context, listen: false);
-    _audioController2 = Provider.of<AudioController2>(context, listen: false);
-  }
+    setState(() {
+      isLoading = true;
+      _currentIndex = index;
+      _currentItem = widget.data.$2[index];
+    });
 
-  @override
-  void dispose() {
+    // Stop current playback
     _audioController?.stop();
     _audioController2?.stop();
-    super.dispose();
+
+    // Fetch new audio
+    await getCategoryAudio();
+  }
+
+  void _handleNext() {
+    if (_currentIndex < widget.data.$2.length - 1) {
+      _navigateToSermon(_currentIndex + 1);
+    }
+  }
+
+  void _handlePrevious() {
+    if (_currentIndex > 0) {
+      _navigateToSermon(_currentIndex - 1);
+    }
   }
 
   @override
@@ -210,8 +247,8 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                                     builder: (context, ctr, child) {
                                       return PlayerNew(
                                         audioUrl: worshipUrl ?? '',
-                                        onNext: () {},
-                                        onPrevious: () {},
+                                        onNext: _handleNext,
+                                        onPrevious: _handlePrevious,
                                         isPlaying: ctr.isPlaying,
                                         isLoading: ctr.isLoading,
                                         duration: ctr.duration,
@@ -246,8 +283,8 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                                     builder: (context, ctr, child) {
                                       return PlayerNew(
                                         audioUrl: sermonUrl ?? '',
-                                        onNext: () {},
-                                        onPrevious: () {},
+                                        onNext: _handleNext,
+                                        onPrevious: _handlePrevious,
                                         isPlaying: ctr.isPlaying,
                                         isLoading: ctr.isLoading,
                                         duration: ctr.duration,

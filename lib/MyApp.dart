@@ -202,7 +202,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         navigatorKey: navigatorKey,
         title: 'App',
         home: SplashScreen(),
-        
         debugShowCheckedModeBanner: false,
         onGenerateRoute: (settings) {
           if (settings.name == UserProfileScreen.routeName) {
@@ -330,7 +329,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             return MaterialPageRoute(
               builder: (context) {
                 return SermonPlayerScreen(
-                  categories: args!.items as Categories,
+                  data: args!.items as (Categories, List<Categories>),
                 );
               },
             );
