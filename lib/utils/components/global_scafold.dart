@@ -6,9 +6,10 @@ import 'package:provider/provider.dart';
 
 class GlobalScaffold extends StatelessWidget {
   final Widget body;
+  final bool backBtn;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  GlobalScaffold({required this.body});
+  GlobalScaffold({required this.body, this.backBtn = true});
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +63,63 @@ class GlobalScaffold extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 90,
-                          width: 90,
-                          child: Image.asset(
-                            Img.get('new/Logo.png'),
+                        //if show back button, then show a back arrow, elese show menu icon
+                        if (backBtn)
+                          Container(
+                            margin: EdgeInsets.only(left: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.3),
+                                width: 1,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 8,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(12),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Icon(
+                                    Icons.arrow_back_ios_new,
+                                    size: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                        if (!backBtn)
+                          GestureDetector(
+                            onTap: () {
+                              scaffoldKey.currentState?.openDrawer();
+                            },
+                            child: Container(
+                              height: 30,
+                              width: 30,
+                              child: Image.asset(
+                                Img.get('new/menu.png'),
+                              ),
+                            ),
+                          ),
+                        // Container(
+                        //   height: 90,
+                        //   width: 90,
+                        //   child: Image.asset(
+                        //     Img.get('new/Logo.png'),
+                        //   ),
+                        // ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -90,18 +141,7 @@ class GlobalScaffold extends StatelessWidget {
                             ),
                           ],
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            scaffoldKey.currentState?.openDrawer();
-                          },
-                          child: Container(
-                            height: 30,
-                            width: 30,
-                            child: Image.asset(
-                              Img.get('new/menu.png'),
-                            ),
-                          ),
-                        ),
+                        SizedBox(),
                       ],
                     ),
                   ),

@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.5.6
+version: 0.5.7
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -110,12 +110,12 @@ dependencies:
   flutter_paypal_payment: ^1.0.8
   auto_size_text: ^3.0.0
   youtube_player_flutter: ^9.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: any
   flutter_launcher_icons: ^0.13.1
-
 
 dependency_overrides:
   #wakelock_windows: ^0.2.1
@@ -130,35 +130,17 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icon/MVP.png"
+  remove_alpha_ios: true
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
     - assets/images/new/
     - assets/lottie/
     - .env
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
     - family: WorkSans
       fonts:
@@ -176,7 +158,8 @@ flutter:
         - asset: assets/fonts/Roboto-Medium.ttf
           weight: 400
 
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
 

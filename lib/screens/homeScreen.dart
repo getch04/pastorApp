@@ -140,6 +140,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: GlobalScaffold(
+        backBtn: false,
         body: Container(
           height: MediaQuery.of(context).size.height * 0.83,
           width: MediaQuery.of(context).size.width,

@@ -44,18 +44,9 @@
 	<string>ca-app-pub-3940256099942544~1458002511</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Allows you to take a picture</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Allows you to record a voice</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allows you to choose a picture</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
-		<string>fetch</string>
-		<string>processing</string>
-		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

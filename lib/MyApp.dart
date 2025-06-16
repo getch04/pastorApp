@@ -216,14 +216,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               },
             );
           }
-
-          // if (settings.name == NotesListScreen.routeName) {
-          //   return MaterialPageRoute(
-          //     builder: (context) {
-          //       return NotesListScreen();
-          //     },
-          //   );
-          // }
           if (settings.name == UpdateUserProfile.routeName) {
             final ScreenArguements? args =
                 settings.arguments as ScreenArguements?;
@@ -235,33 +227,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               },
             );
           }
-
-          // if (settings.name == NotesEditorScreen.routeName) {
-          //   final ScreenArguements? args =
-          //       settings.arguments as ScreenArguements?;
-          //   if (args != null) {
-          //     return MaterialPageRoute(
-          //       builder: (context) {
-          //         return NotesEditorScreen(
-          //           notes: args.items as Notes?,
-          //         );
-          //       },
-          //     );
-          //   }
-          //   return MaterialPageRoute(
-          //     builder: (context) {
-          //       return NotesEditorScreen();
-          //     },
-          //   );
-          // }
-
-          // if (settings.name == NewNotesScreen.routeName) {
-          //   return MaterialPageRoute(
-          //     builder: (context) {
-          //       return NewNotesScreen();
-          //     },
-          //   );
-          // }
 
           if (settings.name == LoginScreen.routeName) {
             return MaterialPageRoute(
