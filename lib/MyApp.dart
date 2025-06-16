@@ -40,7 +40,6 @@ import './providers/events.dart';
 import './service/Firebase.dart';
 import './socials/UserProfileScreen.dart';
 import 'screens/pages/howToScreenDetail.dart';
-import 'socials/UpdateUserProfile.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({
@@ -216,17 +215,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               },
             );
           }
-          if (settings.name == UpdateUserProfile.routeName) {
-            final ScreenArguements? args =
-                settings.arguments as ScreenArguements?;
-            return MaterialPageRoute(
-              builder: (context) {
-                return UpdateUserProfile(
-                  check: args == null ? true : false,
-                );
-              },
-            );
-          }
+          // if (settings.name == UpdateUserProfile.routeName) {
+          //   final ScreenArguements? args =
+          //       settings.arguments as ScreenArguements?;
+          //   return MaterialPageRoute(
+          //     builder: (context) {
+          //       return UpdateUserProfile(
+          //         check: args == null ? true : false,
+          //       );
+          //     },
+          //   );
+          // }
 
           if (settings.name == LoginScreen.routeName) {
             return MaterialPageRoute(
