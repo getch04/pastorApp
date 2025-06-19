@@ -1,10 +1,12 @@
 import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
 import '../i18n/strings.g.dart';
 import '../models/Media.dart';
 import '../utils/my_colors.dart';
@@ -249,13 +251,13 @@ class AudioPlayerModel with ChangeNotifier {
     if (remoteAudioPlaying) {
       return const Icon(
         Icons.pause,
-        size: 40,
+        size: 75,
         color: Colors.white,
       );
     }
     return const Icon(
       Icons.play_arrow,
-      size: 40,
+      size: 75,
       color: Colors.white,
     );
   }

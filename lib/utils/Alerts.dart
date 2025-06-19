@@ -2,7 +2,6 @@ import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../i18n/strings.g.dart';
-import '../screens/SubscriptionScreen.dart';
 import '../auth/LoginScreen.dart';
 
 class Alerts {
@@ -124,7 +123,7 @@ class Alerts {
               child: Text(t.subscribe),
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.pushNamed(context, SubscriptionScreen.routeName);
+                // Navigator.pushNamed(context, SubscriptionScreen.routeName);
               },
             )
           ],
@@ -133,33 +132,33 @@ class Alerts {
     );
   }
 
-  static showPreviewSubscribeAlertDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      barrierDismissible: false, // user must tap button for close dialog!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(t.subscribehint),
-          content: Text(t.previewsubscriptionrequiredhint),
-          actions: <Widget>[
-            ElevatedButton(
-              child: Text(t.cancel.toUpperCase()),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            ElevatedButton(
-              child: Text(t.subscribe),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.pushNamed(context, SubscriptionScreen.routeName);
-              },
-            )
-          ],
-        );
-      },
-    );
-  }
+  // static showPreviewSubscribeAlertDialog(BuildContext context) {
+  //   return showDialog(
+  //     context: context,
+  //     barrierDismissible: false, // user must tap button for close dialog!
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text(t.subscribehint),
+  //         content: Text(t.previewsubscriptionrequiredhint),
+  //         actions: <Widget>[
+  //           ElevatedButton(
+  //             child: Text(t.cancel.toUpperCase()),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //           ElevatedButton(
+  //             child: Text(t.subscribe),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //               Navigator.pushNamed(context, SubscriptionScreen.routeName);
+  //             },
+  //           )
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   static void showToast(BuildContext context, String message) {
     showFlash(

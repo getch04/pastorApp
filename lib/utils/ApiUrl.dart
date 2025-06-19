@@ -1,9 +1,18 @@
 class ApiUrl {
-  static const String BASEURL = "https://myvirtualpastor.winmotto.com/";
+  static const String BASEURL = "https://myvirtualpastor.org/";
   static const String ABOUTUS = "${BASEURL}api/app_details";
+  static const String CATEGORY_AUDIO = "${BASEURL}api/fetchAudioByCategory/";
   static const String TERMS = "https://dashboard.mychurchapp.xyz/privacy";
   static const String PRIVACY = "https://dashboard.mychurchapp.xyz/privacy";
   static const String ABOUT = "https://dashboard.mychurchapp.xyz/privacy";
+
+  //FAQ
+  static const String GET_FAQ = BASEURL + "api/fetch_faqs";
+  static const String GET_TOOLS = BASEURL + "api/fetch_tools";
+  static const String GET_HOWTO = BASEURL + "api/fetch_hows";
+  static const String DONATION = BASEURL + "api/saveDonation";
+  // static const String TOOLCATEGORIES = BASEURL + "api/toolCategories";
+
 
   //DO NOT EDIT THE LINES BELOW, ELSE THE APPLICATION WILL MISBEHAVE
   static const String GET_BIBLE = BASEURL + "getBibleVersions";

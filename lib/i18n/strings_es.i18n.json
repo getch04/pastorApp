@@ -1,5 +1,5 @@
 {
-  "appname": "MyVirtualPastor",
+  "appname": "VirtualPastor",
   "deleteaccount": "Delete my account",
   "deletemyaccount": "Delete my account",
   "deleteaccounthint": "This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.",
@@ -303,5 +303,22 @@
   "clearconversation": "Conversación clara",
   "clearconversationhintone": "Esta acción borrará toda su conversación con ",
   "clearconversationhinttwo": ".\n  Tenga en cuenta que esto solo elimina su lado de la conversación, los mensajes aún se mostrarán en el chat de sus socios.",
-  "facebookloginerror": "Something went wrong with the login process.\n, Here is the error Facebook gave us"
+  "facebookloginerror": "Something went wrong with the login process.\n, Here is the error Facebook gave us",
+  "selectLanguage": "Seleccionar idioma",
+  "howTo": "Cómo",
+
+  "noBibleTextsAvailable": "No hay textos bíblicos disponibles",
+  "languages": "Idiomas",
+  "searchLanguages": "Buscar idiomas...",
+  "biblesFilesets": "Biblias: {bibles}, Conjuntos de archivos: {filesets}",
+
+    "oldTestament": "Antiguo Testamento",
+    "newTestament": "Nuevo Testamento"
+    ,"play": "Reproducir",
+    "no_verse_content": "No hay contenido de versículos bíblicos disponible para mostrar.",
+    "no_audio_content": "No hay contenido de audio de la Biblia disponible para mostrar.",
+    "WorshipAudio": "Audio de adoración",
+    "SermonAudio": "Audio del sermón"
+
+
 }

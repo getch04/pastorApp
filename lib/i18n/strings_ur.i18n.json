@@ -306,5 +306,23 @@
   "clearconversationhintone": "یہ عمل آپ کی تمام گفتگو صاف کر دے گا ",
   "clearconversationhinttwo": ".\n براہ کرم نوٹ کریں کہ یہ آپ کی طرف کی گفتگو کو ہی صاف کرے گا، پیغامات ابھی بھی آپ کے پارٹنر کے چیٹ میں دکھائی دیں گے۔",
 
-  "facebookloginerror": "لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے"
+  "facebookloginerror": "لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے",
+
+  "selectLanguage": "زبان منتخب کریں",
+  "howTo": "کیسے",
+
+  "noBibleTextsAvailable": "کوئی بائبل کے متن دستیاب نہیں ہیں",
+  "languages": "زبانیں",
+  "searchLanguages": "زبانیں تلاش کریں...",
+  "biblesFilesets": "بائبل: {bibles}, فائلسیٹ: {filesets}",
+
+  "oldTestament": "پرانا عہد نامہ",
+  "newTestament": "نیا عہد نامہ",
+  "play": "چلائیں",
+  "no_verse_content": "دکھانے کے لئے کوئی بائبل کی آیت کا مواد دستیاب نہیں ہے۔",
+  "no_audio_content": "دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔",
+  "WorshipAudio": "عبادت آڈیو",
+  "SermonAudio": "خطبات آڈیو"
+
+
 }

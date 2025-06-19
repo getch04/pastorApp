@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/aboutus.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
+import 'package:churchapp_flutter/utils/components/global_scafold.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +13,12 @@ class AppTermsAndConditionsScreen extends StatefulWidget {
   static const routeName = "/AppTermsAndConditionsScreen";
 
   @override
-  State<AppTermsAndConditionsScreen> createState() => _AppTermsAndConditionsScreenState();
+  State<AppTermsAndConditionsScreen> createState() =>
+      _AppTermsAndConditionsScreenState();
 }
 
-class _AppTermsAndConditionsScreenState extends State<AppTermsAndConditionsScreen> {
+class _AppTermsAndConditionsScreenState
+    extends State<AppTermsAndConditionsScreen> {
   String? text;
   bool isLoading = true;
   Dio dio = Dio();
@@ -44,31 +47,20 @@ class _AppTermsAndConditionsScreenState extends State<AppTermsAndConditionsScree
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(t.terms),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.blue[300]!,
-                Colors.purple[100]!,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
-      ),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                text ?? t.noitemstodisplay,
-                style: TextStyle(fontSize: 16.0),
+    return GlobalScaffold(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  text ?? t.noitemstodisplay,
+                  style: TextStyle(fontSize: 16.0),
+                ),
               ),
-            ),
+      ),
     );
   }
 }

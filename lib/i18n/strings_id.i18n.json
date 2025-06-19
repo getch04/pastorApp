@@ -1,5 +1,5 @@
 {
-    "appname": "Pastor Virtual Saya",
+    "appname": "Pastor Virtual",
     "selectlanguage": "Pilih Bahasa",
     "deletemyaccount": "Hapus akun saya",
     "deleteaccount": "Hapus akun saya",
@@ -306,4 +306,24 @@
   "clearconversationhinttwo": ".\n Harap dicatat bahwa ini hanya menghapus sisi percakapan Anda, pesan masih akan terlihat di chat pasangan Anda.",
 
   "facebookloginerror": "Ada yang salah dengan proses login.\n, Ini kesalahan yang diberikan Facebook kepada kami"
+ , "selectLanguage": "Pilih Bahasa",
+  "howTo": "Cara",
+
+    "noBibleTextsAvailable": "Tidak ada teks Alkitab yang tersedia",
+    "languages": "Bahasa",
+    "searchLanguages": "Cari bahasa...",
+    "biblesFilesets": "Alkitab: {bibles}, Set berkas: {filesets}",
+
+      "oldTestament": "Perjanjian Lama",
+      "newTestament": "Perjanjian Baru"
+
+
+,
+"play": "Putar",
+"no_verse_content": "Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.",
+"no_audio_content": "Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.",
+"WorshipAudio": "Audio Penyembahan",
+"SermonAudio": "Audio Khotbah"
+
+
 }

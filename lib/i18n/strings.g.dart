@@ -2,10 +2,10 @@
 /*
  * Generated file. Do not edit.
  *
- * Locales: 16
- * Strings: 4592 (287.0 per locale)
+ * Locales: 15
+ * Strings: 4500 (300.0 per locale)
  *
- * Built on 2024-07-06 at 19:12 UTC
+ * Built on 2024-09-21 at 11:40 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -24,7 +24,6 @@ enum AppLocale {
 	bn, // 'bn'
 	dz, // 'dz'
 	es, // 'es'
-	fr, // 'fr'
 	hi, // 'hi'
 	id, // 'id'
 	kn, // 'kn'
@@ -165,7 +164,6 @@ late _StringsEn _translationsEn = _StringsEn.build();
 late _StringsBn _translationsBn = _StringsBn.build();
 late _StringsDz _translationsDz = _StringsDz.build();
 late _StringsEs _translationsEs = _StringsEs.build();
-late _StringsFr _translationsFr = _StringsFr.build();
 late _StringsHi _translationsHi = _StringsHi.build();
 late _StringsId _translationsId = _StringsId.build();
 late _StringsKn _translationsKn = _StringsKn.build();
@@ -191,7 +189,6 @@ extension AppLocaleExtensions on AppLocale {
 			case AppLocale.bn: return _translationsBn;
 			case AppLocale.dz: return _translationsDz;
 			case AppLocale.es: return _translationsEs;
-			case AppLocale.fr: return _translationsFr;
 			case AppLocale.hi: return _translationsHi;
 			case AppLocale.id: return _translationsId;
 			case AppLocale.kn: return _translationsKn;
@@ -219,7 +216,6 @@ extension AppLocaleExtensions on AppLocale {
 			case AppLocale.bn: return _StringsBn.build();
 			case AppLocale.dz: return _StringsDz.build();
 			case AppLocale.es: return _StringsEs.build();
-			case AppLocale.fr: return _StringsFr.build();
 			case AppLocale.hi: return _StringsHi.build();
 			case AppLocale.id: return _StringsId.build();
 			case AppLocale.kn: return _StringsKn.build();
@@ -240,7 +236,6 @@ extension AppLocaleExtensions on AppLocale {
 			case AppLocale.bn: return 'bn';
 			case AppLocale.dz: return 'dz';
 			case AppLocale.es: return 'es';
-			case AppLocale.fr: return 'fr';
 			case AppLocale.hi: return 'hi';
 			case AppLocale.id: return 'id';
 			case AppLocale.kn: return 'kn';
@@ -261,7 +256,6 @@ extension AppLocaleExtensions on AppLocale {
 			case AppLocale.bn: return const Locale.fromSubtags(languageCode: 'bn');
 			case AppLocale.dz: return const Locale.fromSubtags(languageCode: 'dz');
 			case AppLocale.es: return const Locale.fromSubtags(languageCode: 'es');
-			case AppLocale.fr: return const Locale.fromSubtags(languageCode: 'fr');
 			case AppLocale.hi: return const Locale.fromSubtags(languageCode: 'hi');
 			case AppLocale.id: return const Locale.fromSubtags(languageCode: 'id');
 			case AppLocale.kn: return const Locale.fromSubtags(languageCode: 'kn');
@@ -284,7 +278,6 @@ extension StringAppLocaleExtensions on String {
 			case 'bn': return AppLocale.bn;
 			case 'dz': return AppLocale.dz;
 			case 'es': return AppLocale.es;
-			case 'fr': return AppLocale.fr;
 			case 'hi': return AppLocale.hi;
 			case 'id': return AppLocale.id;
 			case 'kn': return AppLocale.kn;
@@ -406,8 +399,8 @@ class _StringsEn {
 	late final _StringsEn _root = this; // ignore: unused_field
 
 	// Translations
-	String get appname => 'MyVirtualPastor';
-	String get selectlanguage => 'Select Language';
+	String get appname => 'VirtualPastor';
+	String get selectlanguage => 'selectLanguage';
 	String get deletemyaccount => 'Delete my account';
 	String get deleteaccount => 'Delete my account';
 	String get deleteaccounthint => 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.';
@@ -476,7 +469,7 @@ class _StringsEn {
 	String get tools => 'Tools';
 	String get profile => 'Profile';
 	String get audiobible => 'Audio Bible';
-	String get homesentence => 'Your Pastor for 1 year, to help you grow into a person God called you to be.';
+	String get homesentence => 'Your Pastor for a Year: Helping You Grow into Your Calling.';
 	String get livestreams => 'Livestreams';
 	String get radio => 'Radio';
 	String get allitems => 'All Items';
@@ -699,6 +692,19 @@ class _StringsEn {
 	String get clearconversationhintone => 'This action will clear all your conversation with ';
 	String get clearconversationhinttwo => '.\n  Please note that this only deletes your side of the conversation, the messages will still show on your partners chat.';
 	String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
+	String get selectLanguage => 'Select Language';
+	String get howTo => 'How To';
+	String get noBibleTextsAvailable => 'No Bible texts available';
+	String get languages => 'Languages';
+	String get searchLanguages => 'Search languages...';
+	String get biblesFilesets => 'Bibles: {bibles}, Filesets: {filesets}';
+	String get oldTestament => 'Old Testament';
+	String get newTestament => 'New Testament';
+	String get play => 'play';
+	String get no_verse_content => 'No Bible verse content available to display.';
+	String get no_audio_content => 'No Bible Audio content available to display.';
+	String get WorshipAudio => 'Worship Audio';
+	String get SermonAudio => 'Sermon Audio';
 }
 
 // Path: <root>
@@ -1010,6 +1016,19 @@ class _StringsBn implements _StringsEn {
 	@override String get clearconversationhintone => 'এই পদক্ষেপটি আপনার সাথে সমস্ত কথোপকথন পরিষ্কার করবে ';
 	@override String get clearconversationhinttwo => '.\n দয়া করে লক্ষ্য করুন যে এটি কেবল আপনার কথোপকথনটি মুছে দেয়, বার্তাগুলি এখনও আপনার অংশীদারের চ্যাটে প্রদর্শিত হবে।';
 	@override String get facebookloginerror => 'লগইন প্রক্রিয়ায় কিছু ভুল হয়েছে।\n, এখানে ফেসবুক আমাদের যা ত্রুটি দিয়েছে';
+	@override String get selectLanguage => 'ভাষা নির্বাচন করুন';
+	@override String get howTo => 'কিভাবে';
+	@override String get noBibleTextsAvailable => 'কোন বাইবেল পাঠ্য উপলব্ধ নয়';
+	@override String get languages => 'ভাষাসমূহ';
+	@override String get searchLanguages => 'ভাষা অনুসন্ধান করুন...';
+	@override String get biblesFilesets => 'বাইবেল: {bibles}, ফাইলসেট: {filesets}';
+	@override String get oldTestament => 'পুরাতন নিয়ম';
+	@override String get newTestament => 'নতুন নিয়ম';
+	@override String get play => 'বাজান';
+	@override String get no_verse_content => 'প্রদর্শনের জন্য কোনও বাইবেলের আয়াতের সামগ্রী নেই।';
+	@override String get no_audio_content => 'প্রদর্শনের জন্য কোনও বাইবেলের অডিও সামগ্রী নেই।';
+	@override String get WorshipAudio => 'পূজা অডিও';
+	@override String get SermonAudio => 'উপদেশ অডিও';
 }
 
 // Path: <root>
@@ -1321,6 +1340,19 @@ class _StringsDz implements _StringsEn {
 	@override String get clearconversationhintone => 'དངུལ་རྫས་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་གཏོང་དྲི་བཟུང་གཏོང་སྒྲིག་དྲི་བཟུང་ ';
 	@override String get clearconversationhinttwo => '.\n  དངུལ་རྫས་སྒྲིག་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་གཏོང་དྲི་བཟུང་སྒྲིག་';
 	@override String get facebookloginerror => 'དངུལ་རྫས་གཏོང་སྒྲིག་གཏོང་དྲི་བཟུང་སྒྲིག་སྒྲིག་。\n, དངུལ་རྫས་གཏོང་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་';
+	@override String get selectLanguage => 'དབྱིན་རྒྱུད་སྐད་འབྱུང་།';
+	@override String get howTo => 'ག་འདྲ་བྱས།';
+	@override String get noBibleTextsAvailable => 'བཀོལ་སྟོན་ནང་མིན་འདུག';
+	@override String get languages => 'སྐད་ཡིག';
+	@override String get searchLanguages => 'སྐད་ཡིག་འཚོལ་སྐབས...';
+	@override String get biblesFilesets => 'བཀོལ་སྟོན: {bibles}, ཡིག་སྒེའི་མིང་།: {filesets}';
+	@override String get oldTestament => 'རྒྱལ་མཚན་རྒྱུད་རྙིང་པ།';
+	@override String get newTestament => 'རྒྱལ་མཚན་རྒྱུད་གསར་པ།';
+	@override String get play => 'གཏོང་';
+	@override String get no_verse_content => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
+	@override String get no_audio_content => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
+	@override String get WorshipAudio => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
+	@override String get SermonAudio => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
 }
 
 // Path: <root>
@@ -1339,7 +1371,7 @@ class _StringsEs implements _StringsEn {
 	@override late final _StringsEs _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get deleteaccount => 'Delete my account';
 	@override String get deletemyaccount => 'Delete my account';
 	@override String get deleteaccounthint => 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.';
@@ -1632,317 +1664,19 @@ class _StringsEs implements _StringsEn {
 	@override String get clearconversationhintone => 'Esta acción borrará toda su conversación con ';
 	@override String get clearconversationhinttwo => '.\n  Tenga en cuenta que esto solo elimina su lado de la conversación, los mensajes aún se mostrarán en el chat de sus socios.';
 	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
-}
-
-// Path: <root>
-class _StringsFr implements _StringsEn {
-
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	_StringsFr.build();
-
-	/// Access flat map
-	@override dynamic operator[](String key) => _flatMap[key];
-
-	// Internal flat map initialized lazily
-	@override late final Map<String, dynamic> _flatMap = _buildFlatMap();
-
-	@override late final _StringsFr _root = this; // ignore: unused_field
-
-	// Translations
-	@override String get appname => 'MyVirtualPastor';
-	@override String get deleteaccount => 'Delete my account';
-	@override String get deletemyaccount => 'Delete my account';
-	@override String get deleteaccounthint => 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.';
-	@override String get deleteaccountsuccess => 'Account deletion was succesful';
-	@override String get selectlanguage => 'Choisir la langue';
-	@override String get chooseapplanguage => 'Choisissez la langue de l\'application';
-	@override String get nightmode => 'Mode nuit';
-	@override String get initializingapp => 'initialisation...';
-	@override String get home => 'Accueil';
-	@override String get branches => 'Branches';
-	@override String get inbox => 'Boîte de réception';
-	@override String get downloads => 'Téléchargements';
-	@override String get settings => 'Paramètres';
-	@override String get events => 'Événements';
-	@override String get myplaylists => 'Mes listes de lecture';
-	@override String get nonotesfound => 'Aucune note trouvée';
-	@override String get newnote => 'Nouveau';
-	@override String get website => 'Site Internet';
-	@override String get hymns => 'Hymnes';
-	@override String get articles => 'Des articles';
-	@override String get notes => 'Remarques';
-	@override String get donate => 'Faire un don';
-	@override String get offering => 'Offre';
-	@override String get deletenote => 'Supprimer la note';
-	@override String get deletenotehint => 'Voulez-vous supprimer cette note? Cette action ne peut pas être annulée.';
-	@override String get savenotetitle => 'Titre de la note';
-	@override String get bookmarks => 'Favoris';
-	@override String get socialplatforms => 'Plateformes sociales';
-	@override List<String> get onboardingpagetitles => [
-		'Bienvenue à MyChurch',
-		'Plein de fonctionnalités',
-		'Audio, Video \n et diffusion en direct',
-		'Créer un compte',
-	];
-	@override List<String> get onboardingpagehints => [
-		'Prolongez-vous au-delà des dimanches matins et des quatre murs de votre église. Tout ce dont vous avez besoin pour communiquer et interagir avec un monde axé sur le mobile.',
-		'Nous avons rassemblé toutes les fonctionnalités principales que votre application d\'église doit avoir. Événements, dévotions, notifications, notes et bible multi-version.',
-		'Permettez aux utilisateurs du monde entier de regarder des vidéos, d\'écouter des messages audio et de regarder des flux en direct de vos services religieux.',
-		'Commencez votre voyage vers une expérience de culte sans fin.',
-	];
-	@override String get next => 'SUIVANT';
-	@override String get done => 'COMMENCER';
-	@override String get quitapp => 'Quitter l\'application!';
-	@override String get quitappwarning => 'Souhaitez-vous fermer l\'application?';
-	@override String get quitappaudiowarning => 'Vous êtes en train de lire un fichier audio, quitter l\'application arrêtera la lecture audio. Si vous ne souhaitez pas arrêter la lecture, réduisez simplement l\'application avec le bouton central ou cliquez sur le bouton OK pour quitter l\'application maintenant.';
-	@override String get ok => 'D\'accord';
-	@override String get retry => 'RECOMMENCEZ';
-	@override String get oops => 'Oups!';
-	@override String get save => 'sauver';
-	@override String get cancel => 'Annuler';
-	@override String get error => 'Erreur';
-	@override String get success => 'Succès';
-	@override String get skip => 'Sauter';
-	@override String get skiplogin => 'Passer l\'identification';
-	@override String get skipregister => 'Sauter l\'inscription';
-	@override String get dataloaderror => 'Impossible de charger les données demandées pour le moment, vérifiez votre connexion de données et cliquez pour réessayer.';
-	@override String get suggestedforyou => 'Suggéré pour vous';
-	@override String get devotionals => 'Dévotion';
-	@override String get categories => 'Catégories';
-	@override String get category => 'Catégorie';
-	@override String get videos => 'Vidéos';
-	@override String get audios => 'Audios';
-	@override String get biblebooks => 'Bible';
-	@override String get sermons => 'Sermons';
-	@override String get profile => 'Profil';
-	@override String get tools => 'Outils';
-	@override String get audiobible => 'Bible audio';
-	@override String get homesentence => 'Votre pasteur pour 1 an, pour vous aider à devenir la personne que Dieu vous a appelé à être.';
-	@override String get livestreams => 'Livestreams';
-	@override String get radio => 'Radio';
-	@override String get allitems => 'Tous les articles';
-	@override String get emptyplaylist => 'Aucune liste de lecture';
-	@override String get notsupported => 'Non supporté';
-	@override String get cleanupresources => 'Nettoyage des ressources';
-	@override String get grantstoragepermission => 'Veuillez accorder l\'autorisation d\'accès au stockage pour continuer';
-	@override String get sharefiletitle => 'Regarder ou écouter ';
-	@override String get sharefilebody => 'Via MyVirtualPastor App, Téléchargez maintenant sur ';
-	@override String get sharetext => 'Profitez d\'un streaming audio et vidéo illimité';
-	@override String get sharetexthint => 'Rejoignez la plateforme de streaming vidéo et audio qui vous permet de regarder et d\'écouter des millions de fichiers du monde entier. Téléchargez maintenant sur';
-	@override String get download => 'Télécharger';
-	@override String get addplaylist => 'Ajouter à la playlist';
-	@override String get bookmark => 'Signet';
-	@override String get unbookmark => 'Supprimer les favoris';
-	@override String get share => 'Partager';
-	@override String get deletemedia => 'Supprimer le fichier';
-	@override String get deletemediahint => 'Souhaitez-vous supprimer ce fichier téléchargé? Cette action ne peut pas être annulée.';
-	@override String get searchhint => 'Rechercher des messages audio et vidéo';
-	@override String get performingsearch => 'Recherche d\'audio et de vidéos';
-	@override String get nosearchresult => 'Aucun résultat trouvé';
-	@override String get nosearchresulthint => 'Essayez de saisir un mot clé plus général';
-	@override String get addtoplaylist => 'Ajouter à la playlist';
-	@override String get newplaylist => 'Nouvelle playlist';
-	@override String get playlistitm => 'Playlist';
-	@override String get mediaaddedtoplaylist => 'Média ajouté à la playlist.';
-	@override String get mediaremovedfromplaylist => 'Média supprimé de la playlist';
-	@override String get clearplaylistmedias => 'Effacer tous les médias';
-	@override String get deletePlayList => 'Supprimer la playlist';
-	@override String get clearplaylistmediashint => 'Voulez-vous supprimer tous les médias de cette liste de lecture?';
-	@override String get deletePlayListhint => 'Voulez-vous supprimer cette liste de lecture et effacer tous les médias?';
-	@override String get videomessages => 'Messages vidéo';
-	@override String get audiomessages => 'Messages audio';
-	@override String get comments => 'commentaires';
-	@override String get replies => 'réponses';
-	@override String get reply => 'Répondre';
-	@override String get logintoaddcomment => 'Connectez-vous pour ajouter un commentaire';
-	@override String get logintoreply => 'Connectez-vous pour répondre';
-	@override String get writeamessage => 'Écrire un message...';
-	@override String get nocomments => 'Aucun commentaire trouvé \ncliquez pour réessayer';
-	@override String get errormakingcomments => 'Impossible de traiter les commentaires pour le moment..';
-	@override String get errordeletingcomments => 'Impossible de supprimer ce commentaire pour le moment..';
-	@override String get erroreditingcomments => 'Impossible de modifier ce commentaire pour le moment..';
-	@override String get errorloadingmorecomments => 'Impossible de charger plus de commentaires pour le moment..';
-	@override String get deletingcomment => 'Suppression du commentaire';
-	@override String get editingcomment => 'Modification du commentaire';
-	@override String get deletecommentalert => 'Supprimer le commentaire';
-	@override String get editcommentalert => 'Modifier le commentaire';
-	@override String get deletecommentalerttext => 'Souhaitez-vous supprimer ce commentaire? Cette action ne peut pas être annulée';
-	@override String get loadmore => 'charger plus';
-	@override String get messages => 'Messages';
-	@override String get guestuser => 'Utilisateur invité';
-	@override String get fullname => 'Nom complet';
-	@override String get emailaddress => 'Adresse électronique';
-	@override String get password => 'Mot de passe';
-	@override String get repeatpassword => 'Répéter le mot de passe';
-	@override String get register => 'S\'inscrire';
-	@override String get login => 'S\'identifier';
-	@override String get logout => 'Se déconnecter';
-	@override String get logoutfromapp => 'Déconnexion de l\'application?';
-	@override String get logoutfromapphint => 'Vous ne pourrez pas aimer ou commenter des articles et des vidéos si vous n\'êtes pas connecté.';
-	@override String get gotologin => 'Aller à la connexion';
-	@override String get resetpassword => 'réinitialiser le mot de passe';
-	@override String get logintoaccount => 'Vous avez déjà un compte? S\'identifier';
-	@override String get emptyfielderrorhint => 'Vous devez remplir tous les champs';
-	@override String get invalidemailerrorhint => 'Vous devez saisir une adresse e-mail valide';
-	@override String get passwordsdontmatch => 'Les mots de passe ne correspondent pas';
-	@override String get processingpleasewait => 'Traitement, veuillez patienter...';
-	@override String get createaccount => 'Créer un compte';
-	@override String get forgotpassword => 'Mot de passe oublié?';
-	@override String get orloginwith => 'Ou connectez-vous avec';
-	@override String get facebook => 'Facebook';
-	@override String get google => 'Google';
-	@override String get moreoptions => 'Plus d\'options';
-	@override String get about => 'À propos de nous';
-	@override String get privacy => 'confidentialité';
-	@override String get terms => 'Termes de l\'application';
-	@override String get rate => 'Application de taux';
-	@override String get version => 'Version';
-	@override String get pulluploadmore => 'tirer la charge';
-	@override String get loadfailedretry => 'Échec du chargement! Cliquez sur Réessayer!';
-	@override String get releaseloadmore => 'relâchez pour charger plus';
-	@override String get nomoredata => 'Plus de données';
-	@override String get errorReportingComment => 'Commentaire de rapport d\'erreur';
-	@override String get reportingComment => 'Signaler un commentaire';
-	@override String get reportcomment => 'Options de rapport';
-	@override List<String> get reportCommentsList => [
-		'Contenu commercial indésirable ou spam',
-		'Pornographie ou matériel sexuel explicite',
-		'Discours haineux ou violence graphique',
-		'Harcèlement ou intimidation',
-	];
-	@override String get bookmarksMedia => 'Mes marque-pages';
-	@override String get noitemstodisplay => 'Aucun élément à afficher';
-	@override String get loginrequired => 'Connexion requise';
-	@override String get loginrequiredhint => 'Pour vous abonner à cette plateforme, vous devez être connecté. Créez un compte gratuit maintenant ou connectez-vous à votre compte existant.';
-	@override String get subscriptions => 'Abonnements aux applications';
-	@override String get subscribe => 'SOUSCRIRE';
-	@override String get subscribehint => 'Abonnement requis';
-	@override String get playsubscriptionrequiredhint => 'Vous devez vous abonner avant de pouvoir écouter ou regarder ce média.';
-	@override String get previewsubscriptionrequiredhint => 'Vous avez atteint la durée de prévisualisation autorisée pour ce média. Vous devez vous abonner pour continuer à écouter ou à regarder ce média.';
-	@override String get copiedtoclipboard => 'Copié dans le presse-papier';
-	@override String get downloadbible => 'Télécharger la Bible';
-	@override String get downloadversion => 'Télécharger';
-	@override String get downloading => 'Téléchargement';
-	@override String get failedtodownload => 'Échec du téléchargement';
-	@override String get pleaseclicktoretry => 'Veuillez cliquer pour réessayer.';
-	@override String get of => 'De';
-	@override String get nobibleversionshint => 'Il n\'y a pas de données bibliques à afficher, cliquez sur le bouton ci-dessous pour télécharger au moins une version biblique.';
-	@override String get downloaded => 'Téléchargé';
-	@override String get enteremailaddresstoresetpassword => 'Entrez votre e-mail pour réinitialiser votre mot de passe';
-	@override String get backtologin => 'RETOUR CONNEXION';
-	@override String get signintocontinue => 'Connectez-vous pour continuer';
-	@override String get signin => 'SE CONNECTER';
-	@override String get signinforanaccount => 'INSCRIVEZ-VOUS POUR UN COMPTE?';
-	@override String get alreadyhaveanaccount => 'Vous avez déjà un compte?';
-	@override String get updateprofile => 'Mettre à jour le profil';
-	@override String get updateprofilehint => 'Pour commencer, veuillez mettre à jour votre page de profil, cela nous aidera à vous connecter avec d\'autres personnes';
-	@override String get autoplayvideos => 'Vidéos de lecture automatique';
-	@override String get gosocial => 'Passez aux réseaux sociaux';
-	@override String get searchbible => 'Rechercher dans la Bible';
-	@override String get filtersearchoptions => 'Filtrer les options de recherche';
-	@override String get narrowdownsearch => 'Utilisez le bouton de filtrage ci-dessous pour affiner la recherche pour un résultat plus précis.';
-	@override String get searchbibleversion => 'Rechercher la version de la Bible';
-	@override String get searchbiblebook => 'Rechercher un livre biblique';
-	@override String get search => 'Chercher';
-	@override String get setBibleBook => 'Définir le livre de la Bible';
-	@override String get oldtestament => 'L\'Ancien Testament';
-	@override String get newtestament => 'Nouveau Testament';
-	@override String get limitresults => 'Limiter les résultats';
-	@override String get setfilters => 'Définir les filtres';
-	@override String get bibletranslator => 'Traducteur de la Bible';
-	@override String get chapter => ' Chapitre ';
-	@override String get verse => ' Verset ';
-	@override String get translate => 'traduire';
-	@override String get bibledownloadinfo => 'Le téléchargement de la Bible a commencé, veuillez ne pas fermer cette page tant que le téléchargement n\'est pas terminé.';
-	@override String get received => 'reçu';
-	@override String get outoftotal => 'sur le total';
-	@override String get set => 'ENSEMBLE';
-	@override String get selectColor => 'Select Color';
-	@override String get switchbibleversion => 'Changer de version de la Bible';
-	@override String get switchbiblebook => 'Changer de livre biblique';
-	@override String get gotosearch => 'Aller au chapitre';
-	@override String get changefontsize => 'Changer la taille de la police';
-	@override String get font => 'Police de caractère';
-	@override String get readchapter => 'Lire le chapitre';
-	@override String get showhighlightedverse => 'Afficher les versets en surbrillance';
-	@override String get downloadmoreversions => 'Télécharger plus de versions';
-	@override String get suggestedusers => 'Utilisateurs suggérés à suivre';
-	@override String get unfollow => 'Ne pas suivre';
-	@override String get follow => 'Suivre';
-	@override String get searchforpeople => 'Recherche de personnes';
-	@override String get viewpost => 'Voir l\'article';
-	@override String get viewprofile => 'Voir le profil';
-	@override String get mypins => 'Mes épingles';
-	@override String get viewpinnedposts => 'Afficher les messages épinglés';
-	@override String get personal => 'Personnel';
-	@override String get update => 'Mettre à jour';
-	@override String get phonenumber => 'Numéro de téléphone';
-	@override String get showmyphonenumber => 'Afficher mon numéro de téléphone aux utilisateurs';
-	@override String get dateofbirth => 'Date de naissance';
-	@override String get showmyfulldateofbirth => 'Afficher ma date de naissance complète aux personnes qui consultent mon statut';
-	@override String get notifications => 'Notifications';
-	@override String get notifywhenuserfollowsme => 'M\'avertir lorsqu\'un utilisateur me suit';
-	@override String get notifymewhenusercommentsonmypost => 'M\'avertir lorsque les utilisateurs commentent mon message';
-	@override String get notifymewhenuserlikesmypost => 'M\'avertir lorsque les utilisateurs aiment mon message';
-	@override String get churchsocial => 'Église sociale';
-	@override String get shareyourthoughts => 'Partage tes pensées';
-	@override String get readmore => '...Lire la suite';
-	@override String get less => ' Moins';
-	@override String get couldnotprocess => 'Impossible de traiter l\'action demandée.';
-	@override String get pleaseselectprofilephoto => 'Veuillez sélectionner une photo de profil à télécharger';
-	@override String get pleaseselectprofilecover => 'Veuillez sélectionner une photo de couverture à télécharger';
-	@override String get updateprofileerrorhint => 'Vous devez renseigner votre nom, date de naissance, sexe, téléphone et lieu avant de pouvoir continuer.';
-	@override String get gender => 'Le sexe';
-	@override String get male => 'Mâle';
-	@override String get female => 'Femme';
-	@override String get dob => 'Date de naissance';
-	@override String get location => 'Localisation actuelle';
-	@override String get qualification => 'Qualification';
-	@override String get aboutme => 'À propos de moi';
-	@override String get facebookprofilelink => 'Lien de profil Facebook';
-	@override String get twitterprofilelink => 'Lien de profil Twitter';
-	@override String get linkdln => 'Lien de profil Linkedln';
-	@override String get likes => 'Aime';
-	@override String get likess => 'Comme';
-	@override String get pinnedposts => 'Mes messages épinglés';
-	@override String get unpinpost => 'Détacher le message';
-	@override String get unpinposthint => 'Souhaitez-vous supprimer ce message de vos messages épinglés?';
-	@override String get postdetails => 'Détails de l\'article';
-	@override String get posts => 'Des postes';
-	@override String get followers => 'Suiveurs';
-	@override String get followings => 'Suivi';
-	@override String get my => 'Mon';
-	@override String get edit => 'Éditer';
-	@override String get delete => 'Supprimer';
-	@override String get deletepost => 'Supprimer le message';
-	@override String get deleteposthint => 'Souhaitez-vous supprimer ce message? Les publications peuvent toujours apparaître sur les flux de certains utilisateurs.';
-	@override String get maximumallowedsizehint => 'Téléchargement de fichier maximum autorisé atteint';
-	@override String get maximumuploadsizehint => 'Le fichier sélectionné dépasse la limite de taille de fichier de téléchargement autorisée.';
-	@override String get makeposterror => 'Impossible de publier un message pour le moment, veuillez cliquer pour réessayer.';
-	@override String get makepost => 'Faire un message';
-	@override String get selectfile => 'Choisir le dossier';
-	@override String get images => 'Images';
-	@override String get shareYourThoughtsNow => 'Share your thoughts ...';
-	@override String get photoviewer => 'Visor de fotos';
-	@override String get nochatsavailable => 'Aucune conversation disponible \n Cliquez sur l\'icône d\'ajout ci-dessous \n pour sélectionner les utilisateurs avec lesquels discuter';
-	@override String get typing => 'Dactylographie...';
-	@override String get photo => 'Foto';
-	@override String get online => 'En ligne';
-	@override String get offline => 'Hors ligne';
-	@override String get lastseen => 'Dernière vue';
-	@override String get deleteselectedhint => 'Cette action supprimera les messages sélectionnés. Veuillez noter que cela ne supprime que votre côté de la conversation, \n les messages s\'afficheront toujours sur votre appareil partenaire.';
-	@override String get deleteselected => 'Supprimer sélectionnée';
-	@override String get unabletofetchconversation => 'Impossible de récupérer \n votre conversation avec \n';
-	@override String get loadmoreconversation => 'Charger plus de conversations';
-	@override String get sendyourfirstmessage => 'Envoyez votre premier message à \n';
-	@override String get unblock => 'Débloquer ';
-	@override String get block => 'Bloquer ';
-	@override String get writeyourmessage => 'Rédigez votre message...';
-	@override String get clearconversation => 'Conversation claire';
-	@override String get clearconversationhintone => 'Cette action effacera toute votre conversation avec ';
-	@override String get clearconversationhinttwo => '.\n  Veuillez noter que cela ne supprime que votre côté de la conversation, les messages seront toujours affichés sur le chat de votre partenaire.';
-	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
+	@override String get selectLanguage => 'Seleccionar idioma';
+	@override String get howTo => 'Cómo';
+	@override String get noBibleTextsAvailable => 'No hay textos bíblicos disponibles';
+	@override String get languages => 'Idiomas';
+	@override String get searchLanguages => 'Buscar idiomas...';
+	@override String get biblesFilesets => 'Biblias: {bibles}, Conjuntos de archivos: {filesets}';
+	@override String get oldTestament => 'Antiguo Testamento';
+	@override String get newTestament => 'Nuevo Testamento';
+	@override String get play => 'Reproducir';
+	@override String get no_verse_content => 'No hay contenido de versículos bíblicos disponible para mostrar.';
+	@override String get no_audio_content => 'No hay contenido de audio de la Biblia disponible para mostrar.';
+	@override String get WorshipAudio => 'Audio de adoración';
+	@override String get SermonAudio => 'Audio del sermón';
 }
 
 // Path: <root>
@@ -2254,6 +1988,19 @@ class _StringsHi implements _StringsEn {
 	@override String get clearconversationhintone => 'यह कार्रवाई आपकी पूरी बातचीत को साफ़ कर देगी ';
 	@override String get clearconversationhinttwo => '.\n कृपया ध्यान दें कि यह केवल आपकी बातचीत का भाग हटाता है, संदेश अभी भी आपके साथी के चैट में दिखाए जाएंगे।';
 	@override String get facebookloginerror => 'लॉगिन प्रक्रिया के साथ कुछ गलत हो गया।\n, यहाँ फेसबुक ने हमें त्रुटि दी है';
+	@override String get selectLanguage => 'भाषा चुनें';
+	@override String get howTo => 'कैसे';
+	@override String get noBibleTextsAvailable => 'कोई बाइबल पाठ उपलब्ध नहीं है';
+	@override String get languages => 'भाषाएँ';
+	@override String get searchLanguages => 'भाषाओं की खोज करें...';
+	@override String get biblesFilesets => 'बाइबल: {bibles}, फाइलसेट्स: {filesets}';
+	@override String get oldTestament => 'पुराना नियम';
+	@override String get newTestament => 'नया नियम';
+	@override String get play => 'चलाएं';
+	@override String get no_verse_content => 'प्रदर्शित करने के लिए कोई बाइबिल पद्य सामग्री उपलब्ध नहीं है।';
+	@override String get no_audio_content => 'प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।';
+	@override String get WorshipAudio => 'आराधना ऑडियो';
+	@override String get SermonAudio => 'प्रवचन ऑडियो';
 }
 
 // Path: <root>
@@ -2272,7 +2019,7 @@ class _StringsId implements _StringsEn {
 	@override late final _StringsId _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'Pastor Virtual Saya';
+	@override String get appname => 'Pastor Virtual';
 	@override String get selectlanguage => 'Pilih Bahasa';
 	@override String get deletemyaccount => 'Hapus akun saya';
 	@override String get deleteaccount => 'Hapus akun saya';
@@ -2565,6 +2312,19 @@ class _StringsId implements _StringsEn {
 	@override String get clearconversationhintone => 'Tindakan ini akan membersihkan semua percakapan Anda dengan ';
 	@override String get clearconversationhinttwo => '.\n Harap dicatat bahwa ini hanya menghapus sisi percakapan Anda, pesan masih akan terlihat di chat pasangan Anda.';
 	@override String get facebookloginerror => 'Ada yang salah dengan proses login.\n, Ini kesalahan yang diberikan Facebook kepada kami';
+	@override String get selectLanguage => 'Pilih Bahasa';
+	@override String get howTo => 'Cara';
+	@override String get noBibleTextsAvailable => 'Tidak ada teks Alkitab yang tersedia';
+	@override String get languages => 'Bahasa';
+	@override String get searchLanguages => 'Cari bahasa...';
+	@override String get biblesFilesets => 'Alkitab: {bibles}, Set berkas: {filesets}';
+	@override String get oldTestament => 'Perjanjian Lama';
+	@override String get newTestament => 'Perjanjian Baru';
+	@override String get play => 'Putar';
+	@override String get no_verse_content => 'Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.';
+	@override String get no_audio_content => 'Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.';
+	@override String get WorshipAudio => 'Audio Penyembahan';
+	@override String get SermonAudio => 'Audio Khotbah';
 }
 
 // Path: <root>
@@ -2876,6 +2636,19 @@ class _StringsKn implements _StringsEn {
 	@override String get clearconversationhintone => 'ಈ ಕ್ರಿಯೆಯಿಂದ ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಸಂಭಾಷಣೆ ಶುದ್ಧಗೊಳಿಸಲಾಗುತ್ತದೆ ';
 	@override String get clearconversationhinttwo => '.\n ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಇದು ನಿಮ್ಮ ಪಾರ್ಟ್ನರ್‌ಗಾಗಿ ಮೆಸೇಜ್‌ಗಳನ್ನು ಇನ್ನೂ ತೋರಿಸುತ್ತದೆ.';
 	@override String get facebookloginerror => 'ಲಾಗಿನ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ.\n, ಫೇಸ್ಬುಕ್ ನಮಗೆ ನೀಡಿದ ದೋಷ ಇಲ್ಲಿದೆ';
+	@override String get selectLanguage => 'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ';
+	@override String get howTo => 'ಹೇಗೆ';
+	@override String get noBibleTextsAvailable => 'ಯಾವುದೇ ಬೈಬಲ್ ಪಾಠಗಳೂ ಲಭ್ಯವಿಲ್ಲ';
+	@override String get languages => 'ಭಾಷೆಗಳು';
+	@override String get searchLanguages => 'ಭಾಷೆಗಳನ್ನು ಹುಡುಕಿ...';
+	@override String get biblesFilesets => 'ಬೈಬಲ್ಗಳು: {bibles}, ಕಡತಗಳ ಸೆಟ್‌ಗಳು: {filesets}';
+	@override String get oldTestament => 'ಹಳೆಯ ಒಡಂಬಡಿಕೆ';
+	@override String get newTestament => 'ಹೊಸ ಒಡಂಬಡಿಕೆ';
+	@override String get play => 'ಆಡಲು';
+	@override String get no_verse_content => 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಪದ್ಯದ ವಿಷಯವಿಲ್ಲ.';
+	@override String get no_audio_content => 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಆಡಿಯೋ ವಿಷಯವಿಲ್ಲ.';
+	@override String get WorshipAudio => 'ಆಡಿಯೋ ಪೂಜೆ';
+	@override String get SermonAudio => 'ಆಡಿಯೋ ಉಪದೇಶ';
 }
 
 // Path: <root>
@@ -3187,6 +2960,19 @@ class _StringsMr implements _StringsEn {
 	@override String get clearconversationhintone => 'ही क्रिया आपले सर्व संभाषण स्वच्छ करेल ';
 	@override String get clearconversationhinttwo => '.\n कृपया लक्षात ठेवा की हे केवळ आपली बाजूची संभाषणे हटवते, संदेश अजूनही आपल्या पार्टनरच्या चॅटवर दिसतील.';
 	@override String get facebookloginerror => 'लॉगिन प्रक्रियेत काहीतरी चुकीचे झाले.\n, येथे फेसबुकने आम्हाला दिलेली त्रुटी आहे';
+	@override String get selectLanguage => 'भाषा निवडा';
+	@override String get howTo => 'कसे';
+	@override String get noBibleTextsAvailable => 'कोणतेही बायबल मजकूर उपलब्ध नाहीत';
+	@override String get languages => 'भाषा';
+	@override String get searchLanguages => 'भाषा शोधा...';
+	@override String get biblesFilesets => 'बायबल: {bibles}, फाईलसेट: {filesets}';
+	@override String get oldTestament => 'जुना करार';
+	@override String get newTestament => 'नवीन करार';
+	@override String get play => 'वाजवा';
+	@override String get no_verse_content => 'प्रदर्शित करण्यासाठी कोणतीही बायबल श्लोक सामग्री उपलब्ध नाही.';
+	@override String get no_audio_content => 'प्रदर्शित करण्यासाठी कोणतीही बायबल ऑडिओ सामग्री उपलब्ध नाही.';
+	@override String get WorshipAudio => 'पूजा ऑडिओ';
+	@override String get SermonAudio => 'उपदेश ऑडिओ';
 }
 
 // Path: <root>
@@ -3498,6 +3284,19 @@ class _StringsNe implements _StringsEn {
 	@override String get clearconversationhintone => 'यस कार्यले तपाईंको सबै कुराकानी सफा गर्छ ';
 	@override String get clearconversationhinttwo => '.\n कृपया ध्यान दिनुहोस् कि यसले केवल तपाईंको पक्षको कुराकानी मेटाउँछ, सन्देशहरू अझै तपाईंको साथीको च्याटमा देखिन्छ।';
 	@override String get facebookloginerror => 'लॉगिन प्रक्रियामा केही गडबड भयो।\n यहाँ फेसबुकले हामीलाई दिएको त्रुटि छ';
+	@override String get selectLanguage => 'भाषा चयन गर्नुहोस्';
+	@override String get howTo => 'कसरी';
+	@override String get noBibleTextsAvailable => 'कुनै बाइबल पाठ उपलब्ध छैन';
+	@override String get languages => 'भाषाहरू';
+	@override String get searchLanguages => 'भाषाहरू खोज्नुहोस्...';
+	@override String get biblesFilesets => 'बाइबल: {bibles}, फाइलसेटहरू: {filesets}';
+	@override String get oldTestament => 'पुरानो करार';
+	@override String get newTestament => 'नयाँ करार';
+	@override String get play => 'बजाउनुहोस्';
+	@override String get no_verse_content => 'प्रदर्शन गर्न कुनै बाइबल पद्य सामग्री उपलब्ध छैन।';
+	@override String get no_audio_content => 'प्रदर्शन गर्न कुनै बाइबल अडियो सामग्री उपलब्ध छैन।';
+	@override String get WorshipAudio => 'आराधना अडियो';
+	@override String get SermonAudio => 'प्रवचन अडियो';
 }
 
 // Path: <root>
@@ -3809,6 +3608,19 @@ class _StringsOr implements _StringsEn {
 	@override String get clearconversationhintone => 'ଏହି କାର୍ଯ୍ୟଟି ଆପଣଙ୍କର ସମସ୍ତ କଥାବାର୍ତ୍ତାକୁ ସଫା କରିବ ';
 	@override String get clearconversationhinttwo => '.\n ଦୟାକରି ଧ୍ୟାନ ଦିଅନ୍ତୁ ଏହା କେବଳ ଆପଣଙ୍କର ପର୍ଯ୍ୟନ୍ତ କଥାବାର୍ତ୍ତାକୁ ବାହାର କରିବ, ସନ୍ଦେଶଗୁଡ଼ିକ ଏବେ ଆପଣଙ୍କର ସାଥୀଙ୍କର ଚ୍ୟାଟରେ ଦେଖାଯାଇପାରିବ।';
 	@override String get facebookloginerror => 'ଲଗଇନ୍ ପ୍ରକ୍ରିୟାରେ କିଛି ତ୍ରୁଟି ହୋଇଛି।\n ଏହି ସମୟରେ ଫେସବୁକ୍ ଆମକୁ ଯେତେବେଳେ ତ୍ରୁଟି ଦେଲା';
+	@override String get selectLanguage => 'ଭାଷା ଚୟନ କରନ୍ତୁ';
+	@override String get howTo => 'କିପରି';
+	@override String get noBibleTextsAvailable => 'କ any ଣସି ବାଇବେଲ ଟେକ୍ସଟ୍ ଉପଲବ୍ଧ ନାହିଁ';
+	@override String get languages => 'ଭାଷାଗୁଡିକ';
+	@override String get searchLanguages => 'ଭାଷାଗୁଡିକୁ ଖୋଜନ୍ତୁ...';
+	@override String get biblesFilesets => 'ବାଇବେଲ: {bibles}, ଫାଇଲସେଟ୍‌ସ: {filesets}';
+	@override String get oldTestament => 'ପୁରାତନ ନିୟମ';
+	@override String get newTestament => 'ନୂତନ ନିୟମ';
+	@override String get play => 'ଖେଳିବା';
+	@override String get no_verse_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଶ୍ଲୋକ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
+	@override String get no_audio_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
+	@override String get WorshipAudio => 'ପୂଜା ଅଡିଓ';
+	@override String get SermonAudio => 'ପ୍ରବଚନ ଅଡିଓ';
 }
 
 // Path: <root>
@@ -4120,6 +3932,19 @@ class _StringsPa implements _StringsEn {
 	@override String get clearconversationhintone => 'ਇਹ ਕਾਰਵਾਈ ਤੁਹਾਡੇ ਸਾਰੇ ਗੱਲਬਾਤ ਨੂੰ ਸਾਫ਼ ਕਰੇਗੀ ';
 	@override String get clearconversationhinttwo => '.\n ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ, ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਚੈਟ \'ਤੇ ਵੇਖੇ ਜਾਣਗੇ।';
 	@override String get facebookloginerror => 'ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ';
+	@override String get selectLanguage => 'ਭਾਸ਼ਾ ਚੁਣੋ';
+	@override String get howTo => 'ਕਿਵੇਂ ਕਰਨਾ ਹੈ';
+	@override String get noBibleTextsAvailable => 'ਕੋਈ ਬਾਈਬਲ ਲਿਖਤ ਉਪਲਬਧ ਨਹੀਂ';
+	@override String get languages => 'ਭਾਸ਼ਾਵਾਂ';
+	@override String get searchLanguages => 'ਭਾਸ਼ਾਵਾਂ ਖੋਜੋ...';
+	@override String get biblesFilesets => 'ਬਾਈਬਲ: {bibles}, ਫਾਈਲਸੈਟ: {filesets}';
+	@override String get oldTestament => 'ਪੁਰਾਣਾ ਨਿਯਮ';
+	@override String get newTestament => 'ਨਵਾਂ ਨਿਯਮ';
+	@override String get play => 'ਖੇਡੋ';
+	@override String get no_verse_content => 'ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅਯਤ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
+	@override String get no_audio_content => 'ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
+	@override String get WorshipAudio => 'ਪੂਜਾ ਆਡੀਓ';
+	@override String get SermonAudio => 'ਉਪਦੇਸ਼ ਆਡੀਓ';
 }
 
 // Path: <root>
@@ -4138,7 +3963,7 @@ class _StringsPt implements _StringsEn {
 	@override late final _StringsPt _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get deleteaccount => 'Delete my account';
 	@override String get deletemyaccount => 'Delete my account';
 	@override String get deleteaccounthint => 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.';
@@ -4431,6 +4256,19 @@ class _StringsPt implements _StringsEn {
 	@override String get clearconversationhintone => 'Esta ação irá limpar toda a sua conversa com ';
 	@override String get clearconversationhinttwo => '.\n  Observe que isso apenas exclui o seu lado da conversa, as mensagens ainda serão exibidas no bate-papo de seus parceiros.';
 	@override String get facebookloginerror => 'Something went wrong with the login process.\n, Here is the error Facebook gave us';
+	@override String get selectLanguage => 'Selecione o idioma';
+	@override String get howTo => 'Como';
+	@override String get noBibleTextsAvailable => 'Nenhum texto bíblico disponível';
+	@override String get languages => 'Idiomas';
+	@override String get searchLanguages => 'Pesquisar idiomas...';
+	@override String get biblesFilesets => 'Bíblias: {bibles}, Conjuntos de arquivos: {filesets}';
+	@override String get oldTestament => 'Antigo Testamento';
+	@override String get newTestament => 'Novo Testamento';
+	@override String get play => 'Tocar';
+	@override String get no_verse_content => 'Nenhum conteúdo de versículo da Bíblia disponível para exibição.';
+	@override String get no_audio_content => 'Nenhum conteúdo de áudio da Bíblia disponível para exibição.';
+	@override String get WorshipAudio => 'Áudio de Adoração';
+	@override String get SermonAudio => 'Áudio do Sermão';
 }
 
 // Path: <root>
@@ -4449,7 +4287,7 @@ class _StringsTa implements _StringsEn {
 	@override late final _StringsTa _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get selectlanguage => 'மொழியைத் தேர்ந்தெடுக்கவும்';
 	@override String get deletemyaccount => 'என் கணக்கை நீக்கவும்';
 	@override String get deleteaccount => 'கணக்கை நீக்கவும்';
@@ -4742,6 +4580,19 @@ class _StringsTa implements _StringsEn {
 	@override String get clearconversationhintone => 'இந்த செயல் உங்களின் அனைத்து உரையாடல்களையும் தூக்கிவிடும் ';
 	@override String get clearconversationhinttwo => '.\n தயவுசெய்து கவனிக்கவும், இது உங்கள் பக்கத்தின் உரையாடலை மட்டுமே நீக்கிவிடும், செய்திகள் இன்னும் உங்கள் நண்பரின் சாதனத்தில் தோன்றும்.';
 	@override String get facebookloginerror => 'உள்நுழைவு செயல்முறையில் ஏதோ தவறாகிவிட்டது.\n இதோ இங்கே பேஸ்புக் நமக்கு கொடுத்த பிழை';
+	@override String get selectLanguage => 'மொழியைத் தேர்ந்தெடுக்கவும்';
+	@override String get howTo => 'எப்படி';
+	@override String get noBibleTextsAvailable => 'யாதொரு பைபிள் உரைகளும் கிடைக்கவில்லை';
+	@override String get languages => 'மொழிகள்';
+	@override String get searchLanguages => 'மொழிகளைத் தேடுங்கள்...';
+	@override String get biblesFilesets => 'பைபிள்கள்: {bibles}, கோப்புகளின் தொகுப்புகள்: {filesets}';
+	@override String get oldTestament => 'பழைய ஏற்பாடு';
+	@override String get newTestament => 'புதிய ஏற்பாடு';
+	@override String get play => 'விளையாடு';
+	@override String get no_verse_content => 'காட்ட Bible வசன உள்ளடக்கம் கிடைக்கவில்லை.';
+	@override String get no_audio_content => 'காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை.';
+	@override String get WorshipAudio => 'ஆடியோ வரிகள்';
+	@override String get SermonAudio => 'ஆடியோ செர்மன்கள்';
 }
 
 // Path: <root>
@@ -4760,7 +4611,7 @@ class _StringsTe implements _StringsEn {
 	@override late final _StringsTe _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get appname => 'MyVirtualPastor';
+	@override String get appname => 'VirtualPastor';
 	@override String get selectlanguage => 'భాషను ఎంచుకోండి';
 	@override String get deletemyaccount => 'నా ఖాతాను తొలగించండి';
 	@override String get deleteaccount => 'ఖాతాను తొలగించండి';
@@ -5053,6 +4904,19 @@ class _StringsTe implements _StringsEn {
 	@override String get clearconversationhintone => 'ఈ చర్య మీ అన్ని సంభాషణలను తొలగిస్తుంది ';
 	@override String get clearconversationhinttwo => '.\n దయచేసి గమనించండి, ఇది మీ భాగంలో ఉన్న సంభాషణని మాత్రమే తొలగిస్తుంది, సందేశాలు ఇంకా మీ భాగస్వామి యొక్క పరికరంలో కనిపిస్తాయి.';
 	@override String get facebookloginerror => 'లాగిన్ ప్రక్రియలో ఏదో తేడా జరిగింది.\n ఇది ఫేస్‌బుక్ మాకు ఇచ్చిన లోపం';
+	@override String get selectLanguage => 'భాషను ఎంచుకోండి';
+	@override String get howTo => 'ఎలా';
+	@override String get noBibleTextsAvailable => 'ఎటువంటి బైబిల్ గ్రంథాలు అందుబాటులో లేవు';
+	@override String get languages => 'భాషలు';
+	@override String get searchLanguages => 'భాషలు శోధించండి...';
+	@override String get biblesFilesets => 'బైబిల్స్: {bibles}, ఫైల్సెట్లను: {filesets}';
+	@override String get oldTestament => 'పాత నిబంధన';
+	@override String get newTestament => 'కొత్త నిబంధన';
+	@override String get play => 'ఆడించు';
+	@override String get no_verse_content => 'ప్రదర్శించడానికి బైబిల్ వాక్య కంటెంట్ అందుబాటులో లేదు.';
+	@override String get no_audio_content => 'ప్రదర్శించడానికి బైబిల్ ఆడియో కంటెంట్ అందుబాటులో లేదు.';
+	@override String get WorshipAudio => 'ఆడియో పూజ';
+	@override String get SermonAudio => 'ఆడియో ప్రవచనం';
 }
 
 // Path: <root>
@@ -5364,6 +5228,19 @@ class _StringsUr implements _StringsEn {
 	@override String get clearconversationhintone => 'یہ عمل آپ کی تمام گفتگو صاف کر دے گا ';
 	@override String get clearconversationhinttwo => '.\n براہ کرم نوٹ کریں کہ یہ آپ کی طرف کی گفتگو کو ہی صاف کرے گا، پیغامات ابھی بھی آپ کے پارٹنر کے چیٹ میں دکھائی دیں گے۔';
 	@override String get facebookloginerror => 'لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے';
+	@override String get selectLanguage => 'زبان منتخب کریں';
+	@override String get howTo => 'کیسے';
+	@override String get noBibleTextsAvailable => 'کوئی بائبل کے متن دستیاب نہیں ہیں';
+	@override String get languages => 'زبانیں';
+	@override String get searchLanguages => 'زبانیں تلاش کریں...';
+	@override String get biblesFilesets => 'بائبل: {bibles}, فائلسیٹ: {filesets}';
+	@override String get oldTestament => 'پرانا عہد نامہ';
+	@override String get newTestament => 'نیا عہد نامہ';
+	@override String get play => 'چلائیں';
+	@override String get no_verse_content => 'دکھانے کے لئے کوئی بائبل کی آیت کا مواد دستیاب نہیں ہے۔';
+	@override String get no_audio_content => 'دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔';
+	@override String get WorshipAudio => 'عبادت آڈیو';
+	@override String get SermonAudio => 'خطبات آڈیو';
 }
 
 /// Flat map(s) containing all translations.
@@ -5372,8 +5249,8 @@ class _StringsUr implements _StringsEn {
 extension on _StringsEn {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
-			'selectlanguage': 'Select Language',
+			'appname': 'VirtualPastor',
+			'selectlanguage': 'selectLanguage',
 			'deletemyaccount': 'Delete my account',
 			'deleteaccount': 'Delete my account',
 			'deleteaccounthint': 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.',
@@ -5438,7 +5315,7 @@ extension on _StringsEn {
 			'tools': 'Tools',
 			'profile': 'Profile',
 			'audiobible': 'Audio Bible',
-			'homesentence': 'Your Pastor for 1 year, to help you grow into a person God called you to be.',
+			'homesentence': 'Your Pastor for a Year: Helping You Grow into Your Calling.',
 			'livestreams': 'Livestreams',
 			'radio': 'Radio',
 			'allitems': 'All Items',
@@ -5659,6 +5536,19 @@ extension on _StringsEn {
 			'clearconversationhintone': 'This action will clear all your conversation with ',
 			'clearconversationhinttwo': '.\n  Please note that this only deletes your side of the conversation, the messages will still show on your partners chat.',
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
+			'selectLanguage': 'Select Language',
+			'howTo': 'How To',
+			'noBibleTextsAvailable': 'No Bible texts available',
+			'languages': 'Languages',
+			'searchLanguages': 'Search languages...',
+			'biblesFilesets': 'Bibles: {bibles}, Filesets: {filesets}',
+			'oldTestament': 'Old Testament',
+			'newTestament': 'New Testament',
+			'play': 'play',
+			'no_verse_content': 'No Bible verse content available to display.',
+			'no_audio_content': 'No Bible Audio content available to display.',
+			'WorshipAudio': 'Worship Audio',
+			'SermonAudio': 'Sermon Audio',
 		};
 	}
 }
@@ -5953,6 +5843,19 @@ extension on _StringsBn {
 			'clearconversationhintone': 'এই পদক্ষেপটি আপনার সাথে সমস্ত কথোপকথন পরিষ্কার করবে ',
 			'clearconversationhinttwo': '.\n দয়া করে লক্ষ্য করুন যে এটি কেবল আপনার কথোপকথনটি মুছে দেয়, বার্তাগুলি এখনও আপনার অংশীদারের চ্যাটে প্রদর্শিত হবে।',
 			'facebookloginerror': 'লগইন প্রক্রিয়ায় কিছু ভুল হয়েছে।\n, এখানে ফেসবুক আমাদের যা ত্রুটি দিয়েছে',
+			'selectLanguage': 'ভাষা নির্বাচন করুন',
+			'howTo': 'কিভাবে',
+			'noBibleTextsAvailable': 'কোন বাইবেল পাঠ্য উপলব্ধ নয়',
+			'languages': 'ভাষাসমূহ',
+			'searchLanguages': 'ভাষা অনুসন্ধান করুন...',
+			'biblesFilesets': 'বাইবেল: {bibles}, ফাইলসেট: {filesets}',
+			'oldTestament': 'পুরাতন নিয়ম',
+			'newTestament': 'নতুন নিয়ম',
+			'play': 'বাজান',
+			'no_verse_content': 'প্রদর্শনের জন্য কোনও বাইবেলের আয়াতের সামগ্রী নেই।',
+			'no_audio_content': 'প্রদর্শনের জন্য কোনও বাইবেলের অডিও সামগ্রী নেই।',
+			'WorshipAudio': 'পূজা অডিও',
+			'SermonAudio': 'উপদেশ অডিও',
 		};
 	}
 }
@@ -6247,6 +6150,19 @@ extension on _StringsDz {
 			'clearconversationhintone': 'དངུལ་རྫས་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་གཏོང་དྲི་བཟུང་གཏོང་སྒྲིག་དྲི་བཟུང་ ',
 			'clearconversationhinttwo': '.\n  དངུལ་རྫས་སྒྲིག་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་གཏོང་དྲི་བཟུང་སྒྲིག་',
 			'facebookloginerror': 'དངུལ་རྫས་གཏོང་སྒྲིག་གཏོང་དྲི་བཟུང་སྒྲིག་སྒྲིག་。\n, དངུལ་རྫས་གཏོང་དྲི་བཟུང་དྲི་བཟུང་དྲི་བཟུང་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་སྒྲིག་',
+			'selectLanguage': 'དབྱིན་རྒྱུད་སྐད་འབྱུང་།',
+			'howTo': 'ག་འདྲ་བྱས།',
+			'noBibleTextsAvailable': 'བཀོལ་སྟོན་ནང་མིན་འདུག',
+			'languages': 'སྐད་ཡིག',
+			'searchLanguages': 'སྐད་ཡིག་འཚོལ་སྐབས...',
+			'biblesFilesets': 'བཀོལ་སྟོན: {bibles}, ཡིག་སྒེའི་མིང་།: {filesets}',
+			'oldTestament': 'རྒྱལ་མཚན་རྒྱུད་རྙིང་པ།',
+			'newTestament': 'རྒྱལ་མཚན་རྒྱུད་གསར་པ།',
+			'play': 'གཏོང་',
+			'no_verse_content': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
+			'no_audio_content': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
+			'WorshipAudio': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
+			'SermonAudio': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
 		};
 	}
 }
@@ -6254,7 +6170,7 @@ extension on _StringsDz {
 extension on _StringsEs {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'deleteaccount': 'Delete my account',
 			'deletemyaccount': 'Delete my account',
 			'deleteaccounthint': 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.',
@@ -6541,300 +6457,19 @@ extension on _StringsEs {
 			'clearconversationhintone': 'Esta acción borrará toda su conversación con ',
 			'clearconversationhinttwo': '.\n  Tenga en cuenta que esto solo elimina su lado de la conversación, los mensajes aún se mostrarán en el chat de sus socios.',
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
-		};
-	}
-}
-
-extension on _StringsFr {
-	Map<String, dynamic> _buildFlatMap() {
-		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
-			'deleteaccount': 'Delete my account',
-			'deletemyaccount': 'Delete my account',
-			'deleteaccounthint': 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.',
-			'deleteaccountsuccess': 'Account deletion was succesful',
-			'selectlanguage': 'Choisir la langue',
-			'chooseapplanguage': 'Choisissez la langue de l\'application',
-			'nightmode': 'Mode nuit',
-			'initializingapp': 'initialisation...',
-			'home': 'Accueil',
-			'branches': 'Branches',
-			'inbox': 'Boîte de réception',
-			'downloads': 'Téléchargements',
-			'settings': 'Paramètres',
-			'events': 'Événements',
-			'myplaylists': 'Mes listes de lecture',
-			'nonotesfound': 'Aucune note trouvée',
-			'newnote': 'Nouveau',
-			'website': 'Site Internet',
-			'hymns': 'Hymnes',
-			'articles': 'Des articles',
-			'notes': 'Remarques',
-			'donate': 'Faire un don',
-			'offering': 'Offre',
-			'deletenote': 'Supprimer la note',
-			'deletenotehint': 'Voulez-vous supprimer cette note? Cette action ne peut pas être annulée.',
-			'savenotetitle': 'Titre de la note',
-			'bookmarks': 'Favoris',
-			'socialplatforms': 'Plateformes sociales',
-			'onboardingpagetitles.0': 'Bienvenue à MyChurch',
-			'onboardingpagetitles.1': 'Plein de fonctionnalités',
-			'onboardingpagetitles.2': 'Audio, Video \n et diffusion en direct',
-			'onboardingpagetitles.3': 'Créer un compte',
-			'onboardingpagehints.0': 'Prolongez-vous au-delà des dimanches matins et des quatre murs de votre église. Tout ce dont vous avez besoin pour communiquer et interagir avec un monde axé sur le mobile.',
-			'onboardingpagehints.1': 'Nous avons rassemblé toutes les fonctionnalités principales que votre application d\'église doit avoir. Événements, dévotions, notifications, notes et bible multi-version.',
-			'onboardingpagehints.2': 'Permettez aux utilisateurs du monde entier de regarder des vidéos, d\'écouter des messages audio et de regarder des flux en direct de vos services religieux.',
-			'onboardingpagehints.3': 'Commencez votre voyage vers une expérience de culte sans fin.',
-			'next': 'SUIVANT',
-			'done': 'COMMENCER',
-			'quitapp': 'Quitter l\'application!',
-			'quitappwarning': 'Souhaitez-vous fermer l\'application?',
-			'quitappaudiowarning': 'Vous êtes en train de lire un fichier audio, quitter l\'application arrêtera la lecture audio. Si vous ne souhaitez pas arrêter la lecture, réduisez simplement l\'application avec le bouton central ou cliquez sur le bouton OK pour quitter l\'application maintenant.',
-			'ok': 'D\'accord',
-			'retry': 'RECOMMENCEZ',
-			'oops': 'Oups!',
-			'save': 'sauver',
-			'cancel': 'Annuler',
-			'error': 'Erreur',
-			'success': 'Succès',
-			'skip': 'Sauter',
-			'skiplogin': 'Passer l\'identification',
-			'skipregister': 'Sauter l\'inscription',
-			'dataloaderror': 'Impossible de charger les données demandées pour le moment, vérifiez votre connexion de données et cliquez pour réessayer.',
-			'suggestedforyou': 'Suggéré pour vous',
-			'devotionals': 'Dévotion',
-			'categories': 'Catégories',
-			'category': 'Catégorie',
-			'videos': 'Vidéos',
-			'audios': 'Audios',
-			'biblebooks': 'Bible',
-			'sermons': 'Sermons',
-			'profile': 'Profil',
-			'tools': 'Outils',
-			'audiobible': 'Bible audio',
-			'homesentence': 'Votre pasteur pour 1 an, pour vous aider à devenir la personne que Dieu vous a appelé à être.',
-			'livestreams': 'Livestreams',
-			'radio': 'Radio',
-			'allitems': 'Tous les articles',
-			'emptyplaylist': 'Aucune liste de lecture',
-			'notsupported': 'Non supporté',
-			'cleanupresources': 'Nettoyage des ressources',
-			'grantstoragepermission': 'Veuillez accorder l\'autorisation d\'accès au stockage pour continuer',
-			'sharefiletitle': 'Regarder ou écouter ',
-			'sharefilebody': 'Via MyVirtualPastor App, Téléchargez maintenant sur ',
-			'sharetext': 'Profitez d\'un streaming audio et vidéo illimité',
-			'sharetexthint': 'Rejoignez la plateforme de streaming vidéo et audio qui vous permet de regarder et d\'écouter des millions de fichiers du monde entier. Téléchargez maintenant sur',
-			'download': 'Télécharger',
-			'addplaylist': 'Ajouter à la playlist',
-			'bookmark': 'Signet',
-			'unbookmark': 'Supprimer les favoris',
-			'share': 'Partager',
-			'deletemedia': 'Supprimer le fichier',
-			'deletemediahint': 'Souhaitez-vous supprimer ce fichier téléchargé? Cette action ne peut pas être annulée.',
-			'searchhint': 'Rechercher des messages audio et vidéo',
-			'performingsearch': 'Recherche d\'audio et de vidéos',
-			'nosearchresult': 'Aucun résultat trouvé',
-			'nosearchresulthint': 'Essayez de saisir un mot clé plus général',
-			'addtoplaylist': 'Ajouter à la playlist',
-			'newplaylist': 'Nouvelle playlist',
-			'playlistitm': 'Playlist',
-			'mediaaddedtoplaylist': 'Média ajouté à la playlist.',
-			'mediaremovedfromplaylist': 'Média supprimé de la playlist',
-			'clearplaylistmedias': 'Effacer tous les médias',
-			'deletePlayList': 'Supprimer la playlist',
-			'clearplaylistmediashint': 'Voulez-vous supprimer tous les médias de cette liste de lecture?',
-			'deletePlayListhint': 'Voulez-vous supprimer cette liste de lecture et effacer tous les médias?',
-			'videomessages': 'Messages vidéo',
-			'audiomessages': 'Messages audio',
-			'comments': 'commentaires',
-			'replies': 'réponses',
-			'reply': 'Répondre',
-			'logintoaddcomment': 'Connectez-vous pour ajouter un commentaire',
-			'logintoreply': 'Connectez-vous pour répondre',
-			'writeamessage': 'Écrire un message...',
-			'nocomments': 'Aucun commentaire trouvé \ncliquez pour réessayer',
-			'errormakingcomments': 'Impossible de traiter les commentaires pour le moment..',
-			'errordeletingcomments': 'Impossible de supprimer ce commentaire pour le moment..',
-			'erroreditingcomments': 'Impossible de modifier ce commentaire pour le moment..',
-			'errorloadingmorecomments': 'Impossible de charger plus de commentaires pour le moment..',
-			'deletingcomment': 'Suppression du commentaire',
-			'editingcomment': 'Modification du commentaire',
-			'deletecommentalert': 'Supprimer le commentaire',
-			'editcommentalert': 'Modifier le commentaire',
-			'deletecommentalerttext': 'Souhaitez-vous supprimer ce commentaire? Cette action ne peut pas être annulée',
-			'loadmore': 'charger plus',
-			'messages': 'Messages',
-			'guestuser': 'Utilisateur invité',
-			'fullname': 'Nom complet',
-			'emailaddress': 'Adresse électronique',
-			'password': 'Mot de passe',
-			'repeatpassword': 'Répéter le mot de passe',
-			'register': 'S\'inscrire',
-			'login': 'S\'identifier',
-			'logout': 'Se déconnecter',
-			'logoutfromapp': 'Déconnexion de l\'application?',
-			'logoutfromapphint': 'Vous ne pourrez pas aimer ou commenter des articles et des vidéos si vous n\'êtes pas connecté.',
-			'gotologin': 'Aller à la connexion',
-			'resetpassword': 'réinitialiser le mot de passe',
-			'logintoaccount': 'Vous avez déjà un compte? S\'identifier',
-			'emptyfielderrorhint': 'Vous devez remplir tous les champs',
-			'invalidemailerrorhint': 'Vous devez saisir une adresse e-mail valide',
-			'passwordsdontmatch': 'Les mots de passe ne correspondent pas',
-			'processingpleasewait': 'Traitement, veuillez patienter...',
-			'createaccount': 'Créer un compte',
-			'forgotpassword': 'Mot de passe oublié?',
-			'orloginwith': 'Ou connectez-vous avec',
-			'facebook': 'Facebook',
-			'google': 'Google',
-			'moreoptions': 'Plus d\'options',
-			'about': 'À propos de nous',
-			'privacy': 'confidentialité',
-			'terms': 'Termes de l\'application',
-			'rate': 'Application de taux',
-			'version': 'Version',
-			'pulluploadmore': 'tirer la charge',
-			'loadfailedretry': 'Échec du chargement! Cliquez sur Réessayer!',
-			'releaseloadmore': 'relâchez pour charger plus',
-			'nomoredata': 'Plus de données',
-			'errorReportingComment': 'Commentaire de rapport d\'erreur',
-			'reportingComment': 'Signaler un commentaire',
-			'reportcomment': 'Options de rapport',
-			'reportCommentsList.0': 'Contenu commercial indésirable ou spam',
-			'reportCommentsList.1': 'Pornographie ou matériel sexuel explicite',
-			'reportCommentsList.2': 'Discours haineux ou violence graphique',
-			'reportCommentsList.3': 'Harcèlement ou intimidation',
-			'bookmarksMedia': 'Mes marque-pages',
-			'noitemstodisplay': 'Aucun élément à afficher',
-			'loginrequired': 'Connexion requise',
-			'loginrequiredhint': 'Pour vous abonner à cette plateforme, vous devez être connecté. Créez un compte gratuit maintenant ou connectez-vous à votre compte existant.',
-			'subscriptions': 'Abonnements aux applications',
-			'subscribe': 'SOUSCRIRE',
-			'subscribehint': 'Abonnement requis',
-			'playsubscriptionrequiredhint': 'Vous devez vous abonner avant de pouvoir écouter ou regarder ce média.',
-			'previewsubscriptionrequiredhint': 'Vous avez atteint la durée de prévisualisation autorisée pour ce média. Vous devez vous abonner pour continuer à écouter ou à regarder ce média.',
-			'copiedtoclipboard': 'Copié dans le presse-papier',
-			'downloadbible': 'Télécharger la Bible',
-			'downloadversion': 'Télécharger',
-			'downloading': 'Téléchargement',
-			'failedtodownload': 'Échec du téléchargement',
-			'pleaseclicktoretry': 'Veuillez cliquer pour réessayer.',
-			'of': 'De',
-			'nobibleversionshint': 'Il n\'y a pas de données bibliques à afficher, cliquez sur le bouton ci-dessous pour télécharger au moins une version biblique.',
-			'downloaded': 'Téléchargé',
-			'enteremailaddresstoresetpassword': 'Entrez votre e-mail pour réinitialiser votre mot de passe',
-			'backtologin': 'RETOUR CONNEXION',
-			'signintocontinue': 'Connectez-vous pour continuer',
-			'signin': 'SE CONNECTER',
-			'signinforanaccount': 'INSCRIVEZ-VOUS POUR UN COMPTE?',
-			'alreadyhaveanaccount': 'Vous avez déjà un compte?',
-			'updateprofile': 'Mettre à jour le profil',
-			'updateprofilehint': 'Pour commencer, veuillez mettre à jour votre page de profil, cela nous aidera à vous connecter avec d\'autres personnes',
-			'autoplayvideos': 'Vidéos de lecture automatique',
-			'gosocial': 'Passez aux réseaux sociaux',
-			'searchbible': 'Rechercher dans la Bible',
-			'filtersearchoptions': 'Filtrer les options de recherche',
-			'narrowdownsearch': 'Utilisez le bouton de filtrage ci-dessous pour affiner la recherche pour un résultat plus précis.',
-			'searchbibleversion': 'Rechercher la version de la Bible',
-			'searchbiblebook': 'Rechercher un livre biblique',
-			'search': 'Chercher',
-			'setBibleBook': 'Définir le livre de la Bible',
-			'oldtestament': 'L\'Ancien Testament',
-			'newtestament': 'Nouveau Testament',
-			'limitresults': 'Limiter les résultats',
-			'setfilters': 'Définir les filtres',
-			'bibletranslator': 'Traducteur de la Bible',
-			'chapter': ' Chapitre ',
-			'verse': ' Verset ',
-			'translate': 'traduire',
-			'bibledownloadinfo': 'Le téléchargement de la Bible a commencé, veuillez ne pas fermer cette page tant que le téléchargement n\'est pas terminé.',
-			'received': 'reçu',
-			'outoftotal': 'sur le total',
-			'set': 'ENSEMBLE',
-			'selectColor': 'Select Color',
-			'switchbibleversion': 'Changer de version de la Bible',
-			'switchbiblebook': 'Changer de livre biblique',
-			'gotosearch': 'Aller au chapitre',
-			'changefontsize': 'Changer la taille de la police',
-			'font': 'Police de caractère',
-			'readchapter': 'Lire le chapitre',
-			'showhighlightedverse': 'Afficher les versets en surbrillance',
-			'downloadmoreversions': 'Télécharger plus de versions',
-			'suggestedusers': 'Utilisateurs suggérés à suivre',
-			'unfollow': 'Ne pas suivre',
-			'follow': 'Suivre',
-			'searchforpeople': 'Recherche de personnes',
-			'viewpost': 'Voir l\'article',
-			'viewprofile': 'Voir le profil',
-			'mypins': 'Mes épingles',
-			'viewpinnedposts': 'Afficher les messages épinglés',
-			'personal': 'Personnel',
-			'update': 'Mettre à jour',
-			'phonenumber': 'Numéro de téléphone',
-			'showmyphonenumber': 'Afficher mon numéro de téléphone aux utilisateurs',
-			'dateofbirth': 'Date de naissance',
-			'showmyfulldateofbirth': 'Afficher ma date de naissance complète aux personnes qui consultent mon statut',
-			'notifications': 'Notifications',
-			'notifywhenuserfollowsme': 'M\'avertir lorsqu\'un utilisateur me suit',
-			'notifymewhenusercommentsonmypost': 'M\'avertir lorsque les utilisateurs commentent mon message',
-			'notifymewhenuserlikesmypost': 'M\'avertir lorsque les utilisateurs aiment mon message',
-			'churchsocial': 'Église sociale',
-			'shareyourthoughts': 'Partage tes pensées',
-			'readmore': '...Lire la suite',
-			'less': ' Moins',
-			'couldnotprocess': 'Impossible de traiter l\'action demandée.',
-			'pleaseselectprofilephoto': 'Veuillez sélectionner une photo de profil à télécharger',
-			'pleaseselectprofilecover': 'Veuillez sélectionner une photo de couverture à télécharger',
-			'updateprofileerrorhint': 'Vous devez renseigner votre nom, date de naissance, sexe, téléphone et lieu avant de pouvoir continuer.',
-			'gender': 'Le sexe',
-			'male': 'Mâle',
-			'female': 'Femme',
-			'dob': 'Date de naissance',
-			'location': 'Localisation actuelle',
-			'qualification': 'Qualification',
-			'aboutme': 'À propos de moi',
-			'facebookprofilelink': 'Lien de profil Facebook',
-			'twitterprofilelink': 'Lien de profil Twitter',
-			'linkdln': 'Lien de profil Linkedln',
-			'likes': 'Aime',
-			'likess': 'Comme',
-			'pinnedposts': 'Mes messages épinglés',
-			'unpinpost': 'Détacher le message',
-			'unpinposthint': 'Souhaitez-vous supprimer ce message de vos messages épinglés?',
-			'postdetails': 'Détails de l\'article',
-			'posts': 'Des postes',
-			'followers': 'Suiveurs',
-			'followings': 'Suivi',
-			'my': 'Mon',
-			'edit': 'Éditer',
-			'delete': 'Supprimer',
-			'deletepost': 'Supprimer le message',
-			'deleteposthint': 'Souhaitez-vous supprimer ce message? Les publications peuvent toujours apparaître sur les flux de certains utilisateurs.',
-			'maximumallowedsizehint': 'Téléchargement de fichier maximum autorisé atteint',
-			'maximumuploadsizehint': 'Le fichier sélectionné dépasse la limite de taille de fichier de téléchargement autorisée.',
-			'makeposterror': 'Impossible de publier un message pour le moment, veuillez cliquer pour réessayer.',
-			'makepost': 'Faire un message',
-			'selectfile': 'Choisir le dossier',
-			'images': 'Images',
-			'shareYourThoughtsNow': 'Share your thoughts ...',
-			'photoviewer': 'Visor de fotos',
-			'nochatsavailable': 'Aucune conversation disponible \n Cliquez sur l\'icône d\'ajout ci-dessous \n pour sélectionner les utilisateurs avec lesquels discuter',
-			'typing': 'Dactylographie...',
-			'photo': 'Foto',
-			'online': 'En ligne',
-			'offline': 'Hors ligne',
-			'lastseen': 'Dernière vue',
-			'deleteselectedhint': 'Cette action supprimera les messages sélectionnés. Veuillez noter que cela ne supprime que votre côté de la conversation, \n les messages s\'afficheront toujours sur votre appareil partenaire.',
-			'deleteselected': 'Supprimer sélectionnée',
-			'unabletofetchconversation': 'Impossible de récupérer \n votre conversation avec \n',
-			'loadmoreconversation': 'Charger plus de conversations',
-			'sendyourfirstmessage': 'Envoyez votre premier message à \n',
-			'unblock': 'Débloquer ',
-			'block': 'Bloquer ',
-			'writeyourmessage': 'Rédigez votre message...',
-			'clearconversation': 'Conversation claire',
-			'clearconversationhintone': 'Cette action effacera toute votre conversation avec ',
-			'clearconversationhinttwo': '.\n  Veuillez noter que cela ne supprime que votre côté de la conversation, les messages seront toujours affichés sur le chat de votre partenaire.',
-			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
+			'selectLanguage': 'Seleccionar idioma',
+			'howTo': 'Cómo',
+			'noBibleTextsAvailable': 'No hay textos bíblicos disponibles',
+			'languages': 'Idiomas',
+			'searchLanguages': 'Buscar idiomas...',
+			'biblesFilesets': 'Biblias: {bibles}, Conjuntos de archivos: {filesets}',
+			'oldTestament': 'Antiguo Testamento',
+			'newTestament': 'Nuevo Testamento',
+			'play': 'Reproducir',
+			'no_verse_content': 'No hay contenido de versículos bíblicos disponible para mostrar.',
+			'no_audio_content': 'No hay contenido de audio de la Biblia disponible para mostrar.',
+			'WorshipAudio': 'Audio de adoración',
+			'SermonAudio': 'Audio del sermón',
 		};
 	}
 }
@@ -7129,6 +6764,19 @@ extension on _StringsHi {
 			'clearconversationhintone': 'यह कार्रवाई आपकी पूरी बातचीत को साफ़ कर देगी ',
 			'clearconversationhinttwo': '.\n कृपया ध्यान दें कि यह केवल आपकी बातचीत का भाग हटाता है, संदेश अभी भी आपके साथी के चैट में दिखाए जाएंगे।',
 			'facebookloginerror': 'लॉगिन प्रक्रिया के साथ कुछ गलत हो गया।\n, यहाँ फेसबुक ने हमें त्रुटि दी है',
+			'selectLanguage': 'भाषा चुनें',
+			'howTo': 'कैसे',
+			'noBibleTextsAvailable': 'कोई बाइबल पाठ उपलब्ध नहीं है',
+			'languages': 'भाषाएँ',
+			'searchLanguages': 'भाषाओं की खोज करें...',
+			'biblesFilesets': 'बाइबल: {bibles}, फाइलसेट्स: {filesets}',
+			'oldTestament': 'पुराना नियम',
+			'newTestament': 'नया नियम',
+			'play': 'चलाएं',
+			'no_verse_content': 'प्रदर्शित करने के लिए कोई बाइबिल पद्य सामग्री उपलब्ध नहीं है।',
+			'no_audio_content': 'प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।',
+			'WorshipAudio': 'आराधना ऑडियो',
+			'SermonAudio': 'प्रवचन ऑडियो',
 		};
 	}
 }
@@ -7136,7 +6784,7 @@ extension on _StringsHi {
 extension on _StringsId {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'Pastor Virtual Saya',
+			'appname': 'Pastor Virtual',
 			'selectlanguage': 'Pilih Bahasa',
 			'deletemyaccount': 'Hapus akun saya',
 			'deleteaccount': 'Hapus akun saya',
@@ -7423,6 +7071,19 @@ extension on _StringsId {
 			'clearconversationhintone': 'Tindakan ini akan membersihkan semua percakapan Anda dengan ',
 			'clearconversationhinttwo': '.\n Harap dicatat bahwa ini hanya menghapus sisi percakapan Anda, pesan masih akan terlihat di chat pasangan Anda.',
 			'facebookloginerror': 'Ada yang salah dengan proses login.\n, Ini kesalahan yang diberikan Facebook kepada kami',
+			'selectLanguage': 'Pilih Bahasa',
+			'howTo': 'Cara',
+			'noBibleTextsAvailable': 'Tidak ada teks Alkitab yang tersedia',
+			'languages': 'Bahasa',
+			'searchLanguages': 'Cari bahasa...',
+			'biblesFilesets': 'Alkitab: {bibles}, Set berkas: {filesets}',
+			'oldTestament': 'Perjanjian Lama',
+			'newTestament': 'Perjanjian Baru',
+			'play': 'Putar',
+			'no_verse_content': 'Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.',
+			'no_audio_content': 'Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.',
+			'WorshipAudio': 'Audio Penyembahan',
+			'SermonAudio': 'Audio Khotbah',
 		};
 	}
 }
@@ -7717,6 +7378,19 @@ extension on _StringsKn {
 			'clearconversationhintone': 'ಈ ಕ್ರಿಯೆಯಿಂದ ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಸಂಭಾಷಣೆ ಶುದ್ಧಗೊಳಿಸಲಾಗುತ್ತದೆ ',
 			'clearconversationhinttwo': '.\n ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಇದು ನಿಮ್ಮ ಪಾರ್ಟ್ನರ್‌ಗಾಗಿ ಮೆಸೇಜ್‌ಗಳನ್ನು ಇನ್ನೂ ತೋರಿಸುತ್ತದೆ.',
 			'facebookloginerror': 'ಲಾಗಿನ್ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿ ಏನೋ ತಪ್ಪಾಗಿದೆ.\n, ಫೇಸ್ಬುಕ್ ನಮಗೆ ನೀಡಿದ ದೋಷ ಇಲ್ಲಿದೆ',
+			'selectLanguage': 'ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ',
+			'howTo': 'ಹೇಗೆ',
+			'noBibleTextsAvailable': 'ಯಾವುದೇ ಬೈಬಲ್ ಪಾಠಗಳೂ ಲಭ್ಯವಿಲ್ಲ',
+			'languages': 'ಭಾಷೆಗಳು',
+			'searchLanguages': 'ಭಾಷೆಗಳನ್ನು ಹುಡುಕಿ...',
+			'biblesFilesets': 'ಬೈಬಲ್ಗಳು: {bibles}, ಕಡತಗಳ ಸೆಟ್‌ಗಳು: {filesets}',
+			'oldTestament': 'ಹಳೆಯ ಒಡಂಬಡಿಕೆ',
+			'newTestament': 'ಹೊಸ ಒಡಂಬಡಿಕೆ',
+			'play': 'ಆಡಲು',
+			'no_verse_content': 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಪದ್ಯದ ವಿಷಯವಿಲ್ಲ.',
+			'no_audio_content': 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಆಡಿಯೋ ವಿಷಯವಿಲ್ಲ.',
+			'WorshipAudio': 'ಆಡಿಯೋ ಪೂಜೆ',
+			'SermonAudio': 'ಆಡಿಯೋ ಉಪದೇಶ',
 		};
 	}
 }
@@ -8011,6 +7685,19 @@ extension on _StringsMr {
 			'clearconversationhintone': 'ही क्रिया आपले सर्व संभाषण स्वच्छ करेल ',
 			'clearconversationhinttwo': '.\n कृपया लक्षात ठेवा की हे केवळ आपली बाजूची संभाषणे हटवते, संदेश अजूनही आपल्या पार्टनरच्या चॅटवर दिसतील.',
 			'facebookloginerror': 'लॉगिन प्रक्रियेत काहीतरी चुकीचे झाले.\n, येथे फेसबुकने आम्हाला दिलेली त्रुटी आहे',
+			'selectLanguage': 'भाषा निवडा',
+			'howTo': 'कसे',
+			'noBibleTextsAvailable': 'कोणतेही बायबल मजकूर उपलब्ध नाहीत',
+			'languages': 'भाषा',
+			'searchLanguages': 'भाषा शोधा...',
+			'biblesFilesets': 'बायबल: {bibles}, फाईलसेट: {filesets}',
+			'oldTestament': 'जुना करार',
+			'newTestament': 'नवीन करार',
+			'play': 'वाजवा',
+			'no_verse_content': 'प्रदर्शित करण्यासाठी कोणतीही बायबल श्लोक सामग्री उपलब्ध नाही.',
+			'no_audio_content': 'प्रदर्शित करण्यासाठी कोणतीही बायबल ऑडिओ सामग्री उपलब्ध नाही.',
+			'WorshipAudio': 'पूजा ऑडिओ',
+			'SermonAudio': 'उपदेश ऑडिओ',
 		};
 	}
 }
@@ -8305,6 +7992,19 @@ extension on _StringsNe {
 			'clearconversationhintone': 'यस कार्यले तपाईंको सबै कुराकानी सफा गर्छ ',
 			'clearconversationhinttwo': '.\n कृपया ध्यान दिनुहोस् कि यसले केवल तपाईंको पक्षको कुराकानी मेटाउँछ, सन्देशहरू अझै तपाईंको साथीको च्याटमा देखिन्छ।',
 			'facebookloginerror': 'लॉगिन प्रक्रियामा केही गडबड भयो।\n यहाँ फेसबुकले हामीलाई दिएको त्रुटि छ',
+			'selectLanguage': 'भाषा चयन गर्नुहोस्',
+			'howTo': 'कसरी',
+			'noBibleTextsAvailable': 'कुनै बाइबल पाठ उपलब्ध छैन',
+			'languages': 'भाषाहरू',
+			'searchLanguages': 'भाषाहरू खोज्नुहोस्...',
+			'biblesFilesets': 'बाइबल: {bibles}, फाइलसेटहरू: {filesets}',
+			'oldTestament': 'पुरानो करार',
+			'newTestament': 'नयाँ करार',
+			'play': 'बजाउनुहोस्',
+			'no_verse_content': 'प्रदर्शन गर्न कुनै बाइबल पद्य सामग्री उपलब्ध छैन।',
+			'no_audio_content': 'प्रदर्शन गर्न कुनै बाइबल अडियो सामग्री उपलब्ध छैन।',
+			'WorshipAudio': 'आराधना अडियो',
+			'SermonAudio': 'प्रवचन अडियो',
 		};
 	}
 }
@@ -8599,6 +8299,19 @@ extension on _StringsOr {
 			'clearconversationhintone': 'ଏହି କାର୍ଯ୍ୟଟି ଆପଣଙ୍କର ସମସ୍ତ କଥାବାର୍ତ୍ତାକୁ ସଫା କରିବ ',
 			'clearconversationhinttwo': '.\n ଦୟାକରି ଧ୍ୟାନ ଦିଅନ୍ତୁ ଏହା କେବଳ ଆପଣଙ୍କର ପର୍ଯ୍ୟନ୍ତ କଥାବାର୍ତ୍ତାକୁ ବାହାର କରିବ, ସନ୍ଦେଶଗୁଡ଼ିକ ଏବେ ଆପଣଙ୍କର ସାଥୀଙ୍କର ଚ୍ୟାଟରେ ଦେଖାଯାଇପାରିବ।',
 			'facebookloginerror': 'ଲଗଇନ୍ ପ୍ରକ୍ରିୟାରେ କିଛି ତ୍ରୁଟି ହୋଇଛି।\n ଏହି ସମୟରେ ଫେସବୁକ୍ ଆମକୁ ଯେତେବେଳେ ତ୍ରୁଟି ଦେଲା',
+			'selectLanguage': 'ଭାଷା ଚୟନ କରନ୍ତୁ',
+			'howTo': 'କିପରି',
+			'noBibleTextsAvailable': 'କ any ଣସି ବାଇବେଲ ଟେକ୍ସଟ୍ ଉପଲବ୍ଧ ନାହିଁ',
+			'languages': 'ଭାଷାଗୁଡିକ',
+			'searchLanguages': 'ଭାଷାଗୁଡିକୁ ଖୋଜନ୍ତୁ...',
+			'biblesFilesets': 'ବାଇବେଲ: {bibles}, ଫାଇଲସେଟ୍‌ସ: {filesets}',
+			'oldTestament': 'ପୁରାତନ ନିୟମ',
+			'newTestament': 'ନୂତନ ନିୟମ',
+			'play': 'ଖେଳିବା',
+			'no_verse_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଶ୍ଲୋକ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
+			'no_audio_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
+			'WorshipAudio': 'ପୂଜା ଅଡିଓ',
+			'SermonAudio': 'ପ୍ରବଚନ ଅଡିଓ',
 		};
 	}
 }
@@ -8893,6 +8606,19 @@ extension on _StringsPa {
 			'clearconversationhintone': 'ਇਹ ਕਾਰਵਾਈ ਤੁਹਾਡੇ ਸਾਰੇ ਗੱਲਬਾਤ ਨੂੰ ਸਾਫ਼ ਕਰੇਗੀ ',
 			'clearconversationhinttwo': '.\n ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ, ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਚੈਟ \'ਤੇ ਵੇਖੇ ਜਾਣਗੇ।',
 			'facebookloginerror': 'ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ',
+			'selectLanguage': 'ਭਾਸ਼ਾ ਚੁਣੋ',
+			'howTo': 'ਕਿਵੇਂ ਕਰਨਾ ਹੈ',
+			'noBibleTextsAvailable': 'ਕੋਈ ਬਾਈਬਲ ਲਿਖਤ ਉਪਲਬਧ ਨਹੀਂ',
+			'languages': 'ਭਾਸ਼ਾਵਾਂ',
+			'searchLanguages': 'ਭਾਸ਼ਾਵਾਂ ਖੋਜੋ...',
+			'biblesFilesets': 'ਬਾਈਬਲ: {bibles}, ਫਾਈਲਸੈਟ: {filesets}',
+			'oldTestament': 'ਪੁਰਾਣਾ ਨਿਯਮ',
+			'newTestament': 'ਨਵਾਂ ਨਿਯਮ',
+			'play': 'ਖੇਡੋ',
+			'no_verse_content': 'ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅਯਤ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
+			'no_audio_content': 'ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
+			'WorshipAudio': 'ਪੂਜਾ ਆਡੀਓ',
+			'SermonAudio': 'ਉਪਦੇਸ਼ ਆਡੀਓ',
 		};
 	}
 }
@@ -8900,7 +8626,7 @@ extension on _StringsPa {
 extension on _StringsPt {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'deleteaccount': 'Delete my account',
 			'deletemyaccount': 'Delete my account',
 			'deleteaccounthint': 'This action will delete your account and remove all your data, once your data is deleted, it cannot be recovered.',
@@ -9187,6 +8913,19 @@ extension on _StringsPt {
 			'clearconversationhintone': 'Esta ação irá limpar toda a sua conversa com ',
 			'clearconversationhinttwo': '.\n  Observe que isso apenas exclui o seu lado da conversa, as mensagens ainda serão exibidas no bate-papo de seus parceiros.',
 			'facebookloginerror': 'Something went wrong with the login process.\n, Here is the error Facebook gave us',
+			'selectLanguage': 'Selecione o idioma',
+			'howTo': 'Como',
+			'noBibleTextsAvailable': 'Nenhum texto bíblico disponível',
+			'languages': 'Idiomas',
+			'searchLanguages': 'Pesquisar idiomas...',
+			'biblesFilesets': 'Bíblias: {bibles}, Conjuntos de arquivos: {filesets}',
+			'oldTestament': 'Antigo Testamento',
+			'newTestament': 'Novo Testamento',
+			'play': 'Tocar',
+			'no_verse_content': 'Nenhum conteúdo de versículo da Bíblia disponível para exibição.',
+			'no_audio_content': 'Nenhum conteúdo de áudio da Bíblia disponível para exibição.',
+			'WorshipAudio': 'Áudio de Adoração',
+			'SermonAudio': 'Áudio do Sermão',
 		};
 	}
 }
@@ -9194,7 +8933,7 @@ extension on _StringsPt {
 extension on _StringsTa {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'selectlanguage': 'மொழியைத் தேர்ந்தெடுக்கவும்',
 			'deletemyaccount': 'என் கணக்கை நீக்கவும்',
 			'deleteaccount': 'கணக்கை நீக்கவும்',
@@ -9481,6 +9220,19 @@ extension on _StringsTa {
 			'clearconversationhintone': 'இந்த செயல் உங்களின் அனைத்து உரையாடல்களையும் தூக்கிவிடும் ',
 			'clearconversationhinttwo': '.\n தயவுசெய்து கவனிக்கவும், இது உங்கள் பக்கத்தின் உரையாடலை மட்டுமே நீக்கிவிடும், செய்திகள் இன்னும் உங்கள் நண்பரின் சாதனத்தில் தோன்றும்.',
 			'facebookloginerror': 'உள்நுழைவு செயல்முறையில் ஏதோ தவறாகிவிட்டது.\n இதோ இங்கே பேஸ்புக் நமக்கு கொடுத்த பிழை',
+			'selectLanguage': 'மொழியைத் தேர்ந்தெடுக்கவும்',
+			'howTo': 'எப்படி',
+			'noBibleTextsAvailable': 'யாதொரு பைபிள் உரைகளும் கிடைக்கவில்லை',
+			'languages': 'மொழிகள்',
+			'searchLanguages': 'மொழிகளைத் தேடுங்கள்...',
+			'biblesFilesets': 'பைபிள்கள்: {bibles}, கோப்புகளின் தொகுப்புகள்: {filesets}',
+			'oldTestament': 'பழைய ஏற்பாடு',
+			'newTestament': 'புதிய ஏற்பாடு',
+			'play': 'விளையாடு',
+			'no_verse_content': 'காட்ட Bible வசன உள்ளடக்கம் கிடைக்கவில்லை.',
+			'no_audio_content': 'காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை.',
+			'WorshipAudio': 'ஆடியோ வரிகள்',
+			'SermonAudio': 'ஆடியோ செர்மன்கள்',
 		};
 	}
 }
@@ -9488,7 +9240,7 @@ extension on _StringsTa {
 extension on _StringsTe {
 	Map<String, dynamic> _buildFlatMap() {
 		return <String, dynamic>{
-			'appname': 'MyVirtualPastor',
+			'appname': 'VirtualPastor',
 			'selectlanguage': 'భాషను ఎంచుకోండి',
 			'deletemyaccount': 'నా ఖాతాను తొలగించండి',
 			'deleteaccount': 'ఖాతాను తొలగించండి',
@@ -9775,6 +9527,19 @@ extension on _StringsTe {
 			'clearconversationhintone': 'ఈ చర్య మీ అన్ని సంభాషణలను తొలగిస్తుంది ',
 			'clearconversationhinttwo': '.\n దయచేసి గమనించండి, ఇది మీ భాగంలో ఉన్న సంభాషణని మాత్రమే తొలగిస్తుంది, సందేశాలు ఇంకా మీ భాగస్వామి యొక్క పరికరంలో కనిపిస్తాయి.',
 			'facebookloginerror': 'లాగిన్ ప్రక్రియలో ఏదో తేడా జరిగింది.\n ఇది ఫేస్‌బుక్ మాకు ఇచ్చిన లోపం',
+			'selectLanguage': 'భాషను ఎంచుకోండి',
+			'howTo': 'ఎలా',
+			'noBibleTextsAvailable': 'ఎటువంటి బైబిల్ గ్రంథాలు అందుబాటులో లేవు',
+			'languages': 'భాషలు',
+			'searchLanguages': 'భాషలు శోధించండి...',
+			'biblesFilesets': 'బైబిల్స్: {bibles}, ఫైల్సెట్లను: {filesets}',
+			'oldTestament': 'పాత నిబంధన',
+			'newTestament': 'కొత్త నిబంధన',
+			'play': 'ఆడించు',
+			'no_verse_content': 'ప్రదర్శించడానికి బైబిల్ వాక్య కంటెంట్ అందుబాటులో లేదు.',
+			'no_audio_content': 'ప్రదర్శించడానికి బైబిల్ ఆడియో కంటెంట్ అందుబాటులో లేదు.',
+			'WorshipAudio': 'ఆడియో పూజ',
+			'SermonAudio': 'ఆడియో ప్రవచనం',
 		};
 	}
 }
@@ -10069,6 +9834,19 @@ extension on _StringsUr {
 			'clearconversationhintone': 'یہ عمل آپ کی تمام گفتگو صاف کر دے گا ',
 			'clearconversationhinttwo': '.\n براہ کرم نوٹ کریں کہ یہ آپ کی طرف کی گفتگو کو ہی صاف کرے گا، پیغامات ابھی بھی آپ کے پارٹنر کے چیٹ میں دکھائی دیں گے۔',
 			'facebookloginerror': 'لاگ ان عمل میں کچھ غلط ہو گیا ہے۔\n یہاں فیس بک نے ہمیں دی ہوئی خرابی ہے',
+			'selectLanguage': 'زبان منتخب کریں',
+			'howTo': 'کیسے',
+			'noBibleTextsAvailable': 'کوئی بائبل کے متن دستیاب نہیں ہیں',
+			'languages': 'زبانیں',
+			'searchLanguages': 'زبانیں تلاش کریں...',
+			'biblesFilesets': 'بائبل: {bibles}, فائلسیٹ: {filesets}',
+			'oldTestament': 'پرانا عہد نامہ',
+			'newTestament': 'نیا عہد نامہ',
+			'play': 'چلائیں',
+			'no_verse_content': 'دکھانے کے لئے کوئی بائبل کی آیت کا مواد دستیاب نہیں ہے۔',
+			'no_audio_content': 'دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔',
+			'WorshipAudio': 'عبادت آڈیو',
+			'SermonAudio': 'خطبات آڈیو',
 		};
 	}
 }

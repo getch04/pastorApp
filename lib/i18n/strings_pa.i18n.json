@@ -305,6 +305,23 @@
   "clearconversationhintone": "ਇਹ ਕਾਰਵਾਈ ਤੁਹਾਡੇ ਸਾਰੇ ਗੱਲਬਾਤ ਨੂੰ ਸਾਫ਼ ਕਰੇਗੀ ",
   "clearconversationhinttwo": ".\n ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ ਕਿ ਇਹ ਕੇਵਲ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਗੱਲਬਾਤ ਨੂੰ ਮਿਟਾਉਂਦੀ ਹੈ, ਸੁਨੇਹੇ ਅਜੇ ਵੀ ਤੁਹਾਡੇ ਸਾਥੀ ਦੇ ਚੈਟ 'ਤੇ ਵੇਖੇ ਜਾਣਗੇ।",
 
-  "facebookloginerror": "ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ"
+  "facebookloginerror": "ਲੌਗਇਨ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ ਹੈ।\n ਇਥੇ ਫੇਸਬੁੱਕ ਨੇ ਸਾਨੂੰ ਦਿੱਤੀ ਗਲਤੀ ਹੈ",
+
+    "selectLanguage": "ਭਾਸ਼ਾ ਚੁਣੋ",
+    "howTo": "ਕਿਵੇਂ ਕਰਨਾ ਹੈ",
+
+    "noBibleTextsAvailable": "ਕੋਈ ਬਾਈਬਲ ਲਿਖਤ ਉਪਲਬਧ ਨਹੀਂ",
+    "languages": "ਭਾਸ਼ਾਵਾਂ",
+    "searchLanguages": "ਭਾਸ਼ਾਵਾਂ ਖੋਜੋ...",
+    "biblesFilesets": "ਬਾਈਬਲ: {bibles}, ਫਾਈਲਸੈਟ: {filesets}",
+
+    "oldTestament": "ਪੁਰਾਣਾ ਨਿਯਮ",
+    "newTestament": "ਨਵਾਂ ਨਿਯਮ",
+    "play": "ਖੇਡੋ",
+    "no_verse_content": "ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਬਾਈਬਲ ਅਯਤ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+    "no_audio_content": "ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+    "WorshipAudio": "ਪੂਜਾ ਆਡੀਓ",
+    "SermonAudio": "ਉਪਦੇਸ਼ ਆਡੀਓ"
+
 }
 

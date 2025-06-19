@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../models/Media.dart';
-import '../models/LiveStreams.dart';
+// import '../models/LiveStreams.dart';
 //import 'package:music_player/music_player.dart';
 
 class Utility {
@@ -49,16 +49,16 @@ class Utility {
     return playlist;
   }
 
-  static List<LiveStreams> removeCurrentLiveStreamsFromList(
-      List<LiveStreams> mediaList, LiveStreams media) {
-    List<LiveStreams> playlist = [];
-    for (LiveStreams item in mediaList) {
-      if (item.id != media.id) {
-        playlist.add(item);
-      }
-    }
-    return playlist;
-  }
+  // static List<LiveStreams> removeCurrentLiveStreamsFromList(
+  //     List<LiveStreams> mediaList, LiveStreams media) {
+  //   List<LiveStreams> playlist = [];
+  //   for (LiveStreams item in mediaList) {
+  //     if (item.id != media.id) {
+  //       playlist.add(item);
+  //     }
+  //   }
+  //   return playlist;
+  // }
 
   static bool isPreviewDuration(
       Media? media, int currentDuration, bool isUserSubscribed) {

@@ -1,4 +1,8 @@
+import 'package:churchapp_flutter/providers/AppStateManager.dart';
+import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:async';
 import 'dart:convert';
 import '../i18n/strings.g.dart';
@@ -22,6 +26,9 @@ class CategoryMediaScreensModel with ChangeNotifier {
       RefreshController(initialRefresh: false);
   int page = 0;
 
+  late AppStateManager appState;
+  String? language;
+
   CategoryMediaScreensModel() {
     this.mediaList = [];
     getUserData();
@@ -33,10 +40,13 @@ class CategoryMediaScreensModel with ChangeNotifier {
     notifyListeners();
   }
 
-  loadItems(int? category) {
+  loadItems(int? category, BuildContext ctx) {
     this.category = category;
     refreshController.requestRefresh();
     page = 0;
+    appState = Provider.of(ctx, listen: false);
+    language = appLanguageData[AppLanguage.values[appState.preferredLanguage]]![
+        'value']!;
     fetchItems();
   }
 
@@ -64,11 +74,11 @@ class CategoryMediaScreensModel with ChangeNotifier {
     return categories.id == selectedSubCategory;
   }
 
-  refreshPageOnCategorySelected(int id) {
+  refreshPageOnCategorySelected(int id, BuildContext ctx) {
     if (id != selectedSubCategory) {
       selectedSubCategory = id;
       notifyListeners();
-      loadItems(category);
+      loadItems(category, ctx);
     }
   }
 
@@ -82,16 +92,19 @@ class CategoryMediaScreensModel with ChangeNotifier {
         "page": page.toString()
       };
 
-      final response = await http.post(Uri.parse(ApiUrl.FETCH_CATEGORIES_MEDIA),
+      final response = await http.post(
+          Uri.parse(ApiUrl.FETCH_CATEGORIES_MEDIA + "?lang=$language"),
           body: jsonEncode({"data": data}));
-      if (response.statusCode == 200) {
-        // If the server did return a 200 OK response,
-        // then parse the JSON.
 
-        List<Media> mediaList = await compute(parseSliderMedia, response.body);
+      if (response.statusCode == 200) {
+        final responseBody = response.body;
+
+        // Directly calling parseSliderMedia without using compute
+        List<Media> mediaList = parseSliderMedia(responseBody);
+
         if (page == 0) {
-          if (subCategoriesList.length == 0) {
-            subCategoriesList = await compute(parseCategories, response.body);
+          if (subCategoriesList.isEmpty) {
+            subCategoriesList = parseCategories(responseBody);
             addTopItem();
           }
           setItems(mediaList);
@@ -99,15 +112,42 @@ class CategoryMediaScreensModel with ChangeNotifier {
           setMoreItems(mediaList);
         }
       } else {
-        // If the server did not return a 200 OK response,
-        // then throw an exception.
         setFetchError();
       }
     } catch (exception) {
-      // I get no exception here
       print(exception);
       setFetchError();
     }
+  }
+
+  List<Media> parseSliderMedia(String responseBody) {
+    final parsed = jsonDecode(responseBody);
+    final mediaItems = parsed['media'] as List<dynamic>;
+
+    return mediaItems.map<Media>((json) {
+      return Media(
+        id: int.tryParse(json['id'].toString()),
+        category: json['category'] as String?,
+        title: json['${language}_title'] as String? ?? json['title'] as String?,
+        coverPhoto: json['cover_photo'] as String?,
+        mediaType: json['type'] as String?,
+        videoType: json['video_type'] as String?,
+        description: json['${language}_description'] as String? ??
+            json['description'] as String?,
+        downloadUrl: json['download'] as String?,
+        canPreview: int.parse(json['can_preview'].toString()) == 1,
+        canDownload: int.parse(json['can_download'].toString()) == 1,
+        isFree: int.parse(json['is_free'].toString()) == 1,
+        userLiked: json['user_liked'] as bool?,
+        http: true,
+        duration: int.tryParse(json['duration'].toString()),
+        commentsCount: int.tryParse(json['comments_count'].toString()),
+        likesCount: int.tryParse(json['likes_count'].toString()),
+        previewDuration: int.tryParse(json['preview_duration'].toString()),
+        streamUrl: json['stream'] as String?,
+        viewsCount: int.tryParse(json['views_count'].toString()),
+      );
+    }).toList();
   }
 
   addTopItem() {
@@ -116,11 +156,11 @@ class CategoryMediaScreensModel with ChangeNotifier {
     subCategoriesList.insert(0, cats);
   }
 
-  static List<Media> parseSliderMedia(String responseBody) {
-    final res = jsonDecode(responseBody);
-    final parsed = res["media"].cast<Map<String, dynamic>>();
-    return parsed.map<Media>((json) => Media.fromJson(json)).toList();
-  }
+  // static List<Media> parseSliderMedia(String responseBody) {
+  //   final res = jsonDecode(responseBody);
+  //   final parsed = res["media"].cast<Map<String, dynamic>>();
+  //   return parsed.map<Media>((json) => Media.fromJson(json)).toList();
+  // }
 
   static List<Categories> parseCategories(String responseBody) {
     final res = jsonDecode(responseBody);

@@ -1,15 +1,19 @@
-import 'package:flutter/material.dart';
-import '../database/SQLiteDbProvider.dart';
-import '../utils/app_themes.dart';
-import '../models/Userdata.dart';
-import '../utils/langs.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../i18n/strings.g.dart';
-import 'package:dio/dio.dart';
-import '../utils/ApiUrl.dart';
 import 'dart:convert';
-import 'events.dart';
+
+import 'package:churchapp_flutter/core/common.dart';
+import 'package:churchapp_flutter/models/models/language_detail.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../database/SQLiteDbProvider.dart';
+import '../i18n/strings.g.dart';
 import '../models/UserEvents.dart';
+import '../models/Userdata.dart';
+import '../utils/ApiUrl.dart';
+import '../utils/app_themes.dart';
+import '../utils/langs.dart';
+import 'events.dart';
 
 class AppStateManager with ChangeNotifier {
   Userdata? userdata;
@@ -23,9 +27,48 @@ class AppStateManager with ChangeNotifier {
   int preferredTheme = 0;
   bool isLoadingTheme = true;
 
+  BibleVersion? _selectedBibleVersion;
+
+  BibleVersion? get selectedBibleVersion => _selectedBibleVersion;
+
   AppStateManager() {
     _loadAppSettings();
     getUserData();
+    loadSelectedBibleVersion();
+    _selectedBibleVersion = selectedBibleVersion ?? defaultBibleVersion;
+  }
+  // Method to load the selected Bible version from SharedPreferences
+  Future<void> loadSelectedBibleVersion() async {
+    var prefs = await SharedPreferences.getInstance();
+    String? versionJson = prefs.getString('selected_bible_version');
+
+    if (versionJson != null) {
+      Map<String, dynamic> versionMap = jsonDecode(versionJson);
+      _selectedBibleVersion = BibleVersion.fromJson(versionMap);
+    } else {
+      _selectedBibleVersion = defaultBibleVersion;
+    }
+
+    notifyListeners();
+  }
+
+  // Setter for selectedBibleVersion
+  set selectedBibleVersion(BibleVersion? version) {
+    _selectedBibleVersion = version;
+    _saveSelectedBibleVersionToPrefs(version);
+    notifyListeners();
+  }
+
+  // Method to save the selected Bible version to SharedPreferences as JSON
+  Future<void> _saveSelectedBibleVersionToPrefs(BibleVersion? version) async {
+    var prefs = await SharedPreferences.getInstance();
+    if (version != null) {
+      String versionJson = jsonEncode(version.toJson());
+      prefs.setString('selected_bible_version', versionJson);
+    } else {
+      // If the version is null, clear the stored value
+      prefs.remove('selected_bible_version');
+    }
   }
 
   //app theme manager
@@ -51,14 +94,12 @@ class AppStateManager with ChangeNotifier {
         case "en":
           LocaleSettings.setLocale(AppLocale.en);
           break;
-        case "fr":
-          LocaleSettings.setLocale(AppLocale.fr);
-          break;
+
         case "es":
           LocaleSettings.setLocale(AppLocale.es);
           break;
-        case "pt":
-          LocaleSettings.setLocale(AppLocale.pt);
+        case "pa":
+          LocaleSettings.setLocale(AppLocale.pa);
           break;
 
         case "hi":
@@ -82,9 +123,6 @@ class AppStateManager with ChangeNotifier {
         case "or":
           LocaleSettings.setLocale(AppLocale.or);
           break;
-        case "pa":
-          LocaleSettings.setLocale(AppLocale.pa);
-          break;
         case "ta":
           LocaleSettings.setLocale(AppLocale.ta);
           break;
@@ -94,6 +132,11 @@ class AppStateManager with ChangeNotifier {
         case "ur":
           LocaleSettings.setLocale(AppLocale.ur);
           break;
+        case "id":
+          LocaleSettings.setLocale(AppLocale.id);
+          break;
+        default:
+          LocaleSettings.setLocale(AppLocale.en);
 
         //add the remaing languages here
 
@@ -167,64 +210,165 @@ final appLanguageData = {
     prefs.setInt(_themePreference, preferredTheme);
   }
 
-  //app language setting
+// Modify the setAppLanguage method
   setAppLanguage(int index) async {
-    //AppLanguage _preferredLanguage = AppLanguage.values[index];
     preferredLanguage = index;
+    AppLocale selectedLocale;
+
+    // Set the appropriate locale based on the selected language
     switch (appLanguageData[AppLanguage.values[preferredLanguage]]!['value']) {
       case "en":
-        LocaleSettings.setLocale(AppLocale.en);
+        selectedLocale = AppLocale.en;
         break;
-      case "fr":
-        LocaleSettings.setLocale(AppLocale.fr);
-        break;
+      // case "fr":
+      //   selectedLocale = AppLocale.fr;
+      //   break;
       case "es":
-        LocaleSettings.setLocale(AppLocale.es);
+        selectedLocale = AppLocale.es;
         break;
-      case "pt":
-        LocaleSettings.setLocale(AppLocale.pt);
-        break;
-      //add alll locale here
+      // case "pt":
+      //   selectedLocale = AppLocale.pt;
+      //   break;
       case "hi":
-        LocaleSettings.setLocale(AppLocale.hi);
+        selectedLocale = AppLocale.hi;
+        break;
+      case "id":
+        selectedLocale = AppLocale.id;
         break;
       case "bn":
-        LocaleSettings.setLocale(AppLocale.bn);
+        selectedLocale = AppLocale.bn;
         break;
       case "dz":
-        LocaleSettings.setLocale(AppLocale.dz);
+        selectedLocale = AppLocale.dz;
         break;
       case "kn":
-        LocaleSettings.setLocale(AppLocale.kn);
+        selectedLocale = AppLocale.kn;
         break;
       case "mr":
-        LocaleSettings.setLocale(AppLocale.mr);
+        selectedLocale = AppLocale.mr;
         break;
       case "ne":
-        LocaleSettings.setLocale(AppLocale.ne);
+        selectedLocale = AppLocale.ne;
         break;
       case "or":
-        LocaleSettings.setLocale(AppLocale.or);
+        selectedLocale = AppLocale.or;
         break;
       case "pa":
-        LocaleSettings.setLocale(AppLocale.pa);
+        selectedLocale = AppLocale.pa;
         break;
       case "ta":
-        LocaleSettings.setLocale(AppLocale.ta);
+        selectedLocale = AppLocale.ta;
         break;
       case "te":
-        LocaleSettings.setLocale(AppLocale.te);
+        selectedLocale = AppLocale.te;
         break;
       case "ur":
-        LocaleSettings.setLocale(AppLocale.ur);
+        selectedLocale = AppLocale.ur;
         break;
+      default:
+        selectedLocale = AppLocale.en;
     }
-    // Here we notify listeners that theme changed
-    // so UI have to be rebuild
+
+    // Set the locale
+    LocaleSettings.setLocale(selectedLocale);
+
+    // Get the corresponding languageId for the selected language
+    int? languageId = _getLanguageIdForLocale(selectedLocale);
+
+    if (languageId != null) {
+      // Fetch Bible versions for the selected language
+      List<BibleVersion> bibleVersions =
+          await fetchBibleVersionsForLocale(languageId);
+
+      // Select the first Bible version, if available
+      if (bibleVersions.isNotEmpty) {
+        selectedBibleVersion = bibleVersions.first; // Using the setter
+      } else {
+        selectedBibleVersion = defaultBibleVersion; // Using the setter
+      }
+    } else {
+      // If no languageId found, use the default Bible version
+      selectedBibleVersion = defaultBibleVersion;
+    }
+
+    // Notify listeners to update the UI
     notifyListeners();
-    // Save selected theme into SharedPreferences
+
+    // Save selected language into SharedPreferences
     var prefs = await SharedPreferences.getInstance();
     prefs.setInt(_langPreference, preferredLanguage);
+  }
+
+  // Method to get the languageId based on the selected locale
+  int? _getLanguageIdForLocale(AppLocale locale) {
+    switch (locale) {
+      case AppLocale.en:
+        return 6414;
+      case AppLocale.pa:
+        return 8247;
+      case AppLocale.es:
+        return 6411;
+      case AppLocale.pt:
+        return 5598;
+      case AppLocale.hi:
+        return 2355;
+      case AppLocale.bn:
+        return 748;
+      case AppLocale.dz:
+        return 33689;
+      case AppLocale.kn:
+        return 5049;
+      case AppLocale.mr:
+        return 4100;
+      case AppLocale.ne:
+        return 4756;
+      case AppLocale.or:
+        return 8567;
+      case AppLocale.ta:
+        return 6589;
+      case AppLocale.te:
+        return 6696;
+      case AppLocale.ur:
+        return 7147;
+      case AppLocale.id:
+        return 1234;
+      default:
+        return null;
+    }
+  }
+
+  Future<List<BibleVersion>> fetchBibleVersionsForLocale(
+      int languageTag) async {
+    try {
+      var response = await Dio().get(
+          '$BIBLE_BASE_URL/bibles?language_code=$languageTag&v=4&key=$BIBLE_API_KEY');
+      final res = response.data['data'] as List;
+
+      // Convert the response into a list of BibleVersion objects
+      final List<BibleVersion> bibleVersions =
+          res.map((e) => BibleVersion.fromJson(e)).toList();
+
+      // Filter the list to remove BibleVersions without "dbp-prod" or without any "text" filesets
+      final List<BibleVersion> filteredVersions =
+          bibleVersions.where((bibleVersion) {
+        // Check if "dbp-prod" exists in the filesets map
+        if (!bibleVersion.filesets.containsKey('dbp-prod')) {
+          return false;
+        }
+
+        // Check if there are any filesets in "dbp-prod" with a type that starts with "text"
+        bool hasTextFileset = bibleVersion.filesets['dbp-prod']!.any((fileset) {
+          return fileset.type.startsWith('text');
+        });
+
+        return hasTextFileset;
+      }).toList();
+
+      return filteredVersions;
+    } catch (e) {
+      print('Error fetching Bible versions: $e');
+      return [];
+    }
   }
 
   //app language setting
@@ -255,7 +399,7 @@ final appLanguageData = {
     print("userdata " + userdata.toString());
     notifyListeners();
     if (userdata != null && userdata!.activated == 0) {
-      eventBus.fire(UserLoggedInEvent(userdata));
+      // eventBus.fire(UserLoggedInEvent(userdata));
       updateUserToken();
     }
   }
@@ -265,7 +409,7 @@ final appLanguageData = {
     await SQLiteDbProvider.db.insertUser(_userdata);
     this.userdata = _userdata;
     if (userdata != null && userdata!.activated == 0) {
-      eventBus.fire(UserLoggedInEvent(userdata));
+      // eventBus.fire(UserLoggedInEvent(userdata));
       updateUserToken();
     }
     notifyListeners();
@@ -274,7 +418,7 @@ final appLanguageData = {
   unsetUserData() async {
     await SQLiteDbProvider.db.deleteUserData();
     this.userdata = null;
-    eventBus.fire(AppEvents.LOGOUT);
+    // eventBus.fire(AppEvents.LOGOUT);
     notifyListeners();
   }
 

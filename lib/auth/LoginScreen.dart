@@ -118,7 +118,7 @@ class LoginScreenRouteState extends State<LoginScreen> {
               Column(
                 children: [
                   Image(
-                    image: AssetImage(Img.get("icon.png")),
+                    image: AssetImage(Img.get("new/Logo.png")),
                     width: 100,
                     height: 100,
                   ),
