@@ -38,8 +38,6 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FDAllFilesDownloadedMessage</key>
 	<string>All files have been downloaded</string>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-3940256099942544~1458002511</string>
 	<key>LSRequiresIPhoneOS</key>

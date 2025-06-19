@@ -399,7 +399,7 @@ final appLanguageData = {
     print("userdata " + userdata.toString());
     notifyListeners();
     if (userdata != null && userdata!.activated == 0) {
-      eventBus.fire(UserLoggedInEvent(userdata));
+      // eventBus.fire(UserLoggedInEvent(userdata));
       updateUserToken();
     }
   }
@@ -409,7 +409,7 @@ final appLanguageData = {
     await SQLiteDbProvider.db.insertUser(_userdata);
     this.userdata = _userdata;
     if (userdata != null && userdata!.activated == 0) {
-      eventBus.fire(UserLoggedInEvent(userdata));
+      // eventBus.fire(UserLoggedInEvent(userdata));
       updateUserToken();
     }
     notifyListeners();
@@ -418,7 +418,7 @@ final appLanguageData = {
   unsetUserData() async {
     await SQLiteDbProvider.db.deleteUserData();
     this.userdata = null;
-    eventBus.fire(AppEvents.LOGOUT);
+    // eventBus.fire(AppEvents.LOGOUT);
     notifyListeners();
   }
 

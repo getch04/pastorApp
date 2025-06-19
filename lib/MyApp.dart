@@ -32,12 +32,9 @@ import './auth/LoginScreen.dart';
 import './auth/RegisterScreen.dart';
 import './models/Media.dart';
 import './models/ScreenArguements.dart';
-import './models/UserEvents.dart';
 import './models/Userdata.dart';
 import './providers/AppStateManager.dart';
 import './providers/AudioPlayerModel.dart';
-import './providers/events.dart';
-import './service/Firebase.dart';
 import './socials/UserProfileScreen.dart';
 import 'screens/pages/howToScreenDetail.dart';
 
@@ -131,25 +128,25 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    Firebase(
-      navigateMedia,
-      // navigateSocials,
-      // navigateInbox,
-      // navigateLivestreams,
-      // navigateChat,
-      // navigateEvents,
-    ).init();
+    // Firebase(
+    // navigateMedia,
+    // navigateSocials,
+    // navigateInbox,
+    // navigateLivestreams,
+    // navigateChat,
+    // navigateEvents,
+    // ).init();
     // Provider.of<ChatManager>(context, listen: false).init();
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    eventBus.fire(OnAppStateChanged("active"));
+    // eventBus.fire(OnAppStateChanged("active"));
     // eventBus.on<OnChatOpen>().listen((event) {
     //   isChatOpen = event.isOpen;
     // });
-    eventBus.on<OnAppOffline>().listen((event) {
-      print("App offline event called");
-      print("please store = " + event.items.toString());
-    });
+    // eventBus.on<OnAppOffline>().listen((event) {
+    //   print("App offline event called");
+    //   print("please store = " + event.items.toString());
+    // });
   }
 
   @override
@@ -170,10 +167,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       case null:
         break;
       case AppLifecycleState.paused:
-        eventBus.fire(OnAppStateChanged("idle"));
+        // eventBus.fire(OnAppStateChanged("idle"));
         break;
       case AppLifecycleState.resumed:
-        eventBus.fire(OnAppStateChanged("active"));
+        // eventBus.fire(OnAppStateChanged("active"));
         break;
       case AppLifecycleState.inactive:
       case AppLifecycleState.detached:
