@@ -161,7 +161,7 @@ Your continued use of the app after changes become effective constitutes accepta
 
 If you have any questions about this Privacy Policy or our privacy practices, please contact us:
 
-**Email:** getbet04@gmail.com
+**Email:** <getbet04@gmail.com>
 
 ## Legal Basis for Processing (EU Users)
 
