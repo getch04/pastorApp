@@ -255,7 +255,19 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                                         position: ctr.position,
                                         onPlay: () {
                                           _audioController?.pause();
-                                          ctr.play(worshipUrl ?? '');
+                                          ctr
+                                              .play(worshipUrl ?? '')
+                                              .catchError((e) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                    'Failed to load worship audio: ${e.toString()}'),
+                                                backgroundColor: Colors.red,
+                                                duration: Duration(seconds: 3),
+                                              ),
+                                            );
+                                          });
                                         },
                                         onPause: ctr.pause,
                                         onSeek: ctr.seek,
@@ -291,7 +303,19 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                                         position: ctr.position,
                                         onPlay: () {
                                           _audioController2?.pause();
-                                          ctr.play(sermonUrl ?? '');
+                                          ctr
+                                              .play(sermonUrl ?? '')
+                                              .catchError((e) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                    'Failed to load sermon audio: ${e.toString()}'),
+                                                backgroundColor: Colors.red,
+                                                duration: Duration(seconds: 3),
+                                              ),
+                                            );
+                                          });
                                         },
                                         onPause: ctr.pause,
                                         onSeek: ctr.seek,

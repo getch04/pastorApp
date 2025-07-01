@@ -64,16 +64,44 @@ class AudioController extends ChangeNotifier {
       _currentAudioUrl = audioUrl;
       _isLoading = true;
       notifyListeners();
+
       try {
-        await _audioPlayer.setSourceUrl(audioUrl);
+        // Validate URL
+        if (audioUrl.isEmpty) {
+          throw Exception('Audio URL is empty');
+        }
+
+        // Check for iOS-incompatible formats
+        if (audioUrl.toLowerCase().contains('.webm') ||
+            audioUrl.toLowerCase().contains('opus')) {
+          throw Exception(
+              'This audio format (WebM/Opus) is not supported on iOS. Please try a different audio source.');
+        }
+
+        // Ensure HTTPS for iOS
+        String validatedUrl = audioUrl;
+        if (audioUrl.startsWith('http://')) {
+          validatedUrl = audioUrl.replaceFirst('http://', 'https://');
+        }
+
+        await _audioPlayer.setSourceUrl(validatedUrl);
       } catch (e) {
+        print('Audio loading error: $e');
         _isLoading = false;
+        _isPlaying = false;
         notifyListeners();
-        // Handle error
+        rethrow; // Re-throw to handle in UI
       }
       _isLoading = false;
     }
-    await _audioPlayer.resume();
+
+    try {
+      await _audioPlayer.resume();
+    } catch (e) {
+      print('Audio resume error: $e');
+      _isPlaying = false;
+      notifyListeners();
+    }
   }
 
   void pause() {

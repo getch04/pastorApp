@@ -188,8 +188,20 @@ class BibleVersion {
               (fileset.type.startsWith('audio') && fileset.size == size))
           .toList();
 
-      // Prioritize based on bitrate, container, and codec
+      // Prioritize iOS-compatible formats over Opus/WebM
       filteredFilesets.sort((a, b) {
+        // First priority: Avoid Opus/WebM formats (iOS incompatible)
+        bool aIsOpus = a.id.toLowerCase().contains('opus') ||
+            (a.codec?.toLowerCase().contains('opus') ?? false) ||
+            (a.container?.toLowerCase().contains('webm') ?? false);
+        bool bIsOpus = b.id.toLowerCase().contains('opus') ||
+            (b.codec?.toLowerCase().contains('opus') ?? false) ||
+            (b.container?.toLowerCase().contains('webm') ?? false);
+
+        if (aIsOpus && !bIsOpus) return 1; // a is Opus, b is not - prefer b
+        if (!aIsOpus && bIsOpus) return -1; // a is not Opus, b is - prefer a
+
+        // If both are same type, then prioritize by bitrate, container, and codec
         int bitrateComparison = compareBitrate(a.bitrate, b.bitrate);
         if (bitrateComparison != 0) return bitrateComparison;
 

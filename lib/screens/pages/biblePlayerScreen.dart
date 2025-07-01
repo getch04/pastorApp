@@ -634,7 +634,41 @@ class AudioPlayerWidget extends StatelessWidget {
           isLoading: audioController.isLoading,
           duration: audioController.duration,
           position: audioController.position,
-          onPlay: () => audioController.play(audioUrl),
+          onPlay: () async {
+            try {
+              await audioController.play(audioUrl);
+            } catch (e) {
+              String errorMessage = 'Failed to load audio';
+
+              // Provide more specific error messages
+              if (e.toString().contains('WebM/Opus')) {
+                errorMessage =
+                    'This Bible audio format is not supported on iOS. Please try a different Bible version or contact support.';
+              } else if (e.toString().contains('network')) {
+                errorMessage =
+                    'Network error. Please check your internet connection.';
+              } else if (e.toString().contains('404')) {
+                errorMessage = 'Audio file not found. Please try again later.';
+              }
+
+              // Show error message to user
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(errorMessage),
+                  backgroundColor: Colors.red,
+                  duration: Duration(seconds: 5),
+                  action: SnackBarAction(
+                    label: 'Dismiss',
+                    textColor: Colors.white,
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    },
+                  ),
+                ),
+              );
+              print('Audio play error: $e');
+            }
+          },
           onPause: audioController.pause,
           onSeek: audioController.seek,
           playbackSpeed: audioController.playbackSpeed,

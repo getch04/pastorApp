@@ -25,8 +25,8 @@ class BibleMediaController extends ChangeNotifier {
   late AudioController audioController;
 
   //set current chapter
-  void initData(int chapter, BibleFilterProvider prov, BibleVersion version, BibleBook book, int max,
-      List<String> verses) {
+  void initData(int chapter, BibleFilterProvider prov, BibleVersion version,
+      BibleBook book, int max, List<String> verses) {
     currentChapter = chapter;
     bibleVersion = version;
     bibleBook = book;
@@ -107,15 +107,27 @@ class BibleMediaController extends ChangeNotifier {
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
         if (data['data'].isNotEmpty) {
-          audioUrl = BibleFileResponse.fromJson(data).data.first.path ?? '';
+          String audioPath =
+              BibleFileResponse.fromJson(data).data.first.path ?? '';
+
+          // Check if the audio URL is a WebM/Opus file (iOS incompatible)
+          if (audioPath.toLowerCase().contains('.webm') ||
+              audioPath.toLowerCase().contains('opus')) {
+            print(
+                'Warning: Audio format may not be supported on iOS: $audioPath');
+            // You could show a warning to the user here
+          }
+
+          audioUrl = audioPath;
         } else {
-          throw Exception('No Bible text found');
+          throw Exception('No Bible audio found');
         }
       } else {
-        throw Exception(response);
+        throw Exception('Failed to load Bible audio: ${response.statusCode}');
       }
     } catch (e) {
-      throw Exception('Failed to load Bible audio' + e.toString());
+      print('Bible audio loading error: $e');
+      throw Exception('Failed to load Bible audio: $e');
     }
   }
 

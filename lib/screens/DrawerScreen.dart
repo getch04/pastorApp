@@ -378,14 +378,101 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     future: PackageInfo.fromPlatform(),
                     builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
                       if (snapshot.hasData) {
-                        return Center(
-                          child: Text(
-                            'v' + '${snapshot.data?.version ?? ''}',
-                            style: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        return Padding(
+                          padding: EdgeInsets.only(top: 20, bottom: 20),
+                          child: Wrap(
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            spacing: 15,
+                            runSpacing: 10,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: Theme.of(context).primaryColor,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.android,
+                                      size: 18,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      'v' + '${snapshot.data?.version ?? ''}',
+                                      style: TextStyle(
+                                        color: Theme.of(context).primaryColor,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                height: 25,
+                                width: 1,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  openBrowserTab(
+                                      'IT Marketz', 'https://itmarketz.com/');
+                                },
+                                child: Wrap(
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Developed by: ',
+                                      style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 8),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                          color: Theme.of(context).primaryColor,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            Icons.verified,
+                                            size: 18,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                          ),
+                                          SizedBox(width: 8),
+                                          Text(
+                                            'IT Marketz',
+                                            style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         );
                       } else {
