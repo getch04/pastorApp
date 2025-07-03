@@ -15,7 +15,7 @@ class Alerts {
           content: SingleChildScrollView(
             child: Text(message),
           ),
-          actions: <Widget>[
+          actions: <Widget>[ 
             ElevatedButton(
               child: Text(t.ok),
               onPressed: () {

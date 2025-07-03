@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
@@ -14,10 +12,8 @@ import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsScreen.dart';
 import 'package:churchapp_flutter/screens/privacyScreen.dart';
 import 'package:churchapp_flutter/socials/UserProfileScreen.dart';
-import 'package:churchapp_flutter/utils/Alerts.dart';
 import 'package:churchapp_flutter/utils/components/common_item_card.dart';
 import 'package:churchapp_flutter/utils/img.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
@@ -27,7 +23,6 @@ import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../models/Userdata.dart';
 import '../providers/AppStateManager.dart';
-import '../utils/ApiUrl.dart';
 import '../utils/app_themes.dart';
 import '../utils/langs.dart';
 import '../utils/my_colors.dart';
@@ -380,17 +375,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       if (snapshot.hasData) {
                         return Padding(
                           padding: EdgeInsets.only(top: 20, bottom: 20),
-                          child: Wrap(
-                            alignment: WrapAlignment.center,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 15,
-                            runSpacing: 10,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 8),
+                                    horizontal: 8, vertical: 6),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(16),
                                   border: Border.all(
                                     color: Theme.of(context).primaryColor,
                                     width: 1,
@@ -401,75 +393,81 @@ class _DrawerScreenState extends State<DrawerScreen> {
                                   children: [
                                     Icon(
                                       Icons.android,
-                                      size: 18,
+                                      size: 16,
                                       color: Theme.of(context).primaryColor,
                                     ),
-                                    SizedBox(width: 8),
+                                    SizedBox(width: 4),
                                     Text(
-                                      'v' + '${snapshot.data?.version ?? ''}',
+                                      'v${snapshot.data?.version ?? ''}',
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
-                                        fontSize: 15,
+                                        fontSize: 13,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
+                              SizedBox(width: 8),
                               Container(
-                                height: 25,
+                                height: 20,
                                 width: 1,
                                 color: Theme.of(context).primaryColor,
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  openBrowserTab(
-                                      'IT Marketz', 'https://itmarketz.com/');
-                                },
-                                child: Wrap(
-                                  crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Developed by: ',
-                                      style: TextStyle(
-                                        color: Colors.black87,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 12, vertical: 8),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                          color: Theme.of(context).primaryColor,
-                                          width: 1,
+                              SizedBox(width: 8),
+                              Flexible(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    openBrowserTab(
+                                        'IT Marketz', 'https://itmarketz.com/');
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'By: ',
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon(
-                                            Icons.verified,
-                                            size: 18,
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 6),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          border: Border.all(
                                             color:
                                                 Theme.of(context).primaryColor,
+                                            width: 1,
                                           ),
-                                          SizedBox(width: 8),
-                                          Text(
-                                            'IT Marketz',
-                                            style: TextStyle(
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(
+                                              Icons.verified,
+                                              size: 16,
                                               color: Theme.of(context)
                                                   .primaryColor,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(width: 4),
+                                            Text(
+                                              'IT Marketz',
+                                              style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -485,54 +483,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
         ),
       ]),
     );
-  }
-
-  Future<void> showDeleteAccountAlert() async {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              title: new Text(t.deleteaccount),
-              content: new Text(t.deleteaccounthint),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  isDefaultAction: false,
-                  child: Text(t.ok),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    deleteAccountServer(userdata!.email!);
-                  },
-                ),
-                CupertinoDialogAction(
-                  isDefaultAction: false,
-                  child: Text(t.cancel),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ));
-  }
-
-  Future<void> deleteAccountServer(String email) async {
-    Alerts.showProgressDialog(context, t.processingpleasewait);
-    try {
-      var data = {
-        "email": email,
-      };
-      final response = await Dio()
-          .post(ApiUrl.DELETE_ACCOUNT, data: jsonEncode({"data": data}));
-      Navigator.of(context).pop();
-      if (response.statusCode == 200) {
-        print(response.data);
-        Alerts.show(context, "", t.deleteaccountsuccess);
-        appManager.unsetUserData();
-      } else {
-        Alerts.show(context, "", t.error);
-      }
-    } catch (exception) {
-      Navigator.of(context).pop();
-      Alerts.show(context, "", exception.toString());
-    }
   }
 
   openSocialBrowserTab(String url) async {
