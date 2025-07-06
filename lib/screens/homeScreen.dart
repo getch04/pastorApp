@@ -4,6 +4,7 @@ import 'package:churchapp_flutter/auth/LoginScreen.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/screens/pages/bibleScreenNew.dart';
 import 'package:churchapp_flutter/screens/pages/howToScreen.dart';
+import 'package:churchapp_flutter/screens/pages/offeringScreen.dart';
 import 'package:churchapp_flutter/screens/pages/qaListScreen.dart';
 import 'package:churchapp_flutter/screens/pages/sermonScreen.dart';
 import 'package:churchapp_flutter/screens/pages/toolsScreen.dart';
@@ -233,7 +234,7 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                           horizontal: 35,
                         ),
                         child: ListView.separated(
-                          itemCount: 5,
+                          itemCount: 6,
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           separatorBuilder: (context, index) =>
@@ -320,8 +321,25 @@ class _HomeScreenItemState extends State<HomeScreenItem> {
                                     begin: Offset(0, 0.5),
                                     end: Offset(0, 0),
                                   ),
+                              CommonItemCard(
+                                title: t.offering,
+                                icon: Image.asset(
+                                  Img.get('new/offer.png'),
+                                  width: 50,
+                                  height: 50,
+                                ),
+                                onTap: () => Navigator.pushNamed(
+                                  context,
+                                  OfferingScreen.routeName,
+                                ),
+                              ).animate().fadeIn(duration: 1200.ms).slide(
+                                    duration: 1200.ms,
+                                    curve: Curves.easeOut,
+                                    begin: Offset(0, 0.5),
+                                    end: Offset(0, 0),
+                                  ),
                               SizedBox(
-                                height: 170,
+                                height: 70,
                               ),
                             ];
                             return commonItemCards[index];

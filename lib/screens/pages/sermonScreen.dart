@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
@@ -319,11 +320,11 @@ class _SermonButtonState extends State<SermonButton> {
             child: Row(
               children: [
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Container(
-                  height: 80,
-                  width: 80,
+                  height: 70,
+                  width: 70,
                   child: Stack(
                     children: [
                       // Show appropriate widget based on loading state
@@ -360,7 +361,7 @@ class _SermonButtonState extends State<SermonButton> {
                         ),
                       Positioned(
                         top: 30,
-                        left: 20,
+                        left: 18,
                         child: Text(
                           '${widget.week}',
                           style: TextStyle(
@@ -374,20 +375,20 @@ class _SermonButtonState extends State<SermonButton> {
                   ),
                 ),
                 Expanded(
-                  child: Text(
+                  child: AutoSizeText(
                     widget.category?.title ?? 'UNKNOWN',
-                    maxLines: 2,
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
-                      letterSpacing: 3,
+                      fontSize: 15,
+                      // letterSpacing: 3,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 SizedBox(
-                  width: 65,
+                  width: 5,
                 ),
               ],
             ),
