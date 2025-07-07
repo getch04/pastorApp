@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class PlayerNew extends StatelessWidget {
@@ -14,6 +16,7 @@ class PlayerNew extends StatelessWidget {
   final Function(double)? onSpeedChange;
   final double playbackSpeed;
   final bool isMinimized;
+  final bool isOffline;
 
   PlayerNew({
     required this.audioUrl,
@@ -29,7 +32,13 @@ class PlayerNew extends StatelessWidget {
     this.onSpeedChange,
     this.playbackSpeed = 1.0,
     this.isMinimized = false,
-  });
+  }) : isOffline = audioUrl.startsWith('/');
+
+  bool get isValidUrl =>
+      audioUrl.isNotEmpty &&
+      (isOffline
+          ? File(audioUrl).existsSync()
+          : Uri.tryParse(audioUrl)?.hasAbsolutePath ?? false);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +50,7 @@ class PlayerNew extends StatelessWidget {
         horizontal: 16,
         vertical: isMinimized ? 4 : 12,
       ),
-      height: isMinimized ? 52 : 190,
+      height: isMinimized ? 52 : 230,
       decoration: BoxDecoration(
         gradient: isMinimized ? null : null,
         color:
@@ -61,6 +70,66 @@ class PlayerNew extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          if (!isMinimized && isOffline)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.green.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.green.withOpacity(0.3)),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.offline_pin_rounded,
+                            size: 16, color: Colors.green),
+                        SizedBox(width: 4),
+                        Text(
+                          'Playing Offline',
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          if (!isValidUrl)
+            Container(
+              height: isMinimized ? 52 : 190,
+              decoration: BoxDecoration(
+                color: isMinimized
+                    ? Colors.white.withOpacity(0.92)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(28),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.error_outline, color: Colors.red, size: 24),
+                    SizedBox(height: 8),
+                    Text(
+                      'Audio file not available',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           if (!isMinimized)
             ClipRect(
               child: AnimatedOpacity(

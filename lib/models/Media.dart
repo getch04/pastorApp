@@ -8,7 +8,7 @@ class Media {
       videoType,
       source,
       extraSource;
-  final String? description, downloadUrl, streamUrl;
+  final String? description, downloadUrl, streamUrl, worshipStreamUrl;
   final bool? canPreview, canDownload, isFree, http;
   bool? userLiked;
 
@@ -31,6 +31,7 @@ class Media {
     this.likesCount,
     this.previewDuration,
     this.streamUrl,
+    this.worshipStreamUrl,
     this.viewsCount,
     this.source,
     this.extraSource,
@@ -57,6 +58,7 @@ class Media {
     "likesCount",
     "previewDuration",
     "streamUrl",
+    "worshipStreamUrl",
     "viewsCount"
   ];
   static final playlistscolumns = [
@@ -79,6 +81,7 @@ class Media {
     "likesCount",
     "previewDuration",
     "streamUrl",
+    "worshipStreamUrl",
     "viewsCount"
   ];
 
@@ -120,6 +123,7 @@ class Media {
             ? int.tryParse(json['preview_duration'].toString())
             : null,
         streamUrl: json['stream'] as String?,
+        worshipStreamUrl: json['worship_stream'] as String?,
         viewsCount: json['views_count'] != null
             ? int.tryParse(json['views_count'].toString())
             : null,
@@ -147,6 +151,7 @@ class Media {
         likesCount: data['likesCount'],
         previewDuration: data['previewDuration'],
         streamUrl: data['streamUrl'],
+        worshipStreamUrl: data['worshipStreamUrl'],
         viewsCount: data['viewsCount'],
         source: data['source'],
         extraSource: data['extraSource']);
@@ -171,6 +176,7 @@ class Media {
         "likesCount": likesCount,
         "previewDuration": previewDuration,
         "streamUrl": streamUrl,
+        "worshipStreamUrl": worshipStreamUrl,
         "viewsCount": viewsCount,
         "source": source,
         "extraSource": extraSource

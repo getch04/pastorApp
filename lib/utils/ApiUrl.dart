@@ -13,7 +13,6 @@ class ApiUrl {
   static const String DONATION = BASEURL + "api/saveDonation";
   // static const String TOOLCATEGORIES = BASEURL + "api/toolCategories";
 
-
   //DO NOT EDIT THE LINES BELOW, ELSE THE APPLICATION WILL MISBEHAVE
   static const String GET_BIBLE = BASEURL + "getBibleVersions";
   static const String DONATE = BASEURL + "donate";

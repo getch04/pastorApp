@@ -321,8 +321,11 @@
 "no_verse_content": "Nenhum conteúdo de versículo da Bíblia disponível para exibição.",
 "no_audio_content": "Nenhum conteúdo de áudio da Bíblia disponível para exibição.",
 "WorshipAudio": "Áudio de Adoração",
-"SermonAudio": "Áudio do Sermão"
+"SermonAudio": "Áudio do Sermão",
 
-
+"downloadallsermons": "Baixar todos os sermões",
+"nosermons": "Nenhum sermão disponível para download",
+"sermonsdownloaded": "Todos os sermões disponíveis baixados com sucesso",
+"sermonsdownloaderror": "Erro ao baixar sermões"
 
 }

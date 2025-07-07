@@ -318,7 +318,10 @@
     "no_verse_content": "No hay contenido de versículos bíblicos disponible para mostrar.",
     "no_audio_content": "No hay contenido de audio de la Biblia disponible para mostrar.",
     "WorshipAudio": "Audio de adoración",
-    "SermonAudio": "Audio del sermón"
+    "SermonAudio": "Audio del sermón",
 
-
+  "downloadallsermons": "Descargar todos los sermones",
+  "nosermons": "No hay sermones disponibles para descargar",
+  "sermonsdownloaded": "Todos los sermones disponibles descargados exitosamente",
+  "sermonsdownloaderror": "Error al descargar sermones"
 }

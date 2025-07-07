@@ -316,13 +316,17 @@
     "biblesFilesets": "बाइबल: {bibles}, फाइलसेट्स: {filesets}",
 
       "oldTestament": "पुराना नियम",
-      "newTestament": "नया नियम"
+      "newTestament": "नया नियम",
 
-,"play": "चलाएं",
+"play": "चलाएं",
 "no_verse_content": "प्रदर्शित करने के लिए कोई बाइबिल पद्य सामग्री उपलब्ध नहीं है।",
 "no_audio_content": "प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।",
 "WorshipAudio": "आराधना ऑडियो",
-"SermonAudio": "प्रवचन ऑडियो"
+"SermonAudio": "प्रवचन ऑडियो",
 
+"downloadallsermons": "सभी उपदेश डाउनलोड करें",
+"nosermons": "डाउनलोड करने के लिए कोई उपदेश उपलब्ध नहीं है",
+"sermonsdownloaded": "सभी उपलब्ध उपदेश सफलतापूर्वक डाउनलोड किए गए",
+"sermonsdownloaderror": "उपदेश डाउनलोड करने में त्रुटि"
 
 }

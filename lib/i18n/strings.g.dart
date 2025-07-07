@@ -3,9 +3,9 @@
  * Generated file. Do not edit.
  *
  * Locales: 15
- * Strings: 4500 (300.0 per locale)
+ * Strings: 4560 (304.0 per locale)
  *
- * Built on 2025-07-03 at 20:26 UTC
+ * Built on 2025-07-07 at 12:12 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -572,7 +572,7 @@ class _StringsEn {
 	String get copiedtoclipboard => 'Copied to clipboard';
 	String get downloadbible => 'Download Bible';
 	String get downloadversion => 'Download';
-	String get downloading => 'Downloading';
+	String get downloading => 'Downloading...';
 	String get failedtodownload => 'Failed to download';
 	String get pleaseclicktoretry => 'Please click to retry.';
 	String get of => 'Of';
@@ -705,6 +705,10 @@ class _StringsEn {
 	String get no_audio_content => 'No Bible Audio content available to display.';
 	String get WorshipAudio => 'Worship Audio';
 	String get SermonAudio => 'Sermon Audio';
+	String get downloadallsermons => 'Download All Sermons';
+	String get nosermons => 'No sermons available to download';
+	String get sermonsdownloaded => 'All available sermons downloaded successfully';
+	String get sermonsdownloaderror => 'Error downloading sermons';
 }
 
 // Path: <root>
@@ -1029,6 +1033,10 @@ class _StringsBn implements _StringsEn {
 	@override String get no_audio_content => 'প্রদর্শনের জন্য কোনও বাইবেলের অডিও সামগ্রী নেই।';
 	@override String get WorshipAudio => 'পূজা অডিও';
 	@override String get SermonAudio => 'উপদেশ অডিও';
+	@override String get downloadallsermons => 'সমস্ত উপদেশ ডাউনলোড করুন';
+	@override String get nosermons => 'ডাউনলোড করার জন্য কোন উপদেশ উপলব্ধ নেই';
+	@override String get sermonsdownloaded => 'সমস্ত উপলব্ধ উপদেশ সফলভাবে ডাউনলোড করা হয়েছে';
+	@override String get sermonsdownloaderror => 'উপদেশ ডাউনলোড করতে ত্রুটি';
 }
 
 // Path: <root>
@@ -1353,6 +1361,10 @@ class _StringsDz implements _StringsEn {
 	@override String get no_audio_content => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
 	@override String get WorshipAudio => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
 	@override String get SermonAudio => 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།';
+	@override String get downloadallsermons => 'གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱེད་པ།';
+	@override String get nosermons => 'ཕབ་ལེན་བྱེད་པའི་གསུང་བཤད་མེད།';
+	@override String get sermonsdownloaded => 'གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱས་ཟིན།';
+	@override String get sermonsdownloaderror => 'གསུང་བཤད་ཕབ་ལེན་བྱེད་པའི་སྐབས་ནོར་འཁྲུལ་བྱུང་།';
 }
 
 // Path: <root>
@@ -1677,6 +1689,10 @@ class _StringsEs implements _StringsEn {
 	@override String get no_audio_content => 'No hay contenido de audio de la Biblia disponible para mostrar.';
 	@override String get WorshipAudio => 'Audio de adoración';
 	@override String get SermonAudio => 'Audio del sermón';
+	@override String get downloadallsermons => 'Descargar todos los sermones';
+	@override String get nosermons => 'No hay sermones disponibles para descargar';
+	@override String get sermonsdownloaded => 'Todos los sermones disponibles descargados exitosamente';
+	@override String get sermonsdownloaderror => 'Error al descargar sermones';
 }
 
 // Path: <root>
@@ -2001,6 +2017,10 @@ class _StringsHi implements _StringsEn {
 	@override String get no_audio_content => 'प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।';
 	@override String get WorshipAudio => 'आराधना ऑडियो';
 	@override String get SermonAudio => 'प्रवचन ऑडियो';
+	@override String get downloadallsermons => 'सभी उपदेश डाउनलोड करें';
+	@override String get nosermons => 'डाउनलोड करने के लिए कोई उपदेश उपलब्ध नहीं है';
+	@override String get sermonsdownloaded => 'सभी उपलब्ध उपदेश सफलतापूर्वक डाउनलोड किए गए';
+	@override String get sermonsdownloaderror => 'उपदेश डाउनलोड करने में त्रुटि';
 }
 
 // Path: <root>
@@ -2325,6 +2345,10 @@ class _StringsId implements _StringsEn {
 	@override String get no_audio_content => 'Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.';
 	@override String get WorshipAudio => 'Audio Penyembahan';
 	@override String get SermonAudio => 'Audio Khotbah';
+	@override String get downloadallsermons => 'Unduh Semua Khotbah';
+	@override String get nosermons => 'Tidak ada khotbah yang tersedia untuk diunduh';
+	@override String get sermonsdownloaded => 'Semua khotbah yang tersedia berhasil diunduh';
+	@override String get sermonsdownloaderror => 'Kesalahan mengunduh khotbah';
 }
 
 // Path: <root>
@@ -2649,6 +2673,10 @@ class _StringsKn implements _StringsEn {
 	@override String get no_audio_content => 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಆಡಿಯೋ ವಿಷಯವಿಲ್ಲ.';
 	@override String get WorshipAudio => 'ಆಡಿಯೋ ಪೂಜೆ';
 	@override String get SermonAudio => 'ಆಡಿಯೋ ಉಪದೇಶ';
+	@override String get downloadallsermons => 'ಎಲ್ಲಾ ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ';
+	@override String get nosermons => 'ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಯಾವುದೇ ಪ್ರವಚನಗಳು ಲಭ್ಯವಿಲ್ಲ';
+	@override String get sermonsdownloaded => 'ಲಭ್ಯವಿರುವ ಎಲ್ಲಾ ಪ್ರವಚನಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ';
+	@override String get sermonsdownloaderror => 'ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ';
 }
 
 // Path: <root>
@@ -2973,6 +3001,10 @@ class _StringsMr implements _StringsEn {
 	@override String get no_audio_content => 'प्रदर्शित करण्यासाठी कोणतीही बायबल ऑडिओ सामग्री उपलब्ध नाही.';
 	@override String get WorshipAudio => 'पूजा ऑडिओ';
 	@override String get SermonAudio => 'उपदेश ऑडिओ';
+	@override String get downloadallsermons => 'सर्व प्रवचने डाउनलोड करा';
+	@override String get nosermons => 'डाउनलोड करण्यासाठी कोणतीही प्रवचने उपलब्ध नाहीत';
+	@override String get sermonsdownloaded => 'सर्व उपलब्ध प्रवचने यशस्वीरित्या डाउनलोड केली';
+	@override String get sermonsdownloaderror => 'प्रवचने डाउनलोड करताना त्रुटी';
 }
 
 // Path: <root>
@@ -3297,6 +3329,10 @@ class _StringsNe implements _StringsEn {
 	@override String get no_audio_content => 'प्रदर्शन गर्न कुनै बाइबल अडियो सामग्री उपलब्ध छैन।';
 	@override String get WorshipAudio => 'आराधना अडियो';
 	@override String get SermonAudio => 'प्रवचन अडियो';
+	@override String get downloadallsermons => 'सबै प्रवचनहरू डाउनलोड गर्नुहोस्';
+	@override String get nosermons => 'डाउनलोड गर्न कुनै प्रवचनहरू उपलब्ध छैनन्';
+	@override String get sermonsdownloaded => 'सबै उपलब्ध प्रवचनहरू सफलतापूर्वक डाउनलोड गरियो';
+	@override String get sermonsdownloaderror => 'प्रवचनहरू डाउनलोड गर्दा त्रुटि';
 }
 
 // Path: <root>
@@ -3372,7 +3408,7 @@ class _StringsOr implements _StringsEn {
 	@override String get skiplogin => 'ଲଗଇନ୍ ଛାଡ଼ନ୍ତୁ';
 	@override String get skipregister => 'ପଞ୍ଜୀକରଣ ଛାଡ଼ନ୍ତୁ';
 	@override String get dataloaderror => 'ବର୍ତ୍ତମାନ ଅନୁରୋଧ କରାଯାଇଥିବା ତଥ୍ୟ ଲୋଡ୍ କରିପାରିବା ନାହିଁ, ଆପଣଙ୍କର ତଥ୍ୟ ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁନଃ ପ୍ରୟାସ କରିବାକୁ କ୍ଲିକ୍ କରନ୍ତୁ।';
-	@override String get suggestedforyou => 'ଆପଣଙ୍କ ପାଇଁ ସୁପାରିସ୍ କରାଯାଇଛି';
+	@override String get suggestedforyou => 'ଆପଣଙ୍କ ପାଇଁ ସୁପାରିସ୍ କରାଯାଇଥିବା ବ୍ୟବହାରକାରୀମାନେ';
 	@override String get videomessages => 'ଭିଡିଓ ସନ୍ଦେଶଗୁଡ଼ିକ';
 	@override String get audiomessages => 'ଅଡିଓ ସନ୍ଦେଶଗୁଡ଼ିକ';
 	@override String get devotionals => 'ଭକ୍ତିଗୀତଗୁଡ଼ିକ';
@@ -3621,6 +3657,10 @@ class _StringsOr implements _StringsEn {
 	@override String get no_audio_content => 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।';
 	@override String get WorshipAudio => 'ପୂଜା ଅଡିଓ';
 	@override String get SermonAudio => 'ପ୍ରବଚନ ଅଡିଓ';
+	@override String get downloadallsermons => 'ସମସ୍ତ ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରନ୍ତୁ';
+	@override String get nosermons => 'ଡାଉନଲୋଡ୍ କରିବାକୁ କୌଣସି ପ୍ରବଚନ ଉପଲବ୍ଧ ନାହିଁ';
+	@override String get sermonsdownloaded => 'ସମସ୍ତ ଉପଲବ୍ଧ ପ୍ରବଚନ ସଫଳତାର ସହ ଡାଉନଲୋଡ୍ ହୋଇଛି';
+	@override String get sermonsdownloaderror => 'ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରିବାରେ ତ୍ରୁଟି';
 }
 
 // Path: <root>
@@ -3725,7 +3765,7 @@ class _StringsPa implements _StringsEn {
 	@override String get addplaylist => 'ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ';
 	@override String get bookmark => 'ਬੁਕਮਾਰਕ';
 	@override String get unbookmark => 'ਬੁਕਮਾਰਕ ਹਟਾਓ';
-	@override String get share => 'ਸਾਂਝਾ ਕਰੋ';
+	@override String get share => 'ਸਾਂਝੇ ਕਰੋ';
 	@override String get deletemedia => 'ਫਾਇਲ ਮਿਟਾਓ';
 	@override String get deletemediahint => 'ਕੀ ਤੁਸੀਂ ਇਸ ਡਾਊਨਲੋਡ ਕੀਤੀ ਗਈ ਫਾਇਲ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਕਿਰਿਆ ਦੁਬਾਰਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।';
 	@override String get searchhint => 'ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਸੰਦੇਸ਼ਾਂ ਦੀ ਭਾਲ ਕਰੋ';
@@ -3788,7 +3828,7 @@ class _StringsPa implements _StringsEn {
 	@override String get rate => 'ਐਪ ਰੇਟ ਕਰੋ';
 	@override String get version => 'ਵਰਜਨ';
 	@override String get pulluploadmore => 'ਉਪਰ ਖਿੱਚੋ';
-	@override String get loadfailedretry => 'ਲੋਡ ਫੇਲ੍ਹ! ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ!';
+	@override String get loadfailedretry => 'ਲੋਡ ਫੇਲ੍ਹ! ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ!';
 	@override String get releaseloadmore => 'ਹੋਰ ਲੋਡ ਕਰਨ ਲਈ ਛੱਡੋ';
 	@override String get nomoredata => 'ਹੋਰ ਡਾਟਾ ਨਹੀਂ';
 	@override String get errorReportingComment => 'ਟਿੱਪਣੀ ਰਿਪੋਰਟ ਕਰਦੇ ਸਮੇਂ ਗਲਤੀ';
@@ -3854,7 +3894,7 @@ class _StringsPa implements _StringsEn {
 	@override String get changefontsize => 'ਫੌਂਟ ਸਾਈਜ਼ ਬਦਲੋ';
 	@override String get font => 'ਫੌਂਟ';
 	@override String get readchapter => 'ਅਧਿਆਇ ਪੜ੍ਹੋ';
-	@override String get showhighlightedverse => 'ਹਾਈਲਾਈਟ ਕੀਤੀ ਗਈ ਆਇਤ ਵਿਖਾਓ';
+	@override String get showhighlightedverse => 'ਹਾਈਲਾਈਟ ਕੀਤੀ ਗਿਆ ਆਇਤ ਵਿਖਾਓ';
 	@override String get downloadmoreversions => 'ਹੋਰ ਵਰਜਨ ਡਾਊਨਲੋਡ ਕਰੋ';
 	@override String get suggestedusers => 'ਸਿਫਾਰਸ਼ ਕੀਤੇ ਯੂਜ਼ਰ';
 	@override String get unfollow => 'ਅਨਫੌਲੋ ਕਰੋ';
@@ -3908,7 +3948,7 @@ class _StringsPa implements _StringsEn {
 	@override String get deleteposthint => 'ਕੀ ਤੁਸੀਂ ਇਸ ਪੋਸਟ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਪੋਸਟਾਂ ਅਜੇ ਵੀ ਕੁਝ ਯੂਜ਼ਰਾਂ ਦੇ ਫੀਡ ਵਿੱਚ ਦਰਸਾਈਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।';
 	@override String get maximumallowedsizehint => 'ਅਨੁਮਤ ਅਪਲੋਡ ਫਾਈਲ ਆਕਾਰ ਸੀਮਾ ਪਹੁੰਚ ਗਈ ਹੈ';
 	@override String get maximumuploadsizehint => 'ਚੁਣੀ ਗਈ ਫਾਈਲ ਅਨੁਮਤ ਅਪਲੋਡ ਫਾਈਲ ਆਕਾਰ ਸੀਮਾ ਨੂੰ ਪਾਰ ਕਰਦੀ ਹੈ।';
-	@override String get makeposterror => 'ਇਸ ਸਮੇਂ ਪੋਸਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿਕ ਕਰੋ।';
+	@override String get makeposterror => 'ਇਸ ਸਮੇਂ ਪੋਸਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ।';
 	@override String get makepost => 'ਪੋਸਟ ਕਰੋ';
 	@override String get selectfile => 'ਫਾਈਲ ਚੁਣੋ';
 	@override String get images => 'ਤਸਵੀਰਾਂ';
@@ -3945,6 +3985,10 @@ class _StringsPa implements _StringsEn {
 	@override String get no_audio_content => 'ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।';
 	@override String get WorshipAudio => 'ਪੂਜਾ ਆਡੀਓ';
 	@override String get SermonAudio => 'ਉਪਦੇਸ਼ ਆਡੀਓ';
+	@override String get downloadallsermons => 'ਸਾਰੇ ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰੋ';
+	@override String get nosermons => 'ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਕੋਈ ਉਪਦੇਸ਼ ਉਪਲਬਧ ਨਹੀਂ ਹਨ';
+	@override String get sermonsdownloaded => 'ਸਾਰੇ ਉਪਲਬਧ ਉਪਦੇਸ਼ ਸਫਲਤਾਪੂਰਵਕ ਡਾਊਨਲੋਡ ਕੀਤੇ ਗਏ';
+	@override String get sermonsdownloaderror => 'ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ';
 }
 
 // Path: <root>
@@ -4269,6 +4313,10 @@ class _StringsPt implements _StringsEn {
 	@override String get no_audio_content => 'Nenhum conteúdo de áudio da Bíblia disponível para exibição.';
 	@override String get WorshipAudio => 'Áudio de Adoração';
 	@override String get SermonAudio => 'Áudio do Sermão';
+	@override String get downloadallsermons => 'Baixar todos os sermões';
+	@override String get nosermons => 'Nenhum sermão disponível para download';
+	@override String get sermonsdownloaded => 'Todos os sermões disponíveis baixados com sucesso';
+	@override String get sermonsdownloaderror => 'Erro ao baixar sermões';
 }
 
 // Path: <root>
@@ -4593,6 +4641,10 @@ class _StringsTa implements _StringsEn {
 	@override String get no_audio_content => 'காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை.';
 	@override String get WorshipAudio => 'ஆடியோ வரிகள்';
 	@override String get SermonAudio => 'ஆடியோ செர்மன்கள்';
+	@override String get downloadallsermons => 'அனைத்து பிரசங்கங்களையும் பதிவிறக்கவும்';
+	@override String get nosermons => 'பதிவிறக்க பிரசங்கங்கள் எதுவும் இல்லை';
+	@override String get sermonsdownloaded => 'கிடைக்கக்கூடிய அனைத்து பிரசங்கங்களும் வெற்றிகரமாக பதிவிறக்கப்பட்டன';
+	@override String get sermonsdownloaderror => 'பிரசங்கங்களை பதிவிறக்குவதில் பிழை';
 }
 
 // Path: <root>
@@ -4692,7 +4744,7 @@ class _StringsTe implements _StringsEn {
 	@override String get sharefiletitle => 'చూడండి లేదా వినండి ';
 	@override String get sharefilebody => 'MyVirtualPastor యాప్ ద్వారా, ఇప్పుడు డౌన్లోడ్ చేయండి ';
 	@override String get sharetext => 'అనంతమైన ఆడియో & వీడియో స్ట్రీమింగ్‌ను ఆనందించండి';
-	@override String get sharetexthint => 'ప్రపంచవ్యాప్తంగా ఉన్న లక్షల సంఖ్యలో ఫైళ్లను చూడటానికి మరియు వినడానికి మీకు అనుమతించే వీడియో మరియు ఆడియో స్ట్రీమింగ్ ప్లాట్‌ఫారమ్‌లో చేరండి. ఇప్పుడు డౌన్లోడ్ చేయండి ';
+	@override String get sharetexthint => 'ప్రపంచవ్యాప్తంగా ఉన్న లక్షల సంఖ్యలో ఫైళ్లను చూడటానికి మరియు వినడానికి మీకు అనుమతించే వీడియు మరియు ఆడియో స్ట్రీమింగ్ ప్లాట్‌ఫారమ్‌లో చేరండి. ఇప్పుడు డౌన్లోడ్ చేయండి ';
 	@override String get download => 'డౌన్లోడ్ చేయండి';
 	@override String get addplaylist => 'ప్లేలిస్ట్‌లో జోడించండి';
 	@override String get bookmark => 'బుక్‌మార్క్';
@@ -4917,6 +4969,10 @@ class _StringsTe implements _StringsEn {
 	@override String get no_audio_content => 'ప్రదర్శించడానికి బైబిల్ ఆడియో కంటెంట్ అందుబాటులో లేదు.';
 	@override String get WorshipAudio => 'ఆడియో పూజ';
 	@override String get SermonAudio => 'ఆడియో ప్రవచనం';
+	@override String get downloadallsermons => 'అన్ని ప్రసంగాలను డౌన్‌లోడ్ చేయండి';
+	@override String get nosermons => 'డౌన్‌లోడ్ చేయడానికి ప్రసంగాలు అందుబాటులో లేవు';
+	@override String get sermonsdownloaded => 'అందుబాటులో ఉన్న అన్ని ప్రసంగాలు విజయవంతంగా డౌన్‌లోడ్ చేయబడ్డాయి';
+	@override String get sermonsdownloaderror => 'ప్రసంగాలను డౌన్‌లోడ్ చేయడంలో లోపం';
 }
 
 // Path: <root>
@@ -5241,6 +5297,10 @@ class _StringsUr implements _StringsEn {
 	@override String get no_audio_content => 'دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔';
 	@override String get WorshipAudio => 'عبادت آڈیو';
 	@override String get SermonAudio => 'خطبات آڈیو';
+	@override String get downloadallsermons => 'تمام خطبات ڈاؤن لوڈ کریں';
+	@override String get nosermons => 'ڈاؤن لوڈ کرنے کے لیے کوئی خطبات دستیاب نہیں ہیں';
+	@override String get sermonsdownloaded => 'تمام دستیاب خطبات کامیابی سے ڈاؤن لوڈ ہو گئے';
+	@override String get sermonsdownloaderror => 'خطبات ڈاؤن لوڈ کرنے میں خرابی';
 }
 
 /// Flat map(s) containing all translations.
@@ -5416,7 +5476,7 @@ extension on _StringsEn {
 			'copiedtoclipboard': 'Copied to clipboard',
 			'downloadbible': 'Download Bible',
 			'downloadversion': 'Download',
-			'downloading': 'Downloading',
+			'downloading': 'Downloading...',
 			'failedtodownload': 'Failed to download',
 			'pleaseclicktoretry': 'Please click to retry.',
 			'of': 'Of',
@@ -5549,6 +5609,10 @@ extension on _StringsEn {
 			'no_audio_content': 'No Bible Audio content available to display.',
 			'WorshipAudio': 'Worship Audio',
 			'SermonAudio': 'Sermon Audio',
+			'downloadallsermons': 'Download All Sermons',
+			'nosermons': 'No sermons available to download',
+			'sermonsdownloaded': 'All available sermons downloaded successfully',
+			'sermonsdownloaderror': 'Error downloading sermons',
 		};
 	}
 }
@@ -5856,6 +5920,10 @@ extension on _StringsBn {
 			'no_audio_content': 'প্রদর্শনের জন্য কোনও বাইবেলের অডিও সামগ্রী নেই।',
 			'WorshipAudio': 'পূজা অডিও',
 			'SermonAudio': 'উপদেশ অডিও',
+			'downloadallsermons': 'সমস্ত উপদেশ ডাউনলোড করুন',
+			'nosermons': 'ডাউনলোড করার জন্য কোন উপদেশ উপলব্ধ নেই',
+			'sermonsdownloaded': 'সমস্ত উপলব্ধ উপদেশ সফলভাবে ডাউনলোড করা হয়েছে',
+			'sermonsdownloaderror': 'উপদেশ ডাউনলোড করতে ত্রুটি',
 		};
 	}
 }
@@ -6163,6 +6231,10 @@ extension on _StringsDz {
 			'no_audio_content': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
 			'WorshipAudio': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
 			'SermonAudio': 'གསལ་སྟོན་གྱི་དོན་ལུ་དངོས་གྲངས་མེད།',
+			'downloadallsermons': 'གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱེད་པ།',
+			'nosermons': 'ཕབ་ལེན་བྱེད་པའི་གསུང་བཤད་མེད།',
+			'sermonsdownloaded': 'གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱས་ཟིན།',
+			'sermonsdownloaderror': 'གསུང་བཤད་ཕབ་ལེན་བྱེད་པའི་སྐབས་ནོར་འཁྲུལ་བྱུང་།',
 		};
 	}
 }
@@ -6470,6 +6542,10 @@ extension on _StringsEs {
 			'no_audio_content': 'No hay contenido de audio de la Biblia disponible para mostrar.',
 			'WorshipAudio': 'Audio de adoración',
 			'SermonAudio': 'Audio del sermón',
+			'downloadallsermons': 'Descargar todos los sermones',
+			'nosermons': 'No hay sermones disponibles para descargar',
+			'sermonsdownloaded': 'Todos los sermones disponibles descargados exitosamente',
+			'sermonsdownloaderror': 'Error al descargar sermones',
 		};
 	}
 }
@@ -6777,6 +6853,10 @@ extension on _StringsHi {
 			'no_audio_content': 'प्रदर्शित करने के लिए कोई बाइबिल ऑडियो सामग्री उपलब्ध नहीं है।',
 			'WorshipAudio': 'आराधना ऑडियो',
 			'SermonAudio': 'प्रवचन ऑडियो',
+			'downloadallsermons': 'सभी उपदेश डाउनलोड करें',
+			'nosermons': 'डाउनलोड करने के लिए कोई उपदेश उपलब्ध नहीं है',
+			'sermonsdownloaded': 'सभी उपलब्ध उपदेश सफलतापूर्वक डाउनलोड किए गए',
+			'sermonsdownloaderror': 'उपदेश डाउनलोड करने में त्रुटि',
 		};
 	}
 }
@@ -7084,6 +7164,10 @@ extension on _StringsId {
 			'no_audio_content': 'Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.',
 			'WorshipAudio': 'Audio Penyembahan',
 			'SermonAudio': 'Audio Khotbah',
+			'downloadallsermons': 'Unduh Semua Khotbah',
+			'nosermons': 'Tidak ada khotbah yang tersedia untuk diunduh',
+			'sermonsdownloaded': 'Semua khotbah yang tersedia berhasil diunduh',
+			'sermonsdownloaderror': 'Kesalahan mengunduh khotbah',
 		};
 	}
 }
@@ -7391,6 +7475,10 @@ extension on _StringsKn {
 			'no_audio_content': 'ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಬೈಬಲ್ ಆಡಿಯೋ ವಿಷಯವಿಲ್ಲ.',
 			'WorshipAudio': 'ಆಡಿಯೋ ಪೂಜೆ',
 			'SermonAudio': 'ಆಡಿಯೋ ಉಪದೇಶ',
+			'downloadallsermons': 'ಎಲ್ಲಾ ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ',
+			'nosermons': 'ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಯಾವುದೇ ಪ್ರವಚನಗಳು ಲಭ್ಯವಿಲ್ಲ',
+			'sermonsdownloaded': 'ಲಭ್ಯವಿರುವ ಎಲ್ಲಾ ಪ್ರವಚನಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ',
+			'sermonsdownloaderror': 'ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ',
 		};
 	}
 }
@@ -7698,6 +7786,10 @@ extension on _StringsMr {
 			'no_audio_content': 'प्रदर्शित करण्यासाठी कोणतीही बायबल ऑडिओ सामग्री उपलब्ध नाही.',
 			'WorshipAudio': 'पूजा ऑडिओ',
 			'SermonAudio': 'उपदेश ऑडिओ',
+			'downloadallsermons': 'सर्व प्रवचने डाउनलोड करा',
+			'nosermons': 'डाउनलोड करण्यासाठी कोणतीही प्रवचने उपलब्ध नाहीत',
+			'sermonsdownloaded': 'सर्व उपलब्ध प्रवचने यशस्वीरित्या डाउनलोड केली',
+			'sermonsdownloaderror': 'प्रवचने डाउनलोड करताना त्रुटी',
 		};
 	}
 }
@@ -8005,6 +8097,10 @@ extension on _StringsNe {
 			'no_audio_content': 'प्रदर्शन गर्न कुनै बाइबल अडियो सामग्री उपलब्ध छैन।',
 			'WorshipAudio': 'आराधना अडियो',
 			'SermonAudio': 'प्रवचन अडियो',
+			'downloadallsermons': 'सबै प्रवचनहरू डाउनलोड गर्नुहोस्',
+			'nosermons': 'डाउनलोड गर्न कुनै प्रवचनहरू उपलब्ध छैनन्',
+			'sermonsdownloaded': 'सबै उपलब्ध प्रवचनहरू सफलतापूर्वक डाउनलोड गरियो',
+			'sermonsdownloaderror': 'प्रवचनहरू डाउनलोड गर्दा त्रुटि',
 		};
 	}
 }
@@ -8065,7 +8161,7 @@ extension on _StringsOr {
 			'skiplogin': 'ଲଗଇନ୍ ଛାଡ଼ନ୍ତୁ',
 			'skipregister': 'ପଞ୍ଜୀକରଣ ଛାଡ଼ନ୍ତୁ',
 			'dataloaderror': 'ବର୍ତ୍ତମାନ ଅନୁରୋଧ କରାଯାଇଥିବା ତଥ୍ୟ ଲୋଡ୍ କରିପାରିବା ନାହିଁ, ଆପଣଙ୍କର ତଥ୍ୟ ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁନଃ ପ୍ରୟାସ କରିବାକୁ କ୍ଲିକ୍ କରନ୍ତୁ।',
-			'suggestedforyou': 'ଆପଣଙ୍କ ପାଇଁ ସୁପାରିସ୍ କରାଯାଇଛି',
+			'suggestedforyou': 'ଆପଣଙ୍କ ପାଇଁ ସୁପାରିସ୍ କରାଯାଇଥିବା ବ୍ୟବହାରକାରୀମାନେ',
 			'videomessages': 'ଭିଡିଓ ସନ୍ଦେଶଗୁଡ଼ିକ',
 			'audiomessages': 'ଅଡିଓ ସନ୍ଦେଶଗୁଡ଼ିକ',
 			'devotionals': 'ଭକ୍ତିଗୀତଗୁଡ଼ିକ',
@@ -8312,6 +8408,10 @@ extension on _StringsOr {
 			'no_audio_content': 'ପ୍ରଦର୍ଶନ କରିବା ପାଇଁ କୌଣସି ବାଇବେଲ ଅଡିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ।',
 			'WorshipAudio': 'ପୂଜା ଅଡିଓ',
 			'SermonAudio': 'ପ୍ରବଚନ ଅଡିଓ',
+			'downloadallsermons': 'ସମସ୍ତ ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରନ୍ତୁ',
+			'nosermons': 'ଡାଉନଲୋଡ୍ କରିବାକୁ କୌଣସି ପ୍ରବଚନ ଉପଲବ୍ଧ ନାହିଁ',
+			'sermonsdownloaded': 'ସମସ୍ତ ଉପଲବ୍ଧ ପ୍ରବଚନ ସଫଳତାର ସହ ଡାଉନଲୋଡ୍ ହୋଇଛି',
+			'sermonsdownloaderror': 'ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରିବାରେ ତ୍ରୁଟି',
 		};
 	}
 }
@@ -8401,7 +8501,7 @@ extension on _StringsPa {
 			'addplaylist': 'ਪਲੇਲਿਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ',
 			'bookmark': 'ਬੁਕਮਾਰਕ',
 			'unbookmark': 'ਬੁਕਮਾਰਕ ਹਟਾਓ',
-			'share': 'ਸਾਂਝਾ ਕਰੋ',
+			'share': 'ਸਾਂਝੇ ਕਰੋ',
 			'deletemedia': 'ਫਾਇਲ ਮਿਟਾਓ',
 			'deletemediahint': 'ਕੀ ਤੁਸੀਂ ਇਸ ਡਾਊਨਲੋਡ ਕੀਤੀ ਗਈ ਫਾਇਲ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਹ ਕਿਰਿਆ ਦੁਬਾਰਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ।',
 			'searchhint': 'ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਸੰਦੇਸ਼ਾਂ ਦੀ ਭਾਲ ਕਰੋ',
@@ -8464,7 +8564,7 @@ extension on _StringsPa {
 			'rate': 'ਐਪ ਰੇਟ ਕਰੋ',
 			'version': 'ਵਰਜਨ',
 			'pulluploadmore': 'ਉਪਰ ਖਿੱਚੋ',
-			'loadfailedretry': 'ਲੋਡ ਫੇਲ੍ਹ! ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ!',
+			'loadfailedretry': 'ਲੋਡ ਫੇਲ੍ਹ! ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ!',
 			'releaseloadmore': 'ਹੋਰ ਲੋਡ ਕਰਨ ਲਈ ਛੱਡੋ',
 			'nomoredata': 'ਹੋਰ ਡਾਟਾ ਨਹੀਂ',
 			'errorReportingComment': 'ਟਿੱਪਣੀ ਰਿਪੋਰਟ ਕਰਦੇ ਸਮੇਂ ਗਲਤੀ',
@@ -8528,7 +8628,7 @@ extension on _StringsPa {
 			'changefontsize': 'ਫੌਂਟ ਸਾਈਜ਼ ਬਦਲੋ',
 			'font': 'ਫੌਂਟ',
 			'readchapter': 'ਅਧਿਆਇ ਪੜ੍ਹੋ',
-			'showhighlightedverse': 'ਹਾਈਲਾਈਟ ਕੀਤੀ ਗਈ ਆਇਤ ਵਿਖਾਓ',
+			'showhighlightedverse': 'ਹਾਈਲਾਈਟ ਕੀਤੀ ਗਿਆ ਆਇਤ ਵਿਖਾਓ',
 			'downloadmoreversions': 'ਹੋਰ ਵਰਜਨ ਡਾਊਨਲੋਡ ਕਰੋ',
 			'suggestedusers': 'ਸਿਫਾਰਸ਼ ਕੀਤੇ ਯੂਜ਼ਰ',
 			'unfollow': 'ਅਨਫੌਲੋ ਕਰੋ',
@@ -8582,7 +8682,7 @@ extension on _StringsPa {
 			'deleteposthint': 'ਕੀ ਤੁਸੀਂ ਇਸ ਪੋਸਟ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਪੋਸਟਾਂ ਅਜੇ ਵੀ ਕੁਝ ਯੂਜ਼ਰਾਂ ਦੇ ਫੀਡ ਵਿੱਚ ਦਰਸਾਈਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ।',
 			'maximumallowedsizehint': 'ਅਨੁਮਤ ਅਪਲੋਡ ਫਾਈਲ ਆਕਾਰ ਸੀਮਾ ਪਹੁੰਚ ਗਈ ਹੈ',
 			'maximumuploadsizehint': 'ਚੁਣੀ ਗਈ ਫਾਈਲ ਅਨੁਮਤ ਅਪਲੋਡ ਫਾਈਲ ਆਕਾਰ ਸੀਮਾ ਨੂੰ ਪਾਰ ਕਰਦੀ ਹੈ।',
-			'makeposterror': 'ਇਸ ਸਮੇਂ ਪੋਸਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿਕ ਕਰੋ।',
+			'makeposterror': 'ਇਸ ਸਮੇਂ ਪੋਸਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ, ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ।',
 			'makepost': 'ਪੋਸਟ ਕਰੋ',
 			'selectfile': 'ਫਾਈਲ ਚੁਣੋ',
 			'images': 'ਤਸਵੀਰਾਂ',
@@ -8619,6 +8719,10 @@ extension on _StringsPa {
 			'no_audio_content': 'ਸੁਣਨ ਲਈ ਕੋਈ ਬਾਈਬਲ ਆਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।',
 			'WorshipAudio': 'ਪੂਜਾ ਆਡੀਓ',
 			'SermonAudio': 'ਉਪਦੇਸ਼ ਆਡੀਓ',
+			'downloadallsermons': 'ਸਾਰੇ ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰੋ',
+			'nosermons': 'ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਕੋਈ ਉਪਦੇਸ਼ ਉਪਲਬਧ ਨਹੀਂ ਹਨ',
+			'sermonsdownloaded': 'ਸਾਰੇ ਉਪਲਬਧ ਉਪਦੇਸ਼ ਸਫਲਤਾਪੂਰਵਕ ਡਾਊਨਲੋਡ ਕੀਤੇ ਗਏ',
+			'sermonsdownloaderror': 'ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ',
 		};
 	}
 }
@@ -8926,6 +9030,10 @@ extension on _StringsPt {
 			'no_audio_content': 'Nenhum conteúdo de áudio da Bíblia disponível para exibição.',
 			'WorshipAudio': 'Áudio de Adoração',
 			'SermonAudio': 'Áudio do Sermão',
+			'downloadallsermons': 'Baixar todos os sermões',
+			'nosermons': 'Nenhum sermão disponível para download',
+			'sermonsdownloaded': 'Todos os sermões disponíveis baixados com sucesso',
+			'sermonsdownloaderror': 'Erro ao baixar sermões',
 		};
 	}
 }
@@ -9233,6 +9341,10 @@ extension on _StringsTa {
 			'no_audio_content': 'காட்ட Bible ஆடியோ உள்ளடக்கம் கிடைக்கவில்லை.',
 			'WorshipAudio': 'ஆடியோ வரிகள்',
 			'SermonAudio': 'ஆடியோ செர்மன்கள்',
+			'downloadallsermons': 'அனைத்து பிரசங்கங்களையும் பதிவிறக்கவும்',
+			'nosermons': 'பதிவிறக்க பிரசங்கங்கள் எதுவும் இல்லை',
+			'sermonsdownloaded': 'கிடைக்கக்கூடிய அனைத்து பிரசங்கங்களும் வெற்றிகரமாக பதிவிறக்கப்பட்டன',
+			'sermonsdownloaderror': 'பிரசங்கங்களை பதிவிறக்குவதில் பிழை',
 		};
 	}
 }
@@ -9317,7 +9429,7 @@ extension on _StringsTe {
 			'sharefiletitle': 'చూడండి లేదా వినండి ',
 			'sharefilebody': 'MyVirtualPastor యాప్ ద్వారా, ఇప్పుడు డౌన్లోడ్ చేయండి ',
 			'sharetext': 'అనంతమైన ఆడియో & వీడియో స్ట్రీమింగ్‌ను ఆనందించండి',
-			'sharetexthint': 'ప్రపంచవ్యాప్తంగా ఉన్న లక్షల సంఖ్యలో ఫైళ్లను చూడటానికి మరియు వినడానికి మీకు అనుమతించే వీడియో మరియు ఆడియో స్ట్రీమింగ్ ప్లాట్‌ఫారమ్‌లో చేరండి. ఇప్పుడు డౌన్లోడ్ చేయండి ',
+			'sharetexthint': 'ప్రపంచవ్యాప్తంగా ఉన్న లక్షల సంఖ్యలో ఫైళ్లను చూడటానికి మరియు వినడానికి మీకు అనుమతించే వీడియు మరియు ఆడియో స్ట్రీమింగ్ ప్లాట్‌ఫారమ్‌లో చేరండి. ఇప్పుడు డౌన్లోడ్ చేయండి ',
 			'download': 'డౌన్లోడ్ చేయండి',
 			'addplaylist': 'ప్లేలిస్ట్‌లో జోడించండి',
 			'bookmark': 'బుక్‌మార్క్',
@@ -9540,6 +9652,10 @@ extension on _StringsTe {
 			'no_audio_content': 'ప్రదర్శించడానికి బైబిల్ ఆడియో కంటెంట్ అందుబాటులో లేదు.',
 			'WorshipAudio': 'ఆడియో పూజ',
 			'SermonAudio': 'ఆడియో ప్రవచనం',
+			'downloadallsermons': 'అన్ని ప్రసంగాలను డౌన్‌లోడ్ చేయండి',
+			'nosermons': 'డౌన్‌లోడ్ చేయడానికి ప్రసంగాలు అందుబాటులో లేవు',
+			'sermonsdownloaded': 'అందుబాటులో ఉన్న అన్ని ప్రసంగాలు విజయవంతంగా డౌన్‌లోడ్ చేయబడ్డాయి',
+			'sermonsdownloaderror': 'ప్రసంగాలను డౌన్‌లోడ్ చేయడంలో లోపం',
 		};
 	}
 }
@@ -9847,6 +9963,10 @@ extension on _StringsUr {
 			'no_audio_content': 'دکھانے کے لئے کوئی بائبل کی آڈیو مواد دستیاب نہیں ہے۔',
 			'WorshipAudio': 'عبادت آڈیو',
 			'SermonAudio': 'خطبات آڈیو',
+			'downloadallsermons': 'تمام خطبات ڈاؤن لوڈ کریں',
+			'nosermons': 'ڈاؤن لوڈ کرنے کے لیے کوئی خطبات دستیاب نہیں ہیں',
+			'sermonsdownloaded': 'تمام دستیاب خطبات کامیابی سے ڈاؤن لوڈ ہو گئے',
+			'sermonsdownloaderror': 'خطبات ڈاؤن لوڈ کرنے میں خرابی',
 		};
 	}
 }

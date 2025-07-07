@@ -182,7 +182,7 @@
 
   "downloadbible": "Download Bible",
   "downloadversion": "Download",
-  "downloading": "Downloading",
+  "downloading": "Downloading...",
   "failedtodownload": "Failed to download",
   "pleaseclicktoretry": "Please click to retry.",
   "of": "Of",
@@ -321,5 +321,108 @@
   "no_verse_content": "No Bible verse content available to display.",
   "no_audio_content": "No Bible Audio content available to display.",
   "WorshipAudio": "Worship Audio",
-  "SermonAudio": "Sermon Audio"
+  "SermonAudio": "Sermon Audio",
+
+  "downloadallsermons": "Download All Sermons",
+  "nosermons": "No sermons available to download",
+  "sermonsdownloaded": "All available sermons downloaded successfully",
+  "sermonsdownloaderror": "Error downloading sermons",
+
+  "@_ur": {
+    "downloadallsermons": "تمام خطبات ڈاؤن لوڈ کریں",
+    "nosermons": "ڈاؤن لوڈ کرنے کے لیے کوئی خطبات دستیاب نہیں ہیں",
+    "sermonsdownloaded": "تمام دستیاب خطبات کامیابی سے ڈاؤن لوڈ ہو گئے",
+    "sermonsdownloaderror": "خطبات ڈاؤن لوڈ کرنے میں خرابی"
+  },
+
+  "@_hi": {
+    "downloadallsermons": "सभी उपदेश डाउनलोड करें",
+    "nosermons": "डाउनलोड करने के लिए कोई उपदेश उपलब्ध नहीं है",
+    "sermonsdownloaded": "सभी उपलब्ध उपदेश सफलतापूर्वक डाउनलोड किए गए",
+    "sermonsdownloaderror": "उपदेश डाउनलोड करने में त्रुटि"
+  },
+
+  "@_bn": {
+    "downloadallsermons": "সমস্ত উপদেশ ডাউনলোড করুন",
+    "nosermons": "ডাউনলোড করার জন্য কোন উপদেশ উপলব্ধ নেই",
+    "sermonsdownloaded": "সমস্ত উপলব্ধ উপদেশ সফলভাবে ডাউনলোড করা হয়েছে",
+    "sermonsdownloaderror": "উপদেশ ডাউনলোড করতে ত্রুটি"
+  },
+
+  "@_es": {
+    "downloadallsermons": "Descargar todos los sermones",
+    "nosermons": "No hay sermones disponibles para descargar",
+    "sermonsdownloaded": "Todos los sermones disponibles descargados exitosamente",
+    "sermonsdownloaderror": "Error al descargar sermones"
+  },
+
+  "@_pt": {
+    "downloadallsermons": "Baixar todos os sermões",
+    "nosermons": "Nenhum sermão disponível para download",
+    "sermonsdownloaded": "Todos os sermões disponíveis baixados com sucesso",
+    "sermonsdownloaderror": "Erro ao baixar sermões"
+  },
+
+  "@_id": {
+    "downloadallsermons": "Unduh Semua Khotbah",
+    "nosermons": "Tidak ada khotbah yang tersedia untuk diunduh",
+    "sermonsdownloaded": "Semua khotbah yang tersedia berhasil diunduh",
+    "sermonsdownloaderror": "Kesalahan mengunduh khotbah"
+  },
+
+  "@_ta": {
+    "downloadallsermons": "அனைத்து பிரசங்கங்களையும் பதிவிறக்கவும்",
+    "nosermons": "பதிவிறக்க பிரசங்கங்கள் எதுவும் இல்லை",
+    "sermonsdownloaded": "கிடைக்கக்கூடிய அனைத்து பிரசங்கங்களும் வெற்றிகரமாக பதிவிறக்கப்பட்டன",
+    "sermonsdownloaderror": "பிரசங்கங்களை பதிவிறக்குவதில் பிழை"
+  },
+
+  "@_te": {
+    "downloadallsermons": "అన్ని ప్రసంగాలను డౌన్‌లోడ్ చేయండి",
+    "nosermons": "డౌన్‌లోడ్ చేయడానికి ప్రసంగాలు అందుబాటులో లేవు",
+    "sermonsdownloaded": "అందుబాటులో ఉన్న అన్ని ప్రసంగాలు విజయవంతంగా డౌన్‌లోడ్ చేయబడ్డాయి",
+    "sermonsdownloaderror": "ప్రసంగాలను డౌన్‌లోడ్ చేయడంలో లోపం"
+  },
+
+  "@_kn": {
+    "downloadallsermons": "ಎಲ್ಲಾ ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+    "nosermons": "ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಯಾವುದೇ ಪ್ರವಚನಗಳು ಲಭ್ಯವಿಲ್ಲ",
+    "sermonsdownloaded": "ಲಭ್ಯವಿರುವ ಎಲ್ಲಾ ಪ್ರವಚನಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ",
+    "sermonsdownloaderror": "ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ"
+  },
+
+  "@_mr": {
+    "downloadallsermons": "सर्व प्रवचने डाउनलोड करा",
+    "nosermons": "डाउनलोड करण्यासाठी कोणतीही प्रवचने उपलब्ध नाहीत",
+    "sermonsdownloaded": "सर्व उपलब्ध प्रवचने यशस्वीरित्या डाउनलोड केली",
+    "sermonsdownloaderror": "प्रवचने डाउनलोड करताना त्रुटी"
+  },
+
+  "@_ne": {
+    "downloadallsermons": "सबै प्रवचनहरू डाउनलोड गर्नुहोस्",
+    "nosermons": "डाउनलोड गर्न कुनै प्रवचनहरू उपलब्ध छैनन्",
+    "sermonsdownloaded": "सबै उपलब्ध प्रवचनहरू सफलतापूर्वक डाउनलोड गरियो",
+    "sermonsdownloaderror": "प्रवचनहरू डाउनलोड गर्दा त्रुटि"
+  },
+
+  "@_or": {
+    "downloadallsermons": "ସମସ୍ତ ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରନ୍ତୁ",
+    "nosermons": "ଡାଉନଲୋଡ୍ କରିବାକୁ କୌଣସି ପ୍ରବଚନ ଉପଲବ୍ଧ ନାହିଁ",
+    "sermonsdownloaded": "ସମସ୍ତ ଉପଲବ୍ଧ ପ୍ରବଚନ ସଫଳତାର ସହ ଡାଉନଲୋଡ୍ ହୋଇଛି",
+    "sermonsdownloaderror": "ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରିବାରେ ତ୍ରୁଟି"
+  },
+
+  "@_pa": {
+    "downloadallsermons": "ਸਾਰੇ ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰੋ",
+    "nosermons": "ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਕੋਈ ਉਪਦੇਸ਼ ਉਪਲਬਧ ਨਹੀਂ ਹਨ",
+    "sermonsdownloaded": "ਸਾਰੇ ਉਪਲਬਧ ਉਪਦੇਸ਼ ਸਫਲਤਾਪੂਰਵਕ ਡਾਊਨਲੋਡ ਕੀਤੇ ਗਏ",
+    "sermonsdownloaderror": "ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ"
+  },
+
+  "@_dz": {
+    "downloadallsermons": "གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱེད་པ།",
+    "nosermons": "ཕབ་ལེན་བྱེད་པའི་གསུང་བཤད་མེད།",
+    "sermonsdownloaded": "གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱས་ཟིན།",
+    "sermonsdownloaderror": "གསུང་བཤད་ཕབ་ལེན་བྱེད་པའི་སྐབས་ནོར་འཁྲུལ་བྱུང་།"
+  }
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
+import 'package:churchapp_flutter/models/Media.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller2.dart';
@@ -20,10 +21,12 @@ class SermonPlayerScreen extends StatefulWidget {
   SermonPlayerScreen({
     Key? key,
     required this.data,
+    this.localSermon,
   }) : super(key: key);
   static const routeName = "/SermonPlayerScreen";
 
   final (Categories selectedItem, List<Categories> items) data;
+  final Media? localSermon;
 
   @override
   _SermonPlayerScreenState createState() => _SermonPlayerScreenState();
@@ -51,7 +54,21 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
     _currentItem = widget.data.$1;
     _currentIndex =
         widget.data.$2.indexWhere((item) => item.id == _currentItem.id);
-    getCategoryAudio();
+
+    // If we have local data, use it immediately
+    if (widget.localSermon != null) {
+      print('📱 Using local sermon data');
+      setState(() {
+        title = widget.localSermon!.title;
+        sermonUrl = widget.localSermon!.streamUrl;
+        worshipUrl = widget.localSermon!.worshipStreamUrl;
+        description1 = widget.localSermon!.description;
+        isLoading = false;
+      });
+    } else {
+      print('🌐 No local data, fetching from API...');
+      getCategoryAudio();
+    }
   }
 
   @override
@@ -75,6 +92,7 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                   ?['value'] ??
               'en';
 
+      print('🌐 Fetching audio for category ${_currentItem.id}...');
       var response = await dio
           .get(ApiUrl.CATEGORY_AUDIO + '${_currentItem.id}?lang=$language');
       final res = jsonDecode(response.data);
@@ -94,7 +112,9 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
           this.title = title1;
           isLoading = false;
         });
+        print('✅ Successfully fetched audio data');
       } else {
+        print('⚠️ No audio data found in response');
         setState(() {
           sermonUrl = null;
           worshipUrl = null;
@@ -102,10 +122,10 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
         });
       }
     } catch (e) {
+      print('❌ Error fetching audio: $e');
       setState(() {
         isLoading = false;
       });
-      print(e);
     }
   }
 
@@ -157,7 +177,6 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
               child: AutoSizeText(
                 title != null ? title!.toUpperCase() : 'SERMON',
                 textAlign: TextAlign.center,
-                // maxLines: 3,
                 style: TextStyles.title(context).copyWith(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -173,35 +192,59 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                 ),
               ),
             ),
-            // Decorative divider
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      color: Colors.white.withOpacity(0.7),
-                      thickness: 2,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Icon(
-                      Icons.headphones_rounded,
-                      color: Colors.white,
-                      size: 24,
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      color: Colors.white.withOpacity(0.7),
-                      thickness: 2,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // // Connection Status
+            // if (!isLoading && widget.localSermon != null)
+            //   Padding(
+            //     padding: const EdgeInsets.symmetric(vertical: 4.0),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         Icon(
+            //           Icons.offline_pin_rounded,
+            //           color: Colors.green,
+            //           size: 16,
+            //         ),
+            //         SizedBox(width: 4),
+            //         Text(
+            //           'Playing offline',
+            //           style: TextStyle(
+            //             color: Colors.green,
+            //             fontSize: 12,
+            //             fontWeight: FontWeight.w500,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // // // Decorative divider
+            // Padding(
+            //   padding:
+            //       const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //         child: Divider(
+            //           color: Colors.white.withOpacity(0.7),
+            //           thickness: 2,
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            //         child: Icon(
+            //           Icons.headphones_rounded,
+            //           color: Colors.white,
+            //           size: 24,
+            //         ),
+            //       ),
+            //       Expanded(
+            //         child: Divider(
+            //           color: Colors.white.withOpacity(0.7),
+            //           thickness: 2,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
 
             // Content Area
             Expanded(

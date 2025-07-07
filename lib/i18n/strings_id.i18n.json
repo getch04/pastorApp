@@ -323,7 +323,11 @@
 "no_verse_content": "Tidak ada konten ayat Alkitab yang tersedia untuk ditampilkan.",
 "no_audio_content": "Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.",
 "WorshipAudio": "Audio Penyembahan",
-"SermonAudio": "Audio Khotbah"
+"SermonAudio": "Audio Khotbah",
+"downloadallsermons": "Unduh Semua Khotbah",
+"nosermons": "Tidak ada khotbah yang tersedia untuk diunduh",
+"sermonsdownloaded": "Semua khotbah yang tersedia berhasil diunduh",
+"sermonsdownloaderror": "Kesalahan mengunduh khotbah"
 
 
 }
