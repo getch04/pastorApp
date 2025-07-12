@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +85,18 @@ class AudioController extends ChangeNotifier {
           validatedUrl = audioUrl.replaceFirst('http://', 'https://');
         }
 
-        await _audioPlayer.setSourceUrl(validatedUrl);
+        // Handle local files differently from remote URLs
+        if (validatedUrl.startsWith('/')) {
+          // Local file path - check if file exists
+          final file = File(validatedUrl);
+          if (!await file.exists()) {
+            throw Exception('Local audio file not found: $validatedUrl');
+          }
+          await _audioPlayer.setSourceDeviceFile(validatedUrl);
+        } else {
+          // Remote URL
+          await _audioPlayer.setSourceUrl(validatedUrl);
+        }
       } catch (e) {
         print('Audio loading error: $e');
         _isLoading = false;

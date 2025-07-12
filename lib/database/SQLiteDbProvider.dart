@@ -224,14 +224,7 @@ class SQLiteDbProvider {
         // Update existing sermon
         await db.update(
           SermonMedia.TABLE_NAME,
-          {
-            'title': sermon.title,
-            'description': sermon.description,
-            'streamUrl': sermon.streamUrl,
-            'worshipStreamUrl': sermon.worshipStreamUrl,
-            'isDownloaded': 1,
-            'downloadStatus': 'completed'
-          },
+          sermon.toMap(),
           where: 'id = ?',
           whereArgs: [sermon.id],
         );
@@ -239,15 +232,8 @@ class SQLiteDbProvider {
         // Insert new sermon
         await db.insert(
           SermonMedia.TABLE_NAME,
-          {
-            'id': sermon.id,
-            'title': sermon.title,
-            'description': sermon.description,
-            'streamUrl': sermon.streamUrl,
-            'worshipStreamUrl': sermon.worshipStreamUrl,
-            'isDownloaded': 1,
-            'downloadStatus': 'completed'
-          },
+          sermon.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace,
         );
       }
       return true;

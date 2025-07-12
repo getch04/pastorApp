@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -199,29 +200,73 @@ class AudioPlayerModel with ChangeNotifier {
 
     try {
       if (isRadio) {
-        await _remoteAudio.setAudioSource(AudioSource.uri(
-          Uri.parse(currentMedia!.streamUrl!),
-          tag: MediaItem(
-            // Specify a unique ID for each media item:
-            id: currentMedia!.id!.toString(),
-            // Metadata to display in the notification:
-            album: t.radio,
-            title: currentMedia!.title!,
-            artUri: Uri.parse(currentMedia!.coverPhoto!),
-          ),
-        ));
+        // Handle local files differently from remote URLs
+        if (currentMedia!.streamUrl!.startsWith('/')) {
+          // Local file path - check if file exists
+          final file = File(currentMedia!.streamUrl!);
+          if (!await file.exists()) {
+            throw Exception(
+                'Local audio file not found: ${currentMedia!.streamUrl!}');
+          }
+          await _remoteAudio.setAudioSource(AudioSource.file(
+            currentMedia!.streamUrl!,
+            tag: MediaItem(
+              // Specify a unique ID for each media item:
+              id: currentMedia!.id!.toString(),
+              // Metadata to display in the notification:
+              album: t.radio,
+              title: currentMedia!.title!,
+              artUri: Uri.parse(currentMedia!.coverPhoto!),
+            ),
+          ));
+        } else {
+          // Remote URL
+          await _remoteAudio.setAudioSource(AudioSource.uri(
+            Uri.parse(currentMedia!.streamUrl!),
+            tag: MediaItem(
+              // Specify a unique ID for each media item:
+              id: currentMedia!.id!.toString(),
+              // Metadata to display in the notification:
+              album: t.radio,
+              title: currentMedia!.title!,
+              artUri: Uri.parse(currentMedia!.coverPhoto!),
+            ),
+          ));
+        }
       } else {
-        await _remoteAudio.setAudioSource(AudioSource.uri(
-          Uri.parse(currentMedia!.streamUrl!),
-          tag: MediaItem(
-            // Specify a unique ID for each media item:
-            id: currentMedia!.id!.toString(),
-            // Metadata to display in the notification:
-            album: currentMedia!.mediaType!,
-            title: currentMedia!.title!,
-            artUri: Uri.parse(currentMedia!.coverPhoto!),
-          ),
-        ));
+        // Handle local files differently from remote URLs
+        if (currentMedia!.streamUrl!.startsWith('/')) {
+          // Local file path - check if file exists
+          final file = File(currentMedia!.streamUrl!);
+          if (!await file.exists()) {
+            throw Exception(
+                'Local audio file not found: ${currentMedia!.streamUrl!}');
+          }
+          await _remoteAudio.setAudioSource(AudioSource.file(
+            currentMedia!.streamUrl!,
+            tag: MediaItem(
+              // Specify a unique ID for each media item:
+              id: currentMedia!.id!.toString(),
+              // Metadata to display in the notification:
+              album: currentMedia!.mediaType!,
+              title: currentMedia!.title!,
+              artUri: Uri.parse(currentMedia!.coverPhoto!),
+            ),
+          ));
+        } else {
+          // Remote URL
+          await _remoteAudio.setAudioSource(AudioSource.uri(
+            Uri.parse(currentMedia!.streamUrl!),
+            tag: MediaItem(
+              // Specify a unique ID for each media item:
+              id: currentMedia!.id!.toString(),
+              // Metadata to display in the notification:
+              album: currentMedia!.mediaType!,
+              title: currentMedia!.title!,
+              artUri: Uri.parse(currentMedia!.coverPhoto!),
+            ),
+          ));
+        }
       }
     } catch (e) {
       print("Error loading audio source: $e");

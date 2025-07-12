@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:churchapp_flutter/database/SQLiteDbProvider.dart';
+import 'package:churchapp_flutter/models/SermonMedia.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
+import 'package:churchapp_flutter/services/sermon_download_service.dart';
 import 'package:churchapp_flutter/utils/langs.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +19,15 @@ class CategoriesModel with ChangeNotifier {
   bool isLoading = false;
   List<Categories>? categories;
   Map<int, List<Media>> _categoryMedia = {};
+  Map<int, IndividualSermonDownloadService> _downloadServices = {};
+  Map<int, double> _downloadProgress = {};
+  Map<int, String> _downloadStatus = {};
   AppStateManager appManager;
   int _totalSavedSermons = 0;
 
   int get totalSavedSermons => _totalSavedSermons;
+  Map<int, double> get downloadProgress => _downloadProgress;
+  Map<int, String> get downloadStatus => _downloadStatus;
 
   CategoriesModel(this.appManager) {
     loadItems();
@@ -37,49 +44,35 @@ class CategoriesModel with ChangeNotifier {
       // Get total saved sermons count
       _totalSavedSermons = await SQLiteDbProvider.db.getTotalSavedSermons();
 
-      // First try to load saved sermons from local database
+      // Load downloaded sermons to populate the _categoryMedia map
       final savedSermons = await SQLiteDbProvider.db.getDownloadedSermons();
 
-      if (savedSermons.isNotEmpty) {
-        print('📱 Found ${savedSermons.length} saved sermons locally');
-        // Convert SermonMedia to Categories
-        categories = savedSermons
-            .map((sermon) => Categories(
-                  id: sermon.id,
-                  title: sermon.title,
-                  thumbnailUrl: sermon.coverPhoto,
-                  mediaCount: 1,
-                ))
-            .toList();
-
-        // Also populate the _categoryMedia map with the saved sermons
-        for (var sermon in savedSermons) {
-          _categoryMedia[sermon.id] = [
-            Media(
-              id: sermon.id,
-              title: sermon.title,
-              description: sermon.description,
-              downloadUrl: sermon.downloadUrl,
-              streamUrl: sermon.streamUrl,
-              category: sermon.category,
-              coverPhoto: sermon.coverPhoto,
-              mediaType: sermon.mediaType,
-              // Default values for required fields
-              canPreview: true,
-              canDownload: true,
-              isFree: true,
-              http: true,
-            )
-          ];
-        }
-
-        isLoading = false;
-        isError = false;
-        notifyListeners();
-      } else {
-        print('🌐 No local sermons found, fetching from remote...');
-        await fetchItems();
+      // Always populate the _categoryMedia map with downloaded sermons
+      for (var sermon in savedSermons) {
+        _categoryMedia[sermon.id] = [
+          Media(
+            id: sermon.id,
+            title: sermon.title,
+            description: sermon.description,
+            downloadUrl: sermon.downloadUrl,
+            streamUrl: sermon.streamUrl,
+            category: sermon.category,
+            coverPhoto: sermon.coverPhoto,
+            mediaType: sermon.mediaType,
+            // Default values for required fields
+            canPreview: true,
+            canDownload: true,
+            isFree: true,
+            http: true,
+          )
+        ];
       }
+
+      print('📱 Found ${savedSermons.length} saved sermons locally');
+      print('🌐 Fetching online sermons from remote...');
+
+      // Always fetch from remote for online tab
+      await fetchItems();
     } catch (e) {
       print('❌ Error loading categories: $e');
       await fetchItems(); // Fallback to remote if local fails
@@ -170,6 +163,107 @@ class CategoriesModel with ChangeNotifier {
     return null;
   }
 
+  Future<void> startIndividualDownload(Categories category) async {
+    if (_downloadServices.containsKey(category.id)) {
+      // Already downloading
+      return;
+    }
+
+    String language =
+        appLanguageData[AppLanguage.values[appManager.preferredLanguage]]
+                ?['value'] ??
+            'en';
+
+    // Create SermonMedia from category
+    SermonMedia sermon = SermonMedia(
+      id: category.id ?? 0,
+      title: category.title,
+      coverPhoto: category.thumbnailUrl,
+      mediaType: 'audio',
+      category: category.title,
+      downloadStatus: 'pending',
+      downloadProgress: 0,
+    );
+
+    // Create download service
+    IndividualSermonDownloadService downloadService =
+        IndividualSermonDownloadService(
+      sermon: sermon,
+      language: language,
+      onProgressUpdate: (status, data) {
+        _handleDownloadProgress(category.id ?? 0, status, data);
+      },
+    );
+
+    _downloadServices[category.id ?? 0] = downloadService;
+    _downloadStatus[category.id ?? 0] = 'downloading';
+    _downloadProgress[category.id ?? 0] = 0.0;
+    notifyListeners();
+
+    // Start download
+    await downloadService.startDownload();
+  }
+
+  void _handleDownloadProgress(int categoryId, String status, dynamic data) {
+    switch (status) {
+      case IndividualSermonDownloadService.DOWNLOAD_PROGRESS:
+        _downloadProgress[categoryId] = data as double;
+        _downloadStatus[categoryId] = 'downloading';
+        break;
+      case IndividualSermonDownloadService.DOWNLOAD_COMPLETED:
+        _downloadProgress[categoryId] = 1.0;
+        _downloadStatus[categoryId] = 'completed';
+        _downloadServices.remove(categoryId);
+        _totalSavedSermons++;
+        _refreshDownloadedSermons(); // Refresh downloaded sermons
+        break;
+      case IndividualSermonDownloadService.DOWNLOAD_ERROR:
+        _downloadStatus[categoryId] = 'failed';
+        _downloadServices.remove(categoryId);
+        _downloadProgress.remove(categoryId);
+        break;
+      case IndividualSermonDownloadService.DOWNLOAD_CANCELLED:
+        _downloadStatus[categoryId] = 'cancelled';
+        _downloadServices.remove(categoryId);
+        _downloadProgress.remove(categoryId);
+        break;
+    }
+    notifyListeners();
+  }
+
+  void cancelIndividualDownload(int categoryId) {
+    final downloadService = _downloadServices[categoryId];
+    if (downloadService != null) {
+      downloadService.cancelDownload();
+      _downloadServices.remove(categoryId);
+      _downloadProgress.remove(categoryId);
+      _downloadStatus.remove(categoryId);
+      notifyListeners();
+    }
+  }
+
+  Future<void> deleteIndividualSermon(
+      int categoryId, BuildContext context) async {
+    try {
+      bool success = await SQLiteDbProvider.db.deleteSermon(categoryId);
+      if (success) {
+        _totalSavedSermons--;
+        _refreshDownloadedSermons(); // Refresh to reflect the deletion
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Sermon deleted successfully')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to delete sermon')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error deleting sermon: $e')),
+      );
+    }
+  }
+
   Future<void> deleteAllSermons(BuildContext context) async {
     try {
       // Show confirmation dialog
@@ -232,6 +326,72 @@ class CategoriesModel with ChangeNotifier {
     } finally {
       isLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<void> _refreshDownloadedSermons() async {
+    try {
+      final savedSermons = await SQLiteDbProvider.db.getDownloadedSermons();
+      _totalSavedSermons = savedSermons.length;
+
+      // Update the _categoryMedia map with downloaded sermons
+      for (var sermon in savedSermons) {
+        _categoryMedia[sermon.id] = [
+          Media(
+            id: sermon.id,
+            title: sermon.title,
+            description: sermon.description,
+            downloadUrl: sermon.downloadUrl,
+            streamUrl: sermon.streamUrl,
+            category: sermon.category,
+            coverPhoto: sermon.coverPhoto,
+            mediaType: sermon.mediaType,
+            // Default values for required fields
+            canPreview: true,
+            canDownload: true,
+            isFree: true,
+            http: true,
+          )
+        ];
+      }
+
+      notifyListeners();
+    } catch (e) {
+      print('❌ Error refreshing downloaded sermons: $e');
+    }
+  }
+
+  bool isSermonDownloaded(int categoryId) {
+    return _categoryMedia.containsKey(categoryId);
+  }
+
+  double getDownloadProgress(int categoryId) {
+    return _downloadProgress[categoryId] ?? 0.0;
+  }
+
+  String getDownloadStatus(int categoryId) {
+    return _downloadStatus[categoryId] ?? 'pending';
+  }
+
+  bool isDownloading(int categoryId) {
+    return _downloadServices.containsKey(categoryId);
+  }
+
+  // Get downloaded sermons as Categories for the downloaded tab
+  Future<List<Categories>> getDownloadedCategories() async {
+    try {
+      final savedSermons = await SQLiteDbProvider.db.getDownloadedSermons();
+      return savedSermons
+          .map((sermon) => Categories(
+                id: sermon.id,
+                title: sermon.title,
+                thumbnailUrl: sermon.coverPhoto,
+                mediaCount: 1,
+              ))
+          .toList();
+    } catch (e) {
+      print('❌ Error getting downloaded categories: $e');
+      return [];
     }
   }
 }
