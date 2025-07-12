@@ -219,58 +219,104 @@ class _SermonScreenItemState extends State<SermonScreenItem>
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              // Tab Bar
+              // Enhanced Tab Bar
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                margin: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                padding: EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      offset: Offset(0, 8),
+                      blurRadius: 20,
+                      spreadRadius: 0,
+                    ),
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      offset: Offset(0, 2),
+                      blurRadius: 6,
+                      spreadRadius: 0,
+                    ),
+                  ],
                 ),
                 child: TabBar(
                   controller: _tabController,
                   indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
+                    borderRadius: BorderRadius.circular(26),
                     gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                       colors: [
                         Color.fromARGB(255, 3, 92, 164),
                         Color(0xff0ebef4),
                       ],
                     ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(255, 3, 92, 164).withOpacity(0.4),
+                        offset: Offset(0, 4),
+                        blurRadius: 12,
+                        spreadRadius: 0,
+                      ),
+                    ],
                   ),
+                  indicatorPadding: EdgeInsets.zero,
                   labelColor: Colors.white,
                   unselectedLabelColor: Colors.grey[600],
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 15,
                   ),
                   unselectedLabelStyle: TextStyle(
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.w500,
                     fontSize: 14,
                   ),
+                  dividerColor: Colors.transparent,
+                  splashFactory: NoSplash.splashFactory,
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
                   tabs: [
                     Tab(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.cloud, size: 18),
-                          SizedBox(width: 5),
-                          Text('Online'),
-                        ],
+                      height: 50,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.cloud_outlined, size: 20),
+                            SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                'Online',
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Tab(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.download_done, size: 18),
-                          SizedBox(width: 5),
-                          Consumer<CategoriesModel>(
-                            builder: (context, model, child) {
-                              return Text(
-                                  'Downloaded (${model.totalSavedSermons})');
-                            },
-                          ),
-                        ],
+                      height: 50,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.download_done_outlined, size: 20),
+                            SizedBox(width: 8),
+                            Flexible(
+                              child: Consumer<CategoriesModel>(
+                                builder: (context, model, child) {
+                                  return Text(
+                                    'Offline (${model.totalSavedSermons})',
+                                    overflow: TextOverflow.ellipsis,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -316,62 +362,6 @@ class OnlineSermonTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // // Download All Section
-        // Consumer<CategoriesModel>(
-        //   builder: (context, model, child) {
-        //     return Container(
-        //       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        //       child: Column(
-        //         children: [
-        //           Row(
-        //             mainAxisAlignment: MainAxisAlignment.center,
-        //             children: [
-        //               ElevatedButton.icon(
-        //                 onPressed: isDownloading
-        //                     ? null
-        //                     : () => onDownloadAll(context, model),
-        //                 icon: isDownloading
-        //                     ? SizedBox(
-        //                         width: 20,
-        //                         height: 20,
-        //                         child: CircularProgressIndicator(
-        //                           valueColor: AlwaysStoppedAnimation<Color>(
-        //                               Colors.white),
-        //                           strokeWidth: 2,
-        //                         ),
-        //                       )
-        //                     : Icon(Icons.download_rounded),
-        //                 label: Text(
-        //                     isDownloading ? t.downloading : 'Download All'),
-        //                 style: ElevatedButton.styleFrom(
-        //                   backgroundColor: Color.fromARGB(255, 3, 92, 164),
-        //                   foregroundColor: Colors.white,
-        //                   padding: EdgeInsets.symmetric(
-        //                       horizontal: 20, vertical: 12),
-        //                   shape: RoundedRectangleBorder(
-        //                     borderRadius: BorderRadius.circular(25),
-        //                   ),
-        //                 ),
-        //               ),
-        //             ],
-        //           ),
-        //           if (isDownloading)
-        //             Padding(
-        //               padding: const EdgeInsets.symmetric(
-        //                   horizontal: 20, vertical: 8),
-        //               child: LinearProgressIndicator(
-        //                 value: downloadProgress,
-        //                 backgroundColor: Colors.grey[200],
-        //                 valueColor: AlwaysStoppedAnimation<Color>(
-        //                     Color.fromARGB(255, 3, 92, 164)),
-        //               ),
-        //             ),
-        //         ],
-        //       ),
-        //     );
-        //   },
-        // ),
-
         // Online Sermons List
         Expanded(
           child: SermonList(isOnlineTab: true),
@@ -575,6 +565,9 @@ class SermonList extends StatelessWidget {
                     data: (cat, items),
                     localSermon:
                         localMedia?.isNotEmpty == true ? localMedia![0] : null,
+                    isOfflineMode: !isOnlineTab, // Pass offline mode flag
+                    categoriesModel:
+                        categoriesModel, // Pass the categoriesModel
                   ),
                 ),
               );
@@ -700,10 +693,10 @@ class _SermonButtonState extends State<SermonButton> {
                   end: Alignment.centerLeft,
                 ),
                 border: Border.all(
-                  width: 2,
+                  width: 1,
                   color: Colors.white,
                 ),
-                borderRadius: BorderRadius.circular(50.0),
+                borderRadius: BorderRadius.circular(20.0),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.3),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:churchapp_flutter/utils/Utility.dart';
 import 'package:flutter/material.dart';
 
 class AudioController2 extends ChangeNotifier {
@@ -85,12 +86,13 @@ class AudioController2 extends ChangeNotifier {
 
         // Handle local files differently from remote URLs
         if (validatedUrl.startsWith('/')) {
-          // Local file path - check if file exists
-          final file = File(validatedUrl);
+          // Local file path - reconstruct correct path and check if file exists
+          final correctPath = await Utility.getCorrectLocalPath(validatedUrl);
+          final file = File(correctPath);
           if (!await file.exists()) {
-            throw Exception('Local audio file not found: $validatedUrl');
+            throw Exception('Local audio file not found: $correctPath');
           }
-          await _audioPlayer.setSourceDeviceFile(validatedUrl);
+          await _audioPlayer.setSourceDeviceFile(correctPath);
         } else {
           // Remote URL
           await _audioPlayer.setSourceUrl(validatedUrl);

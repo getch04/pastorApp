@@ -1,8 +1,14 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
-import '../models/Media.dart';
 // import '../models/LiveStreams.dart';
 //import 'package:music_player/music_player.dart';
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
+
+import '../models/Media.dart';
 
 class Utility {
   static Color hexToColor(String code) {
@@ -77,5 +83,39 @@ class Utility {
       return true;
     }
     return false;
+  }
+
+  /// Reconstructs local file paths using current app directory
+  /// This fixes issues where absolute paths change between app launches
+  static Future<String> getCorrectLocalPath(String originalPath) async {
+    if (!originalPath.startsWith('/')) {
+      return originalPath; // Not a local path, return as is
+    }
+
+    try {
+      // Extract just the filename from the stored path
+      final fileName = path.basename(originalPath);
+
+      // Reconstruct the path using current app directory
+      final appDir = await getApplicationDocumentsDirectory();
+      final audioDir = Directory('${appDir.path}/sermon_audio');
+
+      // Ensure the directory exists
+      if (!await audioDir.exists()) {
+        await audioDir.create(recursive: true);
+      }
+
+      final correctPath = path.join(audioDir.path, fileName);
+      return correctPath;
+    } catch (e) {
+      print('Error reconstructing path: $e');
+      return originalPath; // Fallback to original path
+    }
+  }
+
+  /// Checks if a local file exists at the correct path
+  static Future<bool> localFileExists(String originalPath) async {
+    final correctPath = await getCorrectLocalPath(originalPath);
+    return File(correctPath).existsSync();
   }
 }

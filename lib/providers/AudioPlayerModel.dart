@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../i18n/strings.g.dart';
 import '../models/Media.dart';
+import '../utils/Utility.dart';
 import '../utils/my_colors.dart';
 
 class AudioPlayerModel with ChangeNotifier {
@@ -202,14 +203,15 @@ class AudioPlayerModel with ChangeNotifier {
       if (isRadio) {
         // Handle local files differently from remote URLs
         if (currentMedia!.streamUrl!.startsWith('/')) {
-          // Local file path - check if file exists
-          final file = File(currentMedia!.streamUrl!);
+          // Local file path - reconstruct correct path and check if file exists
+          final correctPath =
+              await Utility.getCorrectLocalPath(currentMedia!.streamUrl!);
+          final file = File(correctPath);
           if (!await file.exists()) {
-            throw Exception(
-                'Local audio file not found: ${currentMedia!.streamUrl!}');
+            throw Exception('Local audio file not found: $correctPath');
           }
           await _remoteAudio.setAudioSource(AudioSource.file(
-            currentMedia!.streamUrl!,
+            correctPath,
             tag: MediaItem(
               // Specify a unique ID for each media item:
               id: currentMedia!.id!.toString(),
@@ -236,14 +238,15 @@ class AudioPlayerModel with ChangeNotifier {
       } else {
         // Handle local files differently from remote URLs
         if (currentMedia!.streamUrl!.startsWith('/')) {
-          // Local file path - check if file exists
-          final file = File(currentMedia!.streamUrl!);
+          // Local file path - reconstruct correct path and check if file exists
+          final correctPath =
+              await Utility.getCorrectLocalPath(currentMedia!.streamUrl!);
+          final file = File(correctPath);
           if (!await file.exists()) {
-            throw Exception(
-                'Local audio file not found: ${currentMedia!.streamUrl!}');
+            throw Exception('Local audio file not found: $correctPath');
           }
           await _remoteAudio.setAudioSource(AudioSource.file(
-            currentMedia!.streamUrl!,
+            correctPath,
             tag: MediaItem(
               // Specify a unique ID for each media item:
               id: currentMedia!.id!.toString(),

@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:churchapp_flutter/utils/Utility.dart';
 import 'package:flutter/material.dart';
 
-class PlayerNew extends StatelessWidget {
+class PlayerNew extends StatefulWidget {
   final String audioUrl;
   final VoidCallback onNext;
   final VoidCallback onPrevious;
@@ -34,11 +35,71 @@ class PlayerNew extends StatelessWidget {
     this.isMinimized = false,
   }) : isOffline = audioUrl.startsWith('/');
 
-  bool get isValidUrl =>
-      audioUrl.isNotEmpty &&
-      (isOffline
-          ? File(audioUrl).existsSync()
-          : Uri.tryParse(audioUrl)?.hasAbsolutePath ?? false);
+  @override
+  _PlayerNewState createState() => _PlayerNewState();
+}
+
+class _PlayerNewState extends State<PlayerNew> {
+  bool _isValidUrl = false;
+  bool _isCheckingUrl = true;
+  String? _lastCheckedUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _validateUrl();
+  }
+
+  @override
+  void didUpdateWidget(PlayerNew oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Only revalidate if the URL has changed
+    if (widget.audioUrl != oldWidget.audioUrl) {
+      _validateUrl();
+    }
+  }
+
+  Future<void> _validateUrl() async {
+    // Don't revalidate the same URL
+    if (_lastCheckedUrl == widget.audioUrl && !_isCheckingUrl) {
+      return;
+    }
+
+    setState(() {
+      _isCheckingUrl = true;
+      _lastCheckedUrl = widget.audioUrl;
+    });
+
+    try {
+      bool isValid = false;
+
+      if (widget.audioUrl.isEmpty) {
+        isValid = false;
+      } else if (widget.isOffline) {
+        // For local files, reconstruct the path and check if it exists
+        final correctPath = await Utility.getCorrectLocalPath(widget.audioUrl);
+        isValid = File(correctPath).existsSync();
+      } else {
+        // For remote URLs, check if it's a valid URI
+        isValid = Uri.tryParse(widget.audioUrl)?.hasAbsolutePath ?? false;
+      }
+
+      if (mounted) {
+        setState(() {
+          _isValidUrl = isValid;
+          _isCheckingUrl = false;
+        });
+      }
+    } catch (e) {
+      print('Error validating URL: $e');
+      if (mounted) {
+        setState(() {
+          _isValidUrl = false;
+          _isCheckingUrl = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +109,16 @@ class PlayerNew extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       padding: EdgeInsets.symmetric(
         horizontal: 16,
-        vertical: isMinimized ? 4 : 12,
+        vertical: widget.isMinimized ? 4 : 12,
       ),
-      height: isMinimized ? 52 : 230,
+      height: widget.isMinimized ? 52 : 230,
       decoration: BoxDecoration(
-        gradient: isMinimized ? null : null,
-        color:
-            isMinimized ? Colors.white.withOpacity(0.92) : Colors.transparent,
+        gradient: widget.isMinimized ? null : null,
+        color: widget.isMinimized
+            ? Colors.white.withOpacity(0.92)
+            : Colors.transparent,
         borderRadius: BorderRadius.circular(28),
-        boxShadow: isMinimized
+        boxShadow: widget.isMinimized
             ? [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.08),
@@ -70,44 +132,18 @@ class PlayerNew extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (!isMinimized && isOffline)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.green.withOpacity(0.3)),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(Icons.offline_pin_rounded,
-                            size: 16, color: Colors.green),
-                        SizedBox(width: 4),
-                        Text(
-                          'Playing Offline',
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          if (!isValidUrl)
+          if (_isCheckingUrl)
             Container(
-              height: isMinimized ? 52 : 190,
+              height: widget.isMinimized ? 52 : 190,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            )
+          else if (!_isValidUrl)
+            Container(
+              height: widget.isMinimized ? 52 : 190,
               decoration: BoxDecoration(
-                color: isMinimized
+                color: widget.isMinimized
                     ? Colors.white.withOpacity(0.92)
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(28),
@@ -126,125 +162,177 @@ class PlayerNew extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
+                    if (widget.isOffline)
+                      Text(
+                        'File path may have changed',
+                        style: TextStyle(
+                          color: Colors.red.withOpacity(0.7),
+                          fontSize: 12,
+                        ),
+                      ),
                   ],
                 ),
               ),
             ),
-          if (!isMinimized)
+          if (!widget.isMinimized && _isValidUrl)
             ClipRect(
               child: AnimatedOpacity(
                 duration: Duration(milliseconds: 200),
                 curve: Curves.easeOut,
-                opacity: isMinimized ? 0 : 1,
+                opacity: widget.isMinimized ? 0 : 1,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Speed Control with Glassmorphism effect
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        height: 32,
-                        margin: EdgeInsets.only(bottom: 8),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: PopupMenuButton<double>(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            position: PopupMenuPosition.under,
-                            offset: Offset(0, 8),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: Color(0xFFFF8E53).withOpacity(0.7),
-                                  width: 1.2,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0xFFFF8E53).withOpacity(0.10),
-                                    blurRadius: 8,
-                                    offset: Offset(0, 2),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (!widget.isMinimized && widget.isOffline)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: Colors.green.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                        color: Colors.green.withOpacity(0.3)),
                                   ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.speed,
-                                      color: Color(0xFFFF8E53), size: 16),
-                                  SizedBox(width: 6),
-                                  Text(
-                                    '${playbackSpeed}x',
-                                    style: TextStyle(
-                                      color: Color(0xFFFF8E53),
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: 0.5,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            onSelected: onSpeedChange,
-                            itemBuilder: (context) => [
-                              0.5,
-                              0.75,
-                              1.0,
-                              1.25,
-                              1.5,
-                              2.0
-                            ]
-                                .map((speed) => PopupMenuItem<double>(
-                                      value: speed,
-                                      height: 44,
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 12),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              '${speed}x',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                color: speed == playbackSpeed
-                                                    ? Color(0xFFFF6B6B)
-                                                    : Colors.black87,
-                                                fontWeight:
-                                                    speed == playbackSpeed
-                                                        ? FontWeight.w600
-                                                        : FontWeight.normal,
-                                                letterSpacing: 0.5,
-                                              ),
-                                            ),
-                                            if (speed == playbackSpeed)
-                                              Container(
-                                                padding: EdgeInsets.all(4),
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xFFFF6B6B)
-                                                      .withOpacity(0.1),
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Icon(
-                                                  Icons.check,
-                                                  color: Color(0xFFFF6B6B),
-                                                  size: 14,
-                                                ),
-                                              ),
-                                          ],
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.offline_pin_rounded,
+                                          size: 16, color: Colors.green),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        'Playing Offline',
+                                        style: TextStyle(
+                                          color: Colors.green,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
-                                    ))
-                                .toList(),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Container(
+                            height: 32,
+                            margin: EdgeInsets.only(bottom: 8),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: PopupMenuButton<double>(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                position: PopupMenuPosition.under,
+                                offset: Offset(0, 8),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color: Color(0xFFFF8E53).withOpacity(0.7),
+                                      width: 1.2,
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color:
+                                            Color(0xFFFF8E53).withOpacity(0.10),
+                                        blurRadius: 8,
+                                        offset: Offset(0, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.speed,
+                                          color: Color(0xFFFF8E53), size: 16),
+                                      SizedBox(width: 6),
+                                      Text(
+                                        '${widget.playbackSpeed}x',
+                                        style: TextStyle(
+                                          color: Color(0xFFFF8E53),
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 0.5,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                onSelected: widget.onSpeedChange,
+                                itemBuilder: (context) => [
+                                  0.5,
+                                  0.75,
+                                  1.0,
+                                  1.25,
+                                  1.5,
+                                  2.0
+                                ]
+                                    .map((speed) => PopupMenuItem<double>(
+                                          value: speed,
+                                          height: 44,
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 12),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  '${speed}x',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: speed ==
+                                                            widget.playbackSpeed
+                                                        ? Color(0xFFFF6B6B)
+                                                        : Colors.black87,
+                                                    fontWeight: speed ==
+                                                            widget.playbackSpeed
+                                                        ? FontWeight.w600
+                                                        : FontWeight.normal,
+                                                    letterSpacing: 0.5,
+                                                  ),
+                                                ),
+                                                if (speed ==
+                                                    widget.playbackSpeed)
+                                                  Container(
+                                                    padding: EdgeInsets.all(4),
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFFF6B6B)
+                                                          .withOpacity(0.1),
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.check,
+                                                      color: Color(0xFFFF6B6B),
+                                                      size: 14,
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
+                                          ),
+                                        ))
+                                    .toList(),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
 
                     // Modern Progress Bar
@@ -265,10 +353,10 @@ class PlayerNew extends StatelessWidget {
                         ),
                         child: Slider(
                           min: 0.0,
-                          max: duration.inSeconds.toDouble(),
-                          value: position.inSeconds.toDouble(),
+                          max: widget.duration.inSeconds.toDouble(),
+                          value: widget.position.inSeconds.toDouble(),
                           onChanged: (value) =>
-                              onSeek(Duration(seconds: value.toInt())),
+                              widget.onSeek(Duration(seconds: value.toInt())),
                         ),
                       ),
                     ),
@@ -280,7 +368,7 @@ class PlayerNew extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            _formatDuration(position),
+                            _formatDuration(widget.position),
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
@@ -288,7 +376,7 @@ class PlayerNew extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            _formatDuration(duration),
+                            _formatDuration(widget.duration),
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,
@@ -304,32 +392,33 @@ class PlayerNew extends StatelessWidget {
             ),
 
           // Enhanced Control Buttons
-          Container(
-            height: isMinimized ? 44 : 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _buildCircleButton(
-                    icon: Icons.skip_previous_rounded,
-                    onTap: onPrevious,
-                    size: isMinimized ? 42 : 50),
-                _buildCircleButton(
-                  icon: isPlaying
-                      ? Icons.pause_rounded
-                      : Icons.play_arrow_rounded,
-                  onTap: isPlaying ? onPause : onPlay,
-                  size: isMinimized ? 68 : 86,
-                  isMain: true,
-                  isLoading: isLoading,
-                ),
-                _buildCircleButton(
-                    icon: Icons.skip_next_rounded,
-                    onTap: onNext,
-                    size: isMinimized ? 42 : 50),
-              ],
+          if (_isValidUrl)
+            Container(
+              height: widget.isMinimized ? 44 : 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _buildCircleButton(
+                      icon: Icons.skip_previous_rounded,
+                      onTap: widget.onPrevious,
+                      size: widget.isMinimized ? 42 : 50),
+                  _buildCircleButton(
+                    icon: widget.isPlaying
+                        ? Icons.pause_rounded
+                        : Icons.play_arrow_rounded,
+                    onTap: widget.isPlaying ? widget.onPause : widget.onPlay,
+                    size: widget.isMinimized ? 68 : 86,
+                    isMain: true,
+                    isLoading: widget.isLoading,
+                  ),
+                  _buildCircleButton(
+                      icon: Icons.skip_next_rounded,
+                      onTap: widget.onNext,
+                      size: widget.isMinimized ? 42 : 50),
+                ],
+              ),
             ),
-          ),
         ],
       ),
     );

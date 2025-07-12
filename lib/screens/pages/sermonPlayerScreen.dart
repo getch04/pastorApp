@@ -5,6 +5,7 @@ import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/Media.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
+import 'package:churchapp_flutter/providers/CategoriesModel.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller.dart';
 import 'package:churchapp_flutter/screens/provider/audio_controller2.dart';
 import 'package:churchapp_flutter/utils/ApiUrl.dart';
@@ -22,11 +23,15 @@ class SermonPlayerScreen extends StatefulWidget {
     Key? key,
     required this.data,
     this.localSermon,
+    this.isOfflineMode = false,
+    this.categoriesModel,
   }) : super(key: key);
   static const routeName = "/SermonPlayerScreen";
 
   final (Categories selectedItem, List<Categories> items) data;
   final Media? localSermon;
+  final bool isOfflineMode;
+  final CategoriesModel? categoriesModel;
 
   @override
   _SermonPlayerScreenState createState() => _SermonPlayerScreenState();
@@ -130,31 +135,86 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
   }
 
   Future<void> _navigateToSermon(int index) async {
-    if (index < 0 || index >= widget.data.$2.length) return;
+    List<Categories> currentPlaylist;
+
+    if (widget.isOfflineMode && widget.categoriesModel != null) {
+      // In offline mode, get downloaded sermons
+      currentPlaylist = await widget.categoriesModel!.getDownloadedCategories();
+    } else {
+      // In online mode, use the original playlist
+      currentPlaylist = widget.data.$2;
+    }
+
+    if (index < 0 || index >= currentPlaylist.length) return;
 
     setState(() {
       isLoading = true;
       _currentIndex = index;
-      _currentItem = widget.data.$2[index];
+      _currentItem = currentPlaylist[index];
     });
 
     // Stop current playback
     _audioController?.stop();
     _audioController2?.stop();
 
-    // Fetch new audio
-    await getCategoryAudio();
-  }
+    // If we're in offline mode, get the local sermon data
+    if (widget.isOfflineMode && widget.categoriesModel != null) {
+      final localMedia =
+          widget.categoriesModel!.getCategoryMedia(_currentItem.id);
 
-  void _handleNext() {
-    if (_currentIndex < widget.data.$2.length - 1) {
-      _navigateToSermon(_currentIndex + 1);
+      if (localMedia != null && localMedia.isNotEmpty) {
+        setState(() {
+          title = localMedia[0].title;
+          sermonUrl = localMedia[0].streamUrl;
+          worshipUrl = localMedia[0].worshipStreamUrl;
+          description1 = localMedia[0].description;
+          isLoading = false;
+        });
+        print('📱 Navigated to offline sermon: ${localMedia[0].title}');
+      } else {
+        print('❌ No local data found for sermon');
+        setState(() {
+          isLoading = false;
+        });
+      }
+    } else {
+      // Fetch new audio from API for online mode
+      await getCategoryAudio();
     }
   }
 
-  void _handlePrevious() {
-    if (_currentIndex > 0) {
-      _navigateToSermon(_currentIndex - 1);
+  Future<void> _handleNext() async {
+    List<Categories> currentPlaylist;
+
+    if (widget.isOfflineMode && widget.categoriesModel != null) {
+      currentPlaylist = await widget.categoriesModel!.getDownloadedCategories();
+    } else {
+      currentPlaylist = widget.data.$2;
+    }
+
+    int currentIndexInPlaylist =
+        currentPlaylist.indexWhere((item) => item.id == _currentItem.id);
+
+    if (currentIndexInPlaylist != -1 &&
+        currentIndexInPlaylist < currentPlaylist.length - 1) {
+      await _navigateToSermon(currentIndexInPlaylist + 1);
+    }
+  }
+
+  Future<void> _handlePrevious() async {
+    List<Categories> currentPlaylist;
+
+    if (widget.isOfflineMode && widget.categoriesModel != null) {
+      currentPlaylist = await widget.categoriesModel!.getDownloadedCategories();
+    } else {
+      currentPlaylist = widget.data.$2;
+    }
+
+    int currentIndexInPlaylist =
+        currentPlaylist.indexWhere((item) => item.id == _currentItem.id);
+
+    if (currentIndexInPlaylist != -1 && currentIndexInPlaylist > 0) {
+      await _navigateToSermon(currentIndexInPlaylist - 1);
     }
   }
 
@@ -192,59 +252,6 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                 ),
               ),
             ),
-            // // Connection Status
-            // if (!isLoading && widget.localSermon != null)
-            //   Padding(
-            //     padding: const EdgeInsets.symmetric(vertical: 4.0),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: [
-            //         Icon(
-            //           Icons.offline_pin_rounded,
-            //           color: Colors.green,
-            //           size: 16,
-            //         ),
-            //         SizedBox(width: 4),
-            //         Text(
-            //           'Playing offline',
-            //           style: TextStyle(
-            //             color: Colors.green,
-            //             fontSize: 12,
-            //             fontWeight: FontWeight.w500,
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // // // Decorative divider
-            // Padding(
-            //   padding:
-            //       const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            //   child: Row(
-            //     children: [
-            //       Expanded(
-            //         child: Divider(
-            //           color: Colors.white.withOpacity(0.7),
-            //           thickness: 2,
-            //         ),
-            //       ),
-            //       Padding(
-            //         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            //         child: Icon(
-            //           Icons.headphones_rounded,
-            //           color: Colors.white,
-            //           size: 24,
-            //         ),
-            //       ),
-            //       Expanded(
-            //         child: Divider(
-            //           color: Colors.white.withOpacity(0.7),
-            //           thickness: 2,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
 
             // Content Area
             Expanded(
