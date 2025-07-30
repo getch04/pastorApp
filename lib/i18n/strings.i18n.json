@@ -328,6 +328,23 @@
   "sermonsdownloaded": "All available sermons downloaded successfully",
   "sermonsdownloaderror": "Error downloading sermons",
 
+  "onlinetab": "Online",
+  "mydownloads": "My Downloads",
+  "clearall": "Clear All",
+  "loadingdownloads": "Loading downloads...",
+  "loadingsermons": "Loading sermons...",
+  "nodownloadedsermons": "No downloaded sermons",
+  "downloadsermonsfromonlinetab": "Download sermons from the Online tab",
+  "languagenotsupported": "Language Not Supported",
+  "sermonsavailableoffline": "sermons available offline",
+  "week": "WEEK",
+  "sermon": "SERMON",
+  "loadingaudio": "Loading audio...",
+  "failedtoloadworshipaudio": "Failed to load worship audio",
+  "failedtoloadsermonaudio": "Failed to load sermon audio",
+  "description": "DESCRIPTION",
+  "noaudiocontentavailable": "No audio content available",
+
   "@_ur": {
     "downloadallsermons": "تمام خطبات ڈاؤن لوڈ کریں",
     "nosermons": "ڈاؤن لوڈ کرنے کے لیے کوئی خطبات دستیاب نہیں ہیں",
@@ -424,5 +441,7 @@
     "nosermons": "ཕབ་ལེན་བྱེད་པའི་གསུང་བཤད་མེད།",
     "sermonsdownloaded": "གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱས་ཟིན།",
     "sermonsdownloaderror": "གསུང་བཤད་ཕབ་ལེན་བྱེད་པའི་སྐབས་ནོར་འཁྲུལ་བྱུང་།"
-  }
+  },
+  "playingoffline": "Playing Offline",
+  "filepathmayhavechanged": "File path may have changed"
 }

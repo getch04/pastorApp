@@ -323,9 +323,27 @@
 "WorshipAudio": "Áudio de Adoração",
 "SermonAudio": "Áudio do Sermão",
 
-"downloadallsermons": "Baixar todos os sermões",
-"nosermons": "Nenhum sermão disponível para download",
-"sermonsdownloaded": "Todos os sermões disponíveis baixados com sucesso",
-"sermonsdownloaderror": "Erro ao baixar sermões"
+  "downloadallsermons": "Baixar todos os sermões",
+  "nosermons": "Nenhum sermão disponível para download",
+  "sermonsdownloaded": "Todos os sermões disponíveis baixados com sucesso",
+  "sermonsdownloaderror": "Erro ao baixar sermões",
 
+  "onlinetab": "Online",
+  "mydownloads": "Meus Downloads",
+  "clearall": "Limpar Tudo",
+  "loadingdownloads": "Carregando downloads...",
+  "loadingsermons": "Carregando sermões...",
+  "nodownloadedsermons": "Nenhum sermão baixado",
+  "downloadsermonsfromonlinetab": "Baixar sermões da aba Online",
+  "languagenotsupported": "Idioma não suportado",
+  "sermonsavailableoffline": "sermões disponíveis offline",
+  "week": "SEMANA",
+  "sermon": "SERMÃO",
+  "loadingaudio": "Carregando áudio...",
+  "failedtoloadworshipaudio": "Falha ao carregar áudio de adoração",
+  "failedtoloadsermonaudio": "Falha ao carregar áudio do sermão",
+  "description": "DESCRIÇÃO",
+  "noaudiocontentavailable": "Nenhum conteúdo de áudio disponível",
+  "playingoffline": "Reproduzindo offline",
+  "filepathmayhavechanged": "O caminho do arquivo pode ter mudado"
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:churchapp_flutter/audio_player/player_carousel_new.dart';
+import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/Media.dart';
 import 'package:churchapp_flutter/providers/AppStateManager.dart';
@@ -72,7 +73,10 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
       });
     } else {
       print('🌐 No local data, fetching from API...');
-      getCategoryAudio();
+      // Delay the API call to ensure controllers are ready
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        getCategoryAudio();
+      });
     }
   }
 
@@ -81,10 +85,29 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
     super.didChangeDependencies();
     _audioController = Provider.of<AudioController>(context, listen: false);
     _audioController2 = Provider.of<AudioController2>(context, listen: false);
+
+    // Reset controllers when entering the screen to ensure clean state
+    _resetControllers();
+  }
+
+  Future<void> _resetControllers() async {
+    try {
+      // Only reset if controllers are initialized
+      if (_audioController != null) {
+        await _audioController!.reset();
+      }
+      if (_audioController2 != null) {
+        await _audioController2!.reset();
+      }
+    } catch (e) {
+      print('Error resetting controllers: $e');
+    }
   }
 
   @override
   void dispose() {
+    // Reset controllers instead of just stopping them
+    // Use a synchronous approach in dispose to avoid issues
     _audioController?.stop();
     _audioController2?.stop();
     super.dispose();
@@ -92,6 +115,9 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
 
   Future<void> getCategoryAudio() async {
     try {
+      // Ensure controllers are reset before fetching new audio
+      await _resetControllers();
+
       String language =
           appLanguageData[AppLanguage.values[appManager.preferredLanguage]]
                   ?['value'] ??
@@ -153,9 +179,8 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
       _currentItem = currentPlaylist[index];
     });
 
-    // Stop current playback
-    _audioController?.stop();
-    _audioController2?.stop();
+    // Reset controllers before navigating to new sermon
+    await _resetControllers();
 
     // If we're in offline mode, get the local sermon data
     if (widget.isOfflineMode && widget.categoriesModel != null) {
@@ -266,7 +291,7 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                           ),
                           SizedBox(height: 20),
                           Text(
-                            'Loading audio...',
+                            t.loadingaudio,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -308,11 +333,13 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                                           ctr
                                               .play(worshipUrl ?? '')
                                               .catchError((e) {
+                                            print(
+                                                'Worship audio play error: $e');
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
                                                 content: Text(
-                                                    'Failed to load worship audio: ${e.toString()}'),
+                                                    '${t.failedtoloadworshipaudio}: ${e.toString()}'),
                                                 backgroundColor: Colors.red,
                                                 duration: Duration(seconds: 3),
                                               ),
@@ -356,11 +383,13 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                                           ctr
                                               .play(sermonUrl ?? '')
                                               .catchError((e) {
+                                            print(
+                                                'Sermon audio play error: $e');
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
                                                 content: Text(
-                                                    'Failed to load sermon audio: ${e.toString()}'),
+                                                    '${t.failedtoloadsermonaudio}: ${e.toString()}'),
                                                 backgroundColor: Colors.red,
                                                 duration: Duration(seconds: 3),
                                               ),
@@ -425,7 +454,7 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                                           ),
                                           SizedBox(width: 8),
                                           Text(
-                                            "DESCRIPTION",
+                                            t.description,
                                             style: TextStyle(
                                               color: primaryColor,
                                               fontSize: 14,
@@ -477,7 +506,7 @@ class _SermonPlayerScreenState extends State<SermonPlayerScreen> {
                                   ),
                                   SizedBox(height: 16),
                                   Text(
-                                    'No audio content available',
+                                    t.noaudiocontentavailable,
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -505,8 +534,11 @@ class DynamicHtmlContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Clean the HTML data to remove invalid feature tags
+    String cleanedHtmlData = _cleanHtmlData(htmlData);
+
     return Html(
-      data: htmlData,
+      data: cleanedHtmlData,
       style: {
         "body": Style(
           fontSize: FontSize(16.0),
@@ -526,5 +558,26 @@ class DynamicHtmlContent extends StatelessWidget {
         }
       },
     );
+  }
+
+  String _cleanHtmlData(String htmlData) {
+    if (htmlData.isEmpty) return htmlData;
+
+    // Simple approach: remove problematic HTML content
+    String cleaned = htmlData;
+
+    // Remove any non-standard HTML tags that might cause the feature tag error
+    // This is a more conservative approach to avoid the feature tag error
+    cleaned = cleaned.replaceAll(RegExp(r'<[^>]*>'), '');
+
+    // Also remove any script tags and their content
+    cleaned = cleaned.replaceAll(
+        RegExp(r'<script[^>]*>.*?</script>', dotAll: true), '');
+
+    // Remove any style tags and their content
+    cleaned = cleaned.replaceAll(
+        RegExp(r'<style[^>]*>.*?</style>', dotAll: true), '');
+
+    return cleaned;
   }
 }

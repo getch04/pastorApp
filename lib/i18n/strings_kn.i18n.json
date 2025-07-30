@@ -328,7 +328,26 @@
   "downloadallsermons": "ಎಲ್ಲಾ ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
   "nosermons": "ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಯಾವುದೇ ಪ್ರವಚನಗಳು ಲಭ್ಯವಿಲ್ಲ",
   "sermonsdownloaded": "ಲಭ್ಯವಿರುವ ಎಲ್ಲಾ ಪ್ರವಚನಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ",
-  "sermonsdownloaderror": "ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ"
+  "sermonsdownloaderror": "ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ",
+
+  "onlinetab": "ಆನ್‌ಲೈನ್",
+  "mydownloads": "ನನ್ನ ಡೌನ್‌ಲೋಡ್‌ಗಳು",
+  "clearall": "ಎಲ್ಲವನ್ನು ಸಾಫ್ ಮಾಡಿ",
+  "loadingdownloads": "ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡುತ್ತಿದೆ...",
+  "loadingsermons": "ಪ್ರವಚನಗಳನ್ನು ಲೋಡ್ ಮಾಡುತ್ತಿದೆ...",
+  "nodownloadedsermons": "ಯಾವುದೇ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಪ್ರವಚನಗಳಿಲ್ಲ",
+  "downloadsermonsfromonlinetab": "ಆನ್‌ಲೈನ್ ಟ್ಯಾಬ್‌ನಿಂದ ಪ್ರವಚನಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+  "languagenotsupported": "ಭಾಷೆ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ",
+  "sermonsavailableoffline": "ಪ್ರವಚನಗಳು ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಲಭ್ಯವಿದೆ",
+  "week": "ವಾರ",
+  "sermon": "ಪ್ರವಚನ",
+  "loadingaudio": "ಆಡಿಯೊ ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+  "failedtoloadworshipaudio": "ಆರಾಧನೆ ಆಡಿಯೊ ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಯಿತು",
+  "failedtoloadsermonaudio": "ಪ್ರವಚನ ಆಡಿಯೊ ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಯಿತು",
+  "description": "ವಿವರಣೆ",
+  "noaudiocontentavailable": "ಯಾವುದೇ ಆಡಿಯೋ ವಿಷಯ ಲಭ್ಯವಿಲ್ಲ",
+  "playingoffline": "ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಪ್ಲೇ ಆಗುತ್ತಿದೆ",
+  "filepathmayhavechanged": "ಫೈಲ್ ಪಥವು ಬದಲಾಗಿರಬಹುದು"
 
 
 }

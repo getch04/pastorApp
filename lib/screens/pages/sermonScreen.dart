@@ -288,7 +288,7 @@ class _SermonScreenItemState extends State<SermonScreenItem>
                             SizedBox(width: 8),
                             Flexible(
                               child: Text(
-                                'Online',
+                                t.online,
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
@@ -309,7 +309,7 @@ class _SermonScreenItemState extends State<SermonScreenItem>
                               child: Consumer<CategoriesModel>(
                                 builder: (context, model, child) {
                                   return Text(
-                                    'Offline (${model.totalSavedSermons})',
+                                    '${t.offline} (${model.totalSavedSermons})',
                                     overflow: TextOverflow.ellipsis,
                                   );
                                 },
@@ -391,7 +391,7 @@ class DownloadedSermonTab extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'My Downloads',
+                        t.mydownloads,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -399,7 +399,7 @@ class DownloadedSermonTab extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${model.totalSavedSermons} sermons available offline',
+                        '${model.totalSavedSermons} ${t.sermonsavailableoffline}',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -411,7 +411,7 @@ class DownloadedSermonTab extends StatelessWidget {
                     ElevatedButton.icon(
                       onPressed: () => model.deleteAllSermons(context),
                       icon: Icon(Icons.delete_forever, size: 18),
-                      label: Text('Clear All'),
+                      label: Text(t.clearall),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
@@ -469,7 +469,7 @@ class SermonList extends StatelessWidget {
                       CupertinoActivityIndicator(radius: 20),
                       SizedBox(height: 15),
                       Text(
-                        'Loading downloads...',
+                        t.loadingdownloads,
                         style: TextStyle(color: Colors.grey[600]),
                       ),
                     ],
@@ -497,7 +497,7 @@ class SermonList extends StatelessWidget {
               CupertinoActivityIndicator(radius: 20),
               SizedBox(height: 15),
               Text(
-                'Loading sermons...',
+                t.loadingsermons,
                 style: TextStyle(color: Colors.grey[600]),
               ),
             ],
@@ -523,7 +523,7 @@ class SermonList extends StatelessWidget {
             ),
             SizedBox(height: 15),
             Text(
-              isOnlineTab ? t.nosermons : 'No downloaded sermons',
+              isOnlineTab ? t.nosermons : '${t.nodownloadedsermons}',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey[600],
@@ -533,7 +533,7 @@ class SermonList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  'Download sermons from the Online tab',
+                  '${t.downloadsermonsfromonlinetab}',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey[500],
@@ -729,7 +729,7 @@ class _SermonButtonState extends State<SermonButton> {
                             Positioned(
                               top: 62,
                               left: 30,
-                              child: Text('Language Not Supported'),
+                              child: Text(t.languagenotsupported),
                             )
                           else
                             Positioned(

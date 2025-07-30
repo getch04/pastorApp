@@ -327,6 +327,24 @@
 "downloadallsermons": "सभी उपदेश डाउनलोड करें",
 "nosermons": "डाउनलोड करने के लिए कोई उपदेश उपलब्ध नहीं है",
 "sermonsdownloaded": "सभी उपलब्ध उपदेश सफलतापूर्वक डाउनलोड किए गए",
-"sermonsdownloaderror": "उपदेश डाउनलोड करने में त्रुटि"
+"sermonsdownloaderror": "उपदेश डाउनलोड करने में त्रुटि",
 
+  "onlinetab": "ऑनलाइन",
+  "mydownloads": "मेरे डाउनलोड",
+  "clearall": "सभी साफ़ करें",
+  "loadingdownloads": "डाउनलोड लोड हो रहे हैं...",
+  "loadingsermons": "उपदेश लोड हो रहे हैं...",
+  "nodownloadedsermons": "कोई डाउनलोड किए गए उपदेश नहीं",
+  "downloadsermonsfromonlinetab": "ऑनलाइन टैब से उपदेश डाउनलोड करें",
+  "languagenotsupported": "भाषा समर्थित नहीं",
+  "sermonsavailableoffline": "उपदेश ऑफलाइन उपलब्ध हैं",
+  "week": "सप्ताह",
+  "sermon": "उपदेश",
+  "loadingaudio": "ऑडियो लोड हो रहा है...",
+  "failedtoloadworshipaudio": "पूजा ऑडियो लोड करने में असफल",
+  "failedtoloadsermonaudio": "उपदेश ऑडियो लोड करने में असफल",
+  "description": "विवरण",
+  "noaudiocontentavailable": "कोई ऑडियो सामग्री उपलब्ध नहीं है",
+  "playingoffline": "ऑफ़लाइन चला रहा है",
+  "filepathmayhavechanged": "फ़ाइल पथ बदल गया हो सकता है"
 }

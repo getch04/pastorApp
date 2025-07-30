@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:churchapp_flutter/i18n/strings.g.dart';
 import 'package:churchapp_flutter/utils/Utility.dart';
 import 'package:flutter/material.dart';
 
@@ -155,7 +156,7 @@ class _PlayerNewState extends State<PlayerNew> {
                     Icon(Icons.error_outline, color: Colors.red, size: 24),
                     SizedBox(height: 8),
                     Text(
-                      'Audio file not available',
+                      t.noaudiocontentavailable,
                       style: TextStyle(
                         color: Colors.red,
                         fontSize: 14,
@@ -164,7 +165,7 @@ class _PlayerNewState extends State<PlayerNew> {
                     ),
                     if (widget.isOffline)
                       Text(
-                        'File path may have changed',
+                        t.filepathmayhavechanged,
                         style: TextStyle(
                           color: Colors.red.withOpacity(0.7),
                           fontSize: 12,
@@ -210,7 +211,7 @@ class _PlayerNewState extends State<PlayerNew> {
                                           size: 16, color: Colors.green),
                                       SizedBox(width: 4),
                                       Text(
-                                        'Playing Offline',
+                                        t.playingoffline,
                                         style: TextStyle(
                                           color: Colors.green,
                                           fontSize: 12,

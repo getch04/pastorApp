@@ -326,7 +326,26 @@
     "downloadallsermons": "ସମସ୍ତ ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରନ୍ତୁ",
     "nosermons": "ଡାଉନଲୋଡ୍ କରିବାକୁ କୌଣସି ପ୍ରବଚନ ଉପଲବ୍ଧ ନାହିଁ",
     "sermonsdownloaded": "ସମସ୍ତ ଉପଲବ୍ଧ ପ୍ରବଚନ ସଫଳତାର ସହ ଡାଉନଲୋଡ୍ ହୋଇଛି",
-    "sermonsdownloaderror": "ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରିବାରେ ତ୍ରୁଟି"
+    "sermonsdownloaderror": "ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରିବାରେ ତ୍ରୁଟି",
+
+  "onlinetab": "ଅନଲାଇନ୍",
+  "mydownloads": "ମୋର ଡାଉନଲୋଡ୍",
+  "clearall": "ସମସ୍ତ ସଫା କର",
+  "loadingdownloads": "ଡାଉନଲୋଡ୍ ଲୋଡ୍ ହେଉଛି...",
+  "loadingsermons": "ପ୍ରବଚନ ଲୋଡ୍ ହେଉଛି...",
+  "nodownloadedsermons": "କୌଣସି ଡାଉନଲୋଡ୍ ହୋଇଥିବା ପ୍ରବଚନ ନାହିଁ",
+  "downloadsermonsfromonlinetab": "ଅନଲାଇନ୍ ଟ୍ୟାବ୍ ରୁ ପ୍ରବଚନ ଡାଉନଲୋଡ୍ କରନ୍ତୁ",
+  "languagenotsupported": "ଭାଷା ସମର୍ଥିତ ନୁହେଁ",
+  "sermonsavailableoffline": "ପ୍ରବଚନ ଅଫଲାଇନ୍ ଉପଲବ୍ଧ",
+  "week": "ସପ୍ତାହ",
+  "sermon": "ପ୍ରବଚନ",
+  "loadingaudio": "ଅଡିଓ ଲୋଡ୍ ହେଉଛି...",
+  "failedtoloadworshipaudio": "ଉପାସନା ଅଡିଓ ଲୋଡ୍ କରିବାରେ ବିଫଳ",
+  "failedtoloadsermonaudio": "ପ୍ରବଚନ ଅଡିଓ ଲୋଡ୍ କରିବାରେ ବିଫଳ",
+  "description": "ବର୍ଣ୍ଣନା",
+  "noaudiocontentavailable": "କୌଣସି ଅଡ଼ିଓ ବିଷୟବସ୍ତୁ ଉପଲବ୍ଧ ନାହିଁ",
+  "playingoffline": "ଅଫଲାଇନ୍ ଚାଲୁଛି",
+  "filepathmayhavechanged": "ଫାଇଲ୍ ପଥ ପରିବର୍ତ୍ତିତ ହୋଇଥିବା ସମ୍ଭାବନା ଅଛି"
 
 
 

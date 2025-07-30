@@ -325,5 +325,24 @@
   "downloadallsermons": "அனைத்து பிரசங்கங்களையும் பதிவிறக்கவும்",
   "nosermons": "பதிவிறக்க பிரசங்கங்கள் எதுவும் இல்லை",
   "sermonsdownloaded": "கிடைக்கக்கூடிய அனைத்து பிரசங்கங்களும் வெற்றிகரமாக பதிவிறக்கப்பட்டன",
-  "sermonsdownloaderror": "பிரசங்கங்களை பதிவிறக்குவதில் பிழை"
+  "sermonsdownloaderror": "பிரசங்கங்களை பதிவிறக்குவதில் பிழை",
+
+  "onlinetab": "ஆன்லைன்",
+  "mydownloads": "என் பதிவிறக்கங்கள்",
+  "clearall": "அனைத்தையும் அழிக்கவும்",
+  "loadingdownloads": "பதிவிறக்கங்கள் ஏற்றப்படுகின்றன...",
+  "loadingsermons": "பிரசங்கங்கள் ஏற்றப்படுகின்றன...",
+  "nodownloadedsermons": "பதிவிறக்கப்பட்ட பிரசங்கங்கள் எதுவும் இல்லை",
+  "downloadsermonsfromonlinetab": "ஆன்லைன் டேப்பிலிருந்து பிரசங்கங்களை பதிவிறக்கவும்",
+  "languagenotsupported": "மொழி ஆதரிக்கப்படவில்லை",
+  "sermonsavailableoffline": "பிரசங்கங்கள் ஆஃப்லைனில் கிடைக்கின்றன",
+  "week": "வாரம்",
+  "sermon": "பிரசங்கம்",
+  "loadingaudio": "ஆடியோ ஏற்றப்படுகிறது...",
+  "failedtoloadworshipaudio": "வழிபாட்டு ஆடியோ ஏற்றுவதில் தோல்வி",
+  "failedtoloadsermonaudio": "பிரசங்க ஆடியோ ஏற்றுவதில் தோல்வி",
+  "description": "விளக்கம்",
+  "noaudiocontentavailable": "ஆடியோ உள்ளடக்கம் இல்லை",
+  "playingoffline": "ஆஃப்லைனில் இயக்கப்படுகிறது",
+  "filepathmayhavechanged": "கோப்பு பாதை மாற்றப்பட்டிருக்கலாம்"
 }

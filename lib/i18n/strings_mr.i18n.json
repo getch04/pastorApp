@@ -326,6 +326,24 @@
 "downloadallsermons": "सर्व प्रवचने डाउनलोड करा",
 "nosermons": "डाउनलोड करण्यासाठी कोणतीही प्रवचने उपलब्ध नाहीत",
 "sermonsdownloaded": "सर्व उपलब्ध प्रवचने यशस्वीरित्या डाउनलोड केली",
-"sermonsdownloaderror": "प्रवचने डाउनलोड करताना त्रुटी"
+"sermonsdownloaderror": "प्रवचने डाउनलोड करताना त्रुटी",
 
+  "onlinetab": "ऑनलाइन",
+  "mydownloads": "माझे डाउनलोड",
+  "clearall": "सर्व साफ करा",
+  "loadingdownloads": "डाउनलोड लोड होत आहेत...",
+  "loadingsermons": "प्रवचने लोड होत आहेत...",
+  "nodownloadedsermons": "कोणतीही डाउनलोड केलेली प्रवचने नाहीत",
+  "downloadsermonsfromonlinetab": "ऑनलाइन टॅबवरून प्रवचने डाउनलोड करा",
+  "languagenotsupported": "भाषा समर्थित नाही",
+  "sermonsavailableoffline": "प्रवचने ऑफलाइन उपलब्ध आहेत",
+  "week": "आठवडा",
+  "sermon": "प्रवचन",
+  "loadingaudio": "ऑडिओ लोड होत आहे...",
+  "failedtoloadworshipaudio": "उपासना ऑडिओ लोड करण्यात अपयशी",
+  "failedtoloadsermonaudio": "प्रवचन ऑडिओ लोड करण्यात अपयशी",
+  "description": "वर्णन",
+  "noaudiocontentavailable": "कोणतीही ऑडिओ सामग्री उपलब्ध नाही",
+  "playingoffline": "ऑफलाइन प्ले करत आहे",
+  "filepathmayhavechanged": "फाइल पथ बदलला असू शकतो"
 }

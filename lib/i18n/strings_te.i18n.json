@@ -326,5 +326,24 @@
   "downloadallsermons": "అన్ని ప్రసంగాలను డౌన్‌లోడ్ చేయండి",
   "nosermons": "డౌన్‌లోడ్ చేయడానికి ప్రసంగాలు అందుబాటులో లేవు",
   "sermonsdownloaded": "అందుబాటులో ఉన్న అన్ని ప్రసంగాలు విజయవంతంగా డౌన్‌లోడ్ చేయబడ్డాయి",
-  "sermonsdownloaderror": "ప్రసంగాలను డౌన్‌లోడ్ చేయడంలో లోపం"
+  "sermonsdownloaderror": "ప్రసంగాలను డౌన్‌లోడ్ చేయడంలో లోపం",
+
+  "onlinetab": "ఆన్‌లైన్",
+  "mydownloads": "నా డౌన్‌లోడ్‌లు",
+  "clearall": "అన్నీ క్లియర్ చేయండి",
+  "loadingdownloads": "డౌన్‌లోడ్‌లు లోడ్ చేస్తోంది...",
+  "loadingsermons": "ప్రసంగాలు లోడ్ చేస్తోంది...",
+  "nodownloadedsermons": "డౌన్‌లోడ్ చేసిన ప్రసంగాలు లేవు",
+  "downloadsermonsfromonlinetab": "ఆన్‌లైన్ ట్యాబ్ నుండి ప్రసంగాలు డౌన్‌లోడ్ చేయండి",
+  "languagenotsupported": "భాష మద్దతు లేదు",
+  "sermonsavailableoffline": "ప్రసంగాలు ఆఫ్‌లైన్‌లో అందుబాటులో ఉన్నాయి",
+  "week": "వారం",
+  "sermon": "ప్రసంగం",
+  "loadingaudio": "ఆడియో లోడ్ చేస్తోంది...",
+  "failedtoloadworshipaudio": "ఆరాధన ఆడియో లోడ్ చేయడంలో విఫలమైంది",
+  "failedtoloadsermonaudio": "ప్రసంగ ఆడియో లోడ్ చేయడంలో విఫలమైంది",
+  "description": "వివరణ",
+  "noaudiocontentavailable": "ఆడియో కంటెంట్ అందుబాటులో లేదు",
+  "playingoffline": "ఆఫ్‌లైన్‌లో ప్లే అవుతోంది",
+  "filepathmayhavechanged": "ఫైల్ మార్గం మారిపోయి ఉండవచ్చు"
 }

@@ -72,7 +72,7 @@
     "tools": "ਉਪਕਰਣ",
     "profile": "ਪਰੋਫਾਈਲ",
     "audiobible": "ਆਡੀਓ ਬਾਈਬਲ",
-    "homesentence": "ਤੁਹਾਨੂੰ ਇੱਕ ਵਿਅਕਤੀ ਬਣਨ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਪਾਸਟਰ ਵਾਂਗ ਸਾਲ ਲਈ, ਜਿਸ ਨੂੰ ਭਗਵਾਨ ਨੇ ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤਾ ਹੈ।",
+    "homesentence": "ਤੁਹਾਨੂੰ ਇੱਕ ਵਿਅਕਤੀ ਬਣਨ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਪਾਸੇ ਦੀ ਵਾਂਗ ਸਾਲ ਲਈ, ਜਿਸ ਨੂੰ ਭਗਵਾਨ ਨੇ ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤਾ ਹੈ।",
     "livestreams": "ਲਾਈਵ ਸਟਰੀਮਿੰਗ",
     "radio": "ਰੇਡੀਓ",
 
@@ -80,7 +80,7 @@
   "emptyplaylist": "ਕੋਈ ਪਲੇਲਿਸਟ ਨਹੀਂ",
   "notsupported": "ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ",
   "cleanupresources": "ਸਰੋਤਾਂ ਨੂੰ ਸਾਫ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ",
-  "grantstoragepermission": "ਅੱਗੇ ਵਧਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਸਟੋਰੇਜ ਪ੍ਰਵਾਨਗੀ ਦਿਓ",
+  "grantstoragepermission": "ਅੱਗੇ ਵਧࣨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਸਟੋਰੇਜ ਪ੍ਰਵਾਨਗੀ ਦਿਓ",
   "sharefiletitle": "ਵੇਖੋ ਜਾਂ ਸੁਣੋ ",
   "sharefilebody": "MyVirtualPastor ਐਪ ਦੇ ਰਾਹੀਂ, ਹੁਣੇ ਡਾਊਨਲੋਡ ਕਰੋ ",
   "sharetext": "ਅਸਮੀਤ ਆਡੀਓ ਅਤੇ ਵੀਡੀਓ ਸਟਰੀਮਿੰਗ ਦਾ ਅਨੰਦ ਮਾਣੋ",
@@ -177,7 +177,7 @@
   "subscribe": "ਗਾਹਕੀ",
   "subscribehint": "ਗਾਹਕੀ ਜ਼ਰੂਰੀ ਹੈ",
   "playsubscriptionrequiredhint": "ਇਸ ਮੀਡੀਆ ਨੂੰ ਸੁਣਨ ਜਾਂ ਦੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਗਾਹਕੀ ਦੀ ਲੋੜ ਹੈ।",
-  "previewsubscriptionrequiredhint": "ਤੁਸੀਂ ਇਸ ਮੀਡੀਆ ਲਈ ਅਨੁਮਤ ਮੁਕਤ ਅਵਧੀ ਪਹੁੰਚ ਹਾਸਲ ਕਰ ਲਈ ਹੈ। ਸੁਣਨ ਜਾਂ ਦੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਗਾਹਕੀ ਦੀ ਲੋੜ ਹੈ।",
+  "previewsubscriptionrequiredhint": "ਤੁਸੀਂ ਇਸ ਮੀਡੀਆ ਲਈ ਅਨੁਮਤ ਮੁਕੰਮਲ ਅਵਧੀ ਪਹੁੰਚ ਹਾਸਲ ਕਰ ਲਈ ਹੈ। ਸੁਣਨ ਜਾਂ ਦੇਖਣ ਲਈ ਤੁਹਾਨੂੰ ਗਾਹਕੀ ਦੀ ਲੋੜ ਹੈ।",
   "copiedtoclipboard": "ਕਲਿੱਪਬੋਰਡ 'ਤੇ ਨਕਲ ਕੀਤਾ ਗਿਆ",
 
   "downloadbible": "ਬਾਈਬਲ ਡਾਊਨਲੋਡ ਕਰੋ",
@@ -252,7 +252,7 @@
   "couldnotprocess": "ਬੇਨਤੀ ਕੀਤੀ ਕਾਰਵਾਈ ਨੂੰ ਪ੍ਰਕਿਰਿਆ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।",
   "pleaseselectprofilephoto": "ਕਿਰਪਾ ਕਰਕੇ ਅਪਲੋਡ ਕਰਨ ਲਈ ਇੱਕ ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਚੁਣੋ",
   "pleaseselectprofilecover": "ਕਿਰਪਾ ਕਰਕੇ ਅਪਲੋਡ ਕਰਨ ਲਈ ਇੱਕ ਕਵਰ ਫੋਟੋ ਚੁਣੋ",
-  "updateprofileerrorhint": "ਅੱਗੇ ਵਧਣ ਲਈ ਤੁਹਾਨੂੰ ਆਪਣਾ ਨਾਮ, ਜਨਮ ਮਿਤੀ, ਲਿੰਗ, ਫੋਨ ਅਤੇ ਸਥਾਨ ਭਰਨਾ ਹੋਵੇਗਾ।",
+  "updateprofileerrorhint": "ਅੱਗੇ ਵਧࣨ ਲਈ ਤੁਹਾਨੂੰ ਆਪਣਾ ਨਾਮ, ਜਨਮ ਮਿਤੀ, ਲਿੰਗ, ਫੋਨ ਅਤੇ ਸਥਾਨ ਭਰਨਾ ਹੋਵੇਗਾ।",
   "gender": "ਲਿੰਗ",
   "male": "ਮਰਦ",
   "female": "ਔਰਤ",
@@ -323,9 +323,27 @@
     "WorshipAudio": "ਪੂਜਾ ਆਡੀਓ",
     "SermonAudio": "ਉਪਦੇਸ਼ ਆਡੀਓ",
 
-    "downloadallsermons": "ਸਾਰੇ ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰੋ",
-    "nosermons": "ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਕੋਈ ਉਪਦੇਸ਼ ਉਪਲਬਧ ਨਹੀਂ ਹਨ",
-    "sermonsdownloaded": "ਸਾਰੇ ਉਪਲਬਧ ਉਪਦੇਸ਼ ਸਫਲਤਾਪੂਰਵਕ ਡਾਊਨਲੋਡ ਕੀਤੇ ਗਏ",
-    "sermonsdownloaderror": "ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ"
-}
+      "downloadallsermons": "ਸਾਰੇ ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰੋ",
+  "nosermons": "ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਕੋਈ ਉਪਦੇਸ਼ ਉਪਲਬਧ ਨਹੀਂ ਹਨ",
+  "sermonsdownloaded": "ਸਾਰੇ ਉਪਲਬਧ ਉਪਦੇਸ਼ ਸਫਲਤਾਪੂਰਵਕ ਡਾਊਨਲੋਡ ਕੀਤੇ ਗਏ",
+  "sermonsdownloaderror": "ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ",
 
+  "onlinetab": "ਔਨਲਾਈਨ",
+  "mydownloads": "ਮੇਰੇ ਡਾਊਨਲੋਡ",
+  "clearall": "ਸਭ ਸਾਫ਼ ਕਰੋ",
+  "loadingdownloads": "ਡਾਊਨਲੋਡ ਲੋਡ ਹੋ ਰਹੇ ਹਨ...",
+  "loadingsermons": "ਉਪਦੇਸ਼ ਲੋਡ ਹੋ ਰਹੇ ਹਨ...",
+  "nodownloadedsermons": "ਕੋਈ ਡਾਊਨਲੋਡ ਕੀਤੇ ਉਪਦੇਸ਼ ਨਹੀਂ",
+  "downloadsermonsfromonlinetab": "ਔਨਲਾਈਨ ਟੈਬ ਤੋਂ ਉਪਦੇਸ਼ ਡਾਊਨਲੋਡ ਕਰੋ",
+  "languagenotsupported": "ਭਾਸ਼ਾ ਸਮਰਥਿਤ ਨਹੀਂ",
+  "sermonsavailableoffline": "ਉਪਦੇਸ਼ ਔਫਲਾਈਨ ਉਪਲਬਧ ਹਨ",
+  "week": "ਹਫ਼ਤਾ",
+  "sermon": "ਉਪਦੇਸ਼",
+  "loadingaudio": "ਔਡੀਓ ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...",
+  "failedtoloadworshipaudio": "ਪੂਜਾ ਔਡੀਓ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ",
+  "failedtoloadsermonaudio": "ਉਪਦੇਸ਼ ਔਡੀਓ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ",
+  "description": "ਵਰਣਨ",
+  "noaudiocontentavailable": "ਕੋਈ ਔਡੀਓ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ",
+  "playingoffline": "ਆਫਲਾਈਨ ਚਲਾ ਰਿਹਾ ਹੈ",
+  "filepathmayhavechanged": "ਫਾਈਲ ਪਾਥ ਬਦਲ ਗਿਆ ਹੈ"
+}

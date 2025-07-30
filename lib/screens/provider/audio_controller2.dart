@@ -140,6 +140,20 @@ class AudioController2 extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> reset() async {
+    if (_disposed) return;
+    await _audioPlayer.stop();
+    _currentAudioUrl = null;
+    _isPlaying = false;
+    _isLoading = false;
+    _position = Duration.zero;
+    _duration = Duration.zero;
+    if (_currentlyPlaying == this) {
+      _currentlyPlaying = null;
+    }
+    notifyListeners();
+  }
+
   @override
   void dispose() {
     _disposed = true;
@@ -147,6 +161,9 @@ class AudioController2 extends ChangeNotifier {
     _durationSubscription?.cancel();
     _positionSubscription?.cancel();
     _audioPlayer.dispose();
+    if (_currentlyPlaying == this) {
+      _currentlyPlaying = null;
+    }
     super.dispose();
   }
 }

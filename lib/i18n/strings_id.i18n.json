@@ -324,10 +324,29 @@
 "no_audio_content": "Tidak ada konten audio Alkitab yang tersedia untuk ditampilkan.",
 "WorshipAudio": "Audio Penyembahan",
 "SermonAudio": "Audio Khotbah",
-"downloadallsermons": "Unduh Semua Khotbah",
-"nosermons": "Tidak ada khotbah yang tersedia untuk diunduh",
-"sermonsdownloaded": "Semua khotbah yang tersedia berhasil diunduh",
-"sermonsdownloaderror": "Kesalahan mengunduh khotbah"
+  "downloadallsermons": "Unduh Semua Khotbah",
+  "nosermons": "Tidak ada khotbah yang tersedia untuk diunduh",
+  "sermonsdownloaded": "Semua khotbah yang tersedia berhasil diunduh",
+  "sermonsdownloaderror": "Kesalahan mengunduh khotbah",
+
+  "onlinetab": "Online",
+  "mydownloads": "Unduhan Saya",
+  "clearall": "Hapus Semua",
+  "loadingdownloads": "Memuat unduhan...",
+  "loadingsermons": "Memuat khotbah...",
+  "nodownloadedsermons": "Tidak ada khotbah yang diunduh",
+  "downloadsermonsfromonlinetab": "Unduh khotbah dari tab Online",
+  "languagenotsupported": "Bahasa tidak didukung",
+  "sermonsavailableoffline": "khotbah tersedia offline",
+  "week": "MINGGU",
+  "sermon": "KHOTBAH",
+  "loadingaudio": "Memuat audio...",
+  "failedtoloadworshipaudio": "Gagal memuat audio penyembahan",
+  "failedtoloadsermonaudio": "Gagal memuat audio khotbah",
+  "description": "DESKRIPSI",
+  "noaudiocontentavailable": "Tidak ada konten audio yang tersedia",
+  "playingoffline": "Memutar Offline",
+  "filepathmayhavechanged": "Jalur file mungkin telah berubah"
 
 
 }

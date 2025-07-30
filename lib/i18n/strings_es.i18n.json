@@ -323,5 +323,24 @@
   "downloadallsermons": "Descargar todos los sermones",
   "nosermons": "No hay sermones disponibles para descargar",
   "sermonsdownloaded": "Todos los sermones disponibles descargados exitosamente",
-  "sermonsdownloaderror": "Error al descargar sermones"
+  "sermonsdownloaderror": "Error al descargar sermones",
+
+  "onlinetab": "En línea",
+  "mydownloads": "Mis Descargas",
+  "clearall": "Limpiar Todo",
+  "loadingdownloads": "Cargando descargas...",
+  "loadingsermons": "Cargando sermones...",
+  "nodownloadedsermons": "No hay sermones descargados",
+  "downloadsermonsfromonlinetab": "Descargar sermones de la pestaña En línea",
+  "languagenotsupported": "Idioma no soportado",
+  "sermonsavailableoffline": "sermones disponibles sin conexión",
+  "week": "SEMANA",
+  "sermon": "SERMÓN",
+  "loadingaudio": "Cargando audio...",
+  "failedtoloadworshipaudio": "Error al cargar audio de adoración",
+  "failedtoloadsermonaudio": "Error al cargar audio del sermón",
+  "description": "DESCRIPCIÓN",
+  "noaudiocontentavailable": "No hay contenido de audio disponible",
+  "playingoffline": "Reproduciendo sin conexión",
+  "filepathmayhavechanged": "La ruta del archivo puede haber cambiado"
 }

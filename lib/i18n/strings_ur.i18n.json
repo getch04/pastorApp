@@ -327,5 +327,24 @@
   "downloadallsermons": "تمام خطبات ڈاؤن لوڈ کریں",
   "nosermons": "ڈاؤن لوڈ کرنے کے لیے کوئی خطبات دستیاب نہیں ہیں",
   "sermonsdownloaded": "تمام دستیاب خطبات کامیابی سے ڈاؤن لوڈ ہو گئے",
-  "sermonsdownloaderror": "خطبات ڈاؤن لوڈ کرنے میں خرابی"
+  "sermonsdownloaderror": "خطبات ڈاؤن لوڈ کرنے میں خرابی",
+
+  "onlinetab": "آن لائن",
+  "mydownloads": "میری ڈاؤن لوڈز",
+  "clearall": "سب صاف کریں",
+  "loadingdownloads": "ڈاؤن لوڈز لوڈ ہو رہے ہیں...",
+  "loadingsermons": "خطبات لوڈ ہو رہے ہیں...",
+  "nodownloadedsermons": "کوئی ڈاؤن لوڈ شدہ خطبات نہیں",
+  "downloadsermonsfromonlinetab": "آن لائن ٹیب سے خطبات ڈاؤن لوڈ کریں",
+  "languagenotsupported": "زبان کی مدد نہیں",
+  "sermonsavailableoffline": "خطبات آف لائن دستیاب ہیں",
+  "week": "ہفتہ",
+  "sermon": "خطبہ",
+  "loadingaudio": "آڈیو لوڈ ہو رہا ہے...",
+  "failedtoloadworshipaudio": "عبادت کا آڈیو لوڈ نہیں ہو سکا",
+  "failedtoloadsermonaudio": "خطبہ کا آڈیو لوڈ نہیں ہو سکا",
+  "description": "تفصیل",
+  "noaudiocontentavailable": "کوئی آڈیو مواد دستیاب نہیں",
+  "playingoffline": "آف لائن چل رہا ہے",
+  "filepathmayhavechanged": "فائل کا راستہ تبدیل ہو سکتا ہے"
 }

@@ -326,5 +326,25 @@
   "downloadallsermons": "সমস্ত উপদেশ ডাউনলোড করুন",
   "nosermons": "ডাউনলোড করার জন্য কোন উপদেশ উপলব্ধ নেই",
   "sermonsdownloaded": "সমস্ত উপলব্ধ উপদেশ সফলভাবে ডাউনলোড করা হয়েছে",
-  "sermonsdownloaderror": "উপদেশ ডাউনলোড করতে ত্রুটি"
+  "sermonsdownloaderror": "উপদেশ ডাউনলোড করতে ত্রুটি",
+
+  "onlinetab": "অনলাইন",
+  "mydownloads": "আমার ডাউনলোড",
+  "clearall": "সব পরিষ্কার করুন",
+  "loadingdownloads": "ডাউনলোড লোড হচ্ছে...",
+  "loadingsermons": "উপদেশ লোড হচ্ছে...",
+  "nodownloadedsermons": "কোন ডাউনলোড করা উপদেশ নেই",
+  "downloadsermonsfromonlinetab": "অনলাইন ট্যাব থেকে উপদেশ ডাউনলোড করুন",
+  "languagenotsupported": "ভাষা সমর্থিত নয়",
+  "sermonsavailableoffline": "অফলাইনে উপদেশ উপলব্ধ",
+  "week": "সপ্তাহ",
+  "sermon": "উপদেশ",
+  "loadingaudio": "অডিও লোড হচ্ছে...",
+  "failedtoloadworshipaudio": "উপাসনার অডিও লোড করতে ব্যর্থ",
+  "failedtoloadsermonaudio": "উপদেশের অডিও লোড করতে ব্যর্থ",
+  "description": "বিবরণ",
+  "noaudiocontentavailable": "কোন অডিও কন্টেন্ট উপলব্ধ নেই",
+  "playingoffline": "অফলাইনে চলছে",
+  "filepathmayhavechanged": "ফাইল পথ পরিবর্তিত হতে পারে"
+
 }

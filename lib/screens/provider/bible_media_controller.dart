@@ -25,37 +25,24 @@ class BibleMediaController extends ChangeNotifier {
   late AudioController audioController;
 
   //set current chapter
-  void initData(int chapter, BibleFilterProvider prov, BibleVersion version,
-      BibleBook book, int max, List<String> verses) {
+  Future<void> initData(
+      int chapter,
+      BibleFilterProvider prov,
+      BibleVersion version,
+      BibleBook book,
+      int max,
+      List<String> verses) async {
     currentChapter = chapter;
     bibleVersion = version;
     bibleBook = book;
     maxChapter = max;
-    audiofileSetId = bibleVersion?.getAudioFilesetId(prov.selectedType) ?? '';
-    textfileSetId = bibleVersion?.getTextFilesetId(prov.selectedType) ?? '';
+    audiofileSetId = version.getAudioFilesetId(prov.selectedType) ?? '';
+    textfileSetId = version.getTextFilesetId(prov.selectedType) ?? '';
     bibleTexts = verses.map((e) => BibleText(verseText: e)).toList();
-    fetchBibleContent();
+    await fetchBibleContent();
   }
 
   BibleMediaController(this.audioController);
-
-  // Future<BibleData> fetchBibleByName() async {
-  //   final response = await http.get(
-  //     Uri.parse(
-  //         'https://4.dbt.io/api/bibles?language_code=ENG&page=1&limit=1&version=KJV&v=4'),
-  //     headers: {
-  //       'key': BIBLE_API_KEY,
-  //     },
-  //   );
-
-  //   if (response.statusCode == 200) {
-  //     var data = json.decode(response.body);
-  //     final res = BibleApiResponse.fromJson(data);
-  //     return res.data.first;
-  //   } else {
-  //     throw Exception('Failed to fetch Bible');
-  //   }
-  // }
 
   Future<void> fetchBibleContent() async {
     isLoading = true;

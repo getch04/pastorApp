@@ -326,8 +326,24 @@
   "downloadallsermons": "གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱེད་པ།",
   "nosermons": "ཕབ་ལེན་བྱེད་པའི་གསུང་བཤད་མེད།",
   "sermonsdownloaded": "གསུང་བཤད་ཚང་མ་ཕབ་ལེན་བྱས་ཟིན།",
-  "sermonsdownloaderror": "གསུང་བཤད་ཕབ་ལེན་བྱེད་པའི་སྐབས་ནོར་འཁྲུལ་བྱུང་།"
+  "sermonsdownloaderror": "གསུང་བཤད་ཕབ་ལེན་བྱེད་པའི་སྐབས་ནོར་འཁྲུལ་བྱུང་།",
 
-
-
+  "onlinetab": "ཨོན་ལའིན།",
+  "mydownloads": "ངའི་ཕབ་ལེན།",
+  "clearall": "ཚང་མ་གཙང་བཟོ།",
+  "loadingdownloads": "ཕབ་ལེན་ལོཌ་བྱེད་བཞིན་ཡོད།",
+  "loadingsermons": "གསུང་བཤད་ལོཌ་བྱེད་བཞིན་ཡོད།",
+  "nodownloadedsermons": "ཕབ་ལེན་བྱས་པའི་གསུང་བཤད་མེད།",
+  "downloadsermonsfromonlinetab": "ཨོན་ལའིན་ཊེབ་ནས་གསུང་བཤད་ཕབ་ལེན་བྱེད།",
+  "languagenotsupported": "སྐད་ཡིག་རྒྱབ་སྐྱོར་མེད།",
+  "sermonsavailableoffline": "གསུང་བཤད་ཨོཕ་ལའིན་ཡོད།",
+  "week": "གཟའ་འཁོར།",
+  "sermon": "གསུང་བཤད།",
+  "loadingaudio": "སྒྲ་ཟློས་ལོཌ་བྱེད་བཞིན་ཡོད།",
+  "failedtoloadworshipaudio": "མཆོད་པའི་སྒྲ་ཟློས་ལོཌ་མི་ཐུབ།",
+  "failedtoloadsermonaudio": "གསུང་བཤད་སྒྲ་ཟློས་ལོཌ་མི་ཐུབ།",
+  "description": "འགྲེལ་བཤད།",
+  "noaudiocontentavailable": "སྒྲ་ཟློས་ནང་དོན་མེད།",
+  "playingoffline": "རྒྱབ་ལོག་ནས་བརྒྱབ་ཡོད་པ།",
+  "filepathmayhavechanged": "ཡིག་སྣོད་ལམ་འགྱུར་བྱས་ཡོད་པའི་ཉེན་ཁ"
 }
