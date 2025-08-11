@@ -6,7 +6,6 @@ import 'package:churchapp_flutter/utils/img.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../i18n/strings.g.dart';
 import '../utils/Alerts.dart';
@@ -25,7 +24,7 @@ class RegisterScreen extends StatefulWidget {
 class RegisterScreenRouteState extends State<RegisterScreen> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
-  final phoneNumberController = TextEditingController();
+  // final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
   final repeatPasswordController = TextEditingController();
 
@@ -35,7 +34,7 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
   verifyFormAndSubmit() {
     String _name = nameController.text.trim();
     String _email = emailController.text.trim();
-    String _phone = phoneNumberController.text.trim();
+    // String _phone = phoneNumberController.text.trim();
     String _password = passwordController.text;
     String _repeatPassword = repeatPasswordController.text;
 
@@ -43,14 +42,14 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
       "data": {
         "email": _email,
         "name": _name,
-        "phone": _phone,
+        // "phone": _phone,
         "password": _password,
       }
     });
 
     print(data);
 
-    if (_name == "" || _phone == "" || _password == "") {
+    if (_name == "" || _password == "") {
       Alerts.show(context, t.error, t.emptyfielderrorhint);
     } else if (EmailValidator.validate(_email) == false) {
       Alerts.show(context, t.error, t.invalidemailerrorhint);
@@ -63,6 +62,7 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
 
   Future<void> registerUser(String email, String name, String password) async {
     Alerts.showProgressDialog(context, t.processingpleasewait);
+    debugPrint("email: $email, name: $name, password: $password");
     try {
       final response = await http.post(Uri.parse(ApiUrl.REGISTER),
           body: jsonEncode({
@@ -79,6 +79,7 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
         if (res["status"] == "error") {
           Alerts.show(context, t.error, res["message"]);
         } else {
+          // Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
           Alerts.show(context, t.success, res["message"]);
         }
         print(res);
@@ -92,7 +93,7 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
   void dispose() {
     nameController.dispose();
     emailController.dispose();
-    phoneNumberController.dispose();
+    // phoneNumberController.dispose();
     passwordController.dispose();
     repeatPasswordController.dispose();
     super.dispose();
@@ -164,19 +165,19 @@ class RegisterScreenRouteState extends State<RegisterScreen> {
                 ),
               ),
               Container(height: 25),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(t.phonenumber,
-                    style: TextStyles.caption(context).copyWith()),
-              ),
-              IntlPhoneField(
-                controller: phoneNumberController,
-                textAlignVertical: TextAlignVertical.center,
-                onChanged: (phone) {
-                  print(phone.completeNumber);
-                },
-              ),
-              Container(height: 25),
+              // Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Text(t.phonenumber,
+              //       style: TextStyles.caption(context).copyWith()),
+              // ),
+              // IntlPhoneField(
+              //   controller: phoneNumberController,
+              //   textAlignVertical: TextAlignVertical.center,
+              //   onChanged: (phone) {
+              //     print(phone.completeNumber);
+              //   },
+              // ),
+              // Container(height: 25),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(t.emailaddress,
