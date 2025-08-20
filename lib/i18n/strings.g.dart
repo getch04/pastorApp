@@ -5,7 +5,7 @@
  * Locales: 15
  * Strings: 4830 (322.0 per locale)
  *
- * Built on 2025-07-12 at 06:42 UTC
+ * Built on 2025-08-12 at 09:50 UTC
  */
 
 import 'package:flutter/widgets.dart';
@@ -420,7 +420,7 @@ class _StringsEn {
 	String get articles => 'Articles';
 	String get notes => 'Notes';
 	String get donate => 'Donate';
-	String get offering => 'Offering';
+	String get offering => 'Donation';
 	String get savenotetitle => 'Note Title';
 	String get nonotesfound => 'No notes found';
 	String get newnote => 'New';
@@ -5600,7 +5600,7 @@ extension on _StringsEn {
 			'articles': 'Articles',
 			'notes': 'Notes',
 			'donate': 'Donate',
-			'offering': 'Offering',
+			'offering': 'Donation',
 			'savenotetitle': 'Note Title',
 			'nonotesfound': 'No notes found',
 			'newnote': 'New',
