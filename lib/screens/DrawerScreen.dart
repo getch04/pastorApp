@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:churchapp_flutter/models/Categories.dart';
 import 'package:churchapp_flutter/models/ScreenArguements.dart';
 import 'package:churchapp_flutter/providers/HomeProvider.dart';
@@ -145,6 +147,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
         },
       );
     };
+
     return Container(
       height: double.infinity,
       width: double.infinity,
@@ -325,9 +328,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ListTile(
                   title: Text(t.rate),
                   leading: Icon(Icons.star),
-                  onTap: () {
-                    openBrowserTab('Rate App',
-                        "https://play.google.com/store/apps/details?id=com.churchapp");
+                  onTap: () async {
+                    final url = await _getAppStoreUrl();
+                    openBrowserTab('Rate App', url);
                   },
                 ),
 
@@ -502,5 +505,15 @@ class _DrawerScreenState extends State<DrawerScreen> {
         modalPresentationCapturesStatusBarAppearance: true,
       ),
     );
+  }
+
+  Future<String> _getAppStoreUrl() async {
+    if (Platform.isIOS) {
+      return 'https://apps.apple.com/us/app/my-virtual-pastor/id6747307561';
+    } else if (Platform.isAndroid) {
+      return 'https://play.google.com/store/apps/details?id=com.getdev.myvirtualpastor';
+    }
+    // Fallback for web/other platforms
+    return 'https://play.google.com/store/apps/details?id=com.getdev.myvirtualpastor';
   }
 }
